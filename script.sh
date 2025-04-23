@@ -27,8 +27,8 @@ if [ ! -d "./caringu-python" ]; then
   git clone https://github.com/VitalisTech-Brasil/caringu-python.git
 fi
 
-# 🔨 Buildando containers com Docker Compose
-echo "[*] Buildando os containers com Docker Compose..."
+# 🔨 Buildando as imagens com Docker Compose
+echo "[*] Buildando as imagens com Docker Compose..."
 sudo docker compose build
 
 # [*] Subindo os containers com Docker Compose...
