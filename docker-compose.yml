@@ -1,7 +1,7 @@
 services:
   mysql:
     image: mysql:8.0
-    container_name: mysql
+    container_name: container-mysql-vitalis
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
@@ -25,7 +25,7 @@ services:
       context: ./caringu-python
       dockerfile: Dockerfile
     image: caringu-python:latest
-    container_name: container-python
+    container_name: container-python-vitalis
     ports:
       - "8000:8000"
     networks:
