@@ -21,10 +21,16 @@ MYSQL_ROOT_PASSWORD=root
 MYSQL_DATABASE=vitalis
 EOF
 
-# Clonando o repositório da aplicação Python
-echo "📥 Clonando o repositório da aplicação Python..."
-git clone https://github.com/VitalisTech-Brasil/caringu-python.git
+# Clonando o repositório da aplicação Python, se ainda não existir
+echo "📥 Clonando o repositório da aplicação Python, se ainda não existir..."
+if [ ! -d "./caringu-python" ]; then
+  git clone https://github.com/VitalisTech-Brasil/caringu-python.git
+fi
+
+# 🔨 Buildando containers com Docker Compose
+echo "[*] Buildando os containers com Docker Compose..."
+sudo docker compose build
 
 # [*] Subindo os containers com Docker Compose...
 echo "[*] Subindo os containers com Docker Compose..."
-sudo docker-compose up -d
+sudo docker compose up -d

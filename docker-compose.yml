@@ -37,4 +37,5 @@ volumes:
 
 networks:
   vitalis-net:
+    name: vitalis-net
     driver: bridge
