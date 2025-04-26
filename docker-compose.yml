@@ -51,16 +51,16 @@ services:
         condition: service_healthy
     restart: always
 
-    frontend:
-      build:
-        context: ./caringu-frontend
-        dockerfile: Dockerfile
-      container_name: caringu-frontend
-      ports:
-        - "80:80"
-      networks:
-        - vitalis-net
-      restart: always
+  frontend:
+    build:
+      context: ./caringu-frontend
+      dockerfile: Dockerfile
+    container_name: caringu-frontend
+    ports:
+      - "80:80"
+    networks:
+      - vitalis-net
+    restart: always
 
 volumes:
   mysql_data:
