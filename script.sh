@@ -51,7 +51,7 @@ fi
 
 # Clonando o repositório da aplicação Front-end, se ainda não existir
 echo "📥 Clonando o repositório da aplicação Front-end, se ainda não existir..."
-if [ ! -d "./caringu-backend" ]; then
+if [ ! -d "./caringu-frontend" ]; then
   git clone https://github.com/VitalisTech-Brasil/caringu-frontend.git
 fi
 
