@@ -46,13 +46,13 @@ fi
 # Clonando o repositório da aplicação Java - Spring, se ainda não existir
 echo "📥 Clonando o repositório da aplicação Java - Spring, se ainda não existir..."
 if [ ! -d "./caringu-backend" ]; then
-  git clone https://github.com/VitalisTech-Brasil/caringu-backend
+  git clone https://github.com/VitalisTech-Brasil/caringu-backend.git
 fi
 
 # Clonando o repositório da aplicação Front-end, se ainda não existir
 echo "📥 Clonando o repositório da aplicação Front-end, se ainda não existir..."
 if [ ! -d "./caringu-backend" ]; then
-  git clone https://github.com/VitalisTech-Brasil/caringu-frontend
+  git clone https://github.com/VitalisTech-Brasil/caringu-frontend.git
 fi
 
 # 🔨 Buildando as imagens com Docker Compose
