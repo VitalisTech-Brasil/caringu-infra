@@ -43,6 +43,12 @@ if [ ! -d "./caringu-python" ]; then
   git clone https://github.com/VitalisTech-Brasil/caringu-python.git
 fi
 
+# Clonando o repositório da aplicação Java - Spring, se ainda não existir
+echo "📥 Clonando o repositório da aplicação Java - Spring, se ainda não existir..."
+if [ ! -d "./caringu-backend" ]; then
+  git clone https://github.com/VitalisTech-Brasil/caringu-backend
+fi
+
 # 🔨 Buildando as imagens com Docker Compose
 echo "[*] Buildando as imagens com Docker Compose..."
 sudo docker compose build
