@@ -18,22 +18,22 @@ services:
       interval: 10s
       timeout: 5s
       retries: 3
+
   python:
     build:
       context: ./caringu-python
       dockerfile: Dockerfile
-    image: caringu-python:latest
     container_name: caringu-python
     ports:
       - "8000:8000"
     networks:
       - vitalis-net
     restart: always
+
   spring:
     build:
       context: ./caringu-backend
       dockerfile: Dockerfile
-    image: caringu-spring:latest
     container_name: caringu-spring
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
@@ -49,6 +49,17 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
+    restart: always
+
+    frontend:
+    build:
+      context: ./caringu-frontend
+      dockerfile: Dockerfile
+    container_name: caringu-frontend
+    ports:
+      - "80:80"
+    networks:
+      - vitalis-net
     restart: always
 
 volumes:
