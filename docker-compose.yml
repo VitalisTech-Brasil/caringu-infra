@@ -1,13 +1,11 @@
 services:
   mysql:
     image: mysql:8.0
-    container_name: container-mysql-vitalis
+    container_name: caringu-mysql
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: user
-      MYSQL_PASSWORD: pass
     ports:
       - "3306:3306"
     volumes:
@@ -25,11 +23,32 @@ services:
       context: ./caringu-python
       dockerfile: Dockerfile
     image: caringu-python:latest
-    container_name: container-python-vitalis
+    container_name: caringu-python
     ports:
       - "8000:8000"
     networks:
       - vitalis-net
+    restart: always
+  spring:
+    build:
+      context: ./caringu-spring
+      dockerfile: Dockerfile
+    image: caringu-spring:latest
+    container_name: caringu-spring
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - IP_HOST=caringu-mysql
+      - SPRING_MAIL_USERNAME=${SPRING_MAIL_USERNAME}
+      - SPRING_MAIL_PASSWORD=${SPRING_MAIL_PASSWORD}
+      - JWT_VALIDITY=${JWT_VALIDITY}
+      - JWT_SECRET=${JWT_SECRET}
+    ports:
+      - "8080:8080"
+    networks:
+      - vitalis-net
+    depends_on:
+      mysql:
+        condition: service_healthy
     restart: always
 
 volumes:

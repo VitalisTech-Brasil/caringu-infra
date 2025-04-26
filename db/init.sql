@@ -13,29 +13,28 @@ CREATE TABLE IF NOT EXISTS `vitalis`.`pessoas` (
   `celular` VARCHAR(11) NULL DEFAULT NULL,
   `url_foto_perfil` TEXT NULL,
   `data_nascimento` DATE NULL DEFAULT NULL,
-  `genero` ENUM('MASCULINO', 'FEMININO', 'NAO_BINARIO', 'OUTRO', 'PREFIRO_NAO_INFORMAR') NOT NULL,
+  `genero` ENUM('HOMEM_CISGENERO', 'HOMEM_TRANSGENERO', 'MULHER_CISGENERO', 'MULHER_TRANSGENERO', 'NAO_BINARIO') NOT NULL,
   `data_cadastro` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `email` (`email` ASC) VISIBLE)
 ENGINE = InnoDB
--- AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 -- Pessoas para personal_trainers (IDs: 1 a 5)
 INSERT INTO vitalis.pessoas (nome, email, senha, celular, url_foto_perfil, data_nascimento, genero ) VALUES
-('Lucas Andrade', 'lucas.andrade@example.com', 'senha1234', '11987654321', 'https://img.com/lucas.jpg', '1990-03-15', 'MASCULINO'),
-('Mariana Silva', 'mariana.silva@example.com', 'senha5678', '21988887777', 'https://img.com/mariana.jpg', '1988-07-22', 'FEMININO'),
-('João Pereira', 'joao.pereira@example.com', 'joao3210', '31999990000', NULL, '1995-11-05', 'MASCULINO'),
-('Ana Costa', 'ana.costa@example.com', 'anaana123', '21912345678', 'https://img.com/ana.jpg', '1992-05-18', 'FEMININO'),
-('Rafael Torres', 'rafael.torres@example.com', 'torres777', NULL, NULL, '1998-08-30', 'MASCULINO'),
+('Lucas Andrade', 'lucas.andrade@example.com', 'senha1234', '11987654321', 'https://img.com/lucas.jpg', '1990-03-15', 'HOMEM_CISGENERO'),
+('Mariana Silva', 'mariana.silva@example.com', 'senha5678', '21988887777', 'https://img.com/mariana.jpg', '1988-07-22', 'MULHER_CISGENERO'),
+('João Pereira', 'joao.pereira@example.com', 'joao3210', '31999990000', NULL, '1995-11-05', 'HOMEM_TRANSGENERO'),
+('Ana Costa', 'ana.costa@example.com', 'anaana123', '21912345678', 'https://img.com/ana.jpg', '1992-05-18', 'MULHER_TRANSGENERO'),
+('Rafael Torres', 'rafael.torres@example.com', 'torres777', NULL, NULL, '1998-08-30', 'NAO_BINARIO'),
 
 -- Pessoas para alunos (IDs: 6 a 10)
-('Carla Mendes', 'carla.mendes@example.com', 'mendes456', '11944556677', 'https://img.com/carla.jpg', '1985-02-10', 'FEMININO'),
+('Carla Mendes', 'carla.mendes@example.com', 'mendes456', '11944556677', 'https://img.com/carla.jpg', '1985-02-10', 'MULHER_TRANSGENERO'),
 ('Alex Rocha', 'alex.rocha@example.com', 'alxr0cha', '11999887766', NULL, '2000-12-01', 'NAO_BINARIO'),
-('Bianca Lima', 'bianca.lima@example.com', 'b1ancaL', NULL, 'https://img.com/bianca.jpg', '1997-09-12', 'FEMININO'),
-('Diego Santos', 'diego.santos@example.com', 'diegosenha', '21988776655', 'https://img.com/diego.jpg', NULL, 'PREFIRO_NAO_INFORMAR'),
-('Luna Martins', 'luna.martins@example.com', 'martins123', '31977665544', NULL, '1993-04-25', 'OUTRO');
+('Bianca Lima', 'bianca.lima@example.com', 'b1ancaL', NULL, 'https://img.com/bianca.jpg', '1997-09-12', 'MULHER_TRANSGENERO'),
+('Diego Santos', 'diego.santos@example.com', 'diegosenha', '21988776655', 'https://img.com/diego.jpg', NULL, 'HOMEM_TRANSGENERO'),
+('Luna Martins', 'luna.martins@example.com', 'martins123', '31977665544', NULL, '1993-04-25', 'HOMEM_CISGENERO');
 
 
 
@@ -142,7 +141,6 @@ CREATE TABLE IF NOT EXISTS `vitalis`.`treinos` (
     REFERENCES `vitalis`.`personal_trainers` (`id`)
     ON DELETE CASCADE)
 ENGINE = InnoDB
--- AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -164,14 +162,15 @@ INSERT INTO vitalis.treinos (nome, descricao, personal_id) VALUES
 
 CREATE TABLE IF NOT EXISTS vitalis.treinos_exercicios (
   id INT NOT NULL AUTO_INCREMENT,
-  treino_id INT NOT NULL,
-  exercicio_id INT NOT NULL,
+  treino_id INT,
+  exercicio_id INT,
   carga DECIMAL(5,2) NOT NULL,
   repeticoes INT NOT NULL,
   series INT NOT NULL,
   descanso INT NOT NULL COMMENT 'Descanso em segundos',
   data_hora_criacao TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   data_hora_modificacao TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  origem ENUM('BIBLIOTECA', 'PERSONAL') NOT NULL,
   favorito BOOLEAN NULL DEFAULT FALSE,
   grau_dificuldade ENUM("INICIANTE", "INTERMEDIARIO", "AVANCADO") NOT NULL,
   PRIMARY KEY (id),
@@ -183,70 +182,70 @@ CREATE TABLE IF NOT EXISTS vitalis.treinos_exercicios (
 
 
 -- Treino 1 (Peitoral)
-INSERT INTO vitalis.treinos_exercicios (treino_id, exercicio_id, carga, repeticoes, series, descanso, favorito, grau_dificuldade) VALUES
-(1, 6, 50, 10, 4, 90, FALSE, 'AVANCADO'),
-(1, 7, 12, 12, 4, 60, FALSE, 'AVANCADO'),
-(1, 8, 0, 20, 3, 45, FALSE, 'AVANCADO'),
-(1, 9, 35, 10, 3, 60, FALSE, 'AVANCADO'),
+INSERT INTO vitalis.treinos_exercicios (treino_id, exercicio_id, carga, repeticoes, series, descanso, origem, favorito, grau_dificuldade) VALUES
+(1, 6, 50, 10, 4, 90, 'PERSONAL', FALSE, 'AVANCADO'),
+(1, 7, 12, 12, 4, 60, 'BIBLIOTECA', FALSE, 'AVANCADO'),
+(1, 8, 0, 20, 3, 45, 'PERSONAL', FALSE, 'AVANCADO'),
+(1, 9, 35, 10, 3, 60, 'BIBLIOTECA', FALSE, 'AVANCADO'),
 
 -- Treino 2 (Pernas)
-(2, 10, 30, 10, 3, 60, FALSE, 'INTERMEDIARIO'),
-(2, 11, 25, 10, 3, 45, FALSE, 'INTERMEDIARIO'),
-(2, 12, 80, 12, 4, 90, FALSE, 'INTERMEDIARIO'),
+(2, 10, 30, 10, 3, 60, 'PERSONAL', FALSE, 'INTERMEDIARIO'),
+(2, 11, 25, 10, 3, 45, 'BIBLIOTECA', FALSE, 'INTERMEDIARIO'),
+(2, 12, 80, 12, 4, 90, 'PERSONAL', FALSE, 'INTERMEDIARIO'),
 
 -- Treino 3 (Ombro)
-(3, 13, 6, 15, 3, 30, FALSE, 'INICIANTE'),
-(3, 14, 8, 12, 3, 45, FALSE, 'INICIANTE'),
-(3, 15, 6, 12, 3, 45, FALSE, 'INICIANTE'),
+(3, 13, 6, 15, 3, 30, 'PERSONAL', FALSE, 'INICIANTE'),
+(3, 14, 8, 12, 3, 45, 'BIBLIOTECA', FALSE, 'INICIANTE'),
+(3, 15, 6, 12, 3, 45, 'BIBLIOTECA', FALSE, 'INICIANTE'),
 
 -- Treino 4 (Cardio)
-(4, 16, 0, 60, 3, 20, FALSE, 'INTERMEDIARIO'),
-(4, 17, 0, 15, 3, 30, FALSE, 'INTERMEDIARIO'),
-(4, 18, 0, 60, 3, 20, FALSE, 'INTERMEDIARIO'),
-(4, 19, 0, 40, 3, 30, FALSE, 'INTERMEDIARIO'),
+(4, 16, 0, 60, 3, 20, 'BIBLIOTECA', FALSE, 'INTERMEDIARIO'),
+(4, 17, 0, 15, 3, 30, 'BIBLIOTECA', FALSE, 'INTERMEDIARIO'),
+(4, 18, 0, 60, 3, 20, 'PERSONAL', FALSE, 'INTERMEDIARIO'),
+(4, 19, 0, 40, 3, 30, 'PERSONAL', FALSE, 'INTERMEDIARIO'),
 
 -- Treino 5 (Core)
-(5, 20, 0, 20, 3, 20, FALSE, 'INTERMEDIARIO'),
-(5, 21, 0, 15, 3, 30, FALSE, 'INTERMEDIARIO'),
-(5, 22, 0, 20, 3, 30, FALSE, 'INTERMEDIARIO'),
+(5, 20, 0, 20, 3, 20, 'PERSONAL', FALSE, 'INTERMEDIARIO'),
+(5, 21, 0, 15, 3, 30, 'PERSONAL', FALSE, 'INTERMEDIARIO'),
+(5, 22, 0, 20, 3, 30, 'BIBLIOTECA', FALSE, 'INTERMEDIARIO'),
 
 -- Treino 6 a 10 (novos treinos de cada personal)
-(6, 6, 50, 10, 4, 60, FALSE, 'INTERMEDIARIO'),
-(6, 7, 14, 10, 3, 60, FALSE, 'INTERMEDIARIO'),
-(6, 8, 0, 20, 3, 45, FALSE, 'INTERMEDIARIO'),
-(6, 9, 30, 10, 3, 60, FALSE, 'INTERMEDIARIO'),
-(6, 1, 60, 10, 4, 90, FALSE, 'INTERMEDIARIO'),
+(6, 6, 50, 10, 4, 60, 'BIBLIOTECA', FALSE, 'INTERMEDIARIO'),
+(6, 7, 14, 10, 3, 60, 'BIBLIOTECA', FALSE, 'INTERMEDIARIO'),
+(6, 8, 0, 20, 3, 45, 'BIBLIOTECA', FALSE, 'INTERMEDIARIO'),
+(6, 9, 30, 10, 3, 60, 'BIBLIOTECA', FALSE, 'INTERMEDIARIO'),
+(6, 1, 60, 10, 4, 90, 'PERSONAL', FALSE, 'INTERMEDIARIO'),
 
-(7, 2, 70, 12, 3, 60, FALSE, 'INTERMEDIARIO'),
-(7, 10, 35, 10, 3, 45, FALSE, 'INTERMEDIARIO'),
-(7, 11, 20, 12, 4, 60, FALSE, 'INTERMEDIARIO'),
-(7, 12, 90, 10, 3, 75, FALSE, 'INTERMEDIARIO'),
-(7, 3, 40, 15, 3, 45, FALSE, 'INTERMEDIARIO'),
+(7, 2, 70, 12, 3, 60, 'PERSONAL', FALSE, 'INTERMEDIARIO'),
+(7, 10, 35, 10, 3, 45, 'BIBLIOTECA', FALSE, 'INTERMEDIARIO'),
+(7, 11, 20, 12, 4, 60, 'PERSONAL', FALSE, 'INTERMEDIARIO'),
+(7, 12, 90, 10, 3, 75, 'PERSONAL', FALSE, 'INTERMEDIARIO'),
+(7, 3, 40, 15, 3, 45, 'PERSONAL', FALSE, 'INTERMEDIARIO'),
 
-(8, 13, 10, 12, 3, 45, FALSE, 'INICIANTE'),
-(8, 14, 12, 12, 3, 45, FALSE, 'INICIANTE'),
-(8, 4, 15, 12, 3, 60, FALSE, 'INICIANTE'),
-(8, 15, 10, 15, 3, 45, FALSE, 'INICIANTE'),
-(8, 1, 40, 10, 3, 60, FALSE, 'INICIANTE'),
+(8, 13, 10, 12, 3, 45, 'PERSONAL', FALSE, 'INICIANTE'),
+(8, 14, 12, 12, 3, 45, 'PERSONAL', FALSE, 'INICIANTE'),
+(8, 4, 15, 12, 3, 60, 'BIBLIOTECA', FALSE, 'INICIANTE'),
+(8, 15, 10, 15, 3, 45, 'PERSONAL', FALSE, 'INICIANTE'),
+(8, 1, 40, 10, 3, 60, 'BIBLIOTECA', FALSE, 'INICIANTE'),
 
-(9, 16, 0, 60, 3, 30, FALSE, 'INTERMEDIARIO'),
-(9, 17, 0, 15, 3, 30, FALSE, 'INTERMEDIARIO'),
-(9, 18, 0, 50, 3, 30, FALSE, 'INTERMEDIARIO'),
-(9, 19, 0, 40, 3, 30, FALSE, 'INTERMEDIARIO'),
-(9, 2, 50, 10, 3, 60, FALSE, 'INTERMEDIARIO'),
+(9, 16, 0, 60, 3, 30, 'BIBLIOTECA', FALSE, 'INTERMEDIARIO'),
+(9, 17, 0, 15, 3, 30, 'PERSONAL', FALSE, 'INTERMEDIARIO'),
+(9, 18, 0, 50, 3, 30, 'PERSONAL', FALSE, 'INTERMEDIARIO'),
+(9, 19, 0, 40, 3, 30, 'BIBLIOTECA', FALSE, 'INTERMEDIARIO'),
+(9, 2, 50, 10, 3, 60, 'PERSONAL', FALSE, 'INTERMEDIARIO'),
 
-(10, 20, 0, 20, 3, 20, FALSE, 'INTERMEDIARIO'),
-(10, 21, 0, 20, 3, 20, FALSE, 'INTERMEDIARIO'),
-(10, 5, 0, 30, 4, 30, FALSE, 'INTERMEDIARIO'),
-(10, 22, 0, 20, 3, 20, FALSE, 'INTERMEDIARIO'),
-(10, 4, 10, 15, 3, 60, FALSE, 'INTERMEDIARIO');
+(10, 20, 0, 20, 3, 20, 'PERSONAL', FALSE, 'INTERMEDIARIO'),
+(10, 21, 0, 20, 3, 20, 'BIBLIOTECA', FALSE, 'INTERMEDIARIO'),
+(10, 5, 0, 30, 4, 30, 'BIBLIOTECA', FALSE, 'INTERMEDIARIO'),
+(10, 22, 0, 20, 3, 20, 'BIBLIOTECA', FALSE, 'INTERMEDIARIO'),
+(10, 4, 10, 15, 3, 60, 'PERSONAL', FALSE, 'INTERMEDIARIO');
 -- -----------------------------------------------------
 -- Table `vitalis`.`anamnese`
 -- -----------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS vitalis.anamnese (
   id INT NOT NULL,
-  alunos_id INT NOT NULL,
+  alunos_id INT,
   objetivo_treino TEXT NOT NULL,
   lesao BOOLEAN NOT NULL,
   lesao_descricao TEXT NULL,
@@ -285,8 +284,8 @@ INSERT INTO vitalis.anamnese (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `vitalis`.`alunos_treinos` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `alunos_id` INT NOT NULL,
-  `treinos_exercicios_id` INT NOT NULL,
+  `alunos_id` INT,
+  `treinos_exercicios_id` INT,
   `data_horario_inicio` DATETIME NOT NULL,
   `data_horario_fim` DATETIME NULL DEFAULT NULL COMMENT 'Data de término do treino',
   `dias_semana` JSON NULL,
@@ -464,9 +463,9 @@ CREATE TABLE IF NOT EXISTS `vitalis`.`feedbacks` (
   `titulo` VARCHAR(45) NULL,
   `descricao` TEXT NULL,
   `data_criacao` DATETIME NULL,
-  `alunos_treinos_id` INT NOT NULL,
-  `alunos_treinos_alunos_id` INT NOT NULL,
-  `alunos_treinos_treinos_exercicios_id` INT NOT NULL,
+  `alunos_treinos_id` INT,
+  `alunos_treinos_alunos_id` INT,
+  `alunos_treinos_treinos_exercicios_id` INT,
   PRIMARY KEY (`id`),
   INDEX `fk_feedbacks_alunos_treinos1_idx` (`alunos_treinos_id` ASC, `alunos_treinos_alunos_id` ASC, `alunos_treinos_treinos_exercicios_id` ASC) VISIBLE,
   UNIQUE INDEX `alunos_treinos_id_UNIQUE` (`alunos_treinos_id` ASC) VISIBLE,
@@ -492,8 +491,8 @@ INSERT INTO vitalis.feedbacks (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `vitalis`.`comentarios` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `feedbacks_id` INT NOT NULL,
-  `pessoas_id` INT NOT NULL,
+  `feedbacks_id` INT,
+  `pessoas_id` INT,
   `descricao` TEXT NOT NULL,
   `data_criacao` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `tipo_autor` ENUM('PERSONAL', 'ALUNO') NOT NULL,
@@ -531,7 +530,7 @@ CREATE TABLE IF NOT EXISTS `vitalis`.`evolucao_corporal` (
   `url_foto_shape` TEXT NULL,
   `data_envio` DATETIME NULL,
   `periodo_avaliacao` INT NOT NULL,
-  `alunos_id` INT NOT NULL,
+  `alunos_id` INT,
   PRIMARY KEY (`id`),
   INDEX `fk_evolucao_corporal_alunos1_idx` (`alunos_id` ASC) VISIBLE,
   CONSTRAINT `fk_evolucao_corporal_alunos1`
