@@ -31,7 +31,7 @@ services:
     restart: always
   spring:
     build:
-      context: ./caringu-spring
+      context: ./caringu-backend
       dockerfile: Dockerfile
     image: caringu-spring:latest
     container_name: caringu-spring
