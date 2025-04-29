@@ -18,6 +18,7 @@ CREATE TABLE IF NOT EXISTS `vitalis`.`pessoas` (
   PRIMARY KEY (`id`),
   UNIQUE INDEX `email` (`email` ASC) VISIBLE)
 ENGINE = InnoDB
+-- AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -141,6 +142,7 @@ CREATE TABLE IF NOT EXISTS `vitalis`.`treinos` (
     REFERENCES `vitalis`.`personal_trainers` (`id`)
     ON DELETE CASCADE)
 ENGINE = InnoDB
+-- AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -521,6 +523,9 @@ INSERT INTO vitalis.comentarios (
 (4, 4, 'Bom trabalho, siga assim.', 'PERSONAL', 'MODERADO'),
 (5, 10, 'Realmente cansativo, mas ótimo.', 'ALUNO', 'MUITO_INTENSA');
 
+
+
+
 -- -----------------------------------------------------
 -- Table `vitalis`.`evolucao_corporal`
 -- -----------------------------------------------------
@@ -548,3 +553,10 @@ INSERT INTO vitalis.evolucao_corporal (
 (3, 'COSTAS', 'https://img.com/aluno8-costas.jpg', '2025-04-03 07:30:00', 2, 8),
 (4, 'FRONTAL', 'https://img.com/aluno9-frontal.jpg', '2025-04-04 10:00:00', 1, 9),
 (5, 'PERFIL_ESQUERDO', 'https://img.com/aluno10-perfil.jpg', '2025-04-05 06:30:00', 3, 10);
+
+CREATE TABLE IF NOT EXISTS esqueci_senha (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  email VARCHAR(255) NOT NULL,
+  token VARCHAR(255) NOT NULL,
+  data_expiracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
