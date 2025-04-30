@@ -62,7 +62,7 @@ INSERT INTO vitalis.personal_trainers (id, cref, especialidade, experiencia) VAL
 (3, 'CREF987654-RJ', '["Condicionamento Físico", "Treinamento para Idosos"]', 10),
 (4, 'CREF112233-SP', '["Condicionamento Físico", "Treinamento para Idosos"]', 25),
 (5, 'CREF445566-MG', '["Condicionamento Físico", "Treinamento para Idosos", "Reabilitação e Alongamento"]', 6),
-(6, '123456-G/SP', '["Condicionamento Físico", "Reabilitação e Alongamento"]', 16);
+(6, '123456-G/SP', '["Treinamento Funcional", "Pilates"]', 16);
 -- -----------------------------------------------------
 -- Table `vitalis`.`alunos`
 -- -----------------------------------------------------
