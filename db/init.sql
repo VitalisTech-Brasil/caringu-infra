@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS `vitalis`.`pessoas` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(100) NOT NULL,
   `email` VARCHAR(100) NOT NULL,
-  `senha` VARCHAR(60) NOT NULL,
+  `senha` VARCHAR(255) NOT NULL,
   `celular` VARCHAR(11) NULL DEFAULT NULL,
   `url_foto_perfil` TEXT NULL,
   `data_nascimento` DATE NULL DEFAULT NULL,
@@ -30,7 +30,10 @@ INSERT INTO vitalis.pessoas (nome, email, senha, celular, url_foto_perfil, data_
 ('Ana Costa', 'ana.costa@example.com', 'anaana123', '21912345678', 'https://img.com/ana.jpg', '1992-05-18', 'MULHER_TRANSGENERO'),
 ('Rafael Torres', 'rafael.torres@example.com', 'torres777', NULL, NULL, '1998-08-30', 'NAO_BINARIO'),
 
--- Pessoas para alunos (IDs: 6 a 10)
+-- INSERT COM JWT (ID: 6)
+('Ricardo Gomes da Silva', 'ricardo@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '72987654323', 'https://img.com/ricardo.jpg', '1999-12-25', 'HOMEM_CISGENERO'),
+
+-- Pessoas para alunos (IDs: 7 a 11)
 ('Carla Mendes', 'carla.mendes@example.com', 'mendes456', '11944556677', 'https://img.com/carla.jpg', '1985-02-10', 'MULHER_TRANSGENERO'),
 ('Alex Rocha', 'alex.rocha@example.com', 'alxr0cha', '11999887766', NULL, '2000-12-01', 'NAO_BINARIO'),
 ('Bianca Lima', 'bianca.lima@example.com', 'b1ancaL', NULL, 'https://img.com/bianca.jpg', '1997-09-12', 'MULHER_TRANSGENERO'),
@@ -58,7 +61,8 @@ INSERT INTO vitalis.personal_trainers (id, cref, especialidade, experiencia) VAL
 (2, 'CREF654321-SP', '["Musculação", "Emagrecimento"]', 5),
 (3, 'CREF987654-RJ', '["Condicionamento Físico", "Treinamento para Idosos"]', 10),
 (4, 'CREF112233-SP', '["Condicionamento Físico", "Treinamento para Idosos"]', 25),
-(5, 'CREF445566-MG', '["Condicionamento Físico", "Treinamento para Idosos", "Reabilitação e Alongamento"]', 6);
+(5, 'CREF445566-MG', '["Condicionamento Físico", "Treinamento para Idosos", "Reabilitação e Alongamento"]', 6),
+(6, '123456-G/SP', '["Condicionamento Físico", "Reabilitação e Alongamento"]', 16);
 -- -----------------------------------------------------
 -- Table `vitalis`.`alunos`
 -- -----------------------------------------------------
@@ -73,11 +77,11 @@ CREATE TABLE IF NOT EXISTS vitalis.alunos (
 );
 
 INSERT INTO vitalis.alunos (id, peso, altura, nivel_atividade, nivel_experiencia) VALUES
-(6, 75.50, 1.75, 'MODERADAMENTE_ATIVO', 'INTERMEDIARIO'),
-(7, 65.20, 1.68, 'LEVEMENTE_ATIVO', 'INICIANTE'),
-(8, 82.00, 1.80, 'MUITO_ATIVO', 'AVANCADO'),
-(9, 90.30, 1.85, 'SEDENTARIO', 'INICIANTE'),
-(10, 70.00, 1.65, 'EXTREMAMENTE_ATIVO', 'INTERMEDIARIO');
+(7, 75.50, 1.75, 'MODERADAMENTE_ATIVO', 'INTERMEDIARIO'),
+(8, 65.20, 1.68, 'LEVEMENTE_ATIVO', 'INICIANTE'),
+(9, 82.00, 1.80, 'MUITO_ATIVO', 'AVANCADO'),
+(10, 90.30, 1.85, 'SEDENTARIO', 'INICIANTE'),
+(11, 70.00, 1.65, 'EXTREMAMENTE_ATIVO', 'INTERMEDIARIO');
 
 -- -----------------------------------------------------
 -- Table `vitalis`.`exercicios`
@@ -274,11 +278,11 @@ INSERT INTO vitalis.anamnese (
   fumante, proteses, proteses_descricao, doenca_metabolica, doenca_metabolica_descricao,
   deficiencia, deficiencia_descricao
 ) VALUES
-(1, 6, 'Perder peso e ganhar resistência.', FALSE, NULL, '3', TRUE, 'Musculação recreativa.', FALSE, NULL, FALSE, FALSE, NULL, FALSE, NULL, FALSE, NULL),
-(2, 7, 'Ganhar massa muscular.', TRUE, 'Lesão no ombro direito.', '4', FALSE, NULL, TRUE, 'Desconforto nos joelhos.', TRUE, FALSE, NULL, FALSE, NULL, FALSE, NULL),
-(3, 8, 'Melhorar performance em corridas.', FALSE, NULL, '5', TRUE, 'Participou de treinos intensivos.', FALSE, NULL, FALSE, FALSE, NULL, FALSE, NULL, FALSE, NULL),
-(4, 9, 'Reabilitação física.', TRUE, 'Hérnia de disco.', '2', FALSE, NULL, TRUE, 'Desconforto lombar.', TRUE, TRUE, 'Prótese no joelho esquerdo.', TRUE, 'Diabetes tipo 2', FALSE, NULL),
-(5, 10, 'Condicionamento geral.', FALSE, NULL, '5', TRUE, 'Fazia funcional com personal.', FALSE, NULL, FALSE, FALSE, NULL, FALSE, NULL, FALSE, NULL);
+(1, 7, 'Perder peso e ganhar resistência.', FALSE, NULL, '3', TRUE, 'Musculação recreativa.', FALSE, NULL, FALSE, FALSE, NULL, FALSE, NULL, FALSE, NULL),
+(2, 8, 'Ganhar massa muscular.', TRUE, 'Lesão no ombro direito.', '4', FALSE, NULL, TRUE, 'Desconforto nos joelhos.', TRUE, FALSE, NULL, FALSE, NULL, FALSE, NULL),
+(3, 9, 'Melhorar performance em corridas.', FALSE, NULL, '5', TRUE, 'Participou de treinos intensivos.', FALSE, NULL, FALSE, FALSE, NULL, FALSE, NULL, FALSE, NULL),
+(4, 10, 'Reabilitação física.', TRUE, 'Hérnia de disco.', '2', FALSE, NULL, TRUE, 'Desconforto lombar.', TRUE, TRUE, 'Prótese no joelho esquerdo.', TRUE, 'Diabetes tipo 2', FALSE, NULL),
+(5, 11, 'Condicionamento geral.', FALSE, NULL, '5', TRUE, 'Fazia funcional com personal.', FALSE, NULL, FALSE, FALSE, NULL, FALSE, NULL, FALSE, NULL);
 
 
 -- -----------------------------------------------------
@@ -313,11 +317,11 @@ COLLATE = utf8mb4_0900_ai_ci;
 INSERT INTO vitalis.alunos_treinos (
   alunos_id, treinos_exercicios_id, data_horario_inicio, data_horario_fim, dias_semana, periodo_avaliacao, data_vencimento
 ) VALUES
-(6, 1, '2025-04-01 08:00:00', '2025-04-01 09:00:00', '["Segunda", "Quarta", "Sexta"]', 1, "2025-06-01"),
-(7, 2, '2025-04-02 09:00:00', '2025-04-02 10:00:00', '["Terça", "Quinta"]', 1, "2025-06-01"),
-(8, 3, '2025-04-03 07:30:00', '2025-04-03 08:15:00', '["Segunda", "Quarta", "Sábado"]', 2, "2025-06-01"),
-(9, 4, '2025-04-04 10:00:00', NULL, '["Segunda"]', 1, "2025-06-01"),
-(10, 5, '2025-04-05 06:30:00', '2025-04-05 07:15:00', '["Todos"]', 3, "2025-06-01");
+(7, 1, '2025-04-01 08:00:00', '2025-04-01 09:00:00', '["Segunda", "Quarta", "Sexta"]', 1, "2025-06-01"),
+(8, 2, '2025-04-02 09:00:00', '2025-04-02 10:00:00', '["Terça", "Quinta"]', 1, "2025-06-01"),
+(9, 3, '2025-04-03 07:30:00', '2025-04-03 08:15:00', '["Segunda", "Quarta", "Sábado"]', 2, "2025-06-01"),
+(10, 4, '2025-04-04 10:00:00', NULL, '["Segunda"]', 1, "2025-06-01"),
+(11, 5, '2025-04-05 06:30:00', '2025-04-05 07:15:00', '["Todos"]', 3, "2025-06-01");
 
 
 -- -----------------------------------------------------
@@ -450,11 +454,11 @@ COLLATE = utf8mb4_0900_ai_ci;
 INSERT INTO vitalis.planos (
   alunos_id, personal_trainers_id, nome, status, periodo, quantidade_aulas, valor_aulas, data_inicio, data_fim
 ) VALUES
-(6, 1, 'Plano Básico', 'ATIVO', 'MENSAL', 8, 60.00, '2025-04-01', '2025-04-30'),
-(7, 2, 'Plano Avulso', 'PENDENTE', 'AVULSO', 1, 80.00, '2025-04-03', NULL),
-(8, 3, 'Plano Intensivo', 'ATIVO', 'SEMESTRAL', 48, 50.00, '2025-01-01', '2025-06-30'),
-(9, 4, 'Reabilitação', 'INATIVO', 'MENSAL', 4, 70.00, '2025-03-01', '2025-03-31'),
-(10, 5, 'Plano Premium', 'ATIVO', 'MENSAL', 12, 75.00, '2025-04-01', '2025-04-30');
+(7, 1, 'Plano Básico', 'ATIVO', 'MENSAL', 8, 60.00, '2025-04-01', '2025-04-30'),
+(8, 2, 'Plano Avulso', 'PENDENTE', 'AVULSO', 1, 80.00, '2025-04-03', NULL),
+(9, 3, 'Plano Intensivo', 'ATIVO', 'SEMESTRAL', 48, 50.00, '2025-01-01', '2025-06-30'),
+(10, 4, 'Reabilitação', 'INATIVO', 'MENSAL', 4, 70.00, '2025-03-01', '2025-03-31'),
+(11, 5, 'Plano Premium', 'ATIVO', 'MENSAL', 12, 75.00, '2025-04-01', '2025-04-30');
 
 
 -- -----------------------------------------------------
@@ -481,11 +485,11 @@ ENGINE = InnoDB;
 INSERT INTO vitalis.feedbacks (
   titulo, descricao, data_criacao, alunos_treinos_id, alunos_treinos_alunos_id, alunos_treinos_treinos_exercicios_id
 ) VALUES
-('Ótimo treino', 'Me senti muito bem após os exercícios!', '2025-04-01 10:00:00', 1, 6, 1),
-('Dificuldade com carga', 'Achei a carga pesada no agachamento.', '2025-04-02 11:00:00', 2, 7, 2),
-('Foco no core', 'Preciso de mais exercícios para o core.', '2025-04-03 08:30:00', 3, 8, 3),
-('Treino leve', 'Foi um treino bem tranquilo, gostei.', '2025-04-04 10:30:00', 4, 9, 4),
-('Muito intenso', 'Suei bastante, foi puxado.', '2025-04-05 07:30:00', 5, 10, 5);
+('Ótimo treino', 'Me senti muito bem após os exercícios!', '2025-04-01 10:00:00', 1, 7, 1),
+('Dificuldade com carga', 'Achei a carga pesada no agachamento.', '2025-04-02 11:00:00', 2, 8, 2),
+('Foco no core', 'Preciso de mais exercícios para o core.', '2025-04-03 08:30:00', 3, 9, 3),
+('Treino leve', 'Foi um treino bem tranquilo, gostei.', '2025-04-04 10:30:00', 4, 10, 4),
+('Muito intenso', 'Suei bastante, foi puxado.', '2025-04-05 07:30:00', 5, 11, 5);
 
 
 -- -----------------------------------------------------
@@ -548,11 +552,11 @@ ENGINE = InnoDB;
 INSERT INTO vitalis.evolucao_corporal (
   id, tipo, url_foto_shape, data_envio, periodo_avaliacao, alunos_id
 ) VALUES
-(1, 'FRONTAL', 'https://img.com/aluno6-frontal.jpg', '2025-04-01 08:00:00', 1, 6),
-(2, 'PERFIL_DIREITO', 'https://img.com/aluno7-perfil.jpg', '2025-04-02 09:00:00', 1, 7),
-(3, 'COSTAS', 'https://img.com/aluno8-costas.jpg', '2025-04-03 07:30:00', 2, 8),
-(4, 'FRONTAL', 'https://img.com/aluno9-frontal.jpg', '2025-04-04 10:00:00', 1, 9),
-(5, 'PERFIL_ESQUERDO', 'https://img.com/aluno10-perfil.jpg', '2025-04-05 06:30:00', 3, 10);
+(1, 'FRONTAL', 'https://img.com/aluno6-frontal.jpg', '2025-04-01 08:00:00', 1, 7),
+(2, 'PERFIL_DIREITO', 'https://img.com/aluno7-perfil.jpg', '2025-04-02 09:00:00', 1, 8),
+(3, 'COSTAS', 'https://img.com/aluno8-costas.jpg', '2025-04-03 07:30:00', 2, 9),
+(4, 'FRONTAL', 'https://img.com/aluno9-frontal.jpg', '2025-04-04 10:00:00', 1, 10),
+(5, 'PERFIL_ESQUERDO', 'https://img.com/aluno10-perfil.jpg', '2025-04-05 06:30:00', 3, 11);
 
 CREATE TABLE IF NOT EXISTS esqueci_senha (
   id INT AUTO_INCREMENT PRIMARY KEY,
