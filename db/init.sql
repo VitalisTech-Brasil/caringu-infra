@@ -68,8 +68,8 @@ CREATE TABLE IF NOT EXISTS vitalis.alunos (
   id INT NOT NULL,
   peso DECIMAL(5,2) NULL,
   altura DECIMAL(3,2) NULL,
-  nivel_atividade ENUM("SEDENTARIO", "LEVEMENTE_ATIVO", "MODERADAMENTE_ATIVO", "MUITO_ATIVO", "EXTREMAMENTE_ATIVO") NOT NULL,
-  nivel_experiencia ENUM('INICIANTE', 'INTERMEDIARIO', 'AVANCADO') NOT NULL,
+  nivel_atividade ENUM("SEDENTARIO", "LEVEMENTE_ATIVO", "MODERADAMENTE_ATIVO", "MUITO_ATIVO", "EXTREMAMENTE_ATIVO") NULL,
+  nivel_experiencia ENUM('INICIANTE', 'INTERMEDIARIO', 'AVANCADO') NULL,
   PRIMARY KEY (id),
   CONSTRAINT alunos_ibfk_1 FOREIGN KEY (id) REFERENCES vitalis.pessoas (id) ON DELETE CASCADE
 );
@@ -80,6 +80,68 @@ INSERT INTO vitalis.alunos (id, peso, altura, nivel_atividade, nivel_experiencia
 (8, 82.00, 1.80, 'MUITO_ATIVO', 'AVANCADO'),
 (9, 90.30, 1.85, 'SEDENTARIO', 'INICIANTE'),
 (10, 70.00, 1.65, 'EXTREMAMENTE_ATIVO', 'INTERMEDIARIO');
+
+-- -----------------------------------------------------
+-- Table `vitalis`.`notificacoes`
+-- -----------------------------------------------------
+CREATE TABLE notificacoes (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    pessoas_id INT NOT NULL,
+    tipo ENUM(
+        'FEEDBACK_TREINO',
+        'PAGAMENTO_REALIZADO',
+        'PLANO_PROXIMO_VENCIMENTO',
+        'NOVA_FOTO_PROGRESSO',
+        'TREINO_PROXIMO_VENCIMENTO'
+    ) NOT NULL,
+    titulo VARCHAR(100) NOT NULL,
+    mensagem TEXT NOT NULL,
+    visualizada BOOLEAN DEFAULT FALSE,
+    data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_notificacao_usuario FOREIGN KEY (pessoas_id)
+        REFERENCES pessoas(id)
+        ON DELETE CASCADE
+);
+
+INSERT INTO notificacoes (pessoas_id, tipo, titulo, mensagem, visualizada, data_criacao, data_validade)
+VALUES 
+(1, 'FEEDBACK_TREINO', 'Feedback de Treino', 'Seu treino de hoje foi excelente!', FALSE, CURRENT_TIMESTAMP, '2025-05-15'),
+(2, 'PAGAMENTO_REALIZADO', 'Pagamento Confirmado', 'Seu pagamento foi realizado com sucesso.', FALSE, CURRENT_TIMESTAMP, '2025-05-10'),
+(3, 'PLANO_PROXIMO_VENCIMENTO', 'Plano Próximo Vencimento', 'Seu plano de treino vai vencer em breve.', FALSE, CURRENT_TIMESTAMP, '2025-06-01'),
+(4, 'NOVA_FOTO_PROGRESSO', 'Nova Foto de Progresso', 'Parabéns! Sua foto de progresso foi atualizada.', TRUE, CURRENT_TIMESTAMP, '2025-05-12'),
+(5, 'TREINO_PROXIMO_VENCIMENTO', 'Treino Próximo Vencimento', 'Seu treino vai vencer em 3 dias.', FALSE, CURRENT_TIMESTAMP, '2025-05-08');
+
+-- -----------------------------------------------------
+-- Table `vitalis`.`preferencias_notificacao`
+-- -----------------------------------------------------
+CREATE TABLE preferencias_notificacao (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    pessoas_id INT NOT NULL,
+    tipo ENUM(
+        'FEEDBACK_TREINO',
+        'PAGAMENTO_REALIZADO',
+        'PLANO_PROXIMO_VENCIMENTO',
+        'NOVA_FOTO_PROGRESSO',
+        'TREINO_PROXIMO_VENCIMENTO'
+    ) NOT NULL,
+    ativada BOOLEAN DEFAULT TRUE,
+
+    CONSTRAINT fk_preferencia_usuario FOREIGN KEY (pessoas_id)
+        REFERENCES pessoas(id)
+        ON DELETE CASCADE,
+
+    CONSTRAINT uk_usuario_tipo UNIQUE (pessoas_id, tipo)
+);
+
+INSERT INTO preferencias_notificacao (pessoas_id, tipo, ativada)
+VALUES 
+(1, 'FEEDBACK_TREINO', TRUE),
+(1, 'PAGAMENTO_REALIZADO', TRUE),
+(2, 'PLANO_PROXIMO_VENCIMENTO', FALSE),
+(3, 'NOVA_FOTO_PROGRESSO', TRUE),
+(4, 'TREINO_PROXIMO_VENCIMENTO', TRUE),
+(5, 'FEEDBACK_TREINO', FALSE);
 
 -- -----------------------------------------------------
 -- Table `vitalis`.`exercicios`
@@ -108,25 +170,25 @@ INSERT INTO vitalis.exercicios (nome, grupo_muscular, url_video, observacoes, fa
 ('Leg Press', 'PERNAS', 'https://example.com/leg-press', NULL, FALSE, 'BIBLIOTECA'),
 
 -- Ombro
-('Elevação Lateral', 'Ombro', 'https://example.com/elevacao-lateral', NULL, TRUE, 'PERSONAL'),
-('Desenvolvimento Arnold', 'Ombro', 'https://example.com/arnold', 'Evitar estender totalmente', FALSE, 'PERSONAL'),
-('Elevação Frontal', 'Ombro', 'https://example.com/elevacao-frontal', NULL, FALSE, 'BIBLIOTECA'),
+('Elevação Lateral', 'OMBRO', 'https://example.com/elevacao-lateral', NULL, TRUE, 'PERSONAL'),
+('Desenvolvimento Arnold', 'OMBRO', 'https://example.com/arnold', 'Evitar estender totalmente', FALSE, 'PERSONAL'),
+('Elevação Frontal', 'OMBRO', 'https://example.com/elevacao-frontal', NULL, FALSE, 'BIBLIOTECA'),
 
 -- Core
-('Abdominal Bicicleta', 'Core', 'https://example.com/abdominal-bicicleta', NULL, FALSE, 'BIBLIOTECA'),
-('Elevação de Pernas', 'Core', 'https://example.com/elevacao-pernas', NULL, FALSE, 'BIBLIOTECA'),
-('Abdominal Infra', 'Core', 'https://example.com/infra', NULL, TRUE, 'Biblioteca'),
-('Abdominal Bicicleta', 'Core', 'https://example.com/abdominal-bicicleta', NULL, FALSE, 'BIBLIOTECA'), 
-('Elevação de Pernas', 'Core', 'https://example.com/elevacao-pernas', NULL, FALSE, 'BIBLIOTECA'),
-('Abdominal Infra', 'Core', 'https://example.com/infra', NULL, TRUE, 'Biblioteca'),
+('Abdominal Bicicleta', 'CORE', 'https://example.com/abdominal-bicicleta', NULL, FALSE, 'BIBLIOTECA'),
+('Elevação de Pernas', 'CORE', 'https://example.com/elevacao-pernas', NULL, FALSE, 'BIBLIOTECA'),
+('Abdominal Infra', 'CORE', 'https://example.com/infra', NULL, TRUE, 'BIBLIOTECA'),
+('Abdominal Bicicleta', 'CORE', 'https://example.com/abdominal-bicicleta', NULL, FALSE, 'BIBLIOTECA'), 
+('Elevação de Pernas', 'CORE', 'https://example.com/elevacao-pernas', NULL, FALSE, 'BIBLIOTECA'),
+('Abdominal Infra', 'CORE', 'https://example.com/infra', NULL, TRUE, 'BIBLIOTECA'),
 
 -- Cardio
-('Polichinelo', 'Cardio', 'https://example.com/polichinelo', NULL, FALSE, 'BIBLIOTECA'),
-('Burpee', 'Cardio', 'https://example.com/burpee', 'Explosão ao subir', TRUE, 'BIBLIOTECA'),
-('Corrida Estacionária', 'Cardio', 'https://example.com/corrida', NULL, FALSE, 'BIBLIOTECA'),
-('Mountain Climbers', 'Cardio', 'https://example.com/mountain', NULL, FALSE, 'BIBLIOTECA'),
-('Corrida Estacionária', 'Cardio', 'https://example.com/corrida', NULL, FALSE, 'BIBLIOTECA'), 
-('Mountain Climbers', 'Cardio', 'https://example.com/mountain', NULL, FALSE, 'BIBLIOTECA');
+('Polichinelo', 'CARDIO', 'https://example.com/polichinelo', NULL, FALSE, 'BIBLIOTECA'),
+('Burpee', 'CARDIO', 'https://example.com/burpee', 'Explosão ao subir', TRUE, 'BIBLIOTECA'),
+('Corrida Estacionária', 'CARDIO', 'https://example.com/corrida', NULL, FALSE, 'BIBLIOTECA'),
+('Mountain Climbers', 'CARDIO', 'https://example.com/mountain', NULL, FALSE, 'BIBLIOTECA'),
+('Corrida Estacionária', 'CARDIO', 'https://example.com/corrida', NULL, FALSE, 'BIBLIOTECA'), 
+('Mountain Climbers', 'CARDIO', 'https://example.com/mountain', NULL, FALSE, 'BIBLIOTECA');
 
 
 -- -----------------------------------------------------
