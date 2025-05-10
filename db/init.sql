@@ -308,7 +308,7 @@ INSERT INTO vitalis.treinos_exercicios (treino_id, exercicio_id, carga, repetico
 
 CREATE TABLE IF NOT EXISTS vitalis.anamnese (
   id INT NOT NULL AUTO_INCREMENT,
-  alunos_id INT NOT NULL,
+  alunos_id INT NOT NULL UNIQUE,
   objetivo_treino TEXT NOT NULL,
   lesao BOOLEAN NOT NULL,
   lesao_descricao TEXT NULL,
