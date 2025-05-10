@@ -18,7 +18,6 @@ CREATE TABLE IF NOT EXISTS `vitalis`.`pessoas` (
   PRIMARY KEY (`id`),
   UNIQUE INDEX `email` (`email` ASC) VISIBLE)
 ENGINE = InnoDB
--- AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -84,7 +83,7 @@ INSERT INTO vitalis.alunos (id, peso, altura, nivel_atividade, nivel_experiencia
 -- -----------------------------------------------------
 -- Table `vitalis`.`notificacoes`
 -- -----------------------------------------------------
-CREATE TABLE notificacoes (
+CREATE TABLE IF NOT EXISTS notificacoes (
     id INT PRIMARY KEY AUTO_INCREMENT,
     pessoas_id INT NOT NULL,
     tipo ENUM(
@@ -95,7 +94,6 @@ CREATE TABLE notificacoes (
         'TREINO_PROXIMO_VENCIMENTO'
     ) NOT NULL,
     titulo VARCHAR(100) NOT NULL,
-    mensagem TEXT NOT NULL,
     visualizada BOOLEAN DEFAULT FALSE,
     data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
@@ -104,18 +102,18 @@ CREATE TABLE notificacoes (
         ON DELETE CASCADE
 );
 
-INSERT INTO notificacoes (pessoas_id, tipo, titulo, mensagem, visualizada, data_criacao, data_validade)
+INSERT INTO notificacoes (pessoas_id, tipo, titulo, visualizada, data_criacao)
 VALUES 
-(1, 'FEEDBACK_TREINO', 'Feedback de Treino', 'Seu treino de hoje foi excelente!', FALSE, CURRENT_TIMESTAMP, '2025-05-15'),
-(2, 'PAGAMENTO_REALIZADO', 'Pagamento Confirmado', 'Seu pagamento foi realizado com sucesso.', FALSE, CURRENT_TIMESTAMP, '2025-05-10'),
-(3, 'PLANO_PROXIMO_VENCIMENTO', 'Plano Próximo Vencimento', 'Seu plano de treino vai vencer em breve.', FALSE, CURRENT_TIMESTAMP, '2025-06-01'),
-(4, 'NOVA_FOTO_PROGRESSO', 'Nova Foto de Progresso', 'Parabéns! Sua foto de progresso foi atualizada.', TRUE, CURRENT_TIMESTAMP, '2025-05-12'),
-(5, 'TREINO_PROXIMO_VENCIMENTO', 'Treino Próximo Vencimento', 'Seu treino vai vencer em 3 dias.', FALSE, CURRENT_TIMESTAMP, '2025-05-08');
+(1, 'FEEDBACK_TREINO', 'Feedback de Treino', FALSE, CURRENT_TIMESTAMP),
+(2, 'PAGAMENTO_REALIZADO', 'Pagamento Confirmado', FALSE, CURRENT_TIMESTAMP),
+(3, 'PLANO_PROXIMO_VENCIMENTO', 'Plano Próximo Vencimento', FALSE, CURRENT_TIMESTAMP),
+(4, 'NOVA_FOTO_PROGRESSO', 'Nova Foto de Progresso', TRUE, CURRENT_TIMESTAMP),
+(5, 'TREINO_PROXIMO_VENCIMENTO', 'Treino Próximo Vencimento', FALSE, CURRENT_TIMESTAMP);
 
 -- -----------------------------------------------------
 -- Table `vitalis`.`preferencias_notificacao`
 -- -----------------------------------------------------
-CREATE TABLE preferencias_notificacao (
+CREATE TABLE IF NOT EXISTS preferencias_notificacao (
     id INT PRIMARY KEY AUTO_INCREMENT,
     pessoas_id INT NOT NULL,
     tipo ENUM(
@@ -206,7 +204,6 @@ CREATE TABLE IF NOT EXISTS `vitalis`.`treinos` (
     REFERENCES `vitalis`.`personal_trainers` (`id`)
     ON DELETE CASCADE)
 ENGINE = InnoDB
--- AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -310,7 +307,7 @@ INSERT INTO vitalis.treinos_exercicios (treino_id, exercicio_id, carga, repetico
 -- -----------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS vitalis.anamnese (
-  id INT NOT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
   alunos_id INT,
   objetivo_treino TEXT NOT NULL,
   lesao BOOLEAN NOT NULL,
@@ -370,7 +367,6 @@ CREATE TABLE IF NOT EXISTS `vitalis`.`alunos_treinos` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
--- AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -610,7 +606,7 @@ INSERT INTO vitalis.comentarios (
 -- Table `vitalis`.`evolucao_corporal`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `vitalis`.`evolucao_corporal` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `tipo` ENUM("FRONTAL", "PERFIL_DIREITO", "PERFIL_ESQUERDO", "COSTAS") NOT NULL,
   `url_foto_shape` TEXT NULL,
   `data_envio` DATETIME NULL,
