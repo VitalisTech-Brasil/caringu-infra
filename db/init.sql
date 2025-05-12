@@ -45,21 +45,20 @@ INSERT INTO vitalis.pessoas (nome, email, senha, celular, url_foto_perfil, data_
 -- Table `vitalis`.`personal_trainers`
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS vitalis.personal_trainers (
+CREATE TABLE IF NOT EXISTS personal_trainers (
   id INT NOT NULL,
   cref VARCHAR(20) NOT NULL,
-  especialidade JSON NOT NULL,
   experiencia INT NULL,
   PRIMARY KEY (id),
-  CONSTRAINT fk_personal_trainers_pessoas FOREIGN KEY (id) REFERENCES vitalis.pessoas (id) ON DELETE CASCADE
+  CONSTRAINT fk_personal_trainers_pessoas FOREIGN KEY (id) REFERENCES pessoas (id) ON DELETE CASCADE
 );
 
-INSERT INTO vitalis.personal_trainers (id, cref, especialidade, experiencia) VALUES
-(1, 'CREF123456-SP', '["Musculação", "Treinamento Funcional"]', 15),
-(2, 'CREF654321-SP', '["Musculação", "Emagrecimento"]', 5),
-(3, 'CREF987654-RJ', '["Condicionamento Físico", "Treinamento para Idosos"]', 10),
-(4, 'CREF112233-SP', '["Condicionamento Físico", "Treinamento para Idosos"]', 25),
-(5, '123456-G/SP', '["Condicionamento Físico", "Reabilitação e Alongamento"]', 16);
+INSERT INTO personal_trainers (id, cref, experiencia) VALUES
+(1, 'CREF123456-SP', 15),
+(2, 'CREF654321-SP', 5),
+(3, 'CREF987654-RJ', 10),
+(4, 'CREF112233-SP', 25),
+(5, '123456-G/SP', 16);
 -- -----------------------------------------------------
 -- Table `vitalis`.`alunos`
 -- -----------------------------------------------------
@@ -79,6 +78,61 @@ INSERT INTO vitalis.alunos (id, peso, altura, nivel_atividade, nivel_experiencia
 (8, 82.00, 1.80, 'MUITO_ATIVO', 'AVANCADO'),
 (9, 90.30, 1.85, 'SEDENTARIO', 'INICIANTE'),
 (10, 70.00, 1.65, 'EXTREMAMENTE_ATIVO', 'INTERMEDIARIO');
+
+-- -----------------------------------------------------
+-- Table `vitalis`.`especialidades`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS especialidades (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(50) NOT NULL
+);
+
+INSERT INTO especialidades (nome)
+VALUES
+("Musculação"),
+("Treinamento Funcional"),
+("HIIT (Treino Intervalado de Alta Intensidade)"),
+("Treinamento de Core"),
+("Treinamento para Emagrecimento"),
+("Corrida e Caminhada"),
+("Ciclismo Indoor (Spinning)"),
+("Treinamento Esportivo"),
+("Treinamento para Atletas de Alto Rendimento"),
+("Pilates"),
+("Alongamento e Mobilidade"),
+("Reabilitação e Prevenção de Lesões"),
+("Hipertrofia Muscular"),
+("Modelagem Corporal"),
+("Treinamento para Pessoas com Deficiência"),
+("Treinamento para Idosos"),
+("Treinamento Pré e Pós-Parto"),
+("Treinamento para Saúde Metabólica");
+
+-- -----------------------------------------------------
+-- Table `vitalis`.`personal_trainer_especialidade`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS personal_trainer_especialidades (
+    personal_trainers_id INT NOT NULL,
+    especialidades_id INT NOT NULL,
+    PRIMARY KEY (personal_trainers_id, especialidades_id),
+    FOREIGN KEY (personal_trainers_id) REFERENCES personal_trainers(id) ON DELETE CASCADE,
+    FOREIGN KEY (especialidades_id) REFERENCES especialidades(id) ON DELETE CASCADE
+);
+
+-- Personal 1: Musculação, Treinamento Funcional
+INSERT INTO personal_trainer_especialidades VALUES (1, 1), (1, 2);
+
+-- Personal 2: Musculação, Emagrecimento
+INSERT INTO personal_trainer_especialidades VALUES (2, 1), (2, 5);
+
+-- Personal 3: Condicionamento Físico ≈ Treinamento de Core + Saúde Metabólica?
+INSERT INTO personal_trainer_especialidades VALUES (3, 4), (3, 16);
+
+-- Personal 4: Condicionamento Físico, Treinamento para Idosos
+INSERT INTO personal_trainer_especialidades VALUES (4, 4), (4, 16);
+
+-- Personal 5: Reabilitação e Alongamento ≈ Reabilitação + Mobilidade
+INSERT INTO personal_trainer_especialidades VALUES (5, 11), (5, 12);
 
 -- -----------------------------------------------------
 -- Table `vitalis`.`notificacoes`
