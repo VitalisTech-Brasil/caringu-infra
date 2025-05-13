@@ -500,9 +500,9 @@ INSERT INTO vitalis.bairros (nome, cidades_id) VALUES
 
 
 -- -----------------------------------------------------
--- Table `vitalis`.`personal_trainers_bairros`
+-- Table `vitalis`.`personal_trainers_estados`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `vitalis`.`personal_trainers_bairros` (
+CREATE TABLE IF NOT EXISTS `vitalis`.`personal_trainers_estados` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `personal_trainers_id` INT NOT NULL,
   `estados_id` INT NOT NULL,
@@ -523,7 +523,7 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
-INSERT INTO vitalis.personal_trainers_bairros (personal_trainers_id, estados_id) VALUES
+INSERT INTO vitalis.personal_trainers_estados (personal_trainers_id, estados_id) VALUES
 (1, 1),
 (2, 1),
 (3, 2),
