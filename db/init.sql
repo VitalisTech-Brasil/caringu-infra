@@ -139,7 +139,7 @@ INSERT INTO personal_trainer_especialidades VALUES (5, 11), (5, 12);
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS notificacoes (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    pessoas_id INT NOT NULL,
+    pessoas_id INT NULL,
     tipo ENUM(
         'FEEDBACK_TREINO',
         'PAGAMENTO_REALIZADO',
@@ -169,7 +169,7 @@ VALUES
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS preferencias_notificacao (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    pessoas_id INT NOT NULL,
+    pessoas_id INT NULL,
     tipo ENUM(
         'FEEDBACK_TREINO',
         'PAGAMENTO_REALIZADO',
@@ -408,7 +408,7 @@ CREATE TABLE IF NOT EXISTS `vitalis`.`alunos_treinos` (
   `dias_semana` JSON NULL,
   `periodo_avaliacao` INT NOT NULL COMMENT 'Período em meses',
   `data_vencimento` DATE NOT NULL COMMENT 'Data do vencimento de um treino',
-  PRIMARY KEY (`id`, `alunos_id`, `treinos_exercicios_id`),
+  PRIMARY KEY (`id`),
   INDEX `aluno_id` (`alunos_id` ASC) VISIBLE,
   INDEX `fk_alunos_treinos_treinos_exercicios1_idx` (`treinos_exercicios_id` ASC) VISIBLE,
   CONSTRAINT `alunos_treinos_ibfk_1`
@@ -596,26 +596,23 @@ CREATE TABLE IF NOT EXISTS `vitalis`.`feedbacks` (
   `descricao` TEXT NULL,
   `data_criacao` DATETIME NULL,
   `alunos_treinos_id` INT,
-  `alunos_treinos_alunos_id` INT,
-  `alunos_treinos_treinos_exercicios_id` INT,
   PRIMARY KEY (`id`),
-  INDEX `fk_feedbacks_alunos_treinos1_idx` (`alunos_treinos_id` ASC, `alunos_treinos_alunos_id` ASC, `alunos_treinos_treinos_exercicios_id` ASC) VISIBLE,
-  UNIQUE INDEX `alunos_treinos_id_UNIQUE` (`alunos_treinos_id` ASC) VISIBLE,
+  INDEX `fk_feedbacks_alunos_treinos1_idx` (`alunos_treinos_id` ASC),
   CONSTRAINT `fk_feedbacks_alunos_treinos1`
-    FOREIGN KEY (`alunos_treinos_id` , `alunos_treinos_alunos_id` , `alunos_treinos_treinos_exercicios_id`)
-    REFERENCES `vitalis`.`alunos_treinos` (`id` , `alunos_id` , `treinos_exercicios_id`)
+    FOREIGN KEY (`alunos_treinos_id`)
+    REFERENCES `vitalis`.`alunos_treinos` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 INSERT INTO vitalis.feedbacks (
-  titulo, descricao, data_criacao, alunos_treinos_id, alunos_treinos_alunos_id, alunos_treinos_treinos_exercicios_id
+  titulo, descricao, data_criacao, alunos_treinos_id
 ) VALUES
-('Ótimo treino', 'Me senti muito bem após os exercícios!', '2025-04-01 10:00:00', 1, 6, 1),
-('Dificuldade com carga', 'Achei a carga pesada no agachamento.', '2025-04-02 11:00:00', 2, 7, 2),
-('Foco no core', 'Preciso de mais exercícios para o core.', '2025-04-03 08:30:00', 3, 8, 3),
-('Treino leve', 'Foi um treino bem tranquilo, gostei.', '2025-04-04 10:30:00', 4, 9, 4),
-('Muito intenso', 'Suei bastante, foi puxado.', '2025-04-05 07:30:00', 5, 10, 5);
+('Ótimo treino', 'Me senti muito bem após os exercícios!', '2025-04-01 10:00:00', 1),
+('Dificuldade com carga', 'Achei a carga pesada no agachamento.', '2025-04-02 11:00:00', 2),
+('Foco no core', 'Preciso de mais exercícios para o core.', '2025-04-03 08:30:00', 3),
+('Treino leve', 'Foi um treino bem tranquilo, gostei.', '2025-04-04 10:30:00', 4),
+('Muito intenso', 'Suei bastante, foi puxado.', '2025-04-05 07:30:00', 5);
 
 
 -- -----------------------------------------------------
