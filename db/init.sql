@@ -564,13 +564,13 @@ INSERT INTO vitalis.planos (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS vitalis.planos_contratados (
   id INT NOT NULL AUTO_INCREMENT,
-  plano_id INT NOT NULL,
+  planos_id INT NOT NULL,
   alunos_id INT NOT NULL,
   status ENUM('ATIVO', 'PENDENTE', 'INATIVO') NOT NULL,
-  data_inicio DATE NOT NULL,
+  data_contratacao DATE NOT NULL,
   data_fim DATE NULL,
   PRIMARY KEY (id),
-  FOREIGN KEY (plano_id)
+  FOREIGN KEY (planos_id)
     REFERENCES vitalis.planos(id)
     ON DELETE CASCADE,
   FOREIGN KEY (alunos_id)
@@ -579,7 +579,7 @@ CREATE TABLE IF NOT EXISTS vitalis.planos_contratados (
 );
 
 INSERT INTO vitalis.planos_contratados (
-  plano_id, alunos_id, status, data_inicio, data_fim
+  planos_id, alunos_id, status, data_contratacao, data_fim
 ) VALUES
 (1, 6, 'ATIVO', '2025-04-01', NULL),
 (2, 7, 'PENDENTE', '2025-04-03', NULL),
