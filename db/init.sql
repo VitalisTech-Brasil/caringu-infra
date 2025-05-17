@@ -50,7 +50,8 @@ CREATE TABLE IF NOT EXISTS personal_trainers (
   cref VARCHAR(20) NOT NULL,
   experiencia INT NULL,
   PRIMARY KEY (id),
-  CONSTRAINT fk_personal_trainers_pessoas FOREIGN KEY (id) REFERENCES pessoas (id) ON DELETE CASCADE
+  CONSTRAINT fk_personal_trainers_pessoas FOREIGN KEY (id) 
+    REFERENCES pessoas (id) ON DELETE CASCADE
 );
 
 INSERT INTO personal_trainers (id, cref, experiencia) VALUES
@@ -437,11 +438,12 @@ INSERT INTO vitalis.alunos_treinos (
 -- -----------------------------------------------------
 -- Table `vitalis`.`estados`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `vitalis`.`estados` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `nome` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
+CREATE TABLE IF NOT EXISTS vitalis.estados (
+  id INT NOT NULL AUTO_INCREMENT,
+  nome VARCHAR(45) NOT NULL,
+  PRIMARY KEY (id)
+) ENGINE = InnoDB;
+
 -- EXEMPLO ATÉ PEGAR DA API
 INSERT INTO vitalis.estados (nome) VALUES
 ('São Paulo'),
@@ -454,18 +456,19 @@ INSERT INTO vitalis.estados (nome) VALUES
 -- -----------------------------------------------------
 -- Table `vitalis`.`cidades`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `vitalis`.`cidades` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `nome` VARCHAR(45) NOT NULL,
-  `estados_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `estados_id`),
-  INDEX `fk_cidades_estados1_idx` (`estados_id` ASC) VISIBLE,
-  CONSTRAINT `fk_cidades_estados1`
-    FOREIGN KEY (`estados_id`)
-    REFERENCES `vitalis`.`estados` (`id`)
+CREATE TABLE IF NOT EXISTS vitalis.cidades (
+  id INT NOT NULL AUTO_INCREMENT,
+  nome VARCHAR(45) NOT NULL,
+  estados_id INT NOT NULL,
+  PRIMARY KEY (id),
+  INDEX fk_cidades_estados1_idx (estados_id ASC) VISIBLE,
+  CONSTRAINT fk_cidades_estados1
+    FOREIGN KEY (estados_id)
+    REFERENCES vitalis.estados (id)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    ON UPDATE NO ACTION
+) ENGINE = InnoDB;
+
 -- EXEMPLO ATÉ PEGAR DA API
 INSERT INTO vitalis.cidades (nome, estados_id) VALUES
 ('São Paulo', 1),
@@ -478,18 +481,19 @@ INSERT INTO vitalis.cidades (nome, estados_id) VALUES
 -- -----------------------------------------------------
 -- Table `vitalis`.`bairros`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `vitalis`.`bairros` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `nome` VARCHAR(45) NOT NULL,
-  `cidades_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_bairros_cidades1_idx` (`cidades_id` ASC) VISIBLE,
-  CONSTRAINT `fk_bairros_cidades1`
-    FOREIGN KEY (`cidades_id`)
-    REFERENCES `vitalis`.`cidades` (`id`)
+CREATE TABLE IF NOT EXISTS vitalis.bairros (
+  id INT NOT NULL AUTO_INCREMENT,
+  nome VARCHAR(45) NOT NULL,
+  cidades_id INT NOT NULL,
+  PRIMARY KEY (id),
+  INDEX fk_bairros_cidades1_idx (cidades_id ASC) VISIBLE,
+  CONSTRAINT fk_bairros_cidades1
+    FOREIGN KEY (cidades_id)
+    REFERENCES vitalis.cidades (id)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    ON UPDATE NO ACTION
+) ENGINE = InnoDB;
+
 -- EXEMPLO ATÉ PEGAR DA API
 INSERT INTO vitalis.bairros (nome, cidades_id) VALUES
 ('Vila Mariana', 1),
@@ -500,30 +504,23 @@ INSERT INTO vitalis.bairros (nome, cidades_id) VALUES
 
 
 -- -----------------------------------------------------
--- Table `vitalis`.`personal_trainers_estados`
+-- Table `vitalis`.`personal_trainers_bairros`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `vitalis`.`personal_trainers_estados` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `personal_trainers_id` INT NOT NULL,
-  `estados_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `personal_trainers_id`, `estados_id`),
-  INDEX `fk_pessoas_bairros_personal_trainers1_idx` (`personal_trainers_id` ASC) VISIBLE,
-  INDEX `fk_personal_trainers_bairros_estados1_idx` (`estados_id` ASC) VISIBLE,
-  CONSTRAINT `fk_pessoas_bairros_personal_trainers1`
-    FOREIGN KEY (`personal_trainers_id`)
-    REFERENCES `vitalis`.`personal_trainers` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_personal_trainers_bairros_estados1`
-    FOREIGN KEY (`estados_id`)
-    REFERENCES `vitalis`.`estados` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+CREATE TABLE IF NOT EXISTS vitalis.personal_trainers_bairros (
+  id INT NOT NULL AUTO_INCREMENT,
+  personal_trainers_id INT NOT NULL,
+  bairro_id INT NOT NULL,
+  PRIMARY KEY (id),
+  UNIQUE KEY uk_personal_bairro (personal_trainers_id, bairro_id),
+  CONSTRAINT fk_ptb_personal FOREIGN KEY (personal_trainers_id)
+    REFERENCES vitalis.personal_trainers (id)
+    ON DELETE CASCADE,
+  CONSTRAINT fk_ptb_bairro FOREIGN KEY (bairro_id)
+    REFERENCES vitalis.bairros (id)
+    ON DELETE CASCADE
+) ENGINE = InnoDB;
 
-INSERT INTO vitalis.personal_trainers_estados (personal_trainers_id, estados_id) VALUES
+INSERT INTO vitalis.personal_trainers_bairros (personal_trainers_id, bairro_id) VALUES
 (1, 1),
 (2, 1),
 (3, 2),
