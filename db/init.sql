@@ -404,10 +404,9 @@ CREATE TABLE IF NOT EXISTS `vitalis`.`alunos_treinos` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `alunos_id` INT,
   `treinos_exercicios_id` INT,
-  `data_horario_inicio` DATETIME NOT NULL,
-  `data_horario_fim` DATETIME NULL DEFAULT NULL COMMENT 'Data de término do treino',
+  data_horario_inicio DATETIME NOT NULL,
+  data_horario_fim DATETIME NULL DEFAULT NULL COMMENT 'Data de término do treino',
   `dias_semana` JSON NULL,
-  `periodo_avaliacao` INT NOT NULL COMMENT 'Período em meses',
   `data_vencimento` DATE NOT NULL COMMENT 'Data do vencimento de um treino',
   PRIMARY KEY (`id`),
   INDEX `aluno_id` (`alunos_id` ASC) VISIBLE,
@@ -426,29 +425,41 @@ DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 INSERT INTO vitalis.alunos_treinos (
-  alunos_id, treinos_exercicios_id, data_horario_inicio, data_horario_fim, dias_semana, periodo_avaliacao, data_vencimento
+  alunos_id, treinos_exercicios_id, data_horario_inicio, data_horario_fim, dias_semana, data_vencimento
 ) VALUES
--- (6, 1, '2025-05-19 08:00:00', '2025-05-19 09:00:00', '["Segunda", "Quarta"]', 1, "2025-08-01"),
--- (6, 1, '2025-05-21 08:00:00', '2025-05-21 09:00:00', '["Segunda", "Quarta"]', 1, "2025-08-01"),
-(6, 1, '2025-05-10 08:00:00', '2025-05-10 09:00:00', '["Segunda", "Quarta"]', 1, "2025-08-01"),
-(7, 1, '2025-05-10 08:00:00', '2025-05-10 09:00:00', '["Segunda", "Quarta", "Sexta"]', 1, "2025-08-01"),
-(7, 2, '2025-05-15 08:00:00', '2025-05-15 09:00:00', '["Segunda", "Quarta", "Sexta"]', 1, "2025-08-01"),
-(8, 3, '2025-05-12 07:30:00', '2025-05-12 08:15:00', '["Segunda", "Quarta", "Sábado"]', 2, "2025-06-01"),
-(8, 3, '2025-05-14 08:00:00', '2025-05-14 09:00:00', '["Segunda", "Quarta", "Sábado"]', 1, "2025-08-01"),
-(9, 4, '2025-05-10 10:00:00', '2025-05-10 11:00:00', '["Segunda"]', 1, "2025-07-15"),
-(7, 1, '2025-05-19 08:00:00', '2025-05-19 09:00:00', '["Segunda", "Quarta", "Sexta"]', 1, "2025-08-01"),
-(7, 2, '2025-05-21 08:00:00', '2025-05-21 09:00:00', '["Segunda", "Quarta", "Sexta"]', 1, "2025-08-01"),
-(7, 3, '2025-05-23 08:00:00', '2025-05-23 09:00:00', '["Segunda", "Quarta", "Sexta"]', 1, "2025-08-01"),
-(8, 3, '2025-05-03 07:30:00', '2025-06-01 08:15:00', '["Segunda", "Quarta", "Sábado"]', 2, "2025-06-01"),
-(8, 3, '2025-05-23 08:00:00', '2025-05-23 09:00:00', '["Segunda", "Quarta", "Sábado"]', 1, "2025-08-01"),
-(8, 3, '2025-05-24 08:00:00', '2025-05-24 09:30:00', '["Segunda", "Quarta", "Sábado"]', 1, "2025-08-01"),
-(9, 4, '2025-05-04 10:00:00', NULL, '["Segunda"]', 1, "2025-07-15"),
-(10, 5, '2025-05-05 06:30:00', '2025-06-02 07:15:00', '["Todos"]', 3, "2025-08-01"),
-(6, 6, '2025-05-25 08:00:00', '2025-05-25 09:00:00', '["Terça", "Quinta"]', 1, '2025-08-01'),
-(7, 6, '2025-05-26 08:00:00', '2025-05-26 09:00:00', '["Segunda", "Quarta"]', 1, '2025-08-01'),
-(8, 6, '2025-05-27 08:00:00', '2025-05-27 09:00:00', '["Quarta"]', 1, '2025-08-01'),
-(9, 7, '2025-05-28 08:00:00', '2025-05-28 09:00:00', '["Sexta"]', 1, '2025-08-01'),
-(10, 7, '2025-05-29 08:00:00', '2025-05-29 09:00:00', '["Quinta"]', 1, '2025-08-01');
+-- (6, 1, '2025-05-19 08:00:00', '2025-05-19 09:00:00', '["Segunda", "Quarta"]', "2025-08-01"),
+-- (6, 1, '2025-05-21 08:00:00', '2025-05-21 09:00:00', '["Segunda", "Quarta"]', "2025-08-01"),
+(6, 1, '2025-05-10 08:00:00', '2025-05-10 09:00:00', '["Segunda", "Quarta"]', "2025-08-01"),
+(7, 1, '2025-05-10 08:00:00', '2025-05-10 09:00:00', '["Segunda", "Quarta", "Sexta"]', "2025-08-01"),
+(7, 2, '2025-05-15 08:00:00', '2025-05-15 09:00:00', '["Segunda", "Quarta", "Sexta"]', "2025-08-01"),
+(8, 3, '2025-05-12 07:30:00', '2025-05-12 08:15:00', '["Segunda", "Quarta", "Sábado"]', "2025-06-01"),
+(8, 3, '2025-05-14 08:00:00', '2025-05-14 09:00:00', '["Segunda", "Quarta", "Sábado"]', "2025-08-01"),
+(9, 4, '2025-05-10 10:00:00', '2025-05-10 11:00:00', '["Segunda"]', "2025-07-15"),
+(7, 1, '2025-05-19 08:00:00', '2025-05-19 09:00:00', '["Segunda", "Quarta", "Sexta"]', "2025-08-01"),
+(7, 2, '2025-05-21 08:00:00', '2025-05-21 09:00:00', '["Segunda", "Quarta", "Sexta"]', "2025-08-01"),
+(7, 3, '2025-05-23 08:00:00', '2025-05-23 09:00:00', '["Segunda", "Quarta", "Sexta"]', "2025-08-01"),
+(8, 3, '2025-05-03 07:30:00', '2025-06-01 08:15:00', '["Segunda", "Quarta", "Sábado"]', "2025-06-01"),
+(8, 3, '2025-05-23 08:00:00', '2025-05-23 09:00:00', '["Segunda", "Quarta", "Sábado"]', "2025-08-01"),
+(8, 3, '2025-05-24 08:00:00', '2025-05-24 09:30:00', '["Segunda", "Quarta", "Sábado"]', "2025-08-01"),
+(9, 4, '2025-05-04 10:00:00', NULL, '["Segunda"]', "2025-07-15"),
+(10, 5, '2025-05-05 06:30:00', '2025-06-02 07:15:00', '["Todos"]', "2025-08-01"),
+(6, 6, '2025-05-25 08:00:00', '2025-05-25 09:00:00', '["Terça", "Quinta"]', '2025-08-01'),
+(7, 6, '2025-05-26 08:00:00', '2025-05-26 09:00:00', '["Segunda", "Quarta"]', '2025-08-01'),
+(8, 6, '2025-05-27 08:00:00', '2025-05-27 09:00:00', '["Quarta"]', '2025-08-01'),
+(9, 7, '2025-05-28 08:00:00', '2025-05-28 09:00:00', '["Sexta"]', '2025-08-01'),
+(10, 7, '2025-05-29 08:00:00', '2025-05-29 09:00:00', '["Quinta"]', '2025-08-01');
+
+CREATE TABLE IF NOT EXISTS `vitalis`.`treinos_finalizados` (
+  id INT NOT NULL AUTO_INCREMENT,
+  data_horario_inicio DATETIME NOT NULL,
+  data_horario_fim DATETIME NULL DEFAULT NULL COMMENT 'Data de término do treino',
+  alunos_treinos_id INT,
+
+  PRIMARY KEY (id),
+  CONSTRAINT `alunos_treinos_finalizados_ibfk_1` 
+  FOREIGN KEY (`alunos_treinos_id`) 
+  REFERENCES `vitalis`.`alunos_treinos` (`id`)
+);
 
 
 -- -----------------------------------------------------
