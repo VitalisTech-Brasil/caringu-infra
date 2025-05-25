@@ -445,50 +445,27 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
-INSERT INTO vitalis.alunos_treinos (
-  alunos_id, treinos_exercicios_id, dias_semana, data_vencimento
- ) VALUES
--- (6, 1, '2025-05-19 08:00:00', '2025-05-19 09:00:00', '["Segunda", "Quarta"]', "2025-08-01"),
--- (6, 1, '2025-05-21 08:00:00', '2025-05-21 09:00:00', '["Segunda", "Quarta"]', "2025-08-01"),
-(6, 1, '["Segunda", "Quarta"]', "2025-08-01"),
-(7, 1, '["Segunda", "Quarta", "Sexta"]', "2025-08-01"),
-(7, 2, '["Segunda", "Quarta", "Sexta"]', "2025-08-01"),
-(8, 3, '["Segunda", "Quarta", "Sábado"]', "2025-06-01"),
-(8, 3, '["Segunda", "Quarta", "Sábado"]', "2025-08-01"),
-(9, 4, '["Segunda"]', "2025-07-15"),
-(7, 1, '["Segunda", "Quarta", "Sexta"]', "2025-08-01"),
-(7, 2, '["Segunda", "Quarta", "Sexta"]', "2025-08-01"),
-(7, 3, '["Segunda", "Quarta", "Sexta"]', "2025-08-01"),
-(8, 3, '["Segunda", "Quarta", "Sábado"]', "2025-06-01"),
-(8, 3, '["Segunda", "Quarta", "Sábado"]', "2025-08-01"),
-(8, 3, '["Segunda", "Quarta", "Sábado"]', "2025-08-01"),
-(9, 4, '["Segunda"]', "2025-07-15"),
-(10, 5, '["Todos"]', "2025-08-01"),
-(6, 6, '["Terça", "Quinta"]', '2025-08-01'),
-(7, 6, '["Segunda", "Quarta"]', '2025-08-01'),
-(8, 6, '["Quarta"]', '2025-08-01'),
-(9, 7, '["Sexta"]', '2025-08-01'),
-(10, 7, '["Quinta"]', '2025-08-01');
+INSERT INTO vitalis.alunos_treinos (alunos_id, treinos_exercicios_id, dias_semana, data_vencimento) VALUES
+(6, 1, JSON_ARRAY('Segunda', 'Quarta'), '2025-08-01'),
+(7, 1, JSON_ARRAY('Segunda', 'Quarta', 'Sexta'), '2025-08-01'),
+(7, 2, JSON_ARRAY('Segunda', 'Quarta', 'Sexta'), '2025-08-01'),
+(8, 3, JSON_ARRAY('Segunda', 'Quarta', 'Sábado'), '2025-06-01'),-- (4)
+(8, 3, JSON_ARRAY('Segunda', 'Quarta', 'Sábado'), '2025-08-01'), -- (5)
+(9, 4, JSON_ARRAY('Segunda'), '2025-07-15'),
+(7, 3, JSON_ARRAY('Segunda', 'Quarta', 'Sexta'), '2025-08-01'), -- mantido único (7)
+(10, 5, JSON_ARRAY('Todos'), '2025-08-01'),
+(6, 6, JSON_ARRAY('Terça', 'Quinta'), '2025-08-01'),
+(7, 6, JSON_ARRAY('Segunda', 'Quarta'), '2025-08-01'),
+(8, 6, JSON_ARRAY('Quarta'), '2025-08-01'), -- (11)
+(9, 7, JSON_ARRAY('Sexta'), '2025-08-01'),
+(10, 7, JSON_ARRAY('Quinta'), '2025-08-01'),
 
--- Aluno 10: treino válido até fim de maio
-INSERT INTO vitalis.alunos_treinos (alunos_id, treinos_exercicios_id, dias_semana, data_vencimento)
-VALUES (6, 38, JSON_ARRAY('SEGUNDA', 'QUARTA', 'SEXTA'), '2025-05-31');
-
--- Aluno 11: treino do plano semestral que já encerrou
-INSERT INTO vitalis.alunos_treinos (alunos_id, treinos_exercicios_id, dias_semana, data_vencimento)
-VALUES (7, 39, JSON_ARRAY('TERÇA', 'QUINTA'), '2025-06-15');
-
--- Aluno 12: treino avulso
-INSERT INTO vitalis.alunos_treinos (alunos_id, treinos_exercicios_id, dias_semana, data_vencimento)
-VALUES (8, 40, JSON_ARRAY('SÁBADO'), '2025-05-10');
-
--- Aluno 13: novo treino com plano pendente
-INSERT INTO vitalis.alunos_treinos (alunos_id, treinos_exercicios_id, dias_semana, data_vencimento)
-VALUES (9, 41, JSON_ARRAY('SEGUNDA', 'QUARTA'), '2025-06-20');
-
--- Aluno 14: treino já finalizado
-INSERT INTO vitalis.alunos_treinos (alunos_id, treinos_exercicios_id, dias_semana, data_vencimento)
-VALUES (10, 42, JSON_ARRAY('DOMINGO'), '2025-04-02');
+-- Treinos avulsos e pendentes
+(6, 38, JSON_ARRAY('Segunda', 'Quarta', 'Sexta'), '2025-05-31'),
+(7, 39, JSON_ARRAY('Terça', 'Quinta'), '2025-06-15'),
+(8, 40, JSON_ARRAY('Sábado'), '2025-05-10'), -- (16)
+(9, 41, JSON_ARRAY('Segunda', 'Quarta'), '2025-06-20'),
+(10, 42, JSON_ARRAY('Domingo'), '2025-04-02');
 
 
 CREATE TABLE IF NOT EXISTS `vitalis`.`treinos_finalizados` (
@@ -503,41 +480,95 @@ CREATE TABLE IF NOT EXISTS `vitalis`.`treinos_finalizados` (
   REFERENCES `vitalis`.`alunos_treinos` (`id`)
 );
 
--- Aluno 11 finalizou um treino
-INSERT INTO vitalis.treinos_finalizados (data_horario_inicio, data_horario_fim, alunos_treinos_id)
-VALUES ('2025-06-10 08:00:00', '2025-06-10 09:00:00', 2);
-
--- Aluno 12 fez treino avulso
-INSERT INTO vitalis.treinos_finalizados (data_horario_inicio, data_horario_fim, alunos_treinos_id)
-VALUES ('2025-05-10 10:00:00', '2025-05-10 11:00:00', 3);
-
--- Aluno 14 fez treino finalizado no plano avulso já encerrado
-INSERT INTO vitalis.treinos_finalizados (data_horario_inicio, data_horario_fim, alunos_treinos_id)
-VALUES ('2025-04-02 15:00:00', '2025-04-02 16:00:00', 5);
-
-INSERT INTO vitalis.treinos_finalizados (
-  data_horario_inicio, data_horario_fim, alunos_treinos_id
-) VALUES
+INSERT INTO vitalis.treinos_finalizados (data_horario_inicio, data_horario_fim, alunos_treinos_id) VALUES
 ('2025-05-10 08:00:00', '2025-05-10 09:00:00', 1),
 ('2025-05-10 08:00:00', '2025-05-10 09:00:00', 2),
 ('2025-05-15 08:00:00', '2025-05-15 09:00:00', 3),
-('2025-05-12 07:30:00', '2025-05-12 08:15:00', 4),
 ('2025-05-14 08:00:00', '2025-05-14 09:00:00', 5),
 ('2025-05-10 10:00:00', '2025-05-10 11:00:00', 6),
-('2025-05-19 08:00:00', '2025-05-19 09:00:00', 7),
 ('2025-05-21 08:00:00', '2025-05-21 09:00:00', 8),
 ('2025-05-23 08:00:00', '2025-05-23 09:00:00', 9),
 ('2025-05-03 07:30:00', '2025-06-01 08:15:00', 10),
-('2025-05-23 08:00:00', '2025-05-23 09:00:00', 11),
 ('2025-05-24 08:00:00', '2025-05-24 09:30:00', 12),
 ('2025-05-04 10:00:00', NULL, 13),
 ('2025-05-05 06:30:00', '2025-06-02 07:15:00', 14),
 ('2025-05-25 08:00:00', '2025-05-25 09:00:00', 15),
-('2025-05-26 08:00:00', '2025-05-26 09:00:00', 16),
 ('2025-05-27 08:00:00', '2025-05-27 09:00:00', 17),
 ('2025-05-28 08:00:00', '2025-05-28 09:00:00', 18),
-('2025-05-29 08:00:00', '2025-05-29 09:00:00', 19);
 
+-- Treinos específicos avulsos e finalizados
+('2025-06-10 08:00:00', '2025-06-10 09:00:00', 2),
+('2025-05-10 10:00:00', '2025-05-10 11:00:00', 3);
+
+-- -----------------------------------------------------
+-- Table `vitalis`.`planos`
+-- Tabela de planos criados pelo personal trainer (modelos de plano)
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS vitalis.planos (
+  id INT NOT NULL AUTO_INCREMENT,
+  personal_trainers_id INT NOT NULL,
+  nome VARCHAR(100) NOT NULL,
+  periodo ENUM('MENSAL', 'SEMESTRAL', 'AVULSO') NOT NULL,
+  quantidade_aulas INT NOT NULL,
+  valor_aulas DECIMAL(6,2) NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (personal_trainers_id)
+    REFERENCES vitalis.personal_trainers(id)
+    ON DELETE CASCADE
+);
+
+INSERT INTO vitalis.planos (personal_trainers_id, nome, periodo, quantidade_aulas, valor_aulas) VALUES
+(1, 'Plano Básico', 'MENSAL', 8, 60.00),
+(2, 'Plano Avulso', 'AVULSO', 1, 80.00),
+(3, 'Plano Intensivo', 'SEMESTRAL', 48, 50.00),
+(4, 'Reabilitação', 'MENSAL', 4, 70.00),
+(5, 'Mensal Fit', 'MENSAL', 8, 65.00),
+(5, 'Semestral Power', 'SEMESTRAL', 48, 50.00),
+(5, 'Avulso Especial', 'AVULSO', 1, 85.00);
+
+-- -----------------------------------------------------
+-- Table `vitalis`.`planos`
+-- Tabela de planos contratados pelos alunos
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS vitalis.planos_contratados (
+  id INT NOT NULL AUTO_INCREMENT,
+  planos_id INT NOT NULL,
+  alunos_id INT NOT NULL,
+  status ENUM('ATIVO', 'PENDENTE', 'INATIVO') NOT NULL,
+  data_contratacao DATE NOT NULL,
+  data_fim DATE NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (planos_id)
+    REFERENCES vitalis.planos(id)
+    ON DELETE CASCADE,
+  FOREIGN KEY (alunos_id)
+    REFERENCES vitalis.alunos(id)
+    ON DELETE CASCADE
+);
+
+INSERT INTO vitalis.planos_contratados (planos_id, alunos_id, status, data_contratacao, data_fim) VALUES
+-- Aluno 6
+(1, 6, 'ATIVO', '2025-03-01', '2025-04-01'),
+(5, 6, 'ATIVO', '2025-05-01', '2025-06-01'),
+
+-- Aluno 7
+(3, 7, 'ATIVO', '2025-01-01', '2025-04-30'),
+(5, 7, 'ATIVO', '2025-05-01', '2025-06-01'),
+(2, 7, 'PENDENTE', '2025-06-02', NULL), -- começa depois do último plano
+
+-- Aluno 8
+(3, 8, 'ATIVO', '2025-01-01', '2025-04-30'),
+(5, 8, 'ATIVO', '2025-05-01', '2025-06-01'),
+(7, 8, 'ATIVO', '2025-06-02', NULL), -- plano sem data de fim, começa após anterior
+
+-- Aluno 9
+(5, 9, 'ATIVO', '2025-05-01', '2025-05-31'),
+(5, 9, 'PENDENTE', '2025-06-01', '2025-07-01'), -- começa quando o anterior termina
+(4, 9, 'INATIVO', '2025-03-01', '2025-04-01'), -- histórico, sem conflito
+
+-- Aluno 10
+(5, 10, 'ATIVO', '2025-07-01', '2025-08-01'),
+(7, 10, 'INATIVO', '2025-04-01', '2025-04-02'); -- histórico, sem conflito
 
 -- -----------------------------------------------------
 -- Table `vitalis`.`estados`
@@ -630,93 +661,6 @@ INSERT INTO vitalis.personal_trainers_bairros (personal_trainers_id, bairro_id) 
 (3, 2),
 (4, 3),
 (5, 5);
-
-
--- -----------------------------------------------------
--- Table `vitalis`.`planos`
--- Tabela de planos criados pelo personal trainer (modelos de plano)
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS vitalis.planos (
-  id INT NOT NULL AUTO_INCREMENT,
-  personal_trainers_id INT NOT NULL,
-  nome VARCHAR(100) NOT NULL,
-  periodo ENUM('MENSAL', 'SEMESTRAL', 'AVULSO') NOT NULL,
-  quantidade_aulas INT NOT NULL,
-  valor_aulas DECIMAL(6,2) NOT NULL,
-  PRIMARY KEY (id),
-  FOREIGN KEY (personal_trainers_id)
-    REFERENCES vitalis.personal_trainers(id)
-    ON DELETE CASCADE
-);
-
-INSERT INTO vitalis.planos (
-  personal_trainers_id, nome, periodo, quantidade_aulas, valor_aulas
-) VALUES
-(1, 'Plano Básico', 'MENSAL', 8, 60.00),
-(2, 'Plano Avulso', 'AVULSO', 1, 80.00),
-(3, 'Plano Intensivo', 'SEMESTRAL', 48, 50.00),
-(4, 'Reabilitação', 'MENSAL', 4, 70.00),
-(5, 'Mensal Fit', 'MENSAL', 8, 65.00),
-(5, 'Semestral Power', 'SEMESTRAL', 48, 50.00),
-(5, 'Avulso Especial', 'AVULSO', 1, 85.00);
-
-
--- -----------------------------------------------------
--- Table `vitalis`.`planos`
--- Tabela de planos contratados pelos alunos
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS vitalis.planos_contratados (
-  id INT NOT NULL AUTO_INCREMENT,
-  planos_id INT NOT NULL,
-  alunos_id INT NOT NULL,
-  status ENUM('ATIVO', 'PENDENTE', 'INATIVO') NOT NULL,
-  data_contratacao DATE NOT NULL,
-  data_fim DATE NULL,
-  PRIMARY KEY (id),
-  FOREIGN KEY (planos_id)
-    REFERENCES vitalis.planos(id)
-    ON DELETE CASCADE,
-  FOREIGN KEY (alunos_id)
-    REFERENCES vitalis.alunos(id)
-    ON DELETE CASCADE
-);
-
-INSERT INTO vitalis.planos_contratados (
-  planos_id, alunos_id, status, data_contratacao, data_fim
-) VALUES
-(1, 6, 'ATIVO', '2025-03-01', '2025-06-01'),
-(1, 7, 'ATIVO', '2025-03-01', '2025-06-01'),
-(1, 8, 'ATIVO', '2025-03-01', '2025-06-01'),
-(2, 7, 'PENDENTE', '2025-04-03', NULL),
-(3, 7, 'ATIVO', '2025-01-01', NULL),
-(3, 8, 'ATIVO', '2025-01-01', NULL),
-(3, 9, 'ATIVO', '2025-01-01', NULL),
-(4, 9, 'INATIVO', '2025-03-01', '2025-03-31'),
-(5, 6, 'ATIVO', '2025-04-01', NULL),
-(5, 7, 'ATIVO', '2025-04-01', NULL),
-(5, 8, 'ATIVO', '2025-05-01', NULL),
-(5, 9, 'ATIVO', '2025-06-01', NULL),
-(5, 10, 'ATIVO', '2025-07-01', NULL);
-
--- Aluno 10 contratou plano mensal em 2025-05-01, status ATIVO
-INSERT INTO vitalis.planos_contratados (planos_id, alunos_id, status, data_contratacao, data_fim)
-VALUES (5, 6, 'ATIVO', '2025-05-01', '2025-06-01');
-
--- Aluno 11 contratou plano semestral em 2024-12-15, status INATIVO
-INSERT INTO vitalis.planos_contratados (planos_id, alunos_id, status, data_contratacao, data_fim)
-VALUES (6, 7, 'INATIVO', '2024-12-15', '2025-06-15');
-
--- Aluno 12 contratou plano avulso, status ATIVO, data_fim NULL
-INSERT INTO vitalis.planos_contratados (planos_id, alunos_id, status, data_contratacao, data_fim)
-VALUES (7, 8, 'ATIVO', '2025-05-10', NULL);
-
--- Aluno 13 quer plano mensal, mas ainda está PENDENTE
-INSERT INTO vitalis.planos_contratados (planos_id, alunos_id, status, data_contratacao, data_fim)
-VALUES (5, 9, 'PENDENTE', '2025-05-20', '2025-06-20');
-
--- Aluno 14 contratou plano avulso mas já terminou (INATIVO), colocamos data_fim igual ao dia do treino
-INSERT INTO vitalis.planos_contratados (planos_id, alunos_id, status, data_contratacao, data_fim)
-VALUES (7, 10, 'INATIVO', '2025-04-01', '2025-04-02');
 
 -- -----------------------------------------------------
 -- Table `vitalis`.`feedbacks`
