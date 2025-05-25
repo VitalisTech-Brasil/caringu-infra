@@ -190,11 +190,34 @@ CREATE TABLE IF NOT EXISTS preferencias_notificacao (
 INSERT INTO preferencias_notificacao (pessoas_id, tipo, ativada)
 VALUES 
 (1, 'FEEDBACK_TREINO', TRUE),
-(1, 'PAGAMENTO_REALIZADO', TRUE),
-(2, 'PLANO_PROXIMO_VENCIMENTO', FALSE),
+(1, 'PAGAMENTO_REALIZADO', FALSE),
+(1, 'PLANO_PROXIMO_VENCIMENTO', TRUE),
+(1, 'NOVA_FOTO_PROGRESSO', TRUE),
+(1, 'TREINO_PROXIMO_VENCIMENTO', FALSE),
+
+(2, 'FEEDBACK_TREINO', FALSE),
+(2, 'PAGAMENTO_REALIZADO', TRUE),
+(2, 'PLANO_PROXIMO_VENCIMENTO', TRUE),
+(2, 'NOVA_FOTO_PROGRESSO', FALSE),
+(2, 'TREINO_PROXIMO_VENCIMENTO', FALSE),
+
+(3, 'FEEDBACK_TREINO', FALSE),
+(3, 'PAGAMENTO_REALIZADO', TRUE),
+(3, 'PLANO_PROXIMO_VENCIMENTO', FALSE),
 (3, 'NOVA_FOTO_PROGRESSO', TRUE),
+(3, 'TREINO_PROXIMO_VENCIMENTO', FALSE),
+
+(4, 'FEEDBACK_TREINO', FALSE),
+(4, 'PAGAMENTO_REALIZADO', TRUE),
+(4, 'PLANO_PROXIMO_VENCIMENTO', TRUE),
+(4, 'NOVA_FOTO_PROGRESSO', FALSE),
 (4, 'TREINO_PROXIMO_VENCIMENTO', TRUE),
-(5, 'FEEDBACK_TREINO', FALSE);
+
+(5, 'FEEDBACK_TREINO', TRUE),
+(5, 'PAGAMENTO_REALIZADO', FALSE),
+(5, 'PLANO_PROXIMO_VENCIMENTO', FALSE),
+(5, 'NOVA_FOTO_PROGRESSO', TRUE),
+(5, 'TREINO_PROXIMO_VENCIMENTO', TRUE);
 
 -- -----------------------------------------------------
 -- Table `vitalis`.`exercicios`
@@ -424,7 +447,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 INSERT INTO vitalis.alunos_treinos (
   alunos_id, treinos_exercicios_id, dias_semana, data_vencimento
-) VALUES
+ ) VALUES
 -- (6, 1, '2025-05-19 08:00:00', '2025-05-19 09:00:00', '["Segunda", "Quarta"]', "2025-08-01"),
 -- (6, 1, '2025-05-21 08:00:00', '2025-05-21 09:00:00', '["Segunda", "Quarta"]', "2025-08-01"),
 (6, 1, '["Segunda", "Quarta"]', "2025-08-01"),
@@ -447,6 +470,27 @@ INSERT INTO vitalis.alunos_treinos (
 (9, 7, '["Sexta"]', '2025-08-01'),
 (10, 7, '["Quinta"]', '2025-08-01');
 
+-- Aluno 10: treino válido até fim de maio
+INSERT INTO vitalis.alunos_treinos (alunos_id, treinos_exercicios_id, dias_semana, data_vencimento)
+VALUES (6, 38, JSON_ARRAY('SEGUNDA', 'QUARTA', 'SEXTA'), '2025-05-31');
+
+-- Aluno 11: treino do plano semestral que já encerrou
+INSERT INTO vitalis.alunos_treinos (alunos_id, treinos_exercicios_id, dias_semana, data_vencimento)
+VALUES (7, 39, JSON_ARRAY('TERÇA', 'QUINTA'), '2025-06-15');
+
+-- Aluno 12: treino avulso
+INSERT INTO vitalis.alunos_treinos (alunos_id, treinos_exercicios_id, dias_semana, data_vencimento)
+VALUES (8, 40, JSON_ARRAY('SÁBADO'), '2025-05-10');
+
+-- Aluno 13: novo treino com plano pendente
+INSERT INTO vitalis.alunos_treinos (alunos_id, treinos_exercicios_id, dias_semana, data_vencimento)
+VALUES (9, 41, JSON_ARRAY('SEGUNDA', 'QUARTA'), '2025-06-20');
+
+-- Aluno 14: treino já finalizado
+INSERT INTO vitalis.alunos_treinos (alunos_id, treinos_exercicios_id, dias_semana, data_vencimento)
+VALUES (10, 42, JSON_ARRAY('DOMINGO'), '2025-04-02');
+
+
 CREATE TABLE IF NOT EXISTS `vitalis`.`treinos_finalizados` (
   id INT NOT NULL AUTO_INCREMENT,
   data_horario_inicio DATETIME NOT NULL,
@@ -458,6 +502,18 @@ CREATE TABLE IF NOT EXISTS `vitalis`.`treinos_finalizados` (
   FOREIGN KEY (`alunos_treinos_id`) 
   REFERENCES `vitalis`.`alunos_treinos` (`id`)
 );
+
+-- Aluno 11 finalizou um treino
+INSERT INTO vitalis.treinos_finalizados (data_horario_inicio, data_horario_fim, alunos_treinos_id)
+VALUES ('2025-06-10 08:00:00', '2025-06-10 09:00:00', 2);
+
+-- Aluno 12 fez treino avulso
+INSERT INTO vitalis.treinos_finalizados (data_horario_inicio, data_horario_fim, alunos_treinos_id)
+VALUES ('2025-05-10 10:00:00', '2025-05-10 11:00:00', 3);
+
+-- Aluno 14 fez treino finalizado no plano avulso já encerrado
+INSERT INTO vitalis.treinos_finalizados (data_horario_inicio, data_horario_fim, alunos_treinos_id)
+VALUES ('2025-04-02 15:00:00', '2025-04-02 16:00:00', 5);
 
 INSERT INTO vitalis.treinos_finalizados (
   data_horario_inicio, data_horario_fim, alunos_treinos_id
@@ -600,7 +656,9 @@ INSERT INTO vitalis.planos (
 (2, 'Plano Avulso', 'AVULSO', 1, 80.00),
 (3, 'Plano Intensivo', 'SEMESTRAL', 48, 50.00),
 (4, 'Reabilitação', 'MENSAL', 4, 70.00),
-(5, 'Plano Premium', 'MENSAL', 12, 75.00);
+(5, 'Mensal Fit', 'MENSAL', 8, 65.00),
+(5, 'Semestral Power', 'SEMESTRAL', 48, 50.00),
+(5, 'Avulso Especial', 'AVULSO', 1, 85.00);
 
 
 -- -----------------------------------------------------
@@ -639,6 +697,26 @@ INSERT INTO vitalis.planos_contratados (
 (5, 8, 'ATIVO', '2025-05-01', NULL),
 (5, 9, 'ATIVO', '2025-06-01', NULL),
 (5, 10, 'ATIVO', '2025-07-01', NULL);
+
+-- Aluno 10 contratou plano mensal em 2025-05-01, status ATIVO
+INSERT INTO vitalis.planos_contratados (planos_id, alunos_id, status, data_contratacao, data_fim)
+VALUES (5, 6, 'ATIVO', '2025-05-01', '2025-06-01');
+
+-- Aluno 11 contratou plano semestral em 2024-12-15, status INATIVO
+INSERT INTO vitalis.planos_contratados (planos_id, alunos_id, status, data_contratacao, data_fim)
+VALUES (6, 7, 'INATIVO', '2024-12-15', '2025-06-15');
+
+-- Aluno 12 contratou plano avulso, status ATIVO, data_fim NULL
+INSERT INTO vitalis.planos_contratados (planos_id, alunos_id, status, data_contratacao, data_fim)
+VALUES (7, 8, 'ATIVO', '2025-05-10', NULL);
+
+-- Aluno 13 quer plano mensal, mas ainda está PENDENTE
+INSERT INTO vitalis.planos_contratados (planos_id, alunos_id, status, data_contratacao, data_fim)
+VALUES (5, 9, 'PENDENTE', '2025-05-20', '2025-06-20');
+
+-- Aluno 14 contratou plano avulso mas já terminou (INATIVO), colocamos data_fim igual ao dia do treino
+INSERT INTO vitalis.planos_contratados (planos_id, alunos_id, status, data_contratacao, data_fim)
+VALUES (7, 10, 'INATIVO', '2025-04-01', '2025-04-02');
 
 -- -----------------------------------------------------
 -- Table `vitalis`.`feedbacks`
