@@ -112,7 +112,7 @@ VALUES
 -- -----------------------------------------------------
 -- Table `vitalis`.`personal_trainer_especialidade`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS personal_trainer_especialidades (
+CREATE TABLE IF NOT EXISTS personal_trainers_especialidades (
     personal_trainers_id INT NOT NULL,
     especialidades_id INT NOT NULL,
     PRIMARY KEY (personal_trainers_id, especialidades_id),
@@ -121,19 +121,19 @@ CREATE TABLE IF NOT EXISTS personal_trainer_especialidades (
 );
 
 -- Personal 1: Musculação, Treinamento Funcional
-INSERT INTO personal_trainer_especialidades VALUES (1, 1), (1, 2);
+INSERT INTO personal_trainers_especialidades VALUES (1, 1), (1, 2);
 
 -- Personal 2: Musculação, Emagrecimento
-INSERT INTO personal_trainer_especialidades VALUES (2, 1), (2, 5);
+INSERT INTO personal_trainers_especialidades VALUES (2, 1), (2, 5);
 
 -- Personal 3: Condicionamento Físico ≈ Treinamento de Core + Saúde Metabólica?
-INSERT INTO personal_trainer_especialidades VALUES (3, 4), (3, 16);
+INSERT INTO personal_trainers_especialidades VALUES (3, 4), (3, 16);
 
 -- Personal 4: Condicionamento Físico, Treinamento para Idosos
-INSERT INTO personal_trainer_especialidades VALUES (4, 4), (4, 16);
+INSERT INTO personal_trainers_especialidades VALUES (4, 4), (4, 16);
 
 -- Personal 5: Reabilitação e Alongamento ≈ Reabilitação + Mobilidade
-INSERT INTO personal_trainer_especialidades VALUES (5, 11), (5, 12);
+INSERT INTO personal_trainers_especialidades VALUES (5, 11), (5, 12);
 
 -- -----------------------------------------------------
 -- Table `vitalis`.`notificacoes`
