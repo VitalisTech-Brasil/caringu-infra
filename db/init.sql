@@ -643,8 +643,8 @@ INSERT INTO vitalis.bairros (nome, cidades_id) VALUES
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS vitalis.personal_trainers_bairros (
   id INT NOT NULL AUTO_INCREMENT,
-  personal_trainers_id INT NOT NULL,
-  bairro_id INT NOT NULL,
+  personal_trainers_id INT NULL,
+  bairro_id INT NULL,
   PRIMARY KEY (id),
   UNIQUE KEY uk_personal_bairro (personal_trainers_id, bairro_id),
   CONSTRAINT fk_ptb_personal FOREIGN KEY (personal_trainers_id)
