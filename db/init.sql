@@ -534,7 +534,7 @@ CREATE TABLE IF NOT EXISTS vitalis.planos_contratados (
   id INT NOT NULL AUTO_INCREMENT,
   planos_id INT NOT NULL,
   alunos_id INT NOT NULL,
-  status ENUM('ATIVO', 'PENDENTE', 'INATIVO', 'EM_PROCESSO') NOT NULL,
+  status ENUM('ATIVO', 'PENDENTE', 'INATIVO', 'EM_PROCESSO', 'CANCELADO') NOT NULL,
   data_contratacao DATE NULL,
   data_fim DATE NULL,
   PRIMARY KEY (id),
