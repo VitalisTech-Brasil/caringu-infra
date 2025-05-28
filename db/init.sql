@@ -29,11 +29,11 @@ INSERT INTO vitalis.pessoas (nome, email, senha, celular, url_foto_perfil, data_
 ('Ana Costa', 'ana.costa@example.com', 'anaana123', '21912345678', 'https://img.com/ana.jpg', '1992-05-18', 'MULHER_TRANSGENERO'),
 
 -- INSERT COM JWT (ID: 5)
-('Ricardo Gomes da Silva', 'ricardo@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '72987654323', 'https://img.com/ricardo.jpg', '1999-12-25', 'HOMEM_CISGENERO'),
+('Ricardo Gomes da Silva', 'ricardo@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '72987654323', 'https://storagevitalis.blob.core.windows.net/fotos-perfil/60cb0653b24eb72c5b86119f0d6bd182.jpg', '1999-12-25', 'HOMEM_CISGENERO'),
 
 -- Pessoas para alunos (IDs: 6 a 10)
 ('Carla Mendes', 'carla.mendes@example.com', 'mendes456', '11944556677', 'https://img.com/carla.jpg', '1985-02-10', 'MULHER_TRANSGENERO'),
-('Alex Rocha', 'alex.rocha@example.com', 'alxr0cha', '11999887766', NULL, '2000-12-01', 'NAO_BINARIO'),
+('Alex Rocha', 'alex.rocha@example.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '11999887766', NULL, '2000-12-01', 'NAO_BINARIO'),
 ('Bianca Lima', 'bianca.lima@example.com', 'b1ancaL', NULL, 'https://img.com/bianca.jpg', '1997-09-12', 'MULHER_TRANSGENERO'),
 ('Diego Santos', 'diego.santos@example.com', 'diegosenha', '21988776655', 'https://img.com/diego.jpg', NULL, 'HOMEM_TRANSGENERO'),
 ('Luna Martins', 'luna.martins@example.com', 'martins123', '31977665544', NULL, '1993-04-25', 'HOMEM_CISGENERO');
@@ -534,8 +534,8 @@ CREATE TABLE IF NOT EXISTS vitalis.planos_contratados (
   id INT NOT NULL AUTO_INCREMENT,
   planos_id INT NOT NULL,
   alunos_id INT NOT NULL,
-  status ENUM('ATIVO', 'PENDENTE', 'INATIVO') NOT NULL,
-  data_contratacao DATE NOT NULL,
+  status ENUM('ATIVO', 'PENDENTE', 'INATIVO', 'EM_PROCESSO') NOT NULL,
+  data_contratacao DATE NULL,
   data_fim DATE NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (planos_id)
@@ -559,7 +559,7 @@ INSERT INTO vitalis.planos_contratados (planos_id, alunos_id, status, data_contr
 -- Aluno 8
 (3, 8, 'ATIVO', '2025-01-01', '2025-04-30'),
 (5, 8, 'ATIVO', '2025-05-01', '2025-06-01'),
-(7, 8, 'ATIVO', '2025-06-02', NULL), -- plano sem data de fim, começa após anterior
+(7, 8, 'EM_PROCESSO', '2025-06-02', NULL), -- plano sem data de fim, começa após anterior
 
 -- Aluno 9
 (5, 9, 'ATIVO', '2025-05-01', '2025-05-31'),
@@ -571,46 +571,21 @@ INSERT INTO vitalis.planos_contratados (planos_id, alunos_id, status, data_contr
 (7, 10, 'INATIVO', '2025-04-01', '2025-04-02'); -- histórico, sem conflito
 
 -- -----------------------------------------------------
--- Table `vitalis`.`estados`
+-- Table `vitalis`.`cidades`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS vitalis.estados (
+CREATE TABLE IF NOT EXISTS vitalis.cidades (
   id INT NOT NULL AUTO_INCREMENT,
   nome VARCHAR(45) NOT NULL,
   PRIMARY KEY (id)
 ) ENGINE = InnoDB;
 
 -- EXEMPLO ATÉ PEGAR DA API
-INSERT INTO vitalis.estados (nome) VALUES
+INSERT INTO vitalis.cidades (nome) VALUES
 ('São Paulo'),
+('Campinas'),
 ('Rio de Janeiro'),
-('Minas Gerais'),
-('Bahia'),
-('Paraná');
-
-
--- -----------------------------------------------------
--- Table `vitalis`.`cidades`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS vitalis.cidades (
-  id INT NOT NULL AUTO_INCREMENT,
-  nome VARCHAR(45) NOT NULL,
-  estados_id INT NOT NULL,
-  PRIMARY KEY (id),
-  INDEX fk_cidades_estados1_idx (estados_id ASC) VISIBLE,
-  CONSTRAINT fk_cidades_estados1
-    FOREIGN KEY (estados_id)
-    REFERENCES vitalis.estados (id)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
-) ENGINE = InnoDB;
-
--- EXEMPLO ATÉ PEGAR DA API
-INSERT INTO vitalis.cidades (nome, estados_id) VALUES
-('São Paulo', 1),
-('Campinas', 1),
-('Rio de Janeiro', 2),
-('Belo Horizonte', 3),
-('Curitiba', 5);
+('Belo Horizonte'),
+('Curitiba');
 
 
 -- -----------------------------------------------------
