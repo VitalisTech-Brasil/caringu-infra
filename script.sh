@@ -24,6 +24,21 @@ fi
 sudo systemctl enable docker
 sudo systemctl start docker
 
+# Solicitando as variáveis ao usuário
+read -s -p "Digite a CONNECTION_STRING: " CONNECTION_STRING
+echo
+read -p "Digite o CONTAINER_NAME: " CONTAINER_NAME
+
+if [ -z "$CONNECTION_STRING" ]; then
+  echo "❌ CONNECTION_STRING não pode estar vazia!"
+  exit 1
+fi
+
+if [ -z "$CONTAINER_NAME" ]; then
+  echo "❌ CONTAINER_NAME não pode estar vazia!"
+  exit 1
+fi
+
 # [+] Criando .env com variáveis de ambiente...
 echo "[+] Criando .env com variáveis de ambiente..."
 cat <<EOF > .env
