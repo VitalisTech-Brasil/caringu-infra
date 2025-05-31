@@ -29,7 +29,7 @@ INSERT INTO vitalis.pessoas (nome, email, senha, celular, url_foto_perfil, data_
 ('Ana Costa', 'ana.costa@example.com', 'anaana123', '21912345678', 'https://img.com/ana.jpg', '1992-05-18', 'MULHER_TRANSGENERO'),
 
 -- INSERT COM JWT (ID: 5)
-('Ricardo Gomes da Silva', 'ricardo@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '72987654323', 'https://storagevitalis.blob.core.windows.net/fotos-perfil/60cb0653b24eb72c5b86119f0d6bd182.jpg', '1999-12-25', 'HOMEM_CISGENERO'),
+('Ricardo Gomes da Silva', 'ricardo@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '72987654323', 'https://storagevitalis.blob.core.windows.net/fotos-perfil/imagem-ricardo.png', '1999-12-25', 'HOMEM_CISGENERO'),
 
 -- Pessoas para alunos (IDs: 6 a 10)
 ('Carla Mendes', 'carla.mendes@example.com', 'mendes456', '11944556677', 'https://img.com/carla.jpg', '1985-02-10', 'MULHER_TRANSGENERO'),
