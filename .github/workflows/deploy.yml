@@ -1,0 +1,24 @@
+name: Deploy App
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      CONNECTION_STRING: ${{ secrets.CONNECTION_STRING }}
+      CONTAINER_NAME: ${{ secrets.CONTAINER_NAME }}
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v3
+
+      - name: Dar permissão ao script
+        run: chmod +x ./script.sh
+
+      - name: Rodar o script de deploy
+        run: ./script.sh
