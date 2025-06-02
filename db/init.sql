@@ -274,6 +274,7 @@ CREATE TABLE IF NOT EXISTS `vitalis`.`treinos` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(100) NOT NULL,
   `descricao` TEXT NULL DEFAULT NULL,
+  `favorito` BOOLEAN NULL DEFAULT FALSE,
   `personal_id` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `personal_id` (`personal_id` ASC) VISIBLE,
@@ -285,21 +286,21 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
-INSERT INTO vitalis.treinos (nome, descricao, personal_id) VALUES
-('Treino de Peito Avançado', 'Hipertrofia do peitoral com barra', 1),
-('Treino de Pernas Intermediário', 'Força e resistência nas pernas', 2),
-('Treino de Ombro Iniciante', 'Mobilidade e força básica', 3),
-('Cardio Funcional', 'Gasto calórico intenso com circuitos', 4),
-('Core e Estabilização', 'Foco em abdômen e lombar', 5),
-('Peito Funcional', 'Treino de resistência com foco funcional', 1),
-('Posterior Reforçado', 'Ênfase em posterior e glúteo', 2),
-('Ombros Ativos', 'Melhora da estabilidade do ombro', 3),
-('Cardio HIIT', 'Treino em alta intensidade intervalada', 4),
-('Core Explosivo', 'Abdômen com movimentos rápidos', 5);
+INSERT INTO vitalis.treinos (nome, descricao, favorito, personal_id) VALUES
+('Treino de Peito Avançado', 'Hipertrofia do peitoral com barra', FALSE, 1),
+('Treino de Pernas Intermediário', 'Força e resistência nas pernas', FALSE, 2),
+('Treino de Ombro Iniciante', 'Mobilidade e força básica', TRUE, 3),
+('Cardio Funcional', 'Gasto calórico intenso com circuitos', TRUE, 4),
+('Core e Estabilização', 'Foco em abdômen e lombar', TRUE, 5),
+('Peito Funcional', 'Treino de resistência com foco funcional', TRUE, 1),
+('Posterior Reforçado', 'Ênfase em posterior e glúteo', TRUE, 2),
+('Ombros Ativos', 'Melhora da estabilidade do ombro', TRUE, 3),
+('Cardio HIIT', 'Treino em alta intensidade intervalada', FALSE, 4),
+('Core Explosivo', 'Abdômen com movimentos rápidos', FALSE, 5);
 
 -- -----------------------------------------------------
 -- Table `vitalis`.`treinos_exercicios`
--- -----------------------------------------------------
+-- -----------------------------------------------------g
 
 CREATE TABLE IF NOT EXISTS vitalis.treinos_exercicios (
   id INT NOT NULL AUTO_INCREMENT,
@@ -312,7 +313,6 @@ CREATE TABLE IF NOT EXISTS vitalis.treinos_exercicios (
   data_hora_criacao TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   data_hora_modificacao TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   origem ENUM('BIBLIOTECA', 'PERSONAL') NOT NULL,
-  favorito BOOLEAN NULL DEFAULT FALSE,
   grau_dificuldade ENUM("INICIANTE", "INTERMEDIARIO", "AVANCADO") NOT NULL,
   PRIMARY KEY (id),
   UNIQUE INDEX treino_id (treino_id ASC, exercicio_id ASC),
@@ -323,63 +323,63 @@ CREATE TABLE IF NOT EXISTS vitalis.treinos_exercicios (
 
 
 -- Treino 1 (Peitoral)
-INSERT INTO vitalis.treinos_exercicios (treino_id, exercicio_id, carga, repeticoes, series, descanso, origem, favorito, grau_dificuldade) VALUES
-(1, 6, 50, 10, 4, 90, 'PERSONAL', FALSE, 'AVANCADO'),
-(1, 7, 12, 12, 4, 60, 'BIBLIOTECA', FALSE, 'AVANCADO'),
-(1, 8, 0, 20, 3, 45, 'PERSONAL', FALSE, 'AVANCADO'),
-(1, 9, 35, 10, 3, 60, 'BIBLIOTECA', FALSE, 'AVANCADO'),
+INSERT INTO vitalis.treinos_exercicios (treino_id, exercicio_id, carga, repeticoes, series, descanso, origem, grau_dificuldade) VALUES
+(1, 6, 50, 10, 4, 90, 'PERSONAL', 'AVANCADO'),
+(1, 7, 12, 12, 4, 60, 'BIBLIOTECA', 'AVANCADO'),
+(1, 8, 0, 20, 3, 45, 'PERSONAL', 'AVANCADO'),
+(1, 9, 35, 10, 3, 60, 'BIBLIOTECA', 'AVANCADO'),
 
 -- Treino 2 (Pernas)
-(2, 10, 30, 10, 3, 60, 'PERSONAL', FALSE, 'INTERMEDIARIO'),
-(2, 11, 25, 10, 3, 45, 'BIBLIOTECA', FALSE, 'INTERMEDIARIO'),
-(2, 12, 80, 12, 4, 90, 'PERSONAL', FALSE, 'INTERMEDIARIO'),
+(2, 10, 30, 10, 3, 60, 'PERSONAL', 'INTERMEDIARIO'),
+(2, 11, 25, 10, 3, 45, 'BIBLIOTECA', 'INTERMEDIARIO'),
+(2, 12, 80, 12, 4, 90, 'PERSONAL', 'INTERMEDIARIO'),
 
 -- Treino 3 (Ombro)
-(3, 13, 6, 15, 3, 30, 'PERSONAL', FALSE, 'INICIANTE'),
-(3, 14, 8, 12, 3, 45, 'BIBLIOTECA', FALSE, 'INICIANTE'),
-(3, 15, 6, 12, 3, 45, 'BIBLIOTECA', FALSE, 'INICIANTE'),
+(3, 13, 6, 15, 3, 30, 'PERSONAL', 'INICIANTE'),
+(3, 14, 8, 12, 3, 45, 'BIBLIOTECA', 'INICIANTE'),
+(3, 15, 6, 12, 3, 45, 'BIBLIOTECA', 'INICIANTE'),
 
 -- Treino 4 (Cardio)
-(4, 16, 0, 60, 3, 20, 'BIBLIOTECA', FALSE, 'INTERMEDIARIO'),
-(4, 17, 0, 15, 3, 30, 'BIBLIOTECA', FALSE, 'INTERMEDIARIO'),
-(4, 18, 0, 60, 3, 20, 'PERSONAL', FALSE, 'INTERMEDIARIO'),
-(4, 19, 0, 40, 3, 30, 'PERSONAL', FALSE, 'INTERMEDIARIO'),
+(4, 16, 0, 60, 3, 20, 'BIBLIOTECA', 'INTERMEDIARIO'),
+(4, 17, 0, 15, 3, 30, 'BIBLIOTECA', 'INTERMEDIARIO'),
+(4, 18, 0, 60, 3, 20, 'PERSONAL', 'INTERMEDIARIO'),
+(4, 19, 0, 40, 3, 30, 'PERSONAL', 'INTERMEDIARIO'),
 
 -- Treino 5 (Core)
-(5, 20, 0, 20, 3, 20, 'PERSONAL', FALSE, 'INTERMEDIARIO'),
-(5, 21, 0, 15, 3, 30, 'PERSONAL', FALSE, 'INTERMEDIARIO'),
-(5, 22, 0, 20, 3, 30, 'BIBLIOTECA', FALSE, 'INTERMEDIARIO'),
+(5, 20, 0, 20, 3, 20, 'PERSONAL', 'INTERMEDIARIO'),
+(5, 21, 0, 15, 3, 30, 'PERSONAL', 'INTERMEDIARIO'),
+(5, 22, 0, 20, 3, 30, 'BIBLIOTECA', 'INTERMEDIARIO'),
 
 -- Treino 6 a 10 (novos treinos de cada personal)
-(6, 6, 50, 10, 4, 60, 'BIBLIOTECA', FALSE, 'INTERMEDIARIO'),
-(6, 7, 14, 10, 3, 60, 'BIBLIOTECA', FALSE, 'INTERMEDIARIO'),
-(6, 8, 0, 20, 3, 45, 'BIBLIOTECA', FALSE, 'INTERMEDIARIO'),
-(6, 9, 30, 10, 3, 60, 'BIBLIOTECA', FALSE, 'INTERMEDIARIO'),
-(6, 1, 60, 10, 4, 90, 'PERSONAL', FALSE, 'INTERMEDIARIO'),
+(6, 6, 50, 10, 4, 60, 'BIBLIOTECA', 'INTERMEDIARIO'),
+(6, 7, 14, 10, 3, 60, 'BIBLIOTECA', 'INTERMEDIARIO'),
+(6, 8, 0, 20, 3, 45, 'BIBLIOTECA', 'INTERMEDIARIO'),
+(6, 9, 30, 10, 3, 60, 'BIBLIOTECA', 'INTERMEDIARIO'),
+(6, 1, 60, 10, 4, 90, 'PERSONAL', 'INTERMEDIARIO'),
 
-(7, 2, 70, 12, 3, 60, 'PERSONAL', FALSE, 'INTERMEDIARIO'),
-(7, 10, 35, 10, 3, 45, 'BIBLIOTECA', FALSE, 'INTERMEDIARIO'),
-(7, 11, 20, 12, 4, 60, 'PERSONAL', FALSE, 'INTERMEDIARIO'),
-(7, 12, 90, 10, 3, 75, 'PERSONAL', FALSE, 'INTERMEDIARIO'),
-(7, 3, 40, 15, 3, 45, 'PERSONAL', FALSE, 'INTERMEDIARIO'),
+(7, 2, 70, 12, 3, 60, 'PERSONAL', 'INTERMEDIARIO'),
+(7, 10, 35, 10, 3, 45, 'BIBLIOTECA', 'INTERMEDIARIO'),
+(7, 11, 20, 12, 4, 60, 'PERSONAL', 'INTERMEDIARIO'),
+(7, 12, 90, 10, 3, 75, 'PERSONAL', 'INTERMEDIARIO'),
+(7, 3, 40, 15, 3, 45, 'PERSONAL', 'INTERMEDIARIO'),
 
-(8, 13, 10, 12, 3, 45, 'PERSONAL', FALSE, 'INICIANTE'),
-(8, 14, 12, 12, 3, 45, 'PERSONAL', FALSE, 'INICIANTE'),
-(8, 4, 15, 12, 3, 60, 'BIBLIOTECA', FALSE, 'INICIANTE'),
-(8, 15, 10, 15, 3, 45, 'PERSONAL', FALSE, 'INICIANTE'),
-(8, 1, 40, 10, 3, 60, 'BIBLIOTECA', FALSE, 'INICIANTE'),
+(8, 13, 10, 12, 3, 45, 'PERSONAL', 'INICIANTE'),
+(8, 14, 12, 12, 3, 45, 'PERSONAL', 'INICIANTE'),
+(8, 4, 15, 12, 3, 60, 'BIBLIOTECA', 'INICIANTE'),
+(8, 15, 10, 15, 3, 45, 'PERSONAL', 'INICIANTE'),
+(8, 1, 40, 10, 3, 60, 'BIBLIOTECA', 'INICIANTE'),
 
-(9, 16, 0, 60, 3, 30, 'BIBLIOTECA', FALSE, 'INTERMEDIARIO'),
-(9, 17, 0, 15, 3, 30, 'PERSONAL', FALSE, 'INTERMEDIARIO'),
-(9, 18, 0, 50, 3, 30, 'PERSONAL', FALSE, 'INTERMEDIARIO'),
-(9, 19, 0, 40, 3, 30, 'BIBLIOTECA', FALSE, 'INTERMEDIARIO'),
-(9, 2, 50, 10, 3, 60, 'PERSONAL', FALSE, 'INTERMEDIARIO'),
+(9, 16, 0, 60, 3, 30, 'BIBLIOTECA', 'INTERMEDIARIO'),
+(9, 17, 0, 15, 3, 30, 'PERSONAL', 'INTERMEDIARIO'),
+(9, 18, 0, 50, 3, 30, 'PERSONAL', 'INTERMEDIARIO'),
+(9, 19, 0, 40, 3, 30, 'BIBLIOTECA', 'INTERMEDIARIO'),
+(9, 2, 50, 10, 3, 60, 'PERSONAL', 'INTERMEDIARIO'),
 
-(10, 20, 0, 20, 3, 20, 'PERSONAL', FALSE, 'INTERMEDIARIO'),
-(10, 21, 0, 20, 3, 20, 'BIBLIOTECA', FALSE, 'INTERMEDIARIO'),
-(10, 5, 0, 30, 4, 30, 'BIBLIOTECA', FALSE, 'INTERMEDIARIO'),
-(10, 22, 0, 20, 3, 20, 'BIBLIOTECA', FALSE, 'INTERMEDIARIO'),
-(10, 4, 10, 15, 3, 60, 'PERSONAL', FALSE, 'INTERMEDIARIO');
+(10, 20, 0, 20, 3, 20, 'PERSONAL', 'INTERMEDIARIO'),
+(10, 21, 0, 20, 3, 20, 'BIBLIOTECA', 'INTERMEDIARIO'),
+(10, 5, 0, 30, 4, 30, 'BIBLIOTECA', 'INTERMEDIARIO'),
+(10, 22, 0, 20, 3, 20, 'BIBLIOTECA', 'INTERMEDIARIO'),
+(10, 4, 10, 15, 3, 60, 'PERSONAL', 'INTERMEDIARIO');
 -- -----------------------------------------------------
 -- Table `vitalis`.`anamnese`
 -- -----------------------------------------------------
