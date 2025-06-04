@@ -240,6 +240,11 @@ INSERT INTO vitalis.exercicios (nome, grupo_muscular, url_video, observacoes, fa
 ('Flexões de Braço', 'PEITORAL', 'https://example.com/flexoes', 'Evitar descer demais', FALSE, 'BIBLIOTECA'),
 ('Peck Deck', 'PEITORAL', 'https://example.com/peck-deck', NULL, FALSE, 'PERSONAL'),
 
+-- Costas
+('Afundo', 'COSTAS', 'https://example.com/afundo', 'Manter joelho alinhado', FALSE, 'PERSONAL'),
+('Stiff com Halteres', 'COSTAS', 'https://example.com/stiff', 'Manter costas retas', TRUE, 'PERSONAL'),
+('Leg Press', 'COSTAS', 'https://example.com/leg-press', NULL, FALSE, 'PERSONAL'),
+
 -- Pernas
 ('Afundo', 'PERNAS', 'https://example.com/afundo', 'Manter joelho alinhado', FALSE, 'BIBLIOTECA'),
 ('Stiff com Halteres', 'PERNAS', 'https://example.com/stiff', 'Manter costas retas', TRUE, 'BIBLIOTECA'),
@@ -249,6 +254,11 @@ INSERT INTO vitalis.exercicios (nome, grupo_muscular, url_video, observacoes, fa
 ('Elevação Lateral', 'OMBRO', 'https://example.com/elevacao-lateral', NULL, TRUE, 'PERSONAL'),
 ('Desenvolvimento Arnold', 'OMBRO', 'https://example.com/arnold', 'Evitar estender totalmente', FALSE, 'PERSONAL'),
 ('Elevação Frontal', 'OMBRO', 'https://example.com/elevacao-frontal', NULL, FALSE, 'BIBLIOTECA'),
+
+-- Braco
+('Elevação Lateral', 'BRACO', 'https://example.com/elevacao-lateral', NULL, TRUE, 'PERSONAL'),
+('Desenvolvimento Arnold', 'BRACO', 'https://example.com/arnold', 'Evitar estender totalmente', FALSE, 'PERSONAL'),
+('Elevação Frontal', 'BRACO', 'https://example.com/elevacao-frontal', NULL, FALSE, 'PERSONAL'),
 
 -- Core
 ('Abdominal Bicicleta', 'CORE', 'https://example.com/abdominal-bicicleta', NULL, FALSE, 'BIBLIOTECA'),
