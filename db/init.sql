@@ -229,7 +229,7 @@ CREATE TABLE IF NOT EXISTS vitalis.exercicios (
   url_video TEXT NOT NULL,
   observacoes TEXT NULL,
   favorito BOOLEAN NULL DEFAULT FALSE,
-  origem ENUM('BIBLIOTECA', 'PERSONAL') NOT NULL,
+  origem ENUM('BIBLIOTECA', 'PERSONAL') NOT NULL DEFAULT 'PERSONAL',
   PRIMARY KEY (id)
 );
 
@@ -322,7 +322,7 @@ CREATE TABLE IF NOT EXISTS vitalis.treinos_exercicios (
   descanso INT NOT NULL COMMENT 'Descanso em segundos',
   data_hora_criacao TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   data_hora_modificacao TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  origem ENUM('BIBLIOTECA', 'PERSONAL') NOT NULL,
+  origem ENUM('BIBLIOTECA', 'PERSONAL') NOT NULL DEFAULT 'PERSONAL',
   grau_dificuldade ENUM("INICIANTE", "INTERMEDIARIO", "AVANCADO") NOT NULL,
   PRIMARY KEY (id),
   UNIQUE INDEX treino_id (treino_id ASC, exercicio_id ASC),
