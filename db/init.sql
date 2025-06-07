@@ -163,7 +163,7 @@ VALUES
 (2, 'PAGAMENTO_REALIZADO', 'Pagamento Confirmado', FALSE, CURRENT_TIMESTAMP),
 (3, 'PLANO_PROXIMO_VENCIMENTO', 'Plano Próximo Vencimento', FALSE, CURRENT_TIMESTAMP),
 -- (4, 'NOVA_FOTO_PROGRESSO', 'Nova Foto de Progresso', TRUE, CURRENT_TIMESTAMP),
-(5, 'TREINO_PROXIMO_VENCIMENTO', 'Treino Próximo Vencimento', FALSE, CURRENT_TIMESTAMP);
+(5, 'TREINO_PROXIMO_VENCIMENTO', 'O treino Core Explosivo do aluno Alex Rocha vencerá em breve (15/06/2025)', FALSE, CURRENT_TIMESTAMP);
 
 -- -----------------------------------------------------
 -- Table `vitalis`.`preferencias_notificacao`
@@ -533,7 +533,7 @@ INSERT INTO vitalis.planos (personal_trainers_id, nome, periodo, quantidade_aula
 (3, 'Plano Intensivo', 'SEMESTRAL', 48, 50.00),
 (4, 'Reabilitação', 'MENSAL', 4, 70.00),
 (5, 'Mensal Fit', 'MENSAL', 8, 65.00),
-(5, 'Semestral Power', 'SEMESTRAL', 48, 50.00),
+(5, 'Power', 'SEMESTRAL', 48, 50.00),
 (5, 'Avulso Especial', 'AVULSO', 1, 85.00);
 
 -- -----------------------------------------------------
@@ -559,7 +559,7 @@ CREATE TABLE IF NOT EXISTS vitalis.planos_contratados (
 INSERT INTO vitalis.planos_contratados (planos_id, alunos_id, status, data_contratacao, data_fim) VALUES
 -- Aluno 6
 (1, 6, 'ATIVO', '2025-03-01', '2025-04-01'),
-(5, 6, 'ATIVO', '2025-05-01', '2025-06-01'),
+(5, 6, 'ATIVO', '2025-05-01', '2025-06-15'),
 
 -- Aluno 7
 (3, 7, 'ATIVO', '2025-01-01', '2025-04-30'),
