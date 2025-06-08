@@ -297,16 +297,22 @@ DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 INSERT INTO vitalis.treinos (nome, descricao, favorito, personal_id) VALUES
-('Treino de Peito Avançado', 'Hipertrofia do peitoral com barra', FALSE, 1),
-('Treino de Pernas Intermediário', 'Força e resistência nas pernas', FALSE, 2),
-('Treino de Ombro Iniciante', 'Mobilidade e força básica', TRUE, 3),
+('Peito Avançado', 'Hipertrofia do peitoral com barra', FALSE, 1),
+('Pernas Intermediário', 'Força e resistência nas pernas', FALSE, 2),
+('Ombro Iniciante', 'Mobilidade e força básica', TRUE, 3),
 ('Cardio Funcional', 'Gasto calórico intenso com circuitos', TRUE, 4),
 ('Core e Estabilização', 'Foco em abdômen e lombar', TRUE, 5),
 ('Peito Funcional', 'Treino de resistência com foco funcional', TRUE, 1),
 ('Posterior Reforçado', 'Ênfase em posterior e glúteo', TRUE, 2),
 ('Ombros Ativos', 'Melhora da estabilidade do ombro', TRUE, 3),
 ('Cardio HIIT', 'Treino em alta intensidade intervalada', FALSE, 4),
-('Core Explosivo', 'Abdômen com movimentos rápidos', FALSE, 5);
+('Core Explosivo', 'Abdômen com movimentos rápidos', FALSE, 5),
+('Treino Funcional Total', 'Ativação do corpo todo com ênfase em agilidade', TRUE, 5),
+('Abdômen Definido', 'Sequência intensa para definição abdominal', FALSE, 5),
+('Mobilidade Articular', 'Rotina para melhorar amplitude de movimento', FALSE, 5),
+('Resistência Corporal', 'Exercícios com peso corporal e longa duração', TRUE, 5),
+('Full Body Avançado', 'Treino completo com alta intensidade', FALSE, 5),
+('Upper Avançado', 'Treino completo com alta intensidade da parte superior', FALSE, 5);
 
 -- -----------------------------------------------------
 -- Table `vitalis`.`treinos_exercicios`
@@ -389,7 +395,15 @@ INSERT INTO vitalis.treinos_exercicios (treino_id, exercicio_id, carga, repetico
 (10, 21, 0, 20, 3, 20, 'BIBLIOTECA', 'INTERMEDIARIO'),
 (10, 5, 0, 30, 4, 30, 'BIBLIOTECA', 'INTERMEDIARIO'),
 (10, 22, 0, 20, 3, 20, 'BIBLIOTECA', 'INTERMEDIARIO'),
-(10, 4, 10, 15, 3, 60, 'PERSONAL', 'INTERMEDIARIO');
+(10, 4, 10, 15, 3, 60, 'PERSONAL', 'INTERMEDIARIO'),
+
+(11, 6, 40, 10, 4, 60, 'PERSONAL', 'INICIANTE'),
+(12, 6, 50, 10, 4, 60, 'PERSONAL', 'INTERMEDIARIO'),
+(13, 6, 60, 10, 4, 60, 'PERSONAL', 'AVANCADO'),
+(14, 7, 40, 10, 4, 60, 'PERSONAL', 'INICIANTE'),
+(15, 7, 50, 10, 4, 60, 'PERSONAL', 'INTERMEDIARIO'),
+(16, 7, 60, 10, 4, 60, 'PERSONAL', 'AVANCADO');
+
 -- -----------------------------------------------------
 -- Table `vitalis`.`anamnese`
 -- -----------------------------------------------------
@@ -475,7 +489,14 @@ INSERT INTO vitalis.alunos_treinos (alunos_id, treinos_exercicios_id, dias_seman
 (7, 39, JSON_ARRAY('Terça', 'Quinta'), '2025-06-15'),
 (8, 40, JSON_ARRAY('Sábado'), '2025-05-10'), -- (16)
 (9, 41, JSON_ARRAY('Segunda', 'Quarta'), '2025-06-20'),
-(10, 42, JSON_ARRAY('Domingo'), '2025-04-02');
+(10, 42, JSON_ARRAY('Domingo'), '2025-04-02'),
+
+(7, 43, JSON_ARRAY('Segunda'), '2025-06-01'),
+(7, 44, JSON_ARRAY('Segunda'), '2025-06-08'),
+(7, 45, JSON_ARRAY('Segunda'), '2025-06-15'),
+(7, 46, JSON_ARRAY('Segunda'), '2025-06-01'),
+(7, 47, JSON_ARRAY('Segunda'), '2025-06-08'),
+(7, 48, JSON_ARRAY('Segunda'), '2025-06-15');
 
 
 CREATE TABLE IF NOT EXISTS `vitalis`.`treinos_finalizados` (
@@ -492,7 +513,7 @@ CREATE TABLE IF NOT EXISTS `vitalis`.`treinos_finalizados` (
 
 INSERT INTO vitalis.treinos_finalizados (data_horario_inicio, data_horario_fim, alunos_treinos_id) VALUES
 ('2025-05-10 08:00:00', '2025-05-10 09:00:00', 1),
-('2025-05-10 12:00:00', '2025-05-10 13:00:00', 2),
+('2025-06-05 12:00:00', '2025-06-05 13:00:00', 2),
 ('2025-05-15 08:00:00', '2025-05-15 09:00:00', 3),
 ('2025-05-14 08:00:00', '2025-05-14 09:00:00', 5),
 ('2025-05-10 10:00:00', '2025-05-10 11:00:00', 6),
@@ -505,6 +526,13 @@ INSERT INTO vitalis.treinos_finalizados (data_horario_inicio, data_horario_fim, 
 ('2025-05-25 08:00:00', '2025-05-25 09:00:00', 15),
 ('2025-05-27 08:00:00', '2025-05-27 09:00:00', 17),
 ('2025-05-28 08:00:00', '2025-05-28 09:00:00', 18),
+
+('2025-06-01 08:00:00', '2025-06-01 09:00:00', 19),
+('2025-06-08 08:00:00', '2025-06-08 09:00:00', 20),
+('2025-06-15 08:00:00', '2025-06-15 09:00:00', 21),
+('2025-06-22 08:00:00', '2025-06-22 09:00:00', 22),
+('2025-06-29 08:00:00', '2025-06-29 09:00:00', 23),
+('2025-06-15 08:00:00', '2025-06-15 09:00:00', 24),
 
 -- Treinos específicos avulsos e finalizados
 ('2025-06-10 08:00:00', '2025-06-10 09:00:00', 2),
