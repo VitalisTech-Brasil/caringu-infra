@@ -337,7 +337,6 @@ CREATE TABLE IF NOT EXISTS vitalis.treinos_exercicios (
   CONSTRAINT treinos_exercicios_ibfk_2 FOREIGN KEY (exercicio_id) REFERENCES vitalis.exercicios (id) ON DELETE CASCADE
 );
 
-
 -- Treino 1 (Peitoral)
 INSERT INTO vitalis.treinos_exercicios (treino_id, exercicio_id, carga, repeticoes, series, descanso, origem, grau_dificuldade) VALUES
 (1, 6, 50, 10, 4, 90, 'PERSONAL', 'AVANCADO'),
