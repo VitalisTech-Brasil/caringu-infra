@@ -40,7 +40,6 @@ services:
       dockerfile: Dockerfile
     container_name: caringu-spring
     environment:
-      - SPRING_PROFILES_ACTIVE=prod
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - IP_HOST=caringu-mysql
       - SPRING_MAIL_USERNAME=${SPRING_MAIL_USERNAME}
@@ -51,6 +50,7 @@ services:
       - CONTAINER_NAME=${CONTAINER_NAME}
       - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
       - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+    command: ["java", "-Xms512m", "-Xmx10g", "-Dspring.profiles.active=prod", "-jar", "/app/app.jar"]
     ports:
       - "8080:8080"
     networks:
