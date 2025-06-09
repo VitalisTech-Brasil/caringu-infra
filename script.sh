@@ -25,7 +25,7 @@ sudo systemctl enable docker
 sudo systemctl start docker
 
 # Solicitando as variáveis ao usuário
-read -s -p "Digite a CONNECTION_STRING: " CONNECTION_STRING
+read -p "Digite a CONNECTION_STRING: " CONNECTION_STRING
 echo
 read -p "Digite o CONTAINER_NAME: " CONTAINER_NAME
 
