@@ -243,9 +243,9 @@ INSERT INTO vitalis.exercicios (nome, grupo_muscular, url_video, observacoes, fa
 ('Peck Deck', 'PEITORAL', 'https://example.com/peck-deck', NULL, FALSE, 'PERSONAL'),
 
 -- Costas
-('Afundo', 'COSTAS', 'https://example.com/afundo', 'Manter joelho alinhado', FALSE, 'PERSONAL'),
-('Stiff com Halteres', 'COSTAS', 'https://example.com/stiff', 'Manter costas retas', TRUE, 'PERSONAL'),
-('Leg Press', 'COSTAS', 'https://example.com/leg-press', NULL, FALSE, 'PERSONAL'),
+('Barra', 'COSTAS', 'https://example.com/barra', 'Manter joelho alinhado', FALSE, 'PERSONAL'),
+('Remada Unilateral', 'COSTAS', 'https://example.com/remada-unilateral', 'Manter costas retas', TRUE, 'PERSONAL'),
+('Puxada Alta', 'COSTAS', 'https://example.com/puxada-alta', NULL, FALSE, 'PERSONAL'),
 
 -- Pernas
 ('Afundo', 'PERNAS', 'https://example.com/afundo', 'Manter joelho alinhado', FALSE, 'BIBLIOTECA'),
@@ -263,10 +263,10 @@ INSERT INTO vitalis.exercicios (nome, grupo_muscular, url_video, observacoes, fa
 ('Elevação Frontal', 'BRACO', 'https://example.com/elevacao-frontal', NULL, FALSE, 'PERSONAL'),
 
 -- Core
-('Abdominal Bicicleta', 'CORE', 'https://example.com/abdominal-bicicleta', NULL, FALSE, 'BIBLIOTECA'),
+('Abdominal Bicicleta', 'CORE', 'https://www.youtube.com/embed/apmprS8H1MY?si=OuJ19aPUwKtk-Z8Z', NULL, FALSE, 'BIBLIOTECA'),
 ('Elevação de Pernas', 'CORE', 'https://example.com/elevacao-pernas', NULL, FALSE, 'BIBLIOTECA'),
 ('Abdominal Infra', 'CORE', 'https://example.com/infra', NULL, TRUE, 'BIBLIOTECA'),
-('Abdominal Bicicleta', 'CORE', 'https://example.com/abdominal-bicicleta', NULL, FALSE, 'BIBLIOTECA'), 
+('Abdominal Bicicleta', 'CORE', 'https://www.youtube.com/embed/apmprS8H1MY?si=OuJ19aPUwKtk-Z8Z', NULL, FALSE, 'BIBLIOTECA'), 
 ('Elevação de Pernas', 'CORE', 'https://example.com/elevacao-pernas', NULL, FALSE, 'BIBLIOTECA'),
 ('Abdominal Infra', 'CORE', 'https://example.com/infra', NULL, TRUE, 'BIBLIOTECA'),
 
@@ -343,7 +343,7 @@ CREATE TABLE IF NOT EXISTS vitalis.treinos_exercicios (
 INSERT INTO vitalis.treinos_exercicios (treino_id, exercicio_id, carga, repeticoes, series, descanso, origem, grau_dificuldade) VALUES
 (1, 6, 50, 10, 4, 90, 'PERSONAL', 'AVANCADO'),
 (1, 7, 12, 12, 4, 60, 'BIBLIOTECA', 'AVANCADO'),
-(1, 8, 0, 20, 3, 45, 'PERSONAL', 'AVANCADO'),
+(1, 8, 1, 20, 3, 45, 'PERSONAL', 'AVANCADO'),
 (1, 9, 35, 10, 3, 60, 'BIBLIOTECA', 'AVANCADO'),
 
 -- Treino 2 (Pernas)
@@ -357,20 +357,20 @@ INSERT INTO vitalis.treinos_exercicios (treino_id, exercicio_id, carga, repetico
 (3, 15, 6, 12, 3, 45, 'BIBLIOTECA', 'INICIANTE'),
 
 -- Treino 4 (Cardio)
-(4, 16, 0, 60, 3, 20, 'BIBLIOTECA', 'INTERMEDIARIO'),
-(4, 17, 0, 15, 3, 30, 'BIBLIOTECA', 'INTERMEDIARIO'),
-(4, 18, 0, 60, 3, 20, 'PERSONAL', 'INTERMEDIARIO'),
-(4, 19, 0, 40, 3, 30, 'PERSONAL', 'INTERMEDIARIO'),
+(4, 16, 10, 60, 3, 20, 'BIBLIOTECA', 'INTERMEDIARIO'),
+(4, 17, 15, 15, 3, 30, 'BIBLIOTECA', 'INTERMEDIARIO'),
+(4, 18, 20, 60, 3, 20, 'PERSONAL', 'INTERMEDIARIO'),
+(4, 19, 10, 40, 3, 30, 'PERSONAL', 'INTERMEDIARIO'),
 
 -- Treino 5 (Core)
-(5, 20, 0, 20, 3, 20, 'PERSONAL', 'INTERMEDIARIO'),
-(5, 21, 0, 15, 3, 30, 'PERSONAL', 'INTERMEDIARIO'),
-(5, 22, 0, 20, 3, 30, 'BIBLIOTECA', 'INTERMEDIARIO'),
+(5, 20, 10, 20, 3, 20, 'PERSONAL', 'INTERMEDIARIO'),
+(5, 21, 10, 15, 3, 30, 'PERSONAL', 'INTERMEDIARIO'),
+(5, 22, 10, 20, 3, 30, 'BIBLIOTECA', 'INTERMEDIARIO'),
 
 -- Treino 6 a 10 (novos treinos de cada personal)
 (6, 6, 50, 10, 4, 60, 'BIBLIOTECA', 'INTERMEDIARIO'),
 (6, 7, 14, 10, 3, 60, 'BIBLIOTECA', 'INTERMEDIARIO'),
-(6, 8, 0, 20, 3, 45, 'BIBLIOTECA', 'INTERMEDIARIO'),
+(6, 8, 10, 20, 3, 45, 'BIBLIOTECA', 'INTERMEDIARIO'),
 (6, 9, 30, 10, 3, 60, 'BIBLIOTECA', 'INTERMEDIARIO'),
 (6, 1, 60, 10, 4, 90, 'PERSONAL', 'INTERMEDIARIO'),
 
@@ -386,16 +386,16 @@ INSERT INTO vitalis.treinos_exercicios (treino_id, exercicio_id, carga, repetico
 (8, 15, 10, 15, 3, 45, 'PERSONAL', 'INICIANTE'),
 (8, 1, 40, 10, 3, 60, 'BIBLIOTECA', 'INICIANTE'),
 
-(9, 16, 0, 60, 3, 30, 'BIBLIOTECA', 'INTERMEDIARIO'),
-(9, 17, 0, 15, 3, 30, 'PERSONAL', 'INTERMEDIARIO'),
-(9, 18, 0, 50, 3, 30, 'PERSONAL', 'INTERMEDIARIO'),
-(9, 19, 0, 40, 3, 30, 'BIBLIOTECA', 'INTERMEDIARIO'),
+(9, 16, 10, 60, 3, 30, 'BIBLIOTECA', 'INTERMEDIARIO'),
+(9, 17, 10, 15, 3, 30, 'PERSONAL', 'INTERMEDIARIO'),
+(9, 18, 10, 50, 3, 30, 'PERSONAL', 'INTERMEDIARIO'),
+(9, 19, 10, 40, 3, 30, 'BIBLIOTECA', 'INTERMEDIARIO'),
 (9, 2, 50, 10, 3, 60, 'PERSONAL', 'INTERMEDIARIO'),
 
-(10, 20, 0, 20, 3, 20, 'PERSONAL', 'INTERMEDIARIO'),
-(10, 21, 0, 20, 3, 20, 'BIBLIOTECA', 'INTERMEDIARIO'),
-(10, 5, 0, 30, 4, 30, 'BIBLIOTECA', 'INTERMEDIARIO'),
-(10, 22, 0, 20, 3, 20, 'BIBLIOTECA', 'INTERMEDIARIO'),
+(10, 20, 10, 20, 3, 20, 'PERSONAL', 'INTERMEDIARIO'),
+(10, 21, 10, 20, 3, 20, 'BIBLIOTECA', 'INTERMEDIARIO'),
+(10, 5, 10, 30, 4, 30, 'BIBLIOTECA', 'INTERMEDIARIO'),
+(10, 22, 10, 20, 3, 20, 'BIBLIOTECA', 'INTERMEDIARIO'),
 (10, 4, 10, 15, 3, 60, 'PERSONAL', 'INTERMEDIARIO'),
 
 (11, 6, 40, 10, 4, 60, 'PERSONAL', 'INICIANTE'),
