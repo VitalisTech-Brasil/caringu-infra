@@ -83,8 +83,8 @@ INSERT INTO vitalis.alunos (id, peso, altura, nivel_atividade, nivel_experiencia
 (7, 65.20, 1.68, 'LEVEMENTE_ATIVO', 'INICIANTE'),
 (8, 82.00, 1.80, 'MUITO_ATIVO', 'AVANCADO'),
 (9, 90.30, 1.85, 'SEDENTARIO', 'INICIANTE'),
-(10, 70.00, 1.65, 'EXTREMAMENTE_ATIVO', 'INTERMEDIARIO');
-
+(10, 70.00, 1.65, 'EXTREMAMENTE_ATIVO', 'INTERMEDIARIO'),
+(11, 78.90, 1.76, 'MODERADAMENTE_ATIVO', 'INTERMEDIARIO');
 -- -----------------------------------------------------
 -- Table `vitalis`.`especialidades`
 -- -----------------------------------------------------
