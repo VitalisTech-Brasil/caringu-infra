@@ -38,7 +38,8 @@ INSERT INTO vitalis.pessoas (nome, email, senha, celular, url_foto_perfil, data_
 ('Alex Nagano', 'alex.nagano@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '11999887766', 'https://storagevitalis.blob.core.windows.net/fotos-perfil/Nagano/nagano.png', '2000-12-01', 'NAO_BINARIO'),
 ('Suellen Lima', 'suellen.lima@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', NULL, 'https://storagevitalis.blob.core.windows.net/fotos-perfil/suellen/suel.png', '1997-09-12', 'MULHER_TRANSGENERO'),
 ('Diego Santos', 'diego.santos@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '21988776655', 'https://storagevitalis.blob.core.windows.net/fotos-perfil/diego.png', NULL, 'HOMEM_TRANSGENERO'),
-('Luna Martins', 'luna.martins@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '31977665544', 'https://storagevitalis.blob.core.windows.net/fotos-perfil/luna.jpg', '1993-04-25', 'HOMEM_CISGENERO');
+('Luna Martins', 'luna.martins@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '31977665544', 'https://storagevitalis.blob.core.windows.net/fotos-perfil/luna.jpg', '1993-04-25', 'HOMEM_CISGENERO'),
+('Luna Martins', 'marcos@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '31977665513', 'https://marcos.jpg', '1993-04-25', 'HOMEM_CISGENERO');
 
 
 
