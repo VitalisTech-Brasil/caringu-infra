@@ -165,7 +165,7 @@ VALUES
 (2, 'PAGAMENTO_REALIZADO', 'Pagamento Confirmado', FALSE, CURRENT_TIMESTAMP),
 (3, 'PLANO_PROXIMO_VENCIMENTO', 'Plano Próximo Vencimento', FALSE, CURRENT_TIMESTAMP),
 -- (4, 'NOVA_FOTO_PROGRESSO', 'Nova Foto de Progresso', TRUE, CURRENT_TIMESTAMP),
-(5, 'TREINO_PROXIMO_VENCIMENTO', 'O treino Core Explosivo do aluno Alex Rocha vencerá em breve (15/06/2025)', FALSE, CURRENT_TIMESTAMP);
+-- (5, 'TREINO_PROXIMO_VENCIMENTO', 'O treino Core Explosivo do aluno Alex Rocha vencerá em breve (15/06/2025)', FALSE, CURRENT_TIMESTAMP);
 
 -- -----------------------------------------------------
 -- Table `vitalis`.`preferencias_notificacao`
@@ -237,46 +237,46 @@ CREATE TABLE IF NOT EXISTS vitalis.exercicios (
 
 INSERT INTO vitalis.exercicios (nome, grupo_muscular, url_video, observacoes, favorito, origem) VALUES
 -- Peitoral
-('Supino Inclinado', 'PEITORAL', 'https://example.com/supino-inclinado', NULL, FALSE, 'BIBLIOTECA'),
-('Crucifixo com Halteres', 'PEITORAL', 'https://example.com/crucifixo', 'Executar com controle', TRUE, 'BIBLIOTECA'),
-('Flexões de Braço', 'PEITORAL', 'https://example.com/flexoes', 'Evitar descer demais', FALSE, 'BIBLIOTECA'),
-('Peck Deck', 'PEITORAL', 'https://example.com/peck-deck', NULL, FALSE, 'PERSONAL'),
+('Supino Inclinado', 'PEITORAL', 'https://www.hipertrofia.org/blog/wp-content/uploads/2023/09/barbell-incline-bench-press.gif', 'Ajustar banco entre 30° e 45°'L, FALSE, 'BIBLIOTECA'),
+('Crucifixo com Halteres', 'PEITORAL', 'https://www.hipertrofia.org/blog/wp-content/uploads/2020/06/dumbbell-incline-fly.gif', 'Manter braços semiflexionados e controlar o movimento', TRUE, 'BIBLIOTECA'),
+('Flexões de Braço', 'PEITORAL', 'https://www.hipertrofia.org/blog/wp-content/uploads/2018/09/pushup.gif', 'Não deixar o quadril cair durante o movimento', FALSE, 'BIBLIOTECA'),
+('Peck Deck', 'PEITORAL', 'https://i0.wp.com/omelhortreino.com.br/wp-content/uploads/2025/03/Supino-Inclinado-com-Halteres.gif?resize=500%2C500&ssl=1', 'Evitar bater os braços no final do movimento', FALSE, 'PERSONAL'),
 
 -- Costas
-('Barra', 'COSTAS', 'https://example.com/barra', 'Manter joelho alinhado', FALSE, 'PERSONAL'),
-('Remada Unilateral', 'COSTAS', 'https://example.com/remada-unilateral', 'Manter costas retas', TRUE, 'PERSONAL'),
-('Puxada Alta', 'COSTAS', 'https://example.com/puxada-alta', NULL, FALSE, 'PERSONAL'),
+('Barra', 'COSTAS', 'https://www.mundoboaforma.com.br/wp-content/uploads/2020/12/costas-barra-fixa-pegada-aberta-palma-para-frente-chinup.gif', 'Evitar balanço do corpo e manter a escápula ativada', FALSE, 'PERSONAL'),
+('Remada', 'COSTAS', 'https://www.mundoboaforma.com.br/wp-content/uploads/2021/09/remada-sentado-com-cabos-e-triangulo-para-costas.gif', 'Manter coluna neutra e puxar com os cotovelos', TRUE, 'PERSONAL'),
+('Puxada Alta', 'COSTAS', 'https://www.mundoboaforma.com.br/wp-content/uploads/2020/12/costas-puxada-aberta-com-barra-no-pulley.gif', 'Puxar até a altura do queixo sem inclinar o tronco para trás', FALSE, 'PERSONAL'),
 
 -- Pernas
-('Afundo', 'PERNAS', 'https://example.com/afundo', 'Manter joelho alinhado', FALSE, 'BIBLIOTECA'),
-('Stiff com Halteres', 'PERNAS', 'https://example.com/stiff', 'Manter costas retas', TRUE, 'BIBLIOTECA'),
-('Leg Press', 'PERNAS', 'https://example.com/leg-press', NULL, FALSE, 'BIBLIOTECA'),
+('Afundo', 'PERNAS', 'https://www.mundoboaforma.com.br/wp-content/uploads/2021/04/pernas-afundo-tradicional-sem-pesos-1.gif', 'Joelho da frente não deve ultrapassar a ponta do pé', FALSE, 'BIBLIOTECA'),
+('Stiff com Halteres', 'PERNAS', 'https://www.mundoboaforma.com.br/wp-content/uploads/2021/09/levantamento-terra-deadlift-stiff-com-halteres-1.gif', 'Manter leve flexão nos joelhos e costas retas', TRUE, 'BIBLIOTECA'),
+('Leg Press', 'PERNAS', 'https://www.mundoboaforma.com.br/wp-content/uploads/2020/12/pernas-leg-press-45-tradicional.gif', 'Não estender totalmente os joelhos na subida', FALSE, 'BIBLIOTECA'),
 
 -- Ombro
-('Elevação Lateral', 'OMBRO', 'https://example.com/elevacao-lateral', NULL, TRUE, 'PERSONAL'),
-('Desenvolvimento Arnold', 'OMBRO', 'https://example.com/arnold', 'Evitar estender totalmente', FALSE, 'PERSONAL'),
-('Elevação Frontal', 'OMBRO', 'https://example.com/elevacao-frontal', NULL, FALSE, 'BIBLIOTECA'),
+('Elevação Lateral', 'OMBRO', 'https://www.mundoboaforma.com.br/wp-content/uploads/2020/12/ombros-elevacao-lateral-de-ombros-com-halteres.gif', 'Elevar os braços até a linha dos ombros, sem impulso', TRUE, 'PERSONAL'),
+('Desenvolvimento Arnold', 'OMBRO', 'https://www.mundoboaforma.com.br/wp-content/uploads/2020/12/ombros-desenvolvimento-arnold-para-ombros.gif', 'Evitar estender totalmente os cotovelos no topo', FALSE, 'PERSONAL'),
+('Elevação Frontal', 'OMBRO', 'https://i0.wp.com/omelhortreino.com.br/wp-content/uploads/2025/04/Elevacao-frontal-com-dois-bracos-com-halteres.gif?resize=550%2C550&ssl=1', 'Levantar até a altura dos ombros com controle', FALSE, 'BIBLIOTECA'),
 
 -- Braco
-('Elevação Lateral', 'BRACO', 'https://example.com/elevacao-lateral', NULL, TRUE, 'PERSONAL'),
-('Desenvolvimento Arnold', 'BRACO', 'https://example.com/arnold', 'Evitar estender totalmente', FALSE, 'PERSONAL'),
-('Elevação Frontal', 'BRACO', 'https://example.com/elevacao-frontal', NULL, FALSE, 'PERSONAL'),
+('Rosca direta', 'BRACO', 'https://www.mundoboaforma.com.br/wp-content/uploads/2022/09/rosca-biceps-direta-com-halteres.gif', 'Evitar balançar o corpo; manter os cotovelos fixos', TRUE, 'PERSONAL'),
+('Tríceps banco', 'BRACO', 'https://www.mundoboaforma.com.br/wp-content/uploads/2021/04/triceps-no-banco.gif', 'Não deixar os ombros subirem durante a descida', FALSE, 'PERSONAL'),
+('Rosca martelo', 'BRACO', 'https://www.mundoboaforma.com.br/wp-content/uploads/2020/12/rosca-biceps-martelo-com-halteres.gif', 'Manter os cotovelos fixos ao lado do corpo', FALSE, 'PERSONAL'),
 
 -- Core
-('Abdominal Bicicleta', 'CORE', 'https://www.youtube.com/embed/apmprS8H1MY?si=OuJ19aPUwKtk-Z8Z', NULL, FALSE, 'BIBLIOTECA'),
-('Elevação de Pernas', 'CORE', 'https://example.com/elevacao-pernas', NULL, FALSE, 'BIBLIOTECA'),
-('Abdominal Infra', 'CORE', 'https://example.com/infra', NULL, TRUE, 'BIBLIOTECA'),
-('Abdominal Bicicleta', 'CORE', 'https://www.youtube.com/embed/apmprS8H1MY?si=OuJ19aPUwKtk-Z8Z', NULL, FALSE, 'BIBLIOTECA'), 
-('Elevação de Pernas', 'CORE', 'https://example.com/elevacao-pernas', NULL, FALSE, 'BIBLIOTECA'),
-('Abdominal Infra', 'CORE', 'https://example.com/infra', NULL, TRUE, 'BIBLIOTECA'),
+('Prancha', 'CORE', 'https://www.mundoboaforma.com.br/wp-content/uploads/2014/12/prancha-frontal-tradicional-com-bracos-esticados.gif', 'Manter abdômen contraído e quadril na linha da coluna', FALSE, 'BIBLIOTECA'),
+('Abdominal', 'CORE', 'https://www.mundoboaforma.com.br/wp-content/uploads/2021/04/abdominal.gif', 'Evitar forçar o pescoço; foco no abdômen', FALSE, 'BIBLIOTECA'),
+('Bicicleta no ar', 'CORE', 'https://www.mundoboaforma.com.br/wp-content/uploads/2021/03/abdominal-bicicleta-no-ar.gif', 'Rotação do tronco com pernas em movimento controlado', TRUE, 'BIBLIOTECA'),
+('Prancha lateral', 'CORE', 'https://www.mundoboaforma.com.br/wp-content/uploads/2020/12/prancha-lateral.gif', 'Alinhar o corpo e evitar que o quadril caia', FALSE, 'BIBLIOTECA'), 
+('Elevação de pernas', 'CORE', 'https://www.mundoboaforma.com.br/wp-content/uploads/2021/03/abdominal-no-chao-com-elevacao-de-pernas-esticadas.gif', 'Evitar tirar a lombar do chão', FALSE, 'BIBLIOTECA'),
+('Abdominal Tesoura', 'CORE', 'https://www.hipertrofia.org/blog/wp-content/uploads/2024/09/abdominal-tesoura.gif', 'Executar com respiração controlada e sem pressa', TRUE, 'BIBLIOTECA'),
 
 -- Cardio
-('Polichinelo', 'CARDIO', 'https://example.com/polichinelo', NULL, FALSE, 'BIBLIOTECA'),
-('Burpee', 'CARDIO', 'https://example.com/burpee', 'Explosão ao subir', TRUE, 'BIBLIOTECA'),
-('Corrida Estacionária', 'CARDIO', 'https://example.com/corrida', NULL, FALSE, 'BIBLIOTECA'),
-('Mountain Climbers', 'CARDIO', 'https://example.com/mountain', NULL, FALSE, 'BIBLIOTECA'),
-('Corrida Estacionária', 'CARDIO', 'https://example.com/corrida', NULL, FALSE, 'BIBLIOTECA'), 
-('Mountain Climbers', 'CARDIO', 'https://example.com/mountain', NULL, FALSE, 'BIBLIOTECA');
+('Esteira', 'CARDIO', 'https://www.mundoboaforma.com.br/wp-content/uploads/2021/04/corrida-na-esteira-inclinada-1.gif', 'Postura ereta, respiração controlada', FALSE, 'BIBLIOTECA'),
+('Bicicleta', 'CARDIO', 'https://example.com/burpee', 'Manter cadência constante e postura correta', TRUE, 'BIBLIOTECA'),
+('Corda', 'CARDIO', 'https://www.mundoboaforma.com.br/wp-content/uploads/2021/01/26121301-Jump-Rope-male_Cardio_360-logo.gif', 'Pulos baixos e ritmo regular para evitar fadiga precoce', FALSE, 'BIBLIOTECA'),
+('Escada', 'CARDIO', 'https://www.hipertrofia.org/blog/wp-content/uploads/2024/09/walking-on-stepmill.gif', 'Manter postura firme e não apoiar o peso nos braços', FALSE, 'BIBLIOTECA'),
+('Burpee', 'CARDIO', 'https://www.mundoboaforma.com.br/wp-content/uploads/2021/04/burpee.gif', 'Controlar a lombar ao descer e manter ritmo constante', FALSE, 'BIBLIOTECA'), 
+('Polichinelo', 'CARDIO', 'https://www.mundoboaforma.com.br/wp-content/uploads/2021/04/polichinelos.gif', 'Manter respiração contínua e braços sincronizados com pernas', FALSE, 'BIBLIOTECA');
 
 
 -- -----------------------------------------------------
@@ -598,7 +598,6 @@ INSERT INTO vitalis.planos_contratados (planos_id, alunos_id, status, data_contr
 -- Aluno 8
 (3, 8, 'ATIVO', '2025-01-01', '2025-04-30'),
 (5, 8, 'ATIVO', '2025-05-01', '2025-06-01'),
-(7, 8, 'EM_PROCESSO', '2025-06-02', NULL), -- plano sem data de fim, começa após anterior
 
 -- Aluno 9
 (5, 9, 'ATIVO', '2025-05-01', '2025-05-31'),
@@ -622,9 +621,9 @@ CREATE TABLE IF NOT EXISTS vitalis.cidades (
 INSERT INTO vitalis.cidades (nome) VALUES
 ('São Paulo'),
 ('Campinas'),
-('Rio de Janeiro'),
-('Belo Horizonte'),
-('Curitiba');
+('Santos'),
+('Sorocaba'),
+('São José dos Campos');
 
 
 -- -----------------------------------------------------
@@ -645,11 +644,11 @@ CREATE TABLE IF NOT EXISTS vitalis.bairros (
 
 -- EXEMPLO ATÉ PEGAR DA API
 INSERT INTO vitalis.bairros (nome, cidades_id) VALUES
-('Vila Mariana', 1),
-('Centro', 2),
-('Copacabana', 3),
-('Savassi', 4),
-('Batel', 5);
+('Vila Madalena', 1),
+('Cambuí', 2),
+('Gonzaga', 3),
+('Parque Campolim', 4),
+('Jardim Aquarius', 5);
 
 
 -- -----------------------------------------------------
