@@ -598,7 +598,6 @@ INSERT INTO vitalis.planos_contratados (planos_id, alunos_id, status, data_contr
 -- Aluno 8
 (3, 8, 'ATIVO', '2025-01-01', '2025-04-30'),
 (5, 8, 'ATIVO', '2025-05-01', '2025-06-01'),
-(7, 8, 'EM_PROCESSO', '2025-06-02', NULL), -- plano sem data de fim, começa após anterior
 
 -- Aluno 9
 (5, 9, 'ATIVO', '2025-05-01', '2025-05-31'),
