@@ -323,7 +323,7 @@ INSERT INTO vitalis.treinos (nome, descricao, favorito, personal_id) VALUES
 -- Table `vitalis`.`treinos_exercicios`
 -- -----------------------------------------------------g
 
-CREATE TABLE IF NOT EXISTS vitalis.treinos_exercicios (
+CREATE TABLE vitalis.treinos_exercicios (
   id INT NOT NULL AUTO_INCREMENT,
   treino_id INT,
   exercicio_id INT,
@@ -486,16 +486,20 @@ INSERT INTO vitalis.anamnese (
 -- Os dados desta tabela foram movidos para a estrutura correta de alunos_treinos definida anteriormente
 
 
-CREATE TABLE IF NOT EXISTS `vitalis`.`treinos_finalizados` (
+CREATE TABLE IF NOT EXISTS `vitalis`.`sessao_treinos` (
   id INT NOT NULL AUTO_INCREMENT,
-  data_horario_inicio DATETIME NOT NULL,
-  data_horario_fim DATETIME NULL DEFAULT NULL COMMENT 'Data de término do treino',
-  alunos_treinos_id INT,
+  alunos_treinos_id INT NOT NULL,
+  data_horario_previsto DATETIME NOT NULL COMMENT 'Data/hora inicialmente agendada',
+  data_horario_inicio DATETIME NULL COMMENT 'Quando o treino efetivamente começou',
+  data_horario_fim DATETIME NULL COMMENT 'Quando o treino foi encerrado',
+  status ENUM('AGENDADO','REALIZADO','CANCELADO','REAGENDADO') NOT NULL DEFAULT 'AGENDADO',
+  observacao TEXT NULL,
 
   PRIMARY KEY (id),
-  CONSTRAINT `alunos_treinos_finalizados_ibfk_1` 
-  FOREIGN KEY (`alunos_treinos_id`) 
-  REFERENCES `vitalis`.`alunos_treinos` (`id`)
+  CONSTRAINT `sessao_treinos_alunos_treinos_fk`
+    FOREIGN KEY (`alunos_treinos_id`)
+    REFERENCES `vitalis`.`alunos_treinos` (`id`)
+    ON DELETE CASCADE
 );
 
 INSERT INTO vitalis.alunos_treinos (aluno_id, treino_id, data_inicio, status) VALUES
@@ -504,17 +508,18 @@ INSERT INTO vitalis.alunos_treinos (aluno_id, treino_id, data_inicio, status) VA
 (8, 2, '2025-06-03', 'FINALIZADO'),  -- ID 3
 (9, 3, '2025-06-04', 'FINALIZADO');  -- ID 4
 
-INSERT INTO vitalis.treinos_finalizados (data_horario_inicio, data_horario_fim, alunos_treinos_id) VALUES
-('2025-06-11 08:00:00', '2025-06-11 09:00:00', 1),
-('2025-06-08 12:00:00', '2025-06-08 13:30:00', 2),
-('2025-06-15 08:00:00', '2025-06-15 09:45:00', 3),
-('2025-06-14 08:00:00', '2025-06-14 09:00:00', 4),
-('2025-06-10 10:00:00', '2025-06-10 11:00:00', 1),
-('2025-06-21 08:00:00', '2025-06-21 09:00:00', 2),
-('2025-06-23 08:00:00', '2025-06-23 09:00:00', 3),
-('2025-06-01 07:30:00', '2025-06-01 08:15:00', 4),
-('2025-06-11 08:00:00', '2025-06-11 09:00:00', 1),
-('2025-06-08 12:00:00', '2025-06-08 13:30:00', 2);
+INSERT INTO vitalis.sessao_treinos 
+(data_horario_previsto, data_horario_inicio, data_horario_fim, alunos_treinos_id, status) VALUES
+('2025-06-11 08:00:00', '2025-06-11 08:00:00', '2025-06-11 09:00:00', 1, 'REALIZADO'),
+('2025-06-08 12:00:00', '2025-06-08 12:00:00', '2025-06-08 13:30:00', 2, 'REALIZADO'),
+('2025-06-15 08:00:00', '2025-06-15 08:00:00', '2025-06-15 09:45:00', 3, 'REALIZADO'),
+('2025-06-14 08:00:00', '2025-06-14 08:00:00', '2025-06-14 09:00:00', 4, 'REALIZADO'),
+('2025-06-10 10:00:00', '2025-06-10 10:00:00', '2025-06-10 11:00:00', 1, 'REALIZADO'),
+('2025-06-21 08:00:00', '2025-06-21 08:00:00', '2025-06-21 09:00:00', 2, 'REALIZADO'),
+('2025-06-23 08:00:00', '2025-06-23 08:00:00', '2025-06-23 09:00:00', 3, 'REALIZADO'),
+('2025-06-01 07:30:00', '2025-06-01 07:30:00', '2025-06-01 08:15:00', 4, 'REALIZADO'),
+('2025-06-11 08:00:00', '2025-06-11 08:00:00', '2025-06-11 09:00:00', 1, 'REALIZADO'),
+('2025-06-08 12:00:00', '2025-06-08 12:00:00', '2025-06-08 13:30:00', 2, 'REALIZADO');
 
 -- -----------------------------------------------------
 -- Table `vitalis`.`planos`
@@ -773,7 +778,7 @@ CREATE TABLE execucoes_exercicios (
     series_executadas INT,
     
     FOREIGN KEY (sessao_treino_id) 
-        REFERENCES treinos_finalizados(id) ON DELETE CASCADE,
+		REFERENCES sessao_treinos(id),
     FOREIGN KEY (treino_exercicio_id) 
         REFERENCES treinos_exercicios(id) ON DELETE CASCADE
 );
@@ -854,12 +859,12 @@ INSERT INTO execucoes_exercicios (
 (5, 3, 1.00, 20, 3, 45, 1.00, 22, 3),    -- Flexões - excelente!
 (5, 4, 35.00, 10, 3, 60, 35.00, 10, 3);  -- Peck Deck - certinho
 
-INSERT INTO vitalis.treinos_finalizados (data_horario_inicio, data_horario_fim, alunos_treinos_id) VALUES
-('2025-08-19 08:00:00', '2025-08-19 09:15:00', 1),  -- Carla Mendes
-('2025-08-19 15:30:00', '2025-08-19 16:45:00', 2),  -- Alex Nagano  
-('2025-08-20 07:00:00', '2025-08-20 08:30:00', 3),  -- Suellen Lima
-('2025-08-20 18:00:00', '2025-08-20 19:00:00', 4);  -- Diego Santos
-
+INSERT INTO vitalis.sessao_treinos 
+(data_horario_previsto, data_horario_inicio, data_horario_fim, alunos_treinos_id, status) VALUES
+('2025-08-19 08:00:00', '2025-08-19 08:00:00', '2025-08-19 09:15:00', 1, 'REALIZADO'),  -- Carla Mendes
+('2025-08-19 15:30:00', '2025-08-19 15:30:00', '2025-08-19 16:45:00', 2, 'REALIZADO'),  -- Alex Nagano  
+('2025-08-20 07:00:00', '2025-08-20 07:00:00', '2025-08-20 08:30:00', 3, 'REALIZADO'),  -- Suellen Lima
+('2025-08-20 18:00:00', '2025-08-20 18:00:00', '2025-08-20 19:00:00', 4, 'REALIZADO');  -- Diego Santos
 INSERT INTO execucoes_exercicios (
     sessao_treino_id, treino_exercicio_id,
     carga_planejada, repeticoes_planejadas, series_planejadas, descanso_planejado,
