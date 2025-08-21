@@ -323,7 +323,7 @@ INSERT INTO vitalis.treinos (nome, descricao, favorito, personal_id) VALUES
 -- Table `vitalis`.`treinos_exercicios`
 -- -----------------------------------------------------g
 
-CREATE TABLE vitalis.treinos_exercicios (
+CREATE TABLE IF NOT EXISTS vitalis.treinos_exercicios (
   id INT NOT NULL AUTO_INCREMENT,
   treino_id INT,
   exercicio_id INT,
