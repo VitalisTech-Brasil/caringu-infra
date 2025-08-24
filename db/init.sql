@@ -332,19 +332,16 @@ CREATE TABLE IF NOT EXISTS vitalis.treinos_exercicios (
   series INT NOT NULL,
   descanso INT NOT NULL COMMENT 'Descanso em segundos',
   data_hora_criacao TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  data_hora_modificacao TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  data_hora_modificacao TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   origem ENUM('BIBLIOTECA', 'PERSONAL') NOT NULL DEFAULT 'PERSONAL',
   grau_dificuldade ENUM("INICIANTE", "INTERMEDIARIO", "AVANCADO") NOT NULL,
-  
   PRIMARY KEY (id),
-  -- REMOVIDO: UNIQUE INDEX (treino_id, exercicio_id) 
-  INDEX treino_id (treino_id ASC),
+  UNIQUE INDEX treino_id (treino_id ASC, exercicio_id ASC),
   INDEX exercicio_id (exercicio_id ASC),
-  CONSTRAINT treinos_exercicios_ibfk_1 FOREIGN KEY (treino_id) 
-    REFERENCES vitalis.treinos (id) ON DELETE CASCADE,
-  CONSTRAINT treinos_exercicios_ibfk_2 FOREIGN KEY (exercicio_id) 
-    REFERENCES vitalis.exercicios (id) ON DELETE CASCADE
+  CONSTRAINT treinos_exercicios_ibfk_1 FOREIGN KEY (treino_id) REFERENCES vitalis.treinos (id) ON DELETE CASCADE,
+  CONSTRAINT treinos_exercicios_ibfk_2 FOREIGN KEY (exercicio_id) REFERENCES vitalis.exercicios (id) ON DELETE CASCADE
 );
+
 -- Treino 1 (Peitoral)
 INSERT INTO vitalis.treinos_exercicios (treino_id, exercicio_id, carga, repeticoes, series, descanso, origem, grau_dificuldade) VALUES
 (1, 6, 50, 10, 4, 90, 'PERSONAL', 'AVANCADO'),
@@ -412,39 +409,6 @@ INSERT INTO vitalis.treinos_exercicios (treino_id, exercicio_id, carga, repetico
 (16, 7, 60, 10, 4, 60, 'PERSONAL', 'AVANCADO');
 
 -- -----------------------------------------------------
--- Table `vitalis`.`alunos_treinos`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `vitalis`.`alunos_treinos` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `aluno_id` INT NOT NULL,
-  `treino_id` INT NOT NULL,
-  `data_inicio` DATE NOT NULL,
-  `data_fim` DATE NULL,
-  `status` ENUM('ATIVO', 'PAUSADO', 'FINALIZADO') NOT NULL DEFAULT 'ATIVO',
-  PRIMARY KEY (`id`),
-  INDEX `fk_aluno_idx` (`aluno_id` ASC) VISIBLE,
-  INDEX `fk_treino_idx` (`treino_id` ASC) VISIBLE,
-  CONSTRAINT `fk_aluno_treinos_aluno`
-    FOREIGN KEY (`aluno_id`)
-    REFERENCES `vitalis`.`alunos` (`id`)
-    ON DELETE CASCADE,
-  CONSTRAINT `fk_aluno_treinos_treino`
-    FOREIGN KEY (`treino_id`)
-    REFERENCES `vitalis`.`treinos` (`id`)
-    ON DELETE CASCADE
-) ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
--- Dados de exemplo para alunos_treinos
-INSERT INTO vitalis.alunos_treinos (aluno_id, treino_id, data_inicio, status) VALUES
-(6, 1, '2025-07-31', 'ATIVO'),  -- João com Treino Força Iniciante
-(7, 1, '2025-07-31', 'ATIVO'),  -- Maria com Treino Força Iniciante
-(8, 2, '2025-07-31', 'ATIVO'),  -- Outro aluno com outro treino
-(9, 3, '2025-07-31', 'ATIVO');  -- Mais um exemplo
-
-
--- -----------------------------------------------------
 -- Table `vitalis`.`anamnese`
 -- -----------------------------------------------------
 
@@ -483,7 +447,60 @@ INSERT INTO vitalis.anamnese (
 -- (9, 'Reabilitação física.', TRUE, 'Hérnia de disco.', '2', FALSE, NULL, TRUE, 'Desconforto lombar.', TRUE, TRUE, 'Prótese no joelho esquerdo.', TRUE, 'Diabetes tipo 2', FALSE, NULL),
 (10, 'Condicionamento geral.', FALSE, NULL, '5', TRUE, 'Fazia funcional com personal.', FALSE, NULL, FALSE, FALSE, NULL, FALSE, NULL, FALSE, NULL);
 
--- Os dados desta tabela foram movidos para a estrutura correta de alunos_treinos definida anteriormente
+
+-- -----------------------------------------------------
+-- Table `vitalis`.`alunos_treinos`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vitalis`.`alunos_treinos` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `alunos_id` INT,
+  `treinos_exercicios_id` INT,
+  `dias_semana` JSON NULL,
+  `data_vencimento` DATE NOT NULL COMMENT 'Data do vencimento de um treino',
+  PRIMARY KEY (`id`),
+  INDEX `aluno_id` (`alunos_id` ASC) VISIBLE,
+  INDEX `fk_alunos_treinos_treinos_exercicios1_idx` (`treinos_exercicios_id` ASC) VISIBLE,
+  CONSTRAINT `alunos_treinos_ibfk_1`
+    FOREIGN KEY (`alunos_id`)
+    REFERENCES `vitalis`.`alunos` (`id`)
+    ON DELETE CASCADE,
+  CONSTRAINT `fk_alunos_treinos_treinos_exercicios1`
+    FOREIGN KEY (`treinos_exercicios_id`)
+    REFERENCES `vitalis`.`treinos_exercicios` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+INSERT INTO vitalis.alunos_treinos (alunos_id, treinos_exercicios_id, dias_semana, data_vencimento) VALUES
+(6, 1, JSON_ARRAY('Segunda', 'Quarta'), '2025-08-01'),
+(7, 1, JSON_ARRAY('Segunda', 'Quarta', 'Sexta'), '2025-08-01'),
+(7, 2, JSON_ARRAY('Segunda', 'Quarta', 'Sexta'), '2025-08-01'),
+(8, 3, JSON_ARRAY('Segunda', 'Quarta', 'Sábado'), '2025-06-01'),-- (4)
+(8, 3, JSON_ARRAY('Segunda', 'Quarta', 'Sábado'), '2025-08-01'), -- (5)
+(9, 4, JSON_ARRAY('Segunda'), '2025-07-15'),
+(7, 3, JSON_ARRAY('Segunda', 'Quarta', 'Sexta'), '2025-08-01'), -- mantido único (7)
+(10, 5, JSON_ARRAY('Todos'), '2025-08-01'),
+(6, 6, JSON_ARRAY('Terça', 'Quinta'), '2025-08-01'),
+(7, 6, JSON_ARRAY('Segunda', 'Quarta'), '2025-08-01'),
+(8, 6, JSON_ARRAY('Quarta'), '2025-08-01'), -- (11)
+(9, 7, JSON_ARRAY('Sexta'), '2025-08-01'),
+(10, 7, JSON_ARRAY('Quinta'), '2025-08-01'),
+
+-- Treinos avulsos e pendentes
+(6, 38, JSON_ARRAY('Segunda', 'Quarta', 'Sexta'), '2025-05-31'),
+(7, 39, JSON_ARRAY('Terça', 'Quinta'), '2025-06-15'),
+(8, 40, JSON_ARRAY('Sábado'), '2025-05-10'), -- (16)
+(9, 41, JSON_ARRAY('Segunda', 'Quarta'), '2025-06-20'),
+(10, 42, JSON_ARRAY('Domingo'), '2025-04-02'),
+
+(7, 43, JSON_ARRAY('Segunda'), '2025-06-01'),
+(7, 44, JSON_ARRAY('Segunda'), '2025-06-08'),
+(7, 45, JSON_ARRAY('Segunda'), '2025-06-15'),
+(7, 46, JSON_ARRAY('Segunda'), '2025-06-01'),
+(7, 47, JSON_ARRAY('Segunda'), '2025-06-08'),
+(7, 48, JSON_ARRAY('Segunda'), '2025-06-15');
 
 
 CREATE TABLE IF NOT EXISTS `vitalis`.`treinos_finalizados` (
@@ -498,23 +515,32 @@ CREATE TABLE IF NOT EXISTS `vitalis`.`treinos_finalizados` (
   REFERENCES `vitalis`.`alunos_treinos` (`id`)
 );
 
-INSERT INTO vitalis.alunos_treinos (aluno_id, treino_id, data_inicio, status) VALUES
-(6, 1, '2025-06-01', 'FINALIZADO'),  -- ID 1
-(7, 1, '2025-06-02', 'FINALIZADO'),  -- ID 2
-(8, 2, '2025-06-03', 'FINALIZADO'),  -- ID 3
-(9, 3, '2025-06-04', 'FINALIZADO');  -- ID 4
-
 INSERT INTO vitalis.treinos_finalizados (data_horario_inicio, data_horario_fim, alunos_treinos_id) VALUES
 ('2025-06-11 08:00:00', '2025-06-11 09:00:00', 1),
 ('2025-06-08 12:00:00', '2025-06-08 13:30:00', 2),
 ('2025-06-15 08:00:00', '2025-06-15 09:45:00', 3),
-('2025-06-14 08:00:00', '2025-06-14 09:00:00', 4),
-('2025-06-10 10:00:00', '2025-06-10 11:00:00', 1),
-('2025-06-21 08:00:00', '2025-06-21 09:00:00', 2),
-('2025-06-23 08:00:00', '2025-06-23 09:00:00', 3),
-('2025-06-01 07:30:00', '2025-06-01 08:15:00', 4),
-('2025-06-11 08:00:00', '2025-06-11 09:00:00', 1),
-('2025-06-08 12:00:00', '2025-06-08 13:30:00', 2);
+('2025-06-14 08:00:00', '2025-06-14 09:00:00', 5),
+('2025-06-10 10:00:00', '2025-06-10 11:00:00', 6),
+('2025-06-21 08:00:00', '2025-06-21 09:00:00', 8),
+('2025-06-23 08:00:00', '2025-06-23 09:00:00', 9),
+('2025-06-01 07:30:00', '2025-06-01 08:15:00', 10),
+('2025-06-24 08:00:00', '2025-06-24 09:30:00', 12),
+('2025-06-04 10:00:00', NULL, 13),
+('2025-06-02 06:30:00', '2025-06-02 07:15:00', 14),
+('2025-06-25 08:00:00', '2025-06-25 09:00:00', 15),
+('2025-06-27 08:00:00', '2025-06-27 09:00:00', 17),
+('2025-06-28 08:00:00', '2025-06-28 09:00:00', 18),
+
+('2025-06-05 08:00:00', '2025-06-05 09:00:00', 19),
+('2025-06-09 08:00:00', '2025-06-09 09:00:00', 20),
+('2025-06-16 08:00:00', '2025-06-16 09:00:00', 21),
+('2025-06-22 08:00:00', '2025-06-22 09:00:00', 22),
+('2025-06-29 08:00:00', '2025-06-29 09:00:00', 23),
+('2025-06-17 08:00:00', '2025-06-17 09:00:00', 24),
+
+-- Treinos específicos avulsos e finalizados
+('2025-06-03 08:00:00', '2025-06-03 09:00:00', 2),
+('2025-05-13 10:00:00', '2025-05-13 11:00:00', 3);
 
 -- -----------------------------------------------------
 -- Table `vitalis`.`planos`
@@ -717,6 +743,7 @@ INSERT INTO vitalis.comentarios (
 
 
 
+
 -- -----------------------------------------------------
 -- Table `vitalis`.`evolucao_corporal`
 -- -----------------------------------------------------
@@ -751,132 +778,3 @@ CREATE TABLE IF NOT EXISTS esqueci_senha (
   token VARCHAR(255) NOT NULL,
   data_expiracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
-
--- -----------------------------------------------------
--- Table `vitalis`.`execucao_exercicios`
--- -----------------------------------------------------
-CREATE TABLE execucoes_exercicios (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    sessao_treino_id INT NOT NULL,
-    treino_exercicio_id INT NOT NULL COMMENT 'Referência específica ao exercício do treino',
-    
-    -- Valores planejados (copiados do treino)
-    carga_planejada DECIMAL(5,2),
-    repeticoes_planejadas INT,
-    series_planejadas INT,
-    descanso_planejado INT,
-    
-    -- Valores executados
-    carga_executada DECIMAL(5,2),
-    repeticoes_executadas INT,
-    series_executadas INT,
-    
-    FOREIGN KEY (sessao_treino_id) 
-        REFERENCES treinos_finalizados(id) ON DELETE CASCADE,
-    FOREIGN KEY (treino_exercicio_id) 
-        REFERENCES treinos_exercicios(id) ON DELETE CASCADE
-);
-
--- -----------------------------------------------------
--- Table `vitalis`.`alunos_treinos_exercicios`
--- -----------------------------------------------------
-
-CREATE TABLE IF NOT EXISTS vitalis.alunos_treinos_exercicios (
-  id INT NOT NULL AUTO_INCREMENT,
-  aluno_treino_id INT NOT NULL,
-  exercicio_id INT NOT NULL COMMENT 'Referência direta ao exercício da biblioteca',
-  carga DECIMAL(5,2) NOT NULL,
-  repeticoes INT NOT NULL,
-  series INT NOT NULL,
-  descanso INT NOT NULL COMMENT 'Descanso em segundos',
-  observacoes_personalizadas TEXT NULL,
-  data_modificacao TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  
-  PRIMARY KEY (id),
-  INDEX fk_aluno_treino_idx (aluno_treino_id ASC),
-  INDEX fk_exercicio_idx (exercicio_id ASC),
-  
-  CONSTRAINT fk_alunos_treinos_exercicios_aluno_treino
-    FOREIGN KEY (aluno_treino_id)
-    REFERENCES vitalis.alunos_treinos (id)
-    ON DELETE CASCADE,
-    
-  CONSTRAINT fk_alunos_treinos_exercicios_exercicio
-    FOREIGN KEY (exercicio_id)
-    REFERENCES vitalis.exercicios (id)
-    ON DELETE CASCADE
-    
-) ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
--- -----------------------------------------------------
--- aaaaaaaa
--- -----------------------------------------------------
-
-INSERT INTO execucoes_exercicios (
-    sessao_treino_id, treino_exercicio_id,
-    carga_planejada, repeticoes_planejadas, series_planejadas, descanso_planejado,
-    carga_executada, repeticoes_executadas, series_executadas
-) VALUES
--- ========== SESSÃO 1: Carla Mendes (11/06) - Treino Peito ==========
--- sessao_treino_id = 1 (primeira entrada dos treinos_finalizados)
--- Baseado no treino 1 (Peito Avançado) que tem exercícios: 6,7,8,9 = treino_exercicio_ids 1,2,3,4
-(1, 1, 50.00, 10, 4, 90, 45.00, 8, 4),   -- Peck Deck (exercicio_id = 6)
-(1, 2, 12.00, 12, 4, 60, 10.00, 10, 4),  -- Crucifixo com Halteres (exercicio_id = 7)
-(1, 3, 1.00, 20, 3, 45, 1.00, 15, 3),    -- Flexões de Braço (exercicio_id = 8)
-(1, 4, 35.00, 10, 3, 60, 30.00, 10, 3),  -- Peck Deck (exercicio_id = 9)
-
--- ========== SESSÃO 2: Alex Nagano (08/06) - Treino Peito ==========
--- sessao_treino_id = 2
-(2, 1, 50.00, 10, 4, 90, 47.50, 9, 4),   -- Peck Deck - progredindo
-(2, 2, 12.00, 12, 4, 60, 12.00, 12, 4),  -- Crucifixo - melhorou!
-(2, 3, 1.00, 20, 3, 45, 1.00, 18, 3),    -- Flexões - quase lá
-(2, 4, 35.00, 10, 3, 60, 32.50, 10, 3),  -- Peck Deck - diminuiu carga
-
--- ========== SESSÃO 3: Suellen Lima (15/06) - Treino Pernas ==========
--- sessao_treino_id = 3, aluno 8 faz treino 2 (Pernas) = treino_exercicio_ids 5,6,7
-(3, 5, 30.00, 10, 3, 60, 25.00, 12, 3),  -- Afundo (exercicio_id = 10)
-(3, 6, 25.00, 10, 3, 45, 25.00, 10, 3),  -- Stiff com Halteres (exercicio_id = 11)
-(3, 7, 80.00, 12, 4, 90, 70.00, 12, 4),  -- Leg Press (exercicio_id = 12)
-
--- ========== SESSÃO 4: Diego Santos (14/06) - Treino Ombro ==========
--- sessao_treino_id = 4, aluno 9 faz treino 3 (Ombro) = treino_exercicio_ids 8,9,10
-(4, 8, 6.00, 15, 3, 30, 6.00, 15, 3),    -- Elevação Lateral (exercicio_id = 13)
-(4, 9, 8.00, 12, 3, 45, 8.00, 12, 3),    -- Desenvolvimento Arnold (exercicio_id = 14)
-(4, 10, 6.00, 12, 3, 45, 6.00, 12, 3),   -- Elevação Frontal (exercicio_id = 15)
-
--- ========== SESSÃO 5: Carla Mendes (10/06) - Segunda sessão ==========
--- sessao_treino_id = 5
-(5, 1, 50.00, 10, 4, 90, 50.00, 10, 4),  -- Peck Deck - perfeito!
-(5, 2, 12.00, 12, 4, 60, 14.00, 12, 4),  -- Crucifixo - superou!
-(5, 3, 1.00, 20, 3, 45, 1.00, 22, 3),    -- Flexões - excelente!
-(5, 4, 35.00, 10, 3, 60, 35.00, 10, 3);  -- Peck Deck - certinho
-
-INSERT INTO vitalis.treinos_finalizados (data_horario_inicio, data_horario_fim, alunos_treinos_id) VALUES
-('2025-08-19 08:00:00', '2025-08-19 09:15:00', 1),  -- Carla Mendes
-('2025-08-19 15:30:00', '2025-08-19 16:45:00', 2),  -- Alex Nagano  
-('2025-08-20 07:00:00', '2025-08-20 08:30:00', 3),  -- Suellen Lima
-('2025-08-20 18:00:00', '2025-08-20 19:00:00', 4);  -- Diego Santos
-
-INSERT INTO execucoes_exercicios (
-    sessao_treino_id, treino_exercicio_id,
-    carga_planejada, repeticoes_planejadas, series_planejadas, descanso_planejado,
-    carga_executada, repeticoes_executadas, series_executadas
-) VALUES
--- Treino de 19/08 - Manhã (Carla) - sessao_treino_id = 11
-(11, 2, 12.00, 12, 4, 60, 12.00, 12, 4),  -- Crucifixo com Halteres
-(11, 3, 1.00, 20, 3, 45, 1.00, 18, 3),    -- Flexões de Braço
-(11, 4, 35.00, 10, 3, 60, 35.00, 10, 3),  -- Peck Deck
-
--- Treino de 19/08 - Tarde (Alex) - sessao_treino_id = 12
-(12, 2, 12.00, 12, 4, 60, 14.00, 12, 4),  -- Crucifixo - superou novamente!
-(12, 3, 1.00, 20, 3, 45, 1.00, 22, 3),    -- Flexões - mantém excelência
-
--- Treino de 20/08 - Manhã (Suellen) - sessao_treino_id = 13
-(13, 5, 30.00, 10, 3, 60, 28.00, 12, 3),  -- Afundo - evoluindo
-(13, 6, 25.00, 10, 3, 45, 25.00, 10, 3),  -- Stiff - mantém forma
-
--- Treino de 20/08 - Tarde (Diego) - sessao_treino_id = 14
-(14, 8, 6.00, 15, 3, 30, 6.00, 15, 3);    -- Elevação Lateral - consistente
