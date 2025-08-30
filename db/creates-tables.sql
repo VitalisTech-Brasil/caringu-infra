@@ -137,6 +137,7 @@ CREATE TABLE IF NOT EXISTS `vitalis`.`alunos_treinos_exercicios` (
   `descanso` INT NOT NULL COMMENT 'Descanso em segundos',
   `observacoes_personalizadas` TEXT NULL DEFAULT NULL,
   `data_modificacao` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `ic_model` BOOLEAN NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_aluno_treino_idx` (`aluno_treino_id` ASC) VISIBLE,
   INDEX `fk_exercicio_idx` (`exercicio_id` ASC) VISIBLE,

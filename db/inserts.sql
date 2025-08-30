@@ -177,26 +177,26 @@ INSERT INTO vitalis.planos (personal_trainers_id, nome, periodo, quantidade_aula
 
 INSERT INTO vitalis.planos_contratados (planos_id, alunos_id, status, data_contratacao, data_fim) VALUES
 -- Aluno 6
-(1, 6, 'ATIVO', '2025-03-01', '2025-04-01'),
-(5, 6, 'ATIVO', '2025-05-01', '2025-06-15'),
+(1, 6, 'INATIVO', '2025-05-01', '2025-06-01'), -- já venceu
+(5, 6, 'ATIVO', '2025-08-01', '2025-09-01'),   -- ainda ativo agora
 
 -- Aluno 7
-(3, 7, 'ATIVO', '2025-01-01', '2025-04-30'),
-(5, 7, 'ATIVO', '2025-05-01', '2025-06-01'),
-(2, 7, 'PENDENTE', '2025-06-02', NULL), -- começa depois do último plano
+(3, 7, 'INATIVO', '2025-01-01', '2025-06-30'), -- semestre passado
+(5, 7, 'ATIVO', '2025-07-01', '2025-08-31'),   -- ativo e acaba em agosto
+(2, 7, 'PENDENTE', '2025-09-01', NULL),        -- começa em setembro
 
 -- Aluno 8
-(3, 8, 'ATIVO', '2025-01-01', '2025-04-30'),
-(5, 8, 'ATIVO', '2025-05-01', '2025-06-01'),
+(3, 8, 'INATIVO', '2025-02-01', '2025-07-31'), -- já finalizado
+(5, 8, 'ATIVO', '2025-08-01', '2025-09-01'),   -- ativo
 
 -- Aluno 9
-(5, 9, 'ATIVO', '2025-05-01', '2025-05-31'),
-(5, 9, 'PENDENTE', '2025-06-01', '2025-07-01'), -- começa quando o anterior termina
-(4, 9, 'INATIVO', '2025-03-01', '2025-04-01'), -- histórico, sem conflito
+(5, 9, 'INATIVO', '2025-04-01', '2025-05-01'), -- histórico
+(5, 9, 'ATIVO', '2025-08-01', '2025-09-01'),   -- vigente
+(4, 9, 'INATIVO', '2025-03-01', '2025-04-01'), -- mais antigo
 
 -- Aluno 10
-(5, 10, 'ATIVO', '2025-07-01', '2025-08-01'),
-(7, 10, 'INATIVO', '2025-04-01', '2025-04-02'); -- histórico, sem conflito
+(5, 10, 'ATIVO', '2025-08-01', '2025-09-01'),  -- vigente
+(7, 10, 'INATIVO', '2025-02-01', '2025-02-02'); -- histórico curtíssimo
 
 INSERT INTO vitalis.cidades (nome) VALUES
 ('São Paulo'),
@@ -220,21 +220,37 @@ INSERT INTO vitalis.personal_trainers_bairros (personal_trainers_id, bairro_id) 
 (5, 5);
 
 INSERT INTO vitalis.alunos_treinos (aluno_id, data_inicio, status) VALUES
-(6, '2025-07-31', 'ATIVO'),
-(7, '2025-07-31', 'ATIVO'),
-(8, '2025-07-31', 'ATIVO'),
-(9, '2025-07-31', 'ATIVO'),
-(10, '2025-07-31', 'ATIVO');
+(6, '2025-08-05', 'ATIVO'),
+(7, '2025-07-15', 'ATIVO'),
+(8, '2025-08-05', 'ATIVO'),
+(9, '2025-08-10', 'ATIVO'),
+(10, '2025-08-10', 'ATIVO');
 
 -- ========================================
 -- TABELA: sessao_treinos
 -- ========================================
-INSERT INTO vitalis.sessao_treinos (alunos_treinos_id, data_horario_previsto, data_horario_inicio, data_horario_fim, status, observacao) VALUES
-(1, '2025-06-11 08:00:00', '2025-06-11 08:00:00', '2025-06-11 09:00:00', 'REALIZADO', 'Boa execução'),
-(1, '2025-08-26 09:00:00', NULL, NULL, 'AGENDADO', NULL),
-(2, '2025-06-08 12:00:00', '2025-06-08 12:00:00', '2025-06-08 13:30:00', 'REALIZADO', NULL),
-(3, '2025-06-15 08:00:00', '2025-06-15 08:00:00', '2025-06-15 09:45:00', 'REALIZADO', NULL),
-(4, '2025-06-14 08:00:00', '2025-06-14 08:00:00', '2025-06-14 09:00:00', 'REALIZADO', NULL);
+INSERT INTO vitalis.sessao_treinos 
+(alunos_treinos_id, data_horario_previsto, data_horario_inicio, data_horario_fim, status, observacao) VALUES
+-- Aluno 6
+(1, '2025-08-10 08:00:00', '2025-08-10 08:00:00', '2025-08-10 09:00:00', 'REALIZADO', 'Execução correta'),
+(1, '2025-08-28 09:00:00', NULL, NULL, 'AGENDADO', NULL),
+
+-- Aluno 7
+(2, '2025-07-20 12:00:00', '2025-07-20 12:00:00', '2025-07-20 13:30:00', 'REALIZADO', 'Boa performance'),
+(2, '2025-08-25 18:00:00', '2025-08-25 18:00:00', '2025-08-25 19:00:00', 'REALIZADO', NULL),
+(2, '2025-09-02 10:00:00', NULL, NULL, 'AGENDADO', NULL),
+
+-- Aluno 8
+(3, '2025-08-12 08:00:00', '2025-08-12 08:00:00', '2025-08-12 09:00:00', 'REALIZADO', NULL),
+(3, '2025-08-29 09:00:00', NULL, NULL, 'AGENDADO', NULL),
+
+-- Aluno 9
+(4, '2025-08-15 08:00:00', '2025-08-15 08:00:00', '2025-08-15 09:00:00', 'REALIZADO', NULL),
+(4, '2025-08-27 18:00:00', NULL, NULL, 'AGENDADO', NULL),
+
+-- Aluno 10
+(5, '2025-08-20 07:00:00', '2025-08-20 07:00:00', '2025-08-20 08:00:00', 'REALIZADO', 'Bom esforço'),
+(5, '2025-08-31 08:00:00', NULL, NULL, 'AGENDADO', NULL);
 
 INSERT INTO vitalis.feedbacks (
   titulo, descricao, data_criacao, alunos_treinos_id
@@ -288,28 +304,28 @@ INSERT INTO vitalis.treinos (nome, descricao, favorito, personal_id, origem, gra
 -- TABELA: alunos_treinos_exercicios
 -- ========================================
 -- Exemplo: ligando aluno_treino_id com os exercícios de cada treino
-INSERT INTO vitalis.alunos_treinos_exercicios (aluno_treino_id, exercicio_id, treinos_id, carga, repeticoes, series, descanso, observacoes_personalizadas) VALUES
+INSERT INTO vitalis.alunos_treinos_exercicios (aluno_treino_id, exercicio_id, treinos_id, carga, repeticoes, series, descanso, observacoes_personalizadas, ic_model) VALUES
 -- Treino 1 (Peito Avançado)
-(1, 6, 1, 50, 10, 4, 90, 'Ajustar técnica'),
-(1, 7, 1, 12, 12, 4, 60, NULL),
-(1, 8, 1, 1, 20, 3, 45, 'Foco em resistência'),
-(1, 9, 1, 35, 10, 3, 60, NULL),
+(1, 6, 1, 50, 10, 4, 90, 'Ajustar técnica', true),
+(1, 7, 1, 12, 12, 4, 60, NULL, true),
+(1, 8, 1, 1, 20, 3, 45, 'Foco em resistência', false),
+(1, 9, 1, 35, 10, 3, 60, NULL, false),
 
 -- Treino 2 (Pernas Intermediário)
-(2, 10, 2, 30, 10, 3, 60, NULL),
-(2, 11, 2, 25, 10, 3, 45, NULL),
-(2, 12, 2, 80, 12, 4, 90, NULL),
+(2, 10, 2, 30, 10, 3, 60, NULL, true),
+(2, 11, 2, 25, 10, 3, 45, NULL, false),
+(2, 12, 2, 80, 12, 4, 90, NULL, true),
 
 -- Treino 3 (Ombro Iniciante)
-(3, 13, 3, 6, 15, 3, 30, NULL),
-(3, 14, 3, 8, 12, 3, 45, NULL),
-(3, 15, 3, 6, 12, 3, 45, NULL),
+(3, 13, 3, 6, 15, 3, 30, NULL, false),
+(3, 14, 3, 8, 12, 3, 45, NULL, false),
+(3, 15, 3, 6, 12, 3, 45, NULL, true),
 
 -- Treino 4 (Cardio Funcional)
-(4, 16, 4, 10, 60, 3, 20, NULL),
-(4, 17, 4, 15, 15, 3, 30, NULL),
-(4, 18, 4, 20, 60, 3, 20, NULL),
-(4, 19, 4, 10, 40, 3, 30, NULL);
+(4, 16, 4, 10, 60, 3, 20, NULL, false),
+(4, 17, 4, 15, 15, 3, 30, NULL, true),
+(4, 18, 4, 20, 60, 3, 20, NULL, true),
+(4, 19, 4, 10, 40, 3, 30, NULL, false);
 
 -- ========================================
 -- TABELA: execucoes_exercicios (execução real dos exercícios)
