@@ -82,7 +82,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `vitalis`.`exercicios` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `personal_id` INT NOT NULL,
+  `personal_id` INT,
   `nome` VARCHAR(100) NOT NULL,
   `grupo_muscular` ENUM('PEITORAL', 'COSTAS', 'PERNAS', 'OMBRO', 'BRACO', 'CORE', 'CARDIO') NOT NULL,
   `url_video` TEXT NULL DEFAULT NULL,
@@ -295,11 +295,9 @@ COLLATE = utf8mb4_0900_ai_ci;
 CREATE TABLE IF NOT EXISTS `vitalis`.`sessao_treinos` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `alunos_treinos_id` INT NOT NULL,
-  `data_horario_previsto` DATETIME NOT NULL COMMENT 'Data/hora inicialmente agendada',
   `data_horario_inicio` DATETIME NULL DEFAULT NULL COMMENT 'Quando o treino efetivamente começou',
   `data_horario_fim` DATETIME NULL DEFAULT NULL COMMENT 'Quando o treino foi encerrado',
   `status` ENUM('AGENDADO', 'REALIZADO', 'CANCELADO', 'REAGENDADO') NOT NULL DEFAULT 'AGENDADO',
-  `observacao` TEXT NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `sessao_treinos_alunos_treinos_fk` (`alunos_treinos_id` ASC) VISIBLE,
   CONSTRAINT `sessao_treinos_alunos_treinos_fk`
