@@ -113,46 +113,46 @@ VALUES
 
 INSERT INTO vitalis.exercicios (personal_id, nome, grupo_muscular, url_video, observacoes, favorito, origem) VALUES
 -- Peitoral
-(1, 'Supino Inclinado', 'PEITORAL', 'https://www.hipertrofia.org/blog/wp-content/uploads/2023/09/barbell-incline-bench-press.gif', 'Ajustar banco entre 30° e 45°', FALSE, 'BIBLIOTECA'),
-(1, 'Crucifixo com Halteres', 'PEITORAL', 'https://www.hipertrofia.org/blog/wp-content/uploads/2020/06/dumbbell-incline-fly.gif', 'Manter braços semiflexionados e controlar o movimento', TRUE, 'BIBLIOTECA'),
-(1, 'Flexões de Braço', 'PEITORAL', 'https://www.hipertrofia.org/blog/wp-content/uploads/2018/09/pushup.gif', 'Não deixar o quadril cair durante o movimento', FALSE, 'BIBLIOTECA'),
+(5, 'Supino Inclinado', 'PEITORAL', 'https://www.hipertrofia.org/blog/wp-content/uploads/2023/09/barbell-incline-bench-press.gif', 'Ajustar banco entre 30° e 45°', FALSE, 'PERSONAL'),
+(1, 'Crucifixo com Halteres', 'PEITORAL', 'https://www.hipertrofia.org/blog/wp-content/uploads/2020/06/dumbbell-incline-fly.gif', 'Manter braços semiflexionados e controlar o movimento', TRUE, 'PERSONAL'),
+(5, 'Flexões de Braço', 'PEITORAL', 'https://www.hipertrofia.org/blog/wp-content/uploads/2018/09/pushup.gif', 'Não deixar o quadril cair durante o movimento', FALSE, 'PERSONAL'),
 (1, 'Peck Deck', 'PEITORAL', 'https://i0.wp.com/omelhortreino.com.br/wp-content/uploads/2025/03/Supino-Inclinado-com-Halteres.gif?resize=500%2C500&ssl=1', 'Evitar bater os braços no final do movimento', FALSE, 'PERSONAL'),
 
 -- Costas
-(2, 'Barra', 'COSTAS', 'https://www.mundoboaforma.com.br/wp-content/uploads/2020/12/costas-barra-fixa-pegada-aberta-palma-para-frente-chinup.gif', 'Evitar balanço do corpo e manter a escápula ativada', FALSE, 'PERSONAL'),
+(5, 'Barra', 'COSTAS', 'https://www.mundoboaforma.com.br/wp-content/uploads/2020/12/costas-barra-fixa-pegada-aberta-palma-para-frente-chinup.gif', 'Evitar balanço do corpo e manter a escápula ativada', FALSE, 'PERSONAL'),
 (2, 'Remada', 'COSTAS', 'https://www.mundoboaforma.com.br/wp-content/uploads/2021/09/remada-sentado-com-cabos-e-triangulo-para-costas.gif', 'Manter coluna neutra e puxar com os cotovelos', TRUE, 'PERSONAL'),
-(2, 'Puxada Alta', 'COSTAS', 'https://www.mundoboaforma.com.br/wp-content/uploads/2020/12/costas-puxada-aberta-com-barra-no-pulley.gif', 'Puxar até a altura do queixo sem inclinar o tronco para trás', FALSE, 'PERSONAL'),
+(5, 'Puxada Alta', 'COSTAS', 'https://www.mundoboaforma.com.br/wp-content/uploads/2020/12/costas-puxada-aberta-com-barra-no-pulley.gif', 'Puxar até a altura do queixo sem inclinar o tronco para trás', FALSE, 'PERSONAL'),
 
 -- Pernas
-(1, 'Afundo', 'PERNAS', 'https://www.mundoboaforma.com.br/wp-content/uploads/2021/04/pernas-afundo-tradicional-sem-pesos-1.gif', 'Joelho da frente não deve ultrapassar a ponta do pé', FALSE, 'BIBLIOTECA'),
-(1, 'Stiff com Halteres', 'PERNAS', 'https://www.mundoboaforma.com.br/wp-content/uploads/2021/09/levantamento-terra-deadlift-stiff-com-halteres-1.gif', 'Manter leve flexão nos joelhos e costas retas', TRUE, 'BIBLIOTECA'),
-(1, 'Leg Press', 'PERNAS', 'https://www.mundoboaforma.com.br/wp-content/uploads/2020/12/pernas-leg-press-45-tradicional.gif', 'Não estender totalmente os joelhos na subida', FALSE, 'BIBLIOTECA'),
+(NULL, 'Afundo', 'PERNAS', 'https://www.mundoboaforma.com.br/wp-content/uploads/2021/04/pernas-afundo-tradicional-sem-pesos-1.gif', 'Joelho da frente não deve ultrapassar a ponta do pé', FALSE, 'BIBLIOTECA'),
+(5, 'Stiff com Halteres', 'PERNAS', 'https://www.mundoboaforma.com.br/wp-content/uploads/2021/09/levantamento-terra-deadlift-stiff-com-halteres-1.gif', 'Manter leve flexão nos joelhos e costas retas', TRUE, 'PERSONAL'),
+(5, 'Leg Press', 'PERNAS', 'https://www.mundoboaforma.com.br/wp-content/uploads/2020/12/pernas-leg-press-45-tradicional.gif', 'Não estender totalmente os joelhos na subida', FALSE, 'PERSONAL'),
 
 -- Ombro
-(3, 'Elevação Lateral', 'OMBRO', 'https://www.mundoboaforma.com.br/wp-content/uploads/2020/12/ombros-elevacao-lateral-de-ombros-com-halteres.gif', 'Elevar os braços até a linha dos ombros, sem impulso', TRUE, 'PERSONAL'),
-(3, 'Desenvolvimento Arnold', 'OMBRO', 'https://www.mundoboaforma.com.br/wp-content/uploads/2020/12/ombros-desenvolvimento-arnold-para-ombros.gif', 'Evitar estender totalmente os cotovelos no topo', FALSE, 'PERSONAL'),
-(1, 'Elevação Frontal', 'OMBRO', 'https://i0.wp.com/omelhortreino.com.br/wp-content/uploads/2025/04/Elevacao-frontal-com-dois-bracos-com-halteres.gif?resize=550%2C550&ssl=1', 'Levantar até a altura dos ombros com controle', FALSE, 'BIBLIOTECA'),
+(5, 'Elevação Lateral', 'OMBRO', 'https://www.mundoboaforma.com.br/wp-content/uploads/2020/12/ombros-elevacao-lateral-de-ombros-com-halteres.gif', 'Elevar os braços até a linha dos ombros, sem impulso', TRUE, 'PERSONAL'),
+(5, 'Desenvolvimento Arnold', 'OMBRO', 'https://www.mundoboaforma.com.br/wp-content/uploads/2020/12/ombros-desenvolvimento-arnold-para-ombros.gif', 'Evitar estender totalmente os cotovelos no topo', FALSE, 'PERSONAL'),
+(1, 'Elevação Frontal', 'OMBRO', 'https://i0.wp.com/omelhortreino.com.br/wp-content/uploads/2025/04/Elevacao-frontal-com-dois-bracos-com-halteres.gif?resize=550%2C550&ssl=1', 'Levantar até a altura dos ombros com controle', FALSE, 'PERSONAL'),
 
 -- Braço
-(4, 'Rosca direta', 'BRACO', 'https://www.mundoboaforma.com.br/wp-content/uploads/2022/09/rosca-biceps-direta-com-halteres.gif', 'Evitar balançar o corpo; manter os cotovelos fixos', TRUE, 'PERSONAL'),
-(4, 'Tríceps banco', 'BRACO', 'https://www.mundoboaforma.com.br/wp-content/uploads/2021/04/triceps-no-banco.gif', 'Não deixar os ombros subirem durante a descida', FALSE, 'PERSONAL'),
-(4, 'Rosca martelo', 'BRACO', 'https://www.mundoboaforma.com.br/wp-content/uploads/2020/12/rosca-biceps-martelo-com-halteres.gif', 'Manter os cotovelos fixos ao lado do corpo', FALSE, 'PERSONAL'),
+(5, 'Rosca direta', 'BRACO', 'https://www.mundoboaforma.com.br/wp-content/uploads/2022/09/rosca-biceps-direta-com-halteres.gif', 'Evitar balançar o corpo; manter os cotovelos fixos', TRUE, 'PERSONAL'),
+(5, 'Tríceps banco', 'BRACO', 'https://www.mundoboaforma.com.br/wp-content/uploads/2021/04/triceps-no-banco.gif', 'Não deixar os ombros subirem durante a descida', FALSE, 'PERSONAL'),
+(NULL, 'Rosca martelo', 'BRACO', 'https://www.mundoboaforma.com.br/wp-content/uploads/2020/12/rosca-biceps-martelo-com-halteres.gif', 'Manter os cotovelos fixos ao lado do corpo', FALSE, 'BIBLIOTECA'),
 
 -- Core
-(1, 'Prancha', 'CORE', 'https://www.mundoboaforma.com.br/wp-content/uploads/2014/12/prancha-frontal-tradicional-com-bracos-esticados.gif', 'Manter abdômen contraído e quadril na linha da coluna', FALSE, 'BIBLIOTECA'),
-(1, 'Abdominal', 'CORE', 'https://www.mundoboaforma.com.br/wp-content/uploads/2021/04/abdominal.gif', 'Evitar forçar o pescoço; foco no abdômen', FALSE, 'BIBLIOTECA'),
-(1, 'Bicicleta no ar', 'CORE', 'https://www.mundoboaforma.com.br/wp-content/uploads/2021/03/abdominal-bicicleta-no-ar.gif', 'Rotação do tronco com pernas em movimento controlado', TRUE, 'BIBLIOTECA'),
-(1, 'Prancha lateral', 'CORE', 'https://www.mundoboaforma.com.br/wp-content/uploads/2020/12/prancha-lateral.gif', 'Alinhar o corpo e evitar que o quadril caia', FALSE, 'BIBLIOTECA'),
-(1, 'Elevação de pernas', 'CORE', 'https://www.mundoboaforma.com.br/wp-content/uploads/2021/03/abdominal-no-chao-com-elevacao-de-pernas-esticadas.gif', 'Evitar tirar a lombar do chão', FALSE, 'BIBLIOTECA'),
-(1, 'Abdominal Tesoura', 'CORE', 'https://www.hipertrofia.org/blog/wp-content/uploads/2024/09/abdominal-tesoura.gif', 'Executar com respiração controlada e sem pressa', TRUE, 'BIBLIOTECA'),
+(NULL, 'Prancha', 'CORE', 'https://www.mundoboaforma.com.br/wp-content/uploads/2014/12/prancha-frontal-tradicional-com-bracos-esticados.gif', 'Manter abdômen contraído e quadril na linha da coluna', FALSE, 'BIBLIOTECA'),
+(5, 'Abdominal', 'CORE', 'https://www.mundoboaforma.com.br/wp-content/uploads/2021/04/abdominal.gif', 'Evitar forçar o pescoço; foco no abdômen', FALSE, 'PERSONAL'),
+(5, 'Bicicleta no ar', 'CORE', 'https://www.mundoboaforma.com.br/wp-content/uploads/2021/03/abdominal-bicicleta-no-ar.gif', 'Rotação do tronco com pernas em movimento controlado', TRUE, 'PERSONAL'),
+(5, 'Prancha lateral', 'CORE', 'https://www.mundoboaforma.com.br/wp-content/uploads/2020/12/prancha-lateral.gif', 'Alinhar o corpo e evitar que o quadril caia', FALSE, 'PERSONAL'),
+(5, 'Elevação de pernas', 'CORE', 'https://www.mundoboaforma.com.br/wp-content/uploads/2021/03/abdominal-no-chao-com-elevacao-de-pernas-esticadas.gif', 'Evitar tirar a lombar do chão', FALSE, 'PERSONAL'),
+(NULL, 'Abdominal Tesoura', 'CORE', 'https://www.hipertrofia.org/blog/wp-content/uploads/2024/09/abdominal-tesoura.gif', 'Executar com respiração controlada e sem pressa', TRUE, 'BIBLIOTECA'),
 
 -- Cardio
-(1, 'Esteira', 'CARDIO', 'https://www.mundoboaforma.com.br/wp-content/uploads/2021/04/corrida-na-esteira-inclinada-1.gif', 'Postura ereta, respiração controlada', FALSE, 'BIBLIOTECA'),
-(1, 'Bicicleta', 'CARDIO', 'https://example.com/burpee', 'Manter cadência constante e postura correta', TRUE, 'BIBLIOTECA'),
-(1, 'Corda', 'CARDIO', 'https://www.mundoboaforma.com.br/wp-content/uploads/2021/01/26121301-Jump-Rope-male_Cardio_360-logo.gif', 'Pulos baixos e ritmo regular para evitar fadiga precoce', FALSE, 'BIBLIOTECA'),
-(1, 'Escada', 'CARDIO', 'https://www.hipertrofia.org/blog/wp-content/uploads/2024/09/walking-on-stepmill.gif', 'Manter postura firme e não apoiar o peso nos braços', FALSE, 'BIBLIOTECA'),
-(1, 'Burpee', 'CARDIO', 'https://www.mundoboaforma.com.br/wp-content/uploads/2021/04/burpee.gif', 'Controlar a lombar ao descer e manter ritmo constante', FALSE, 'BIBLIOTECA'),
-(1, 'Polichinelo', 'CARDIO', 'https://www.mundoboaforma.com.br/wp-content/uploads/2021/04/polichinelos.gif', 'Manter respiração contínua e braços sincronizados com pernas', FALSE, 'BIBLIOTECA');
+(NULL, 'Esteira', 'CARDIO', 'https://www.mundoboaforma.com.br/wp-content/uploads/2021/04/corrida-na-esteira-inclinada-1.gif', 'Postura ereta, respiração controlada', FALSE, 'BIBLIOTECA'),
+(5, 'Bicicleta', 'CARDIO', 'https://example.com/burpee', 'Manter cadência constante e postura correta', TRUE, 'PERSONAL'),
+(5, 'Corda', 'CARDIO', 'https://www.mundoboaforma.com.br/wp-content/uploads/2021/01/26121301-Jump-Rope-male_Cardio_360-logo.gif', 'Pulos baixos e ritmo regular para evitar fadiga precoce', FALSE, 'PERSONAL'),
+(5, 'Escada', 'CARDIO', 'https://www.hipertrofia.org/blog/wp-content/uploads/2024/09/walking-on-stepmill.gif', 'Manter postura firme e não apoiar o peso nos braços', FALSE, 'PERSONAL'),
+(NULL, 'Burpee', 'CARDIO', 'https://www.mundoboaforma.com.br/wp-content/uploads/2021/04/burpee.gif', 'Controlar a lombar ao descer e manter ritmo constante', FALSE, 'BIBLIOTECA'),
+(NULL, 'Polichinelo', 'CARDIO', 'https://www.mundoboaforma.com.br/wp-content/uploads/2021/04/polichinelos.gif', 'Manter respiração contínua e braços sincronizados com pernas', FALSE, 'BIBLIOTECA');
 
 INSERT INTO vitalis.anamnese (
   alunos_id, objetivo_treino, lesao, lesao_descricao, frequencia_treino,
@@ -219,7 +219,7 @@ INSERT INTO vitalis.personal_trainers_bairros (personal_trainers_id, bairro_id) 
 (4, 3),
 (5, 5);
 
-INSERT INTO vitalis.alunos_treinos (aluno_id, data_inicio, status) VALUES
+INSERT INTO vitalis.alunos_treinos (alunos_id, data_inicio, status) VALUES
 (6, '2025-08-05', 'ATIVO'),
 (7, '2025-07-15', 'ATIVO'),
 (8, '2025-08-05', 'ATIVO'),
@@ -230,27 +230,27 @@ INSERT INTO vitalis.alunos_treinos (aluno_id, data_inicio, status) VALUES
 -- TABELA: sessao_treinos
 -- ========================================
 INSERT INTO vitalis.sessao_treinos 
-(alunos_treinos_id, data_horario_previsto, data_horario_inicio, data_horario_fim, status, observacao) VALUES
+(alunos_treinos_id, data_horario_inicio, data_horario_fim, status) VALUES
 -- Aluno 6
-(1, '2025-08-10 08:00:00', '2025-08-10 08:00:00', '2025-08-10 09:00:00', 'REALIZADO', 'Execução correta'),
-(1, '2025-08-28 09:00:00', NULL, NULL, 'AGENDADO', NULL),
+(1, '2025-08-10 08:00:00', '2025-08-10 09:00:00', 'REALIZADO'),
+(1, '2025-08-28 09:00:00', NULL, 'AGENDADO'),
 
 -- Aluno 7
-(2, '2025-07-20 12:00:00', '2025-07-20 12:00:00', '2025-07-20 13:30:00', 'REALIZADO', 'Boa performance'),
-(2, '2025-08-25 18:00:00', '2025-08-25 18:00:00', '2025-08-25 19:00:00', 'REALIZADO', NULL),
-(2, '2025-09-02 10:00:00', NULL, NULL, 'AGENDADO', NULL),
+(2, '2025-07-20 12:00:00', '2025-07-20 13:30:00', 'REALIZADO'),
+(2, '2025-08-25 18:00:00', '2025-08-25 19:00:00', 'REALIZADO'),
+(2, '2025-09-02 10:00:00', NULL, 'AGENDADO'),
 
 -- Aluno 8
-(3, '2025-08-12 08:00:00', '2025-08-12 08:00:00', '2025-08-12 09:00:00', 'REALIZADO', NULL),
-(3, '2025-08-29 09:00:00', NULL, NULL, 'AGENDADO', NULL),
+(3, '2025-08-12 08:00:00', '2025-08-12 09:00:00', 'REALIZADO'),
+(3, '2025-08-29 09:00:00', NULL, 'AGENDADO'),
 
 -- Aluno 9
-(4, '2025-08-15 08:00:00', '2025-08-15 08:00:00', '2025-08-15 09:00:00', 'REALIZADO', NULL),
-(4, '2025-08-27 18:00:00', NULL, NULL, 'AGENDADO', NULL),
+(4, '2025-08-15 08:00:00', '2025-08-15 09:00:00', 'REALIZADO'),
+(4, '2025-08-27 18:00:00', NULL, 'AGENDADO'),
 
 -- Aluno 10
-(5, '2025-08-20 07:00:00', '2025-08-20 07:00:00', '2025-08-20 08:00:00', 'REALIZADO', 'Bom esforço'),
-(5, '2025-08-31 08:00:00', NULL, NULL, 'AGENDADO', NULL);
+(5, '2025-08-20 07:00:00', '2025-08-20 08:00:00', 'REALIZADO'),
+(5, '2025-08-31 08:00:00', NULL, 'AGENDADO');
 
 INSERT INTO vitalis.feedbacks (
   titulo, descricao, data_criacao, alunos_treinos_id
@@ -304,7 +304,7 @@ INSERT INTO vitalis.treinos (nome, descricao, favorito, personal_id, origem, gra
 -- TABELA: alunos_treinos_exercicios
 -- ========================================
 -- Exemplo: ligando aluno_treino_id com os exercícios de cada treino
-INSERT INTO vitalis.alunos_treinos_exercicios (aluno_treino_id, exercicio_id, treinos_id, carga, repeticoes, series, descanso, observacoes_personalizadas, ic_model) VALUES
+INSERT INTO vitalis.alunos_treinos_exercicios (alunos_treinos_id, exercicios_id, treinos_id, carga, repeticoes, series, descanso, observacoes_personalizadas, ic_model) VALUES
 -- Treino 1 (Peito Avançado)
 (1, 6, 1, 50, 10, 4, 90, 'Ajustar técnica', true),
 (1, 7, 1, 12, 12, 4, 60, NULL, true),
@@ -325,7 +325,13 @@ INSERT INTO vitalis.alunos_treinos_exercicios (aluno_treino_id, exercicio_id, tr
 (4, 16, 4, 10, 60, 3, 20, NULL, false),
 (4, 17, 4, 15, 15, 3, 30, NULL, true),
 (4, 18, 4, 20, 60, 3, 20, NULL, true),
-(4, 19, 4, 10, 40, 3, 30, NULL, false);
+(4, 19, 4, 10, 40, 3, 30, NULL, false),
+
+-- Treino 5 (Core e Estabilização)
+(5, 16, 5, 10, 60, 3, 20, NULL, false),
+(5, 17, 5, 15, 15, 3, 30, NULL, true),
+(5, 18, 5, 20, 60, 3, 20, NULL, true),
+(5, 19, 5, 10, 40, 3, 30, NULL, false);
 
 -- ========================================
 -- TABELA: execucoes_exercicios (execução real dos exercícios)

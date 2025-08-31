@@ -47,14 +47,14 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `vitalis`.`alunos_treinos` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `aluno_id` INT NOT NULL,
+  `alunos_id` INT,
   `data_inicio` DATE NOT NULL,
   `data_vencimento` DATE NULL DEFAULT NULL,
   `status` ENUM('ATIVO', 'PAUSADO', 'FINALIZADO') NOT NULL DEFAULT 'ATIVO',
   PRIMARY KEY (`id`),
-  INDEX `fk_aluno_idx` (`aluno_id` ASC) VISIBLE,
-  CONSTRAINT `fk_aluno_treinos_aluno`
-    FOREIGN KEY (`aluno_id`)
+  INDEX `fk_aluno_idx` (`alunos_id` ASC) VISIBLE,
+  CONSTRAINT `fk_alunos_treinos_aluno`
+    FOREIGN KEY (`alunos_id`)
     REFERENCES `vitalis`.`alunos` (`id`)
     ON DELETE CASCADE)
 ENGINE = InnoDB
@@ -128,9 +128,9 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `vitalis`.`alunos_treinos_exercicios` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `aluno_treino_id` INT NULL,
-  `exercicio_id` INT NOT NULL COMMENT 'Referência direta ao exercício da biblioteca',
-  `treinos_id` INT NOT NULL,
+  `alunos_treinos_id` INT,
+  `exercicios_id` INT COMMENT 'Referência direta ao exercício da biblioteca',
+  `treinos_id` INT,
   `carga` DECIMAL(5,2) NOT NULL,
   `repeticoes` INT NOT NULL,
   `series` INT NOT NULL,
@@ -139,15 +139,15 @@ CREATE TABLE IF NOT EXISTS `vitalis`.`alunos_treinos_exercicios` (
   `data_modificacao` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `ic_model` BOOLEAN NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_aluno_treino_idx` (`aluno_treino_id` ASC) VISIBLE,
-  INDEX `fk_exercicio_idx` (`exercicio_id` ASC) VISIBLE,
+  INDEX `fk_alunos_treinos_idx` (`alunos_treinos_id` ASC) VISIBLE,
+  INDEX `fk_exercicios_idx` (`exercicios_id` ASC) VISIBLE,
   INDEX `fk_alunos_treinos_exercicios_treinos1_idx` (`treinos_id` ASC) VISIBLE,
-  CONSTRAINT `fk_alunos_treinos_exercicios_aluno_treino`
-    FOREIGN KEY (`aluno_treino_id`)
+  CONSTRAINT `fk_alunos_treinos_exercicios_alunos_treinos`
+    FOREIGN KEY (`alunos_treinos_id`)
     REFERENCES `vitalis`.`alunos_treinos` (`id`)
     ON DELETE CASCADE,
-  CONSTRAINT `fk_alunos_treinos_exercicios_exercicio`
-    FOREIGN KEY (`exercicio_id`)
+  CONSTRAINT `fk_alunos_treinos_exercicios_exercicios`
+    FOREIGN KEY (`exercicios_id`)
     REFERENCES `vitalis`.`exercicios` (`id`)
     ON DELETE CASCADE,
   CONSTRAINT `fk_alunos_treinos_exercicios_treinos1`
@@ -294,7 +294,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `vitalis`.`sessao_treinos` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `alunos_treinos_id` INT NOT NULL,
+  `alunos_treinos_id` INT,
   `data_horario_inicio` DATETIME NULL DEFAULT NULL COMMENT 'Quando o treino efetivamente começou',
   `data_horario_fim` DATETIME NULL DEFAULT NULL COMMENT 'Quando o treino foi encerrado',
   `status` ENUM('AGENDADO', 'REALIZADO', 'CANCELADO', 'REAGENDADO') NOT NULL DEFAULT 'AGENDADO',
@@ -313,8 +313,8 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `vitalis`.`execucoes_exercicios` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `sessao_treino_id` INT NOT NULL,
-  `alunos_treinos_exercicios_id` INT NOT NULL,
+  `sessao_treino_id` INT,
+  `alunos_treinos_exercicios_id` INT,
   `carga_executada` DECIMAL(5,2) NULL DEFAULT NULL,
   `repeticoes_executadas` INT NULL DEFAULT NULL,
   `series_executadas` INT NULL DEFAULT NULL,

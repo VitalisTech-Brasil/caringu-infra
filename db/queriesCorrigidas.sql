@@ -9,9 +9,11 @@ SELECT DISTINCT
     t.origem AS origemTreinoExercicio,
     t.favorito
 FROM alunos_treinos_exercicios ate
-JOIN exercicios e ON e.id = ate.exercicio_id
+JOIN exercicios e ON e.id = ate.exercicios_id
 JOIN treinos t ON t.id = ate.treinos_id
 WHERE t.personal_id = :personalId;
+
+select * from alunos_treinos_exercicios where treinos_id = 5;
 
 -- Query 2: Buscar exercícios de treinos específicos de um aluno
 SELECT DISTINCT
@@ -23,10 +25,10 @@ SELECT DISTINCT
     t.origem AS origemTreinoExercicio,
     t.favorito
 FROM alunos_treinos_exercicios ate
-JOIN exercicios e ON e.id = ate.exercicio_id
+JOIN exercicios e ON e.id = ate.exercicios_id
 JOIN treinos t ON t.id = ate.treinos_id
-JOIN alunos_treinos at_rel ON at_rel.id = ate.aluno_treino_id
-JOIN alunos a ON a.id = at_rel.aluno_id
+JOIN alunos_treinos at_rel ON at_rel.id = ate.alunos_treinos_id
+JOIN alunos a ON a.id = at_rel.alunos_id
 WHERE a.id = :alunoId;
 
 -- Query 3: Lista exercícios por treino específico de um aluno
@@ -36,11 +38,11 @@ SELECT
     e.nome AS nome_exercicio,
     t.nome AS nome_treino
 FROM alunos_treinos_exercicios ate
-JOIN exercicios e ON e.id = ate.exercicio_id
+JOIN exercicios e ON e.id = ate.exercicios_id
 JOIN treinos t ON t.id = ate.treinos_id
-JOIN alunos_treinos at_rel ON at_rel.id = ate.aluno_treino_id
-JOIN alunos a ON a.id = at_rel.aluno_id
-WHERE t.id = :treinoId 
+JOIN alunos_treinos at_rel ON at_rel.id = ate.alunos_treinos_id
+JOIN alunos a ON a.id = at_rel.alunos_id
+WHERE t.id = :treinoId
   AND a.id = :alunoId
 GROUP BY e.nome, t.nome;
 
@@ -69,7 +71,7 @@ SELECT
     e.origem AS origemExercicio
 FROM treinos t
 JOIN alunos_treinos_exercicios ate ON t.id = ate.treinos_id
-JOIN exercicios e ON e.id = ate.exercicio_id
+JOIN exercicios e ON e.id = ate.exercicios_id
 WHERE t.personal_id = :personalId 
   AND t.id = :treinoId;
   
@@ -89,7 +91,7 @@ SELECT
     pl.periodo,
     pl.quantidade_aulas AS quantidadeAulas,
     pc.data_fim AS dataFim,
-    at_rel.id AS aluno_treino_id,
+    at_rel.id AS alunos_treinos_id,
     -- Contagem de treinos da semana atual
     COUNT(DISTINCT CASE 
         WHEN st.status = 'REALIZADO' 
@@ -123,7 +125,7 @@ JOIN personal_trainers pt ON pt.id = pl.personal_trainers_id
 JOIN alunos a ON a.id = pc.alunos_id
 JOIN pessoas p ON p.id = a.id
 LEFT JOIN anamnese ana ON ana.alunos_id = a.id
-LEFT JOIN alunos_treinos at_rel ON at_rel.aluno_id = a.id
+LEFT JOIN alunos_treinos at_rel ON at_rel.alunos_id = a.id
 LEFT JOIN sessao_treinos st ON st.alunos_treinos_id = at_rel.id
 WHERE pt.id = :personalId
   AND pc.status = 'ATIVO'
@@ -154,7 +156,7 @@ SELECT DISTINCT
     n.data_criacao AS dataCriacao,
     n.visualizada
 FROM alunos_treinos at_rel
-JOIN alunos a ON a.id = at_rel.aluno_id
+JOIN alunos a ON a.id = at_rel.alunos_id
 JOIN pessoas p_aluno ON p_aluno.id = a.id
 JOIN planos_contratados pc ON pc.alunos_id = a.id
 JOIN planos pl ON pl.id = pc.planos_id
