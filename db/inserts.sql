@@ -178,24 +178,24 @@ INSERT INTO vitalis.planos (personal_trainers_id, nome, periodo, quantidade_aula
 INSERT INTO vitalis.planos_contratados (planos_id, alunos_id, status, data_contratacao, data_fim) VALUES
 -- Aluno 6
 (1, 6, 'INATIVO', '2025-05-01', '2025-06-01'), -- já venceu
-(5, 6, 'ATIVO', '2025-08-01', '2025-09-01'),   -- ainda ativo agora
+(5, 6, 'ATIVO', '2025-09-01', '2025-10-01'),   -- ainda ativo agora
 
 -- Aluno 7
 (3, 7, 'INATIVO', '2025-01-01', '2025-06-30'), -- semestre passado
-(5, 7, 'ATIVO', '2025-07-01', '2025-08-31'),   -- ativo e acaba em agosto
+(5, 7, 'ATIVO', '2025-09-01', '2025-10-31'),   -- ativo e acaba em agosto
 (2, 7, 'PENDENTE', '2025-09-01', NULL),        -- começa em setembro
 
 -- Aluno 8
 (3, 8, 'INATIVO', '2025-02-01', '2025-07-31'), -- já finalizado
-(5, 8, 'ATIVO', '2025-08-01', '2025-09-01'),   -- ativo
+(5, 8, 'ATIVO', '2025-09-01', '2025-10-01'),   -- ativo
 
 -- Aluno 9
 (5, 9, 'INATIVO', '2025-04-01', '2025-05-01'), -- histórico
-(5, 9, 'ATIVO', '2025-08-01', '2025-09-01'),   -- vigente
+(5, 9, 'ATIVO', '2025-09-01', '2025-10-01'),   -- vigente
 (4, 9, 'INATIVO', '2025-03-01', '2025-04-01'), -- mais antigo
 
 -- Aluno 10
-(5, 10, 'ATIVO', '2025-08-01', '2025-09-01'),  -- vigente
+(5, 10, 'ATIVO', '2025-09-01', '2025-10-01'),  -- vigente
 (7, 10, 'INATIVO', '2025-02-01', '2025-02-02'); -- histórico curtíssimo
 
 INSERT INTO vitalis.cidades (nome) VALUES
