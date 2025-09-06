@@ -1,4 +1,4 @@
-INSERT INTO alunos_treinos (id, aluno_id, data_inicio, status)
+INSERT INTO alunos_treinos (id, alunos_id, data_inicio, status)
 VALUES
 (6, 8, '2025-05-26', 'ATIVO'), -- Superior
 (7, 8, '2025-05-28', 'ATIVO'), -- Inferior  
@@ -9,7 +9,7 @@ VALUES
 -- =====================================================
 
 INSERT INTO vitalis.alunos_treinos_exercicios 
-(aluno_treino_id, exercicio_id, treinos_id, carga, repeticoes, series, descanso, observacoes_personalizadas, ic_model)
+(alunos_treinos_id, exercicios_id, treinos_id, carga, repeticoes, series, descanso, observacoes_personalizadas, ic_model)
 VALUES
 -- TREINO SUPERIOR (aluno_treino_id = 6) - usando treino "Peito Funcional" (id = 6)
 (6, 1, 6, 15.0, 12, 3, 60, 'Supino Inclinado - foco na forma', 0),        -- Supino Inclinado (Peitoral)
