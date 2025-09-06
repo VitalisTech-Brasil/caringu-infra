@@ -328,10 +328,10 @@ INSERT INTO vitalis.alunos_treinos_exercicios (alunos_treinos_id, exercicios_id,
 (4, 19, 4, 10, 40, 3, 30, NULL, false),
 
 -- Treino 5 (Core e Estabilização)
-(5, 16, 5, 10, 60, 3, 20, NULL, false),
+(5, 16, 5, 10, 60, 3, 20, NULL, true),
 (5, 17, 5, 15, 15, 3, 30, NULL, true),
 (5, 18, 5, 20, 60, 3, 20, NULL, true),
-(5, 19, 5, 10, 40, 3, 30, NULL, false);
+(5, 19, 5, 10, 40, 3, 30, NULL, true);
 
 -- ========================================
 -- TABELA: execucoes_exercicios (execução real dos exercícios)
