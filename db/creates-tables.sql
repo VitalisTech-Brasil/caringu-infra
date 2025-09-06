@@ -77,25 +77,32 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
+
 -- -----------------------------------------------------
--- Table `vitalis`.`personal_trainers_especialidades`
+-- Table `vitalis`.`avaliacoes_personal_trainers`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `vitalis`.`personal_trainers_especialidades` (
-  `personal_trainers_id` INT NOT NULL,
-  `especialidades_id` INT NOT NULL,
-  PRIMARY KEY (`personal_trainers_id`, `especialidades_id`),
-  INDEX `especialidades_id` (`especialidades_id` ASC) VISIBLE,
-  CONSTRAINT `personal_trainers_especialidades_ibfk_1`
-    FOREIGN KEY (`personal_trainers_id`)
-    REFERENCES `vitalis`.`personal_trainers` (`id`)
+
+CREATE TABLE IF NOT EXISTS `vitalis`.`avaliacoes_personal_trainers` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `aluno_id` INT NOT NULL,
+  `personal_trainer_id` INT NOT NULL,
+  `nota` DECIMAL(2,1) NOT NULL CHECK (nota >= 1.0 AND nota <= 5.0),
+  `comentario` TEXT NULL,
+  `data_avaliacao` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  INDEX `idx_personal_trainer` (`personal_trainer_id` ASC),
+  INDEX `idx_aluno_avaliacao` (`aluno_id` ASC),
+  INDEX `idx_nota_data` (`nota` ASC, `data_avaliacao` DESC),
+  CONSTRAINT `fk_avaliacao_aluno`
+    FOREIGN KEY (`aluno_id`)
+    REFERENCES `vitalis`.`alunos` (`id`)
     ON DELETE CASCADE,
-  CONSTRAINT `personal_trainers_especialidades_ibfk_2`
-    FOREIGN KEY (`especialidades_id`)
-    REFERENCES `vitalis`.`especialidades` (`id`)
-    ON DELETE CASCADE)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+  CONSTRAINT `fk_avaliacao_personal`
+    FOREIGN KEY (`personal_trainer_id`)
+    REFERENCES `vitalis`.`personal_trainers` (`id`)
+    ON DELETE CASCADE
+);
+
 
 -- -----------------------------------------------------
 -- Table `vitalis`.`exercicios`
