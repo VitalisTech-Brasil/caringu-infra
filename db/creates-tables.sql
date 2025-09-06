@@ -78,6 +78,26 @@ DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 -- -----------------------------------------------------
+-- Table `vitalis`.`personal_trainers_especialidades`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vitalis`.`personal_trainers_especialidades` (
+  `personal_trainers_id` INT NOT NULL,
+  `especialidades_id` INT NOT NULL,
+  PRIMARY KEY (`personal_trainers_id`, `especialidades_id`),
+  INDEX `especialidades_id` (`especialidades_id` ASC) VISIBLE,
+  CONSTRAINT `personal_trainers_especialidades_ibfk_1`
+    FOREIGN KEY (`personal_trainers_id`)
+    REFERENCES `vitalis`.`personal_trainers` (`id`)
+    ON DELETE CASCADE,
+  CONSTRAINT `personal_trainers_especialidades_ibfk_2`
+    FOREIGN KEY (`especialidades_id`)
+    REFERENCES `vitalis`.`especialidades` (`id`)
+    ON DELETE CASCADE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+-- -----------------------------------------------------
 -- Table `vitalis`.`exercicios`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `vitalis`.`exercicios` (
