@@ -58,170 +58,6 @@ DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 -- -----------------------------------------------------
--- Table `vitalis`.`exercicios`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `vitalis`.`exercicios` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `personal_id` INT,
-  `nome` VARCHAR(100) NOT NULL,
-  `grupo_muscular` ENUM('PEITORAL', 'COSTAS', 'PERNAS', 'OMBRO', 'BRACO', 'CORE', 'CARDIO') NOT NULL,
-  `url_video` TEXT NULL DEFAULT NULL,
-  `observacoes` TEXT NULL DEFAULT NULL,
-  `favorito` BOOLEAN NULL DEFAULT '0',
-  `origem` ENUM('BIBLIOTECA', 'PERSONAL') NOT NULL DEFAULT 'PERSONAL',
-  PRIMARY KEY (`id`),
-  INDEX `fk_exercicios_personal_trainers1_idx` (`personal_id` ASC) VISIBLE,
-  CONSTRAINT `fk_exercicios_personal_trainers1`
-    FOREIGN KEY (`personal_id`)
-    REFERENCES `vitalis`.`personal_trainers` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
--- Table `vitalis`.`treinos`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `vitalis`.`treinos` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `nome` VARCHAR(100) NOT NULL,
-  `descricao` TEXT NULL DEFAULT NULL,
-  `favorito` BOOLEAN NULL DEFAULT '0',
-  `personal_id` INT NULL DEFAULT NULL,
-  `origem` ENUM('BIBLIOTECA', 'PERSONAL') NULL,
-  `grau_dificuldade` ENUM('INICIANTE', 'INTERMEDIARIO', 'AVANCADO') NULL,
-  PRIMARY KEY (`id`),
-  INDEX `personal_id` (`personal_id` ASC) VISIBLE,
-  CONSTRAINT `treinos_ibfk_1`
-    FOREIGN KEY (`personal_id`)
-    REFERENCES `vitalis`.`personal_trainers` (`id`)
-    ON DELETE CASCADE)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
--- -----------------------------------------------------
--- Table `vitalis`.`alunos_treinos`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `vitalis`.`alunos_treinos` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `alunos_id` INT,
-  `data_inicio` DATE NOT NULL,
-  `data_vencimento` DATE NULL DEFAULT NULL,
-  `status` ENUM('ATIVO', 'PAUSADO', 'FINALIZADO') NOT NULL DEFAULT 'ATIVO',
-  PRIMARY KEY (`id`),
-  INDEX `fk_aluno_idx` (`alunos_id` ASC) VISIBLE,
-  CONSTRAINT `fk_alunos_treinos_aluno`
-    FOREIGN KEY (`alunos_id`)
-    REFERENCES `vitalis`.`alunos` (`id`)
-    ON DELETE CASCADE)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
--- -----------------------------------------------------
--- Table `vitalis`.`alunos_treinos_exercicios`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `vitalis`.`alunos_treinos_exercicios` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `alunos_treinos_id` INT NULL,
-  `exercicios_id` INT NULL COMMENT 'Referência direta ao exercício da biblioteca',
-  `treinos_id` INT NULL,
-  `carga` DECIMAL(5,2) NOT NULL,
-  `repeticoes` INT NOT NULL,
-  `series` INT NOT NULL,
-  `descanso` INT NOT NULL COMMENT 'Descanso em segundos',
-  `observacoes_personalizadas` TEXT NULL DEFAULT NULL,
-  `data_modificacao` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `ic_model` BOOLEAN NULL,
-  `exercicio_finalizado` BOOLEAN NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_aluno_treino_idx` (`alunos_treinos_id` ASC) VISIBLE,
-  INDEX `fk_exercicio_idx` (`exercicios_id` ASC) VISIBLE,
-  INDEX `fk_alunos_treinos_exercicios_treinos1_idx` (`treinos_id` ASC) VISIBLE,
-  CONSTRAINT `fk_alunos_treinos_exercicios_aluno_treino`
-    FOREIGN KEY (`alunos_treinos_id`)
-    REFERENCES `vitalis`.`alunos_treinos` (`id`)
-    ON DELETE CASCADE,
-  CONSTRAINT `fk_alunos_treinos_exercicios_exercicio`
-    FOREIGN KEY (`exercicios_id`)
-    REFERENCES `vitalis`.`exercicios` (`id`)
-    ON DELETE CASCADE,
-  CONSTRAINT `fk_alunos_treinos_exercicios_treinos1`
-    FOREIGN KEY (`treinos_id`)
-    REFERENCES `vitalis`.`treinos` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
--- -----------------------------------------------------
--- Table `vitalis`.`sessao_treinos`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `vitalis`.`sessao_treinos` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `alunos_treinos_id` INT,
-  `data_horario_inicio` DATETIME NULL DEFAULT NULL COMMENT 'Quando o treino efetivamente começou',
-  `data_horario_fim` DATETIME NULL DEFAULT NULL COMMENT 'Quando o treino foi encerrado',
-  `status` ENUM('AGENDADO', 'REALIZADO', 'CANCELADO', 'REAGENDADO') NOT NULL DEFAULT 'AGENDADO',
-  PRIMARY KEY (`id`),
-  INDEX `sessao_treinos_alunos_treinos_fk` (`alunos_treinos_id` ASC) VISIBLE,
-  CONSTRAINT `sessao_treinos_alunos_treinos_fk`
-    FOREIGN KEY (`alunos_treinos_id`)
-    REFERENCES `vitalis`.`alunos_treinos` (`id`)
-    ON DELETE CASCADE)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
--- -----------------------------------------------------
--- Table `vitalis`.`sessao_treinos_exercicios`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `vitalis`.`sessao_treinos_exercicios` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `sessao_treinos_id` INT NOT NULL,
-  `alunos_treinos_exercicios_id` INT NOT NULL,
-  `ordem` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX idx_sessao (`sessao_treinos_id`),
-  INDEX idx_exercicio (`alunos_treinos_exercicios_id`),
-  UNIQUE INDEX uq_sessao_exercicio (sessao_treinos_id, alunos_treinos_exercicios_id),
-  CONSTRAINT fk_sessao FOREIGN KEY (sessao_treinos_id)
-    REFERENCES `vitalis`.`sessao_treinos` (`id`)
-    ON DELETE CASCADE,
-  CONSTRAINT fk_exercicio FOREIGN KEY (alunos_treinos_exercicios_id)
-    REFERENCES `vitalis`.`alunos_treinos_exercicios` (`id`)
-    ON DELETE CASCADE
-) ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
--- -----------------------------------------------------
--- Table `vitalis`.`execucoes_exercicios`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `vitalis`.`execucoes_exercicios` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `carga_executada` DECIMAL(5,2) NULL DEFAULT NULL,
-  `repeticoes_executadas` INT NULL DEFAULT NULL,
-  `series_executadas` INT NULL DEFAULT NULL,
-  `descanso_executado` INT NULL,
-  `sessao_treinos_exercicios_id` INT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_execucoes_exercicios_sessao_treinos_exercicios1_idx` (`sessao_treinos_exercicios_id` ASC) VISIBLE,
-  CONSTRAINT `fk_execucoes_exercicios_sessao_treinos_exercicios1`
-    FOREIGN KEY (`sessao_treinos_exercicios_id`)
-    REFERENCES `vitalis`.`sessao_treinos_exercicios` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
--- -----------------------------------------------------
 -- Table `vitalis`.`planos`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `vitalis`.`planos` (
@@ -262,6 +98,144 @@ CREATE TABLE IF NOT EXISTS `vitalis`.`planos_contratados` (
     FOREIGN KEY (`alunos_id`)
     REFERENCES `vitalis`.`alunos` (`id`)
     ON DELETE CASCADE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+-- -----------------------------------------------------
+-- Table `vitalis`.`exercicios`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vitalis`.`exercicios` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `personal_id` INT,
+  `nome` VARCHAR(100) NOT NULL,
+  `grupo_muscular` ENUM('PEITORAL', 'COSTAS', 'PERNAS', 'OMBRO', 'BRACO', 'CORE', 'CARDIO') NOT NULL,
+  `url_video` TEXT NULL DEFAULT NULL,
+  `observacoes` TEXT NULL DEFAULT NULL,
+  `favorito` BOOLEAN NULL DEFAULT '0',
+  `origem` ENUM('BIBLIOTECA', 'PERSONAL') NOT NULL DEFAULT 'PERSONAL',
+  PRIMARY KEY (`id`),
+  INDEX `fk_exercicios_personal_trainers1_idx` (`personal_id` ASC) VISIBLE,
+  CONSTRAINT `fk_exercicios_personal_trainers1`
+    FOREIGN KEY (`personal_id`)
+    REFERENCES `vitalis`.`personal_trainers` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `vitalis`.`treinos`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vitalis`.`treinos` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(100) NOT NULL,
+  `descricao` TEXT NULL DEFAULT NULL,
+  `favorito` BOOLEAN NULL DEFAULT '0',
+  `personal_id` INT NULL DEFAULT NULL,
+  `origem` ENUM('BIBLIOTECA', 'PERSONAL') NULL,
+  `grau_dificuldade` ENUM('INICIANTE', 'INTERMEDIARIO', 'AVANCADO') NULL,
+  PRIMARY KEY (`id`),
+  INDEX `personal_id` (`personal_id` ASC) VISIBLE,
+  CONSTRAINT `treinos_ibfk_1`
+    FOREIGN KEY (`personal_id`)
+    REFERENCES `vitalis`.`personal_trainers` (`id`)
+    ON DELETE CASCADE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+-- -----------------------------------------------------
+-- Table `vitalis`.`treinos_exercicios`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vitalis`.`treinos_exercicios` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `treinos_id` INT NULL,
+  `exercicios_id` INT NULL COMMENT 'Referência direta ao exercício da biblioteca',
+  `carga` DECIMAL(5,2) NOT NULL,
+  `repeticoes` INT NOT NULL,
+  `series` INT NOT NULL,
+  `descanso` INT NOT NULL COMMENT 'Descanso em segundos',
+  `observacoes_personalizadas` TEXT NULL DEFAULT NULL,
+  `data_modificacao` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `ic_model` TINYINT NULL,
+  `exercicio_finalizado` TINYINT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_exercicio_idx` (`exercicios_id` ASC) VISIBLE,
+  INDEX `fk_alunos_treinos_exercicios_treinos1_idx` (`treinos_id` ASC) VISIBLE,
+  CONSTRAINT `fk_alunos_treinos_exercicios_exercicio`
+    FOREIGN KEY (`exercicios_id`)
+    REFERENCES `vitalis`.`exercicios` (`id`)
+    ON DELETE CASCADE,
+  CONSTRAINT `fk_alunos_treinos_exercicios_treinos1`
+    FOREIGN KEY (`treinos_id`)
+    REFERENCES `vitalis`.`treinos` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+-- -----------------------------------------------------
+-- Table `vitalis`.`sessao_treinos`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vitalis`.`sessao_treinos` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `data_horario_inicio` DATETIME NULL DEFAULT NULL COMMENT 'Quando o treino efetivamente começou',
+  `data_horario_fim` DATETIME NULL DEFAULT NULL COMMENT 'Quando o treino foi encerrado',
+  `status` ENUM('AGENDADO', 'REALIZADO', 'CANCELADO', 'REAGENDADO') NOT NULL DEFAULT 'AGENDADO',
+  `planos_contratados_id` INT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_sessao_treinos_planos_contratados1_idx` (`planos_contratados_id` ASC) VISIBLE,
+  CONSTRAINT `fk_sessao_treinos_planos_contratados1`
+    FOREIGN KEY (`planos_contratados_id`)
+    REFERENCES `vitalis`.`planos_contratados` (`id`)
+    ON DELETE CASCADE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+-- -----------------------------------------------------
+-- Table `vitalis`.`sessao_treinos_exercicios`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vitalis`.`sessao_treinos_exercicios` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `sessao_treinos_id` INT NOT NULL,
+  `treinos_exercicios_id` INT NOT NULL,
+  `ordem` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX idx_sessao (`sessao_treinos_id`),
+  INDEX idx_exercicio (`treinos_exercicios_id`),
+  UNIQUE INDEX uq_sessao_exercicio (sessao_treinos_id, treinos_exercicios_id),
+  CONSTRAINT fk_sessao FOREIGN KEY (sessao_treinos_id)
+    REFERENCES `vitalis`.`sessao_treinos` (`id`)
+    ON DELETE CASCADE,
+  CONSTRAINT fk_exercicio FOREIGN KEY (treinos_exercicios_id)
+    REFERENCES `vitalis`.`treinos_exercicios` (`id`)
+    ON DELETE CASCADE
+) ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+-- -----------------------------------------------------
+-- Table `vitalis`.`execucoes_exercicios`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vitalis`.`execucoes_exercicios` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `carga_executada` DECIMAL(5,2) NULL DEFAULT NULL,
+  `repeticoes_executadas` INT NULL DEFAULT NULL,
+  `series_executadas` INT NULL DEFAULT NULL,
+  `descanso_executado` INT NULL,
+  `sessao_treinos_exercicios_id` INT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_execucoes_exercicios_sessao_treinos_exercicios1_idx` (`sessao_treinos_exercicios_id` ASC) VISIBLE,
+  CONSTRAINT `fk_execucoes_exercicios_sessao_treinos_exercicios1`
+    FOREIGN KEY (`sessao_treinos_exercicios_id`)
+    REFERENCES `vitalis`.`sessao_treinos_exercicios` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
@@ -376,42 +350,26 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `vitalis`.`feedbacks` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `titulo` VARCHAR(45) NULL DEFAULT NULL,
-  `descricao` TEXT NULL DEFAULT NULL,
-  `data_criacao` DATETIME NULL DEFAULT NULL,
-  `sessao_treinos_id` INT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_feedbacks_sessao_treinos1_idx` (`sessao_treinos_id` ASC) VISIBLE,
-  CONSTRAINT `fk_feedbacks_sessao_treinos1`
-    FOREIGN KEY (`sessao_treinos_id`)
-    REFERENCES `vitalis`.`sessao_treinos` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
--- -----------------------------------------------------
--- Table `vitalis`.`comentarios`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `vitalis`.`comentarios` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `feedbacks_id` INT NULL DEFAULT NULL,
-  `pessoas_id` INT NULL DEFAULT NULL,
+  `sessao_treinos_id` INT NOT NULL,
+  `pessoas_id` INT NOT NULL,
   `descricao` TEXT NOT NULL,
   `data_criacao` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `tipo_autor` ENUM('PERSONAL', 'ALUNO') NOT NULL,
-  `intensidade` ENUM('MUITO_LEVE', 'LEVE', 'MODERADO', 'INTENSA', 'MUITO_INTENSA') NOT NULL,
+  `intensidade` ENUM('MUITO_LEVE', 'LEVE', 'MODERADO', 'INTENSA', 'MUITO_INTENSA') NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_comentarios_topicos1_idx` (`feedbacks_id` ASC) VISIBLE,
-  INDEX `fk_comentarios_pessoas1_idx` (`pessoas_id` ASC) VISIBLE,
-  CONSTRAINT `fk_comentarios_pessoas1`
+  INDEX `fk_feedbacks_sessao_treinos_idx` (`sessao_treinos_id`),
+  INDEX `fk_feedbacks_pessoas_idx` (`pessoas_id`),
+  CONSTRAINT `fk_feedbacks_sessao_treinos`
+    FOREIGN KEY (`sessao_treinos_id`)
+    REFERENCES `vitalis`.`sessao_treinos` (`id`)
+    ON DELETE CASCADE,
+  CONSTRAINT `fk_feedbacks_pessoas`
     FOREIGN KEY (`pessoas_id`)
-    REFERENCES `vitalis`.`pessoas` (`id`),
-  CONSTRAINT `fk_comentarios_topicos1`
-    FOREIGN KEY (`feedbacks_id`)
-    REFERENCES `vitalis`.`feedbacks` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+    REFERENCES `vitalis`.`pessoas` (`id`)
+    ON DELETE CASCADE
+) ENGINE=InnoDB
+DEFAULT CHARSET=utf8mb4
+COLLATE=utf8mb4_0900_ai_ci;
 
 -- -----------------------------------------------------
 -- Table `vitalis`.`especialidades`
