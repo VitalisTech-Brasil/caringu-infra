@@ -98,10 +98,9 @@ INSERT INTO vitalis.exercicios (personal_id, nome, grupo_muscular, url_video, ob
 -- TABELA: treinos
 -- ========================================
 INSERT INTO vitalis.treinos (nome, descricao, favorito, personal_id, origem, grau_dificuldade) VALUES
-('Peito Avançado', 'Hipertrofia do peitoral com barra', TRUE, 5, 'PERSONAL', 'AVANCADO'),
-('Peito Avançado', 'Hipertrofia do peitoral com barra', FALSE, NULL, 'BIBLIOTECA', 'AVANCADO'),
 
 -- PERSONAIS (10 treinos)
+('Peito Avançado', 'Hipertrofia do peitoral com barra', TRUE, 5, 'PERSONAL', 'AVANCADO'),
 ('Peito e Braço Avançado', 'Hipertrofia máxima do peitoral e bíceps/tríceps', FALSE, 5, 'PERSONAL', 'AVANCADO'),
 ('Pernas e Core Intermediário', 'Força nas pernas com estabilização abdominal', FALSE, 5, 'PERSONAL', 'INTERMEDIARIO'),
 ('Costas e Ombro Intermediário', 'Foco em dorsais e estabilidade do ombro', TRUE, 5, 'PERSONAL', 'INTERMEDIARIO'),
@@ -120,91 +119,85 @@ INSERT INTO vitalis.treinos (nome, descricao, favorito, personal_id, origem, gra
 -- ========================================
 -- TABELA: treinos_exercicios
 -- ========================================
-INSERT INTO vitalis.treinos_exercicios (treinos_id, exercicios_id, carga, repeticoes, series, descanso, observacoes_personalizadas, ic_model) VALUES
+INSERT INTO vitalis.treinos_exercicios 
+(treinos_id, exercicios_id, carga, repeticoes, series, descanso, observacoes_personalizadas) VALUES
 
 -- treinos_id = 1
-(1, 1, 50, 10, 4, 90, 'Ajustar técnica', true),
-(1, 2, 12, 12, 4, 60, NULL, true),
-(1, 3, 1, 20, 3, 45, 'Foco em resistência', true),
-(1, 4, 35, 10, 3, 60, NULL, true),
+(1, 1, 50, 10, 4, 90, 'Ajustar técnica'),
+(1, 2, 12, 12, 4, 60, NULL),
+(1, 3, 1, 20, 3, 45, 'Foco em resistência'),
+(1, 4, 35, 10, 3, 60, NULL),
 
--- treinos_id = 1
--- Esse daqui tem o ic_model false, o que significa que foi criado pro aluno treinar, aumentar carga, etc
-(1, 1, 50, 10, 4, 90, 'Ajustar técnica', false),
-(1, 2, 12, 12, 4, 60, NULL, false),
-(1, 3, 1, 20, 3, 45, 'Foco em resistência', false),
-(1, 4, 35, 10, 3, 60, NULL, false),
+-- treinos_id = 2
+(2, 5, 50, 10, 4, 90, 'Ajustar técnica'),
+(2, 6, 12, 12, 4, 60, NULL),
+(2, 7, 1, 20, 3, 45, 'Foco em resistência'),
+(2, 8, 35, 10, 3, 60, NULL),
 
--- treinos_id = 2 (Modelo da Biblioteca)
-(2, 5, 50, 10, 4, 90, 'Ajustar técnica', true),
-(2, 6, 12, 12, 4, 60, NULL, true),
-(2, 7, 1, 20, 3, 45, 'Foco em resistência', true),
-(2, 8, 35, 10, 3, 60, NULL, true),
-
--- Treino 3 (Peito e Braço Avançado)
-(3, 1, 60, 8, 4, 90, 'Supino pesado, foco em hipertrofia', true),
-(3, 2, 18, 10, 4, 60, NULL, true),
-(3, 17, 25, 8, 4, 60, NULL, true),
-(3, 18, 20, 12, 4, 60, 'Controlar descida', true),
+-- Treino 3: Peito e Braço Avançado
+(3, 1, 60, 8, 4, 90, 'Supino pesado, foco em hipertrofia'),
+(3, 2, 18, 10, 4, 60, NULL),
+(3, 17, 25, 8, 4, 60, NULL),
+(3, 18, 20, 12, 4, 60, 'Controlar descida'),
 
 -- Treino 4: Pernas e Core Intermediário
-(4, 13, 20, 12, 3, 60, NULL, true),
-(4, 15, 100, 10, 4, 90, 'Não travar joelhos', true),
-(4, 14, 24, 10, 3, 60, NULL, true),
-(4, 21, 0, 30, 3, 45, 'Segurar posição correta', true),
-(4, 23, 0, 20, 3, 45, NULL, true),
+(4, 13, 20, 12, 3, 60, NULL),
+(4, 15, 100, 10, 4, 90, 'Não travar joelhos'),
+(4, 14, 24, 10, 3, 60, NULL),
+(4, 21, 0, 30, 3, 45, 'Segurar posição correta'),
+(4, 23, 0, 20, 3, 45, NULL),
 
 -- Treino 5: Costas e Ombro Intermediário
-(5, 9, 0, 10, 4, 90, 'Amplitudes completas', true),
-(5, 10, 40, 12, 3, 60, NULL, true),
-(5, 11, 45, 10, 4, 90, NULL, true),
-(5, 16, 10, 12, 3, 60, 'Subir controlado', true),
-(5, 17, 20, 10, 3, 60, NULL, true),
+(5, 9, 0, 10, 4, 90, 'Amplitudes completas'),
+(5, 10, 40, 12, 3, 60, NULL),
+(5, 11, 45, 10, 4, 90, NULL),
+(5, 16, 10, 12, 3, 60, 'Subir controlado'),
+(5, 17, 20, 10, 3, 60, NULL),
 
 -- Treino 6: Cardio e Core Funcional
-(6, 27, 0, 60, 3, 30, 'Ritmo moderado', true),
-(6, 29, 0, 40, 3, 30, NULL, true),
-(6, 31, 0, 12, 3, 45, NULL, true),
-(6, 19, 0, 20, 3, 30, 'Ativar abdômen', true),
-(6, 22, 0, 20, 3, 45, NULL, true),
+(6, 27, 0, 60, 3, 30, 'Ritmo moderado'),
+(6, 29, 0, 40, 3, 30, NULL),
+(6, 31, 0, 12, 3, 45, NULL),
+(6, 19, 0, 20, 3, 30, 'Ativar abdômen'),
+(6, 22, 0, 20, 3, 45, NULL),
 
 -- Treino 7: Full Body Iniciante
-(7, 1, 30, 12, 3, 60, NULL, true),
-(7, 9, 0, 8, 3, 60, 'Execução assistida', true),
-(7, 13, 12, 12, 3, 60, NULL, true),
-(7, 17, 6, 12, 3, 45, NULL, true),
-(7, 19, 0, 20, 3, 45, NULL, true),
-(7, 21, 0, 30, 3, 45, 'Manter quadril alinhado', true),
+(7, 1, 30, 12, 3, 60, NULL),
+(7, 9, 0, 8, 3, 60, 'Execução assistida'),
+(7, 13, 12, 12, 3, 60, NULL),
+(7, 17, 6, 12, 3, 45, NULL),
+(7, 19, 0, 20, 3, 45, NULL),
+(7, 21, 0, 30, 3, 45, 'Manter quadril alinhado'),
 
 -- Treino 8: Peito e Costas Intermediário
-(8, 1, 50, 10, 4, 90, NULL, true),
-(8, 3, 0, 20, 3, 60, NULL, true),
-(8, 10, 40, 12, 4, 60, NULL, true),
-(8, 11, 45, 10, 3, 90, 'Controle no movimento', true),
+(8, 1, 50, 10, 4, 90, NULL),
+(8, 3, 0, 20, 3, 60, NULL),
+(8, 10, 40, 12, 4, 60, NULL),
+(8, 11, 45, 10, 3, 90, 'Controle no movimento'),
 
 -- Treino 9: Pernas Avançado
-(9, 15, 120, 8, 5, 90, 'Máxima força', true),
-(9, 14, 30, 10, 4, 90, NULL, true),
-(9, 13, 25, 12, 4, 60, NULL, true),
-(9, 23, 0, 15, 4, 45, 'Evitar tirar lombar do chão', true),
+(9, 15, 120, 8, 5, 90, 'Máxima força'),
+(9, 14, 30, 10, 4, 90, NULL),
+(9, 13, 25, 12, 4, 60, NULL),
+(9, 23, 0, 15, 4, 45, 'Evitar tirar lombar do chão'),
 
 -- Treino 10: Braço e Ombro Iniciante
-(10, 17, 8, 12, 3, 60, NULL, true),
-(10, 18, 12, 12, 3, 60, NULL, true),
-(10, 16, 6, 12, 3, 45, NULL, true),
-(10, 17, 6, 12, 3, 45, 'Controle total do movimento', true),
+(10, 17, 8, 12, 3, 60, NULL),
+(10, 18, 12, 12, 3, 60, NULL),
+(10, 16, 6, 12, 3, 45, NULL),
+(10, 17, 6, 12, 3, 45, 'Controle total do movimento'),
 
 -- Treino 11: Cardio Intenso
-(11, 25, 0, 300, 1, 0, 'Corrida contínua', true),
-(11, 26, 0, 10, 3, 45, 'RPM moderado', true),
-(11, 32, 0, 20, 3, 30, 'Explosão máxima', true),
-(11, 31, 0, 15, 3, 45, 'Manter postura', true),
+(11, 25, 0, 300, 1, 0, 'Corrida contínua'),
+(11, 26, 0, 10, 3, 45, 'RPM moderado'),
+(11, 32, 0, 20, 3, 30, 'Explosão máxima'),
+(11, 31, 0, 15, 3, 45, 'Manter postura'),
 
 -- Treino 12: Core Avançado
-(12, 24, 0, 15, 4, 45, NULL, true),
-(12, 23, 0, 20, 4, 45, NULL, true),
-(12, 22, 0, 20, 4, 45, NULL, true),
-(12, 23, 0, 15, 4, 45, 'Evitar compensar com lombar', true);
+(12, 24, 0, 15, 4, 45, NULL),
+(12, 23, 0, 20, 4, 45, NULL),
+(12, 22, 0, 20, 4, 45, NULL),
+(12, 23, 0, 15, 4, 45, 'Evitar compensar com lombar');
 
 INSERT INTO vitalis.planos (personal_trainers_id, nome, periodo, quantidade_aulas, valor_aulas) VALUES
 (1, 'Plano Básico', 'MENSAL', 8, 60.00),
@@ -238,9 +231,9 @@ INSERT INTO vitalis.planos_contratados (planos_id, alunos_id, status, data_contr
 -- (7, 10, 'INATIVO', '2025-02-01', '2025-02-02');
 
 -- ========================================
--- TABELA: sessao_treinos
+-- TABELA: aulas
 -- ========================================
-INSERT INTO vitalis.sessao_treinos 
+INSERT INTO vitalis.aulas
 (planos_contratados_id, data_horario_inicio, data_horario_fim, status) VALUES
 
 -- Aluno 6 (plano_contratado id 1 - inativo (dia 05-01 até 06-01))
@@ -289,110 +282,95 @@ INSERT INTO vitalis.sessao_treinos
 -- (12, '2025-08-31 08:00:00', NULL, 'AGENDADO');
 
 -- ========================================
--- TABELA: sessao_treinos_exercicios (colocar novos inserts aqui)
+-- TABELA: aulas_treinos_exercicios (colocar novos inserts aqui)
 -- ========================================
-INSERT INTO vitalis.sessao_treinos_exercicios (sessao_treinos_id, treinos_exercicios_id, ordem) VALUES
--- Sessão 1 (Aluno 6, Peito Avançado)
-(1, 5, 1),
-(1, 6, 2),
-(1, 7, 3),
-(1, 8, 4),
+INSERT INTO vitalis.aulas_treinos_exercicios
+(aulas_id, treinos_exercicios_id, ordem, carga, repeticoes, series, descanso, observacoes_personalizadas) VALUES
 
--- Sessão 2 (Aluno 6, Peito Avançado)
-(2, 5, 1),
-(2, 6, 2),
-(2, 7, 3),
-(2, 8, 4),
+-- Sessão 1
+(1, 1, 1, 50, 10, 4, 90, 'Ajustar técnica'),
+(1, 2, 2, 12, 12, 4, 60, NULL),
+(1, 3, 3, 1, 20, 3, 45, 'Foco em resistência'),
+(1, 4, 4, 35, 10, 3, 60, NULL),
 
--- Sessão 3 (Aluno 6, Peito Avançado)
-(3, 5, 1),
-(3, 6, 2),
-(3, 7, 3),
-(3, 8, 4),
+-- Sessão 2
+(2, 5, 1, 50, 10, 4, 90, 'Ajustar técnica'),
+(2, 6, 2, 12, 12, 4, 60, NULL),
+(2, 7, 3, 1, 20, 3, 45, 'Foco em resistência'),
+(2, 8, 4, 35, 10, 3, 60, NULL),
 
--- Sessão 4 (Aluno 6, Peito Avançado)
-(4, 5, 1),
-(4, 6, 2),
-(4, 7, 3),
-(4, 8, 4),
+-- Sessão 3
+(3, 9, 1, 50, 10, 4, 90, 'Ajustar técnica'),
+(3, 10, 2, 12, 12, 4, 60, NULL),
+(3, 11, 3, 1, 20, 3, 45, 'Foco em resistência'),
+(3, 12, 4, 35, 10, 3, 60, NULL),
 
--- Sessão 5 (Aluno 6, Peito Avançado)
-(5, 5, 1),
-(5, 6, 2),
-(5, 7, 3),
-(5, 8, 4),
+-- Sessão 4
+(4, 13, 1, 50, 10, 4, 90, 'Ajustar técnica'),
+(4, 14, 2, 12, 12, 4, 60, NULL),
+(4, 15, 3, 1, 20, 3, 45, 'Foco em resistência'),
+(4, 16, 4, 35, 10, 3, 60, NULL),
 
--- Sessão 6 (Aluno 6, Peito Avançado)
-(6, 5, 1),
-(6, 6, 2),
-(6, 7, 3),
-(6, 8, 4);
+-- Sessão 5
+(5, 17, 1, 50, 10, 4, 90, 'Ajustar técnica'),
+(5, 18, 2, 12, 12, 4, 60, NULL),
+(5, 19, 3, 1, 20, 3, 45, 'Foco em resistência'),
+(5, 20, 4, 35, 10, 3, 60, NULL),
 
--- Sessão 3 (Aluno 2, Pernas Intermediário)
--- (3, 5, 1),
--- (3, 6, 2),
--- (3, 7, 3),
-
--- Sessão 4 (Aluno 3, Ombro Iniciante)
--- (4, 8, 1),
--- (4, 9, 2),
--- (4, 10, 3);
+-- Sessão 6
+(6, 21, 1, 50, 10, 4, 90, 'Ajustar técnica'),
+(6, 22, 2, 12, 12, 4, 60, NULL),
+(6, 23, 3, 1, 20, 3, 45, 'Foco em resistência'),
+(6, 24, 4, 35, 10, 3, 60, NULL);
 
 -- ========================================
 -- TABELA: execucoes_exercicios
 -- ========================================
-INSERT INTO vitalis.execucoes_exercicios (sessao_treinos_exercicios_id, carga_executada, repeticoes_executadas, series_executadas, descanso_executado) VALUES
--- Referente a Sessão 1 (Aluno 1, Peito Avançado)
+INSERT INTO vitalis.execucoes_exercicios 
+(aulas_treinos_exercicios_id, carga_executada, repeticoes_executadas, series_executadas, descanso_executado) VALUES
+
+-- Sessão 1
 (1, 45.00, 8, 4, 90),
 (2, 10.00, 10, 4, 60),
 (3, 1.00, 15, 3, 120),
 (4, 30.00, 10, 3, 60),
 
--- Referente a Sessão 2 (Aluno 1, Peito Avançado)
+-- Sessão 2
 (5, 47.50, 9, 4, 90),
 (6, 12.00, 12, 4, 60),
 (7, 1.25, 18, 3, 45),
 (8, 32.50, 10, 3, 60),
 
--- Referente a Sessão 3 (Aluno 1, Peito Avançado)
+-- Sessão 3
 (9, 48.50, 10, 4, 90),
 (10, 15.00, 12, 4, 60),
 (11, 1.50, 18, 3, 45),
 (12, 33.50, 10, 3, 60),
 
--- Referente a Sessão 4 (Aluno 1, Peito Avançado)
+-- Sessão 4
 (13, 49.50, 9, 4, 90),
 (14, 17.00, 12, 4, 60),
 (15, 1.75, 18, 3, 45),
 (16, 36.50, 10, 3, 60),
 
--- Referente a Sessão 5 (Aluno 1, Peito Avançado)
+-- Sessão 5
 (17, 47.50, 9, 4, 90),
 (18, 14.00, 12, 4, 60),
 (19, 1.50, 18, 3, 45),
 (20, 37.50, 10, 3, 60),
 
--- Referente a Sessão 6 (Aluno 1, Peito Avançado)
+-- Sessão 6
 (21, 50.50, 12, 7, 88),
 (22, 15.00, 14, 6, 56),
 (23, 1.75, 24, 4, 64),
 (24, 34.40, 15, 5, 68);
 
--- Referente a Sessão 3 (Aluno 2, Pernas Intermediário)
--- (9, 25.00, 12, 3, 60),
--- (10, 25.00, 10, 3, 45),
--- (11, 70.00, 12, 4, 90),
-
--- Referente a Sessão 4 (Aluno 3, Ombro Iniciante)
--- (12, 6.00, 15, 3, 30),
--- (13, 8.00, 12, 3, 45),
--- (14, 6.00, 12, 3, 45);
-
 -- ========================================
 -- TABELA: feedbacks
 -- ========================================
 INSERT INTO vitalis.feedbacks 
-(sessao_treinos_id, pessoas_id, descricao, data_criacao, tipo_autor, intensidade) VALUES
+(aulas_id, pessoas_id, descricao, data_criacao, tipo_autor, intensidade) VALUES
+
 -- Sessão 1
 (1, 6, 'Me senti muito bem após os exercícios!', '2025-04-01 10:00:00', 'ALUNO', 'MODERADO'),
 (1, 1, 'Parabéns pelo empenho!', '2025-04-01 10:05:00', 'PERSONAL', 'MODERADO'),
