@@ -99,7 +99,7 @@ INSERT INTO vitalis.exercicios (personal_id, nome, grupo_muscular, url_video, ob
 -- ========================================
 INSERT INTO vitalis.treinos (nome, descricao, favorito, personal_id, origem, grau_dificuldade) VALUES
 
--- PERSONAIS (10 treinos)
+-- PERSONAIS (11 treinos)
 ('Peito Avançado', 'Hipertrofia do peitoral com barra', TRUE, 5, 'PERSONAL', 'AVANCADO'),
 ('Peito e Braço Avançado', 'Hipertrofia máxima do peitoral e bíceps/tríceps', FALSE, 5, 'PERSONAL', 'AVANCADO'),
 ('Pernas e Core Intermediário', 'Força nas pernas com estabilização abdominal', FALSE, 5, 'PERSONAL', 'INTERMEDIARIO'),
@@ -122,46 +122,46 @@ INSERT INTO vitalis.treinos (nome, descricao, favorito, personal_id, origem, gra
 INSERT INTO vitalis.treinos_exercicios 
 (treinos_id, exercicios_id, carga, repeticoes, series, descanso, observacoes_personalizadas) VALUES
 
--- treinos_id = 1
+-- Treino 1: Peito Avançado
 (1, 1, 50, 10, 4, 90, 'Ajustar técnica'),
 (1, 2, 12, 12, 4, 60, NULL),
 (1, 3, 1, 20, 3, 45, 'Foco em resistência'),
 (1, 4, 35, 10, 3, 60, NULL),
 
--- treinos_id = 2
+-- Treino 2: Peito e Braço Avançado
 (2, 5, 50, 10, 4, 90, 'Ajustar técnica'),
 (2, 6, 12, 12, 4, 60, NULL),
 (2, 7, 1, 20, 3, 45, 'Foco em resistência'),
 (2, 8, 35, 10, 3, 60, NULL),
 
--- Treino 3: Peito e Braço Avançado
+-- Treino 3: Pernas e Core Intermediário
 (3, 1, 60, 8, 4, 90, 'Supino pesado, foco em hipertrofia'),
 (3, 2, 18, 10, 4, 60, NULL),
 (3, 17, 25, 8, 4, 60, NULL),
 (3, 18, 20, 12, 4, 60, 'Controlar descida'),
 
--- Treino 4: Pernas e Core Intermediário
+-- Treino 4: Costas e Ombro Intermediário
 (4, 13, 20, 12, 3, 60, NULL),
 (4, 15, 100, 10, 4, 90, 'Não travar joelhos'),
 (4, 14, 24, 10, 3, 60, NULL),
 (4, 21, 0, 30, 3, 45, 'Segurar posição correta'),
 (4, 23, 0, 20, 3, 45, NULL),
 
--- Treino 5: Costas e Ombro Intermediário
+-- Treino 5: Cardio e Core Funcional
 (5, 9, 0, 10, 4, 90, 'Amplitudes completas'),
 (5, 10, 40, 12, 3, 60, NULL),
 (5, 11, 45, 10, 4, 90, NULL),
 (5, 16, 10, 12, 3, 60, 'Subir controlado'),
 (5, 17, 20, 10, 3, 60, NULL),
 
--- Treino 6: Cardio e Core Funcional
+-- Treino 6: Full Body Iniciante
 (6, 27, 0, 60, 3, 30, 'Ritmo moderado'),
 (6, 29, 0, 40, 3, 30, NULL),
 (6, 31, 0, 12, 3, 45, NULL),
 (6, 19, 0, 20, 3, 30, 'Ativar abdômen'),
 (6, 22, 0, 20, 3, 45, NULL),
 
--- Treino 7: Full Body Iniciante
+-- Treino 7: Peito e Costas Intermediário
 (7, 1, 30, 12, 3, 60, NULL),
 (7, 9, 0, 8, 3, 60, 'Execução assistida'),
 (7, 13, 12, 12, 3, 60, NULL),
@@ -169,31 +169,31 @@ INSERT INTO vitalis.treinos_exercicios
 (7, 19, 0, 20, 3, 45, NULL),
 (7, 21, 0, 30, 3, 45, 'Manter quadril alinhado'),
 
--- Treino 8: Peito e Costas Intermediário
+-- Treino 8: Pernas Avançado
 (8, 1, 50, 10, 4, 90, NULL),
 (8, 3, 0, 20, 3, 60, NULL),
 (8, 10, 40, 12, 4, 60, NULL),
 (8, 11, 45, 10, 3, 90, 'Controle no movimento'),
 
--- Treino 9: Pernas Avançado
+-- Treino 9: Braço e Ombro Iniciante
 (9, 15, 120, 8, 5, 90, 'Máxima força'),
 (9, 14, 30, 10, 4, 90, NULL),
 (9, 13, 25, 12, 4, 60, NULL),
 (9, 23, 0, 15, 4, 45, 'Evitar tirar lombar do chão'),
 
--- Treino 10: Braço e Ombro Iniciante
+-- Treino 10: Cardio Intenso
 (10, 17, 8, 12, 3, 60, NULL),
 (10, 18, 12, 12, 3, 60, NULL),
 (10, 16, 6, 12, 3, 45, NULL),
 (10, 17, 6, 12, 3, 45, 'Controle total do movimento'),
 
--- Treino 11: Cardio Intenso
+-- Treino 11: Core Avançado
 (11, 25, 0, 300, 1, 0, 'Corrida contínua'),
 (11, 26, 0, 10, 3, 45, 'RPM moderado'),
 (11, 32, 0, 20, 3, 30, 'Explosão máxima'),
 (11, 31, 0, 15, 3, 45, 'Manter postura'),
 
--- Treino 12: Core Avançado
+-- Treino 12: Treino Funcional Básico
 (12, 24, 0, 15, 4, 45, NULL),
 (12, 23, 0, 20, 4, 45, NULL),
 (12, 22, 0, 20, 4, 45, NULL),
@@ -312,16 +312,16 @@ INSERT INTO vitalis.aulas_treinos_exercicios
 (4, 16, 4, 35, 10, 3, 60, NULL),
 
 -- Sessão 5
-(5, 17, 1, 50, 10, 4, 90, 'Ajustar técnica'),
-(5, 18, 2, 12, 12, 4, 60, NULL),
-(5, 19, 3, 1, 20, 3, 45, 'Foco em resistência'),
-(5, 20, 4, 35, 10, 3, 60, NULL),
+(5, 18, 1, 50, 10, 4, 90, 'Ajustar técnica'),
+(5, 19, 2, 12, 12, 4, 60, NULL),
+(5, 20, 3, 1, 20, 3, 45, 'Foco em resistência'),
+(5, 21, 4, 35, 10, 3, 60, NULL),
 
 -- Sessão 6
-(6, 21, 1, 50, 10, 4, 90, 'Ajustar técnica'),
-(6, 22, 2, 12, 12, 4, 60, NULL),
-(6, 23, 3, 1, 20, 3, 45, 'Foco em resistência'),
-(6, 24, 4, 35, 10, 3, 60, NULL);
+(6, 23, 1, 50, 10, 4, 90, 'Ajustar técnica'),
+(6, 24, 2, 12, 12, 4, 60, NULL),
+(6, 25, 3, 1, 20, 3, 45, 'Foco em resistência'),
+(6, 26, 4, 35, 10, 3, 60, NULL);
 
 -- ========================================
 -- TABELA: execucoes_exercicios

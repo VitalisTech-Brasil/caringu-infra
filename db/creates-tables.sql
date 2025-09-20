@@ -183,7 +183,7 @@ CREATE TABLE IF NOT EXISTS `vitalis`.`aulas` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `data_horario_inicio` DATETIME NULL DEFAULT NULL COMMENT 'Quando o treino efetivamente começou',
   `data_horario_fim` DATETIME NULL DEFAULT NULL COMMENT 'Quando o treino foi encerrado',
-  `status` ENUM('AGENDADO', 'REALIZADO', 'CANCELADO', 'REAGENDADO') NOT NULL DEFAULT 'AGENDADO',
+  `status` ENUM('AGENDADO', 'REALIZADO', 'CANCELADO', 'REAGENDADO', 'RASCUNHO') NOT NULL DEFAULT 'AGENDADO',
   `planos_contratados_id` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_aulas_planos_contratados1_idx` (`planos_contratados_id` ASC) VISIBLE,
