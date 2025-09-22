@@ -3,7 +3,7 @@ INSERT INTO vitalis.pessoas (nome, email, senha, celular, url_foto_perfil, data_
 ('Lucas Andrade', 'lucas.andrade@gmail.com', 'senha1234', '11998765432', 'https://storagevitalis.blob.core.windows.net/fotos-perfil/personal-trainers/Lucas Andrade.png', '1990-03-15', 'HOMEM_CISGENERO'),
 ('Mariana Silva', 'mariana.silva@gmail.com', 'senha5678', '21998887766', 'https://storagevitalis.blob.core.windows.net/fotos-perfil/personal-trainers/Mariana Silva.png', '1988-07-22', 'MULHER_CISGENERO'),
 ('João Pereira', 'joao.pereira@gmail.com', 'joao3210', '31999990000', 'https://storagevitalis.blob.core.windows.net/fotos-perfil/personal-trainers/João Pereira.png', '1995-11-05', 'HOMEM_TRANSGENERO'),
-('Ana Costa', 'ana.costa@gmail.com', 'anaana123', '21991234567', 'https://storagevitalis.blob.core.windows.net/fotos-perfil/personal-trainers/Ana Costa.png', '1992-05-18', 'MULHER_TRANSGENERO'),
+('Ana Costa', 'ana.costa@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '21991234567', 'https://storagevitalis.blob.core.windows.net/fotos-perfil/personal-trainers/Ana Costa.png', '1992-05-18', 'MULHER_TRANSGENERO'),
 
 -- INSERT COM JWT (ID: 5)
 ('Ricardo Gomes da Silva', 'ricardo@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '11997654321', 'https://storagevitalis.blob.core.windows.net/fotos-perfil/ricardo.png', '1999-12-25', 'HOMEM_CISGENERO'),
@@ -211,24 +211,24 @@ INSERT INTO vitalis.planos (personal_trainers_id, nome, periodo, quantidade_aula
 INSERT INTO vitalis.planos_contratados (planos_id, alunos_id, status, data_contratacao, data_fim) VALUES
 -- Aluno 6
 (5, 6, 'INATIVO', '2025-05-01', '2025-06-01'),
-(6, 6, 'ATIVO', '2025-06-01', '2025-12-01');
+(6, 6, 'ATIVO', '2025-06-01', '2025-12-01'),
 
 -- Aluno 7
--- (5, 7, 'INATIVO', '2025-01-01', '2025-02-01'),
--- (6, 7, 'ATIVO', '2025-06-01', '2025-12-01'),
+(5, 7, 'INATIVO', '2025-01-01', '2025-02-01'),
+(6, 7, 'ATIVO', '2025-06-01', '2025-12-01'),
 
 -- Aluno 8
--- (5, 8, 'INATIVO', '2025-02-01', '2025-07-31'),
--- (6, 8, 'ATIVO', '2025-06-01', '2025-12-01'),
+(5, 8, 'INATIVO', '2025-02-01', '2025-07-31'),
+(6, 8, 'ATIVO', '2025-06-01', '2025-12-01'),
 
 -- Aluno 9
--- (5, 9, 'INATIVO', '2025-04-01', '2025-05-01'),
--- (6, 9, 'ATIVO', '2025-06-01', '2025-12-01'),
--- (4, 9, 'INATIVO', '2025-03-01', '2025-04-01'),
+(4, 9, 'INATIVO', '2025-03-01', '2025-04-01'),
+(5, 9, 'INATIVO', '2025-04-01', '2025-05-01'),
+(6, 9, 'ATIVO', '2025-06-01', '2025-12-01'),
 
 -- Aluno 10
--- (6, 10, 'ATIVO', '2025-06-01', '2025-12-01'),
--- (7, 10, 'INATIVO', '2025-02-01', '2025-02-02');
+(7, 10, 'INATIVO', '2025-02-01', '2025-02-02'),
+(6, 10, 'INATIVO', '2025-06-01', '2025-12-01');
 
 -- ========================================
 -- TABELA: aulas
