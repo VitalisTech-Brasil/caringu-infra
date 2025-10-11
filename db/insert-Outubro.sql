@@ -11,20 +11,19 @@ INSERT INTO vitalis.aulas (planos_contratados_id, data_horario_inicio, data_hora
 (2, '2025-10-14 08:00:00', '2025-10-14 09:00:00', 'REALIZADO'),
 -- Semana 3
 (2, '2025-10-15 08:00:00', '2025-10-15 09:00:00', 'REALIZADO'),
-(2, '2025-10-17 08:00:00', '2025-10-17 09:00:00', 'REALIZADO');
+(2, '2025-10-17 08:00:00', '2025-10-17 09:00:00', 'REALIZADO'),
 
-/*
 (2, '2025-10-19 08:00:00', '2025-10-19 09:00:00', 'REALIZADO'),
 (2, '2025-10-21 08:00:00', '2025-10-21 09:00:00', 'REALIZADO'),
 -- Semana 4
 (2, '2025-10-22 08:00:00', '2025-10-22 09:00:00', 'REALIZADO'),
 (2, '2025-10-24 08:00:00', '2025-10-24 09:00:00', 'REALIZADO'),
 (2, '2025-10-26 08:00:00', '2025-10-26 09:00:00', 'REALIZADO'),
-(2, '2025-10-28 08:00:00', '2025-10-28 09:00:00', 'REALIZADO');*/
+(2, '2025-10-28 08:00:00', '2025-10-28 09:00:00', 'REALIZADO');
 
 -- PASSO 1: Inserir todas as aulas do aluno para o mês de outubro
--- Substitua 42 pelo ID correto do plano contratado do aluno
 
+/*
 INSERT INTO vitalis.aulas (data_horario_inicio, status, planos_contratados_id)
 VALUES
     -- Aulas até 17/10 
@@ -33,6 +32,7 @@ VALUES
     ('2024-10-17 14:00:00', 'AGENDADO', 2),
     ('2024-10-22 14:00:00', 'AGENDADO', 2),
     ('2024-10-29 14:00:00', 'AGENDADO', 2);
+    */
 
 -- ========================================
 -- AULAS_TREINOS_EXERCICIOS DE OUTUBRO (Aulas IDs 9 a 24)
