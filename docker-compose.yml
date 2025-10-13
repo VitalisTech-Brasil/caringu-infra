@@ -60,7 +60,7 @@ services:
       SPRING_RABBITMQ_PORT: 5672
       SPRING_RABBITMQ_USERNAME: guest
       SPRING_RABBITMQ_PASSWORD: guest
-      SPRING_PROFILES_ACTIVE: docker
+      SPRING_PROFILES_ACTIVE: prod
       APP_RABBITMQ_EXCHANGE: notificacoes.exchange
     command: ["java", "-Xms512m", "-Xmx5g", "-Dspring.profiles.active=prod", "-jar", "/app/app.jar"]
     ports:
@@ -80,6 +80,19 @@ services:
       context: ../caringu-notificacao
       dockerfile: Dockerfile
     container_name: notification-service
+    environment:
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_RABBITMQ_PORT: 5672
+      SPRING_RABBITMQ_USERNAME: guest
+      SPRING_RABBITMQ_PASSWORD: guest
+      SPRING_PROFILES_ACTIVE: prod
+      APP_RABBITMQ_EXCHANGE: notificacoes.exchange
+      # Configurações do banco se este serviço também usar MySQL
+      IP_HOST: caringu-mysql
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/vitalis?useSSL=false&serverTimezone=America/Sao_Paulo&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    command: ["java", "-Xms512m", "-Xmx5g", "-Dspring.profiles.active=prod", "-jar", "/app/app.jar"]
     ports:
       - "8081:8080"
     depends_on:
@@ -87,17 +100,6 @@ services:
         condition: service_healthy
       mysql:
         condition: service_healthy
-    environment:
-      SPRING_RABBITMQ_HOST: rabbitmq
-      SPRING_RABBITMQ_PORT: 5672
-      SPRING_RABBITMQ_USERNAME: guest
-      SPRING_RABBITMQ_PASSWORD: guest
-      APP_RABBITMQ_EXCHANGE: notificacoes.exchange
-      # Configurações do banco se este serviço também usar MySQL
-      IP_HOST: caringu-mysql
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/vitalis?useSSL=false&serverTimezone=America/Sao_Paulo&allowPublicKeyRetrieval=true
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
     networks:
       - caringu-network
 
