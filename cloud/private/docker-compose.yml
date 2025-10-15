@@ -11,9 +11,9 @@ services:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
-      - ./db/creates-tables.sql:/docker-entrypoint-initdb.d/creates-tables.sql
-      - ./db/inserts.sql:/docker-entrypoint-initdb.d/inserts.sql
-      - ./db/insert-Outubro.sql:/docker-entrypoint-initdb.d/insert-Outubro.sql
+      - ../../db/creates-tables.sql:/docker-entrypoint-initdb.d/creates-tables.sql
+      - ../../db/inserts.sql:/docker-entrypoint-initdb.d/inserts.sql
+      - ../../db/insert-Outubro.sql:/docker-entrypoint-initdb.d/insert-Outubro.sql
     command: [
       "--character-set-server=utf8mb4",
       "--collation-server=utf8mb4_unicode_ci"
@@ -102,28 +102,6 @@ services:
         condition: service_healthy
     networks:
       - caringu-network
-
-  python:
-    build:
-      context: ./caringu-python
-      dockerfile: Dockerfile
-    container_name: caringu-python
-    ports:
-      - "8000:8000"
-    networks:
-      - caringu-network
-    restart: always
-
-  frontend:
-    build:
-      context: ./caringu-frontend
-      dockerfile: Dockerfile
-    container_name: caringu-frontend
-    ports:
-      - "80:80"
-    networks:
-      - caringu-network
-    restart: always
 
 volumes:
   mysql_data:
