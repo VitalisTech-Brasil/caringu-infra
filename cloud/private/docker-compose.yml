@@ -52,8 +52,6 @@ services:
       SPRING_MAIL_PASSWORD: ${SPRING_MAIL_PASSWORD}
       JWT_VALIDITY: ${JWT_VALIDITY}
       JWT_SECRET: ${JWT_SECRET}
-      CONNECTION_STRING: ${CONNECTION_STRING}
-      CONTAINER_NAME: ${CONTAINER_NAME}
       GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
       GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
       SPRING_RABBITMQ_HOST: rabbitmq
@@ -77,7 +75,7 @@ services:
   # Serviço que consome notificações
   notification-service:
     build:
-      context: ../caringu-notificacao
+      context: ./caringu-notificacao
       dockerfile: Dockerfile
     container_name: notification-service
     environment:
