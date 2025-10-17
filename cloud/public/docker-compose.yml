@@ -15,7 +15,7 @@ services:
       context: ./caringu-frontend
       dockerfile: Dockerfile
     container_name: caringu-frontend
-    ports:
+    expose:
       - "3000" # só expõe pra rede docker interna
     networks:
       - caringu-network
@@ -32,6 +32,8 @@ services:
     depends_on:
       - frontend
     restart: always
+    networks:
+      - caringu-network
 
 networks:
   caringu-network:
