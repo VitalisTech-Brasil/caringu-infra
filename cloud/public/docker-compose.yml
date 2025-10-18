@@ -16,7 +16,7 @@ services:
       dockerfile: Dockerfile
     container_name: caringu-frontend
     expose:
-      - "3000" # só expõe pra rede docker interna
+      - "80" # só expõe pra rede docker interna
     networks:
       - caringu-network
     restart: always
