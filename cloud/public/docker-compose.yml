@@ -10,19 +10,11 @@ services:
       - caringu-network
     restart: always
 
-  frontend:
+  # NGINX PROXY REVERSO
+  nginx:
     build:
       context: ./caringu-frontend
       dockerfile: Dockerfile
-    container_name: caringu-frontend
-    expose:
-      - "80" # só expõe pra rede docker interna
-    networks:
-      - caringu-network
-    restart: always
-
-  # NGINX PROXY REVERSO
-  nginx:
     image: nginx:latest
     container_name: nginx-proxy
     ports:
