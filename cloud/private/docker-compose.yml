@@ -11,9 +11,9 @@ services:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
-      - ../../db/creates-tables.sql:/docker-entrypoint-initdb.d/creates-tables.sql
-      - ../../db/inserts.sql:/docker-entrypoint-initdb.d/inserts.sql
-      - ../../db/insert-Outubro.sql:/docker-entrypoint-initdb.d/insert-Outubro.sql
+      - ../../db/01-creates-tables.sql:/docker-entrypoint-initdb.d/01-creates-tables.sql
+      - ../../db/02-inserts.sql:/docker-entrypoint-initdb.d/02-inserts.sql
+      - ../../db/03-insert-Outubro.sql:/docker-entrypoint-initdb.d/03-insert-Outubro.sql
     command: [
       "--character-set-server=utf8mb4",
       "--collation-server=utf8mb4_unicode_ci"
