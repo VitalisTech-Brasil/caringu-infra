@@ -511,19 +511,19 @@ INSERT INTO vitalis.evolucao_corporal (
 (4, 'FRONTAL', 'https://img.com/aluno9-frontal.jpg', '2025-04-04 10:00:00', 1, 9),
 (5, 'PERFIL_ESQUERDO', 'https://img.com/aluno10-perfil.jpg', '2025-04-05 06:30:00', 3, 10);
 
-INSERT INTO vitalis.avaliacoes_personal_trainers (aluno_id, personal_trainer_id, nota, comentario, data_avaliacao) VALUE
+INSERT INTO vitalis.avaliacoes_personal_trainers (aluno_id, personal_trainer_id, nota, comentario, data_avaliacao) VALUES
 (6, 5, 5.0, 'Excelente profissional! Montou um treino perfeito para meus objetivos.', '2025-01-12 10:23:45'),
-(7, 5, 3.0, 'Bom acompanhamento, mas poderia variar mais os treinos.', '2025-02-05 15:10:12'),
+(7, 5, 3.5, 'Bom acompanhamento, mas poderia variar mais os treinos.', '2025-02-05 15:10:12'),
 (8, 5, 5.0, 'Incrível! Sempre atento à execução e postura. Recomendo muito!', '2025-03-20 08:55:30'),
-(9, 5, 2.0, 'Achei o treino pesado demais para meu nível. Falta empatia.', '2025-03-25 19:40:00'),
+(9, 5, 2.5, 'Achei o treino pesado demais para meu nível. Falta empatia.', '2025-03-25 19:40:00'),
 (10, 5, 4.0, 'Boa comunicação e treinos dinâmicos. Senti evolução rápida.', '2025-04-18 12:00:00'),
-(11, 5, 4.0, 'Personal super atencioso e dedicado! Muito satisfeito com os resultados.', '2025-04-30 09:15:00'),
-(6, 5, 3.0, 'Boa didática, mas faltou um pouco de acompanhamento nas execuções.', '2025-05-10 18:22:31'),
-(7, 5, 5.0, 'Excelente! Sempre motivando e acompanhando cada detalhe.', '2025-05-22 07:42:10'),
-(8, 5, 4.0, 'Profissional experiente e pontual. Gosto da personalização dos treinos.', '2025-06-02 16:20:00'),
-(9, 5, 3.0, 'Bom profissional, mas o horário é um pouco complicado pra mim.', '2025-06-15 20:33:21'),
-(10, 5, 4.0, 'Treinos intensos, mas eficientes. Boa experiência.', '2025-07-01 11:50:00'),
-(11, 5, 2.0, 'Achei que faltou acompanhamento mais próximo nos alongamentos.', '2025-07-09 13:05:45'),
-(6, 5, 4.0, 'Ótimo profissional, sempre disponível para tirar dúvidas.', '2025-08-03 17:18:00'),
-(7, 5, 4.0, 'Treinos bem estruturados e progressivos. Gostei da metodologia.', '2025-08-20 09:00:00'),
-(8, 5, 4.0, 'O melhor personal que já tive. Resultados rápidos e motivação constante.', '2025-09-10 14:45:00');
+(11, 5, 4.5, 'Personal super atencioso e dedicado! Muito satisfeito com os resultados.', '2025-04-30 09:15:00'),
+(6, 1, 3.0, 'Boa didática, mas faltou um pouco de acompanhamento nas execuções.', '2025-05-10 18:22:31'),
+(7, 1, 5.0, 'Excelente! Sempre motivando e acompanhando cada detalhe.', '2025-05-22 07:42:10'),
+(8, 1, 4.5, 'Profissional experiente e pontual. Gosto da personalização dos treinos.', '2025-06-02 16:20:00'),
+(9, 1, 3.0, 'Bom profissional, mas o horário é um pouco complicado pra mim.', '2025-06-15 20:33:21'),
+(10, 1, 4.0, 'Treinos intensos, mas eficientes. Boa experiência.', '2025-07-01 11:50:00'),
+(11, 1, 1.5, 'Achei que faltou acompanhamento mais próximo nos alongamentos.', '2025-07-09 13:05:45'),
+(6, 2, 4.0, 'Ótimo profissional, sempre disponível para tirar dúvidas.', '2025-08-03 17:18:00'),
+(7, 2, 4.5, 'Treinos bem estruturados e progressivos. Gostei da metodologia.', '2025-08-20 09:00:00'),
+(8, 2, 4.0, 'O melhor personal que já tive. Resultados rápidos e motivação constante.', '2025-09-10 14:45:00');
