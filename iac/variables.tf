@@ -51,7 +51,7 @@ variable "private_subnet_cidr" {
 variable "ec2_ami_id" {
   description = "AMI ID da instância EC2"
   type        = string
-  default     = "ami-0e001c9271cf7f3b9" # Ubuntu 22.04 em us-east-1
+  default     = "ami-0360c520857e3138f" # Ubuntu 24.04
 }
 
 variable "ec2_instance_type" {
@@ -86,7 +86,7 @@ variable "volume_type" {
 # -----------------------------------------
 # --- Variáveis associadas à storage.tf ---
 # -----------------------------------------
-/* variable "bucket_name" {
+variable "bucket_name" {
   description = "Nome do bucket S3 para armazenar arquivos ou logs"
   type        = string
-} */
+}
