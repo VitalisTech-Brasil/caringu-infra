@@ -82,7 +82,7 @@ resource "aws_instance" "public_app" {
     volume_type = var.volume_type
   }
 
-  # user_data = file("../cloud/public/script.sh") # <== script que instala Docker + sobe containers
+  # user_data = file("./script-init/setup-public.sh") # <== script que instala Docker + sobe containers
 
   tags = merge(
     local.common_tags,
@@ -108,7 +108,7 @@ resource "aws_instance" "private_app" {
     volume_type = var.volume_type
   }
 
-  # user_data = file("../cloud/private/script.sh") # <== script que instala Docker + sobe containers
+  # user_data = file("./script-init/setup-private.sh") # <== script que instala Docker + sobe containers
 
   tags = merge(
     local.common_tags,
