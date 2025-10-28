@@ -189,7 +189,7 @@ INSERT INTO vitalis.aulas_treinos_exercicios
 (32, 9, 1, 50.00, 8, 4, 90, 'Out S1: Supino Pesado Base'),
 (33, 10, 1, 18.00, 10, 4, 60, 'Out S1: Crucifixo Base'),
 (34, 30, 1, 12.00, 12, 3, 60, 'Out S1: Afundo Base'),
-(35, 46, 1, 0.00, 300, 1, 0, 'Out S1: Abdominal Base');
+(35, 46, 1, 0.00, 15, 1, 0, 'Out S1: Abdominal Base');
 
 -- SEMANA 2: Progressão +10% (Aulas 36-39)
 INSERT INTO vitalis.aulas_treinos_exercicios
@@ -197,7 +197,7 @@ INSERT INTO vitalis.aulas_treinos_exercicios
 (36, 9, 1, 55.00, 8, 4, 90, 'Out S2: Supino Pesado +10%'),
 (37, 10, 1, 19.80, 10, 4, 60, 'Out S2: Crucifixo +10%'),
 (38, 30, 1, 13.20, 12, 3, 60, 'Out S2: Afundo +10%'),
-(39, 46, 1, 0.00, 330, 1, 0, 'Out S2: Abdominal +10%');
+(39, 46, 1, 0.00, 15, 1, 0, 'Out S2: Abdominal +10%');
 
 -- SEMANA 3 (até 19/10): Progressão +20% (Aulas 40-42)
 INSERT INTO vitalis.aulas_treinos_exercicios
@@ -215,7 +215,7 @@ INSERT INTO vitalis.aulas_treinos_exercicios
 (43, 9, 1, 65.00, 8, 4, 90, 'Out S4: Supino Pesado +30%'),
 (44, 10, 1, 23.40, 10, 4, 60, 'Out S4: Crucifixo +30%'),
 (45, 30, 1, 15.60, 12, 3, 60, 'Out S4: Afundo +30%'),
-(46, 46, 1, 0.00, 390, 1, 0, 'Out S4: Abdominal +30%');
+(46, 46, 1, 0.00, 15, 1, 0, 'Out S4: Abdominal +30%');
 
 -- ========================================
 -- AULAS_TREINOS_EXERCICIOS DE NOVEMBRO (AGENDADAS)
@@ -228,7 +228,7 @@ INSERT INTO vitalis.aulas_treinos_exercicios
 (47, 9, 1, 50.00, 8, 4, 90, 'Nov S1: Supino Pesado Base'),
 (48, 10, 1, 18.00, 10, 4, 60, 'Nov S1: Crucifixo Base'),
 (49, 30, 1, 12.00, 12, 3, 60, 'Nov S1: Afundo Base'),
-(50, 46, 1, 0.00, 300, 1, 0, 'Nov S1: Abdominal Base');
+(50, 46, 1, 0.00, 15, 1, 0, 'Nov S1: Abdominal Base');
 
 -- SEMANA 2 de NOVEMBRO: Progressão +10% (Aulas 51-54)
 INSERT INTO vitalis.aulas_treinos_exercicios
@@ -236,7 +236,7 @@ INSERT INTO vitalis.aulas_treinos_exercicios
 (51, 9, 1, 55.00, 8, 4, 90, 'Nov S2: Supino Pesado +10%'),
 (52, 10, 1, 19.80, 10, 4, 60, 'Nov S2: Crucifixo +10%'),
 (53, 30, 1, 13.20, 12, 3, 60, 'Nov S2: Afundo +10%'),
-(54, 46, 1, 0.00, 330, 1, 0, 'Nov S2: Abdominal +10%');
+(54, 46, 1, 0.00, 15, 1, 0, 'Nov S2: Abdominal +10%');
 
 -- ========================================
 -- EXECUÇÕES DE EXERCÍCIOS DE OUTUBRO (Apenas as REALIZADAS até 19/10)
@@ -249,12 +249,12 @@ INSERT INTO vitalis.execucoes_exercicios
 (48, 50.00, 8, 4, 90, TRUE),    -- AULA 32 (ID 48): Supino Pesado 50kg
 (49, 18.00, 10, 4, 60, TRUE),   -- AULA 33 (ID 49): Crucifixo 18kg
 (50, 12.00, 12, 3, 60, TRUE),   -- AULA 34 (ID 50): Afundo 12kg
-(51, 0.00, 300, 1, 0, TRUE),    -- AULA 35 (ID 51): Abdominal 300 reps
+(51, 0.00, 15, 1, 0, TRUE),    -- AULA 35 (ID 51): Abdominal 300 reps
 -- SEMANA 2 (Aulas 36-39)
 (52, 55.00, 8, 4, 90, TRUE),    -- AULA 36 (ID 52): Supino Pesado 55kg
 (53, 19.80, 10, 4, 60, TRUE),   -- AULA 37 (ID 53): Crucifixo 19.8kg
 (54, 13.20, 12, 3, 60, TRUE),   -- AULA 38 (ID 54): Afundo 13.2kg
-(55, 0.00, 330, 1, 0, TRUE),    -- AULA 39 (ID 55): Abdominal 330 reps
+(55, 0.00, 15, 1, 0, TRUE),    -- AULA 39 (ID 55): Abdominal 330 reps
 -- SEMANA 3 (Aulas 40-42)
 (56, 60.00, 8, 4, 90, TRUE),    -- AULA 40 (ID 56): Supino Pesado 60kg
 (57, 21.60, 10, 4, 60, TRUE),   -- AULA 41 (ID 57): Crucifixo 21.6kg
