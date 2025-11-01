@@ -10,7 +10,7 @@ INSERT INTO vitalis.pessoas (nome, email, senha, celular, url_foto_perfil, data_
 
 -- Pessoas para alunos (IDs: 6 a 10)
 ('Carla Mendes', 'carla.mendes@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '11994455667', '441ffd16-fed6-48f8-b76e-46c282d55713-1761512959626.png', '1985-02-10', 'MULHER_TRANSGENERO'),
-('Alex Nagano', 'alex.nagano@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '11999887766', 'cab06587-5ad1-4287-9c1a-d64c87d76032-1761507728522.png', '2000-12-01', 'NAO_BINARIO'),
+('Alex Nagano', 'alex.nagano@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '11999887766', '7c474380-6068-4e13-8b93-33c8ce08bb57-1762038689694.png', '2000-12-01', 'NAO_BINARIO'),
 ('Suellen Lima', 'suellen.lima@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', NULL, '3e146be8-947e-4057-827f-376d0f9cd23c-1761513023243.png', '1997-09-12', 'MULHER_TRANSGENERO'),
 ('Diego Santos', 'diego.santos@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '21998877665', 'f1ea42f3-b7b4-437e-be1c-c7e76878a501-1761513091401.png', NULL, 'HOMEM_TRANSGENERO'),
 ('Luna Martins', 'luna.martins@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '31997766544', '9fdb9e2d-aec8-4e7d-810c-218363edc86b-1761513334546.png', '1993-04-25', 'HOMEM_CISGENERO'),
