@@ -34,7 +34,7 @@ output "private_route_table_id" {
 }
 
 # Outputs do Storage (S3)
-output "bucket_id" {
+/* output "bucket_id" {
   description = "ID do bucket S3"
   value       = aws_s3_bucket.app_bucket.id
 }
@@ -42,7 +42,7 @@ output "bucket_id" {
 output "bucket_arn" {
   description = "ARN do bucket S3"
   value       = aws_s3_bucket.app_bucket.arn
-}
+} */
 
 # Outputs do Compute (EC2 Público)
 output "public_instance_id" {

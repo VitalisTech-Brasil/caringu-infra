@@ -1,19 +1,27 @@
 #!/bin/bash
+set -euxo pipefail
+export DEBIAN_FRONTEND=noninteractive
 
-# Clonando o repositório da aplicação de infraestrutura, se ainda não existir...
-echo "📥 Clonando o repositório da aplicação de infraestrutura, se ainda não existir..."
-if [ ! -d "./caringu-infra" ]; then
+# Espera rede (porque o cloud-init às vezes começa antes da rede)
+until ping -c1 github.com &>/dev/null; do
+  echo "🌐 Aguardando rede..."
+  sleep 3
+done
+
+# Instala git (mínimo necessário)
+apt-get update -y
+apt-get install -y git
+
+# Clona o repositório da infraestrutura
+cd /home/ubuntu
+if [ ! -d "caringu-infra" ]; then
+  echo "📥 Clonando repositório principal..."
   git clone https://github.com/VitalisTech-Brasil/caringu-infra.git
 fi
 
-# Navegando até o diretório cloud/public
-echo "[+] Navegando até o diretório cloud/public..."
-cd caringu-infra/cloud/public
+chown -R ubuntu:ubuntu /home/ubuntu/caringu-infra
 
-# Tornando o script executável
-echo "[+] Tornando o script executável..."
+# Executa o script principal como usuário normal
+cd /home/ubuntu/caringu-infra/cloud/public
 chmod +x script.sh
-
-# Executando o script de configuração do ambiente público
-echo "[+] Executando o script de configuração do ambiente público..."
-bash ./script.sh
+sudo -u ubuntu bash ./script.sh

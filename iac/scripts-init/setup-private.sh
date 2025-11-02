@@ -1,19 +1,31 @@
 #!/bin/bash
+set -euxo pipefail
+export DEBIAN_FRONTEND=noninteractive
 
-# Clonando o repositório da aplicação de infraestrutura, se ainda não existir...
-echo "📥 Clonando o repositório da aplicação de infraestrutura, se ainda não existir..."
-if [ ! -d "./caringu-infra" ]; then
+echo "🚀 Iniciando configuração da instância privada..."
+
+# Aguarda rede (se tiver NAT Gateway, garante tempo pro roteamento subir)
+until ping -c1 github.com &>/dev/null; do
+  echo "🌐 Aguardando rede..."
+  sleep 3
+done
+
+# Instala git (mínimo necessário)
+apt-get update -y
+apt-get install -y git
+
+# Clona o repositório da infraestrutura
+cd /home/ubuntu
+if [ ! -d "caringu-infra" ]; then
+  echo "📥 Clonando repositório principal..."
   git clone https://github.com/VitalisTech-Brasil/caringu-infra.git
 fi
 
-# Navegando até o diretório cloud/private
-echo "[+] Navegando até o diretório cloud/private..."
-cd caringu-infra/cloud/private
+chown -R ubuntu:ubuntu /home/ubuntu/caringu-infra
 
-# Tornando o script executável
-echo "[+] Tornando o script executável..."
+# Executa o script principal da parte privada
+cd /home/ubuntu/caringu-infra/cloud/private
 chmod +x script.sh
+sudo -u ubuntu bash ./script.sh
 
-# Executando o script de configuração do ambiente público
-echo "[+] Executando o script de configuração do ambiente público..."
-bash ./script.sh
+echo "✅ Setup da instância privada concluído com sucesso!"

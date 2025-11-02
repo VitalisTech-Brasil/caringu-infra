@@ -79,19 +79,20 @@ resource "aws_subnet" "private" {
 # ======================
 # NAT Gateway (opcional/temporário)
 # ======================
-# resource "aws_eip" "nat" {
-#   domain = "vpc"
-# }
+/* resource "aws_eip" "nat" {
+  domain = "vpc"
+}
 
-# resource "aws_nat_gateway" "this" {
-#   allocation_id = aws_eip.nat.id
-#   subnet_id     = aws_subnet.public.id
-#   depends_on    = [aws_internet_gateway.this]
+resource "aws_nat_gateway" "this" {
+  allocation_id = aws_eip.nat.id
+  subnet_id     = aws_subnet.public.id
+  depends_on    = [aws_internet_gateway.this]
 
-#    tags = merge(
-#      local.common_tags,
-#      { Name = "${var.project_name}-nat-gateway" }
-#    )
+  tags = merge(
+    local.common_tags,
+    { Name = "${var.project_name}-nat-gateway" }
+  )
+} */
 
 # ======================
 # Route Table - Private
@@ -99,10 +100,10 @@ resource "aws_subnet" "private" {
 resource "aws_route_table" "private" {
   vpc_id = aws_vpc.this.id
 
-  # route {
-  #   cidr_block     = "0.0.0.0/0"
-  #   nat_gateway_id = aws_nat_gateway.this.id
-  # }
+  /* route {
+    cidr_block     = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.this.id
+  } */
 
   tags = merge(
     local.common_tags,
@@ -119,12 +120,12 @@ resource "aws_route_table_association" "private" {
 # Network ACL - Pública
 # ======================
 resource "aws_network_acl" "public" {
-  vpc_id = aws_vpc.this.id
-
+  vpc_id     = aws_vpc.this.id
   subnet_ids = [aws_subnet.public.id]
 
-  egress {
-    rule_no    = 100
+  # Regras de ENTRADA (Ingress)
+  ingress {
+    rule_no    = 90
     protocol   = "-1"
     action     = "allow"
     cidr_block = "0.0.0.0/0"
@@ -133,6 +134,34 @@ resource "aws_network_acl" "public" {
   }
 
   ingress {
+    rule_no    = 100
+    protocol   = "6" # TCP
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 80
+    to_port    = 80
+  }
+
+  ingress {
+    rule_no    = 200
+    protocol   = "6" # TCP
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 443
+    to_port    = 443
+  }
+
+  ingress {
+    rule_no    = 300
+    protocol   = "6" # TCP
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 22
+    to_port    = 22
+  }
+
+  # Regras de SAÍDA (Egress)
+  egress {
     rule_no    = 100
     protocol   = "-1"
     action     = "allow"
@@ -151,26 +180,56 @@ resource "aws_network_acl" "public" {
 # Network ACL - Privada
 # ======================
 resource "aws_network_acl" "private" {
-  vpc_id = aws_vpc.this.id
-
+  vpc_id     = aws_vpc.this.id
   subnet_ids = [aws_subnet.private.id]
 
-  # Permite todo o tráfego interno da VPC
+  # ======================
+  # INGRESS (entrada)
+  # ======================
   ingress {
-    rule_no    = 100
-    protocol   = "-1"
+    rule_no    = 90
+    protocol   = "6" # TCP
     action     = "allow"
-    cidr_block = var.vpc_cidr
+    cidr_block = "0.0.0.0/0"
     from_port  = 0
-    to_port    = 0
+    to_port    = 65535
   }
 
-  # Permite tráfego de retorno
+  ingress {
+    rule_no    = 100
+    protocol   = "6" # TCP
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 80
+    to_port    = 80
+  }
+
+  ingress {
+    rule_no    = 200
+    protocol   = "6" # TCP
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 443
+    to_port    = 443
+  }
+
+  ingress {
+    rule_no    = 300
+    protocol   = "6" # TCP
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 22
+    to_port    = 22
+  }
+
+  # ======================
+  # EGRESS (saída)
+  # ======================
   egress {
     rule_no    = 100
-    protocol   = "-1"
+    protocol   = "-1" # All protocols
     action     = "allow"
-    cidr_block = var.vpc_cidr
+    cidr_block = "0.0.0.0/0"
     from_port  = 0
     to_port    = 0
   }

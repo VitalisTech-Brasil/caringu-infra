@@ -2,7 +2,7 @@
 # STORAGE - S3 / EBS / Snapshot
 ############################################
 
-resource "aws_s3_bucket" "app_bucket" {
+/* resource "aws_s3_bucket" "app_bucket" {
   bucket = var.bucket_name
 
   tags = merge(
@@ -33,4 +33,4 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "s3_encryption" {
 
     bucket_key_enabled = true
   }
-}
+} */
