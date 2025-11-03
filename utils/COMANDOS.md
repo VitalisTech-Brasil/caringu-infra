@@ -107,3 +107,14 @@ docker-compose up -d
 
 ---
 
+## Export
+
+- export AWS_ACCESS_KEY_ID=aws_key_id_value
+- export AWS_SECRET_ACCESS_KEY=aws_secret_key_value
+- export AWS_SESSION_TOKEN=aws_session_token_value
+
+# Depois:
+
+- echo $AWS_ACCESS_KEY_ID
+- echo $AWS_SECRET_ACCESS_KEY
+- echo $AWS_SESSION_TOKEN
