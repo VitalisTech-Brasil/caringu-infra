@@ -86,7 +86,7 @@ variable "volume_type" {
 # -----------------------------------------
 # --- Variáveis associadas à storage.tf ---
 # -----------------------------------------
-/* variable "bucket_name" {
+variable "bucket_name" {
   description = "Nome do bucket S3 para armazenar arquivos ou logs"
   type        = string
-} */
+}
