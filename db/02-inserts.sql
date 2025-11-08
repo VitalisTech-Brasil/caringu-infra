@@ -191,13 +191,13 @@ INSERT INTO vitalis.treinos_exercicios
 (11, 25, 0, 300, 1, 0, 'Corrida contínua'),
 (11, 26, 0, 10, 3, 45, 'RPM moderado'),
 (11, 32, 0, 20, 3, 30, 'Explosão máxima'),
-(11, 31, 0, 15, 3, 45, 'Manter postura'),
+(11, 23, 0, 15, 3, 45, 'Manter postura'),
 
 -- Treino 12: Treino Funcional Básico
 (12, 24, 0, 15, 4, 45, NULL),
 (12, 23, 0, 20, 4, 45, NULL),
 (12, 22, 0, 20, 4, 45, NULL),
-(12, 23, 0, 15, 4, 45, 'Evitar compensar com lombar');
+(12, 31, 0, 15, 4, 45, 'Evitar compensar com lombar');
 
 INSERT INTO vitalis.planos (personal_trainers_id, nome, periodo, quantidade_aulas, valor_aulas) VALUES
 (1, 'Plano Básico', 'MENSAL', 8, 60.00),
@@ -310,6 +310,7 @@ INSERT INTO vitalis.aulas_treinos_exercicios
 (4, 14, 2, 12, 12, 4, 60, NULL),
 (4, 15, 3, 1, 20, 3, 45, 'Foco em resistência'),
 (4, 16, 4, 35, 10, 3, 60, NULL),
+(4, 17, 5, 35, 10, 3, 60, NULL),
 
 -- Sessão 5
 (5, 18, 1, 50, 10, 4, 90, 'Ajustar técnica'),
