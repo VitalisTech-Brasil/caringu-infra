@@ -56,143 +56,139 @@ INSERT INTO vitalis.aulas (planos_contratados_id, data_horario_inicio, data_hora
 INSERT INTO vitalis.aulas_treinos_exercicios
 (id, aulas_id, treinos_exercicios_id, ordem, carga, repeticoes, series, descanso, observacoes_personalizadas) VALUES
 -- Semana 1 (Aulas 9-12) - carga base
-(1001, 9, 1, 1, 50.00, 8, 4, 90, 'Out S1: Supino Pesado Base'),
-(1002, 9, 2, 2, 18.00,10, 4, 60, 'Out S1: Crucifixo Base'),
-(1003, 9, 3, 3, 12.00,12, 3, 60, 'Out S1: Afundo Base'),
+(1001, 9, 1, 1, 50.00,  8, 4, 90, 'Controlar respiração na execução'),
+(1002, 9, 2, 2, 18.00, 10, 4, 60, 'Manter core estável durante todo exercício'),
+(1003, 9, 3, 3, 12.00, 12, 3, 60, 'Controlar velocidade do movimento'),
 (1004, 9, 4, 4, 10.00, 12, 3, 45, 'Manter postura durante o exercício'),
 
-(1005,10, 5, 1, 50.00, 8, 4, 90, 'Out S1: Supino Pesado Base'),
-(1006,10, 6, 2, 18.00,10, 4, 60, 'Out S1: Crucifixo Base'),
-(1007,10, 7, 3, 12.00,12, 3, 60, 'Out S1: Afundo Base'),
+(1005,10, 5, 1, 50.00,  8, 4, 90, 'Controlar respiração na execução'),
+(1006,10, 6, 2, 18.00, 10, 4, 60, 'Manter core estável durante todo exercício'),
+(1007,10, 7, 3, 12.00, 12, 3, 60, 'Controlar velocidade do movimento'),
 (1008,10, 8, 4, 12.00, 12, 3, 60, 'Foco na contração muscular'),
 
-(1009,11,  9, 1, 50.00, 8, 4, 90, 'Out S1: Supino Pesado Base'),
-(1010,11, 10, 2, 18.00,10, 4, 60, 'Out S1: Crucifixo Base'),
-(1011,11, 11, 3, 12.00,12, 3, 60, 'Out S1: Afundo Base'),
+(1009,11,  9, 1, 50.00,  8, 4, 90, 'Controlar respiração na execução'),
+(1010,11, 10, 2, 18.00, 10, 4, 60, 'Manter core estável durante todo exercício'),
+(1011,11, 11, 3, 12.00, 12, 3, 60, 'Controlar velocidade do movimento'),
 (1012,11, 12, 4, 10.00, 12, 3, 45, 'Controlar respiração durante o movimento'),
 
-(1013,12, 13, 1, 50.00, 8, 4, 90, 'Out S1: Supino Pesado Base'),
-(1014,12, 14, 2, 18.00,10, 4, 60, 'Out S1: Crucifixo Base'),
-(1015,12, 15, 3, 12.00,12, 3, 60, 'Out S1: Afundo Base'),
+(1013,12, 13, 1, 50.00,  8, 4, 90, 'Controlar respiração na execução'),
+(1014,12, 14, 2, 18.00, 10, 4, 60, 'Manter core estável durante todo exercício'),
+(1015,12, 15, 3, 12.00, 12, 3, 60, 'Controlar velocidade do movimento'),
 (1016,12, 16, 4, 12.00, 12, 3, 60, 'Executar movimento com amplitude adequada'),
 (1017,12, 17, 5, 12.00, 12, 3, 45, 'Manter ritmo constante na execução'),
 
 -- Semana 2 (Aulas 13-16) - +10%
-(1018,13, 18, 1, 55.00, 8, 4, 90, 'Out S2: Abdominal +10%'),
-(1019,13, 19, 2, 19.80,10, 4, 60, 'Out S2: Crucifixo +10%'),
-(1020,13, 20, 3, 13.20,12, 3, 60, 'Out S2: Afundo +10%'),
-(1021,13, 21, 4, 14.50,10,1,  0, 'Out S2: Abdominal +10%'),
-(1022,13, 22, 5, 12.50,10,1,  0, 'Out S2: +10%'),
+(1018, 13, 18, 1, 55.00,  8, 4, 90, 'Manter core estável durante todo exercício'),
+(1019, 13, 19, 2, 19.80, 10, 4, 60, 'Focar na contração durante fase concêntrica'),
+(1020, 13, 20, 3, 13.20, 12, 3, 60, 'Alinhar joelho com ponta do pé'),
+(1021, 13, 21, 4, 14.50, 10, 1, 90, 'Controlar velocidade do movimento'),
+(1022, 13, 22, 5, 12.50, 10, 1, 90, 'Manter ritmo constante nas repetições'),
 
-(1023,14, 23, 1, 55.00, 8, 4, 90, 'Out S2: Abdominal +10%'),
-(1024,14, 24, 2, 19.80,10, 4, 60, 'Out S2: Crucifixo +10%'),
-(1025,14, 25, 3, 13.20,12, 3, 60, 'Out S2: Afundo +10%'),
-(1026,14, 26, 4, 14.75,8,1,  0, 'Out S2: Abdominal +10%'),
-(1027,14, 27, 5, 14.50,10,1,  0, 'Out S2: +10%'),
+(1023, 14, 23, 1, 55.00,  8, 4, 90, 'Pressionar escápulas contra o banco'),
+(1024, 14, 24, 2, 19.80, 10, 4, 60, 'Manter cotovelos levemente flexionados'),
+(1025, 14, 25, 3, 13.20, 12, 3, 60, 'Focar no equilíbrio durante execução'),
+(1026, 14, 26, 4, 14.75,  8, 1, 90, 'Respirar de forma controlada'),
+(1027, 14, 27, 5, 14.50, 10, 1, 90, 'Evitar compensações na lombar'),
 
-(1028,15, 28, 1, 55.00, 8, 4, 90, 'Out S2: Abdominal +10%'),
-(1029,15, 29, 2, 19.80,10, 4, 60, 'Out S2: Crucifixo +10%'),
-(1030,15, 30, 3, 13.20,12, 3, 60, 'Out S2: Afundo +10%'),
-(1031,15, 31, 4, 14.50,10,1,  0, 'Out S2: Abdominal +10%'),
-(1032,15, 32, 5, 18.50,12,1,  0, 'Out S2: +10%'),
-(1033,15, 33, 6, 4.50,10,1,  0, 'Out S2: +10%'),
+(1028, 15, 28, 1, 55.00,  8, 4, 90, 'Concentrar na contração peitoral'),
+(1029, 15, 29, 2, 19.80, 10, 4, 60, 'Manter postura neutra da coluna'),
+(1030, 15, 30, 3, 13.20, 12, 3, 60, 'Controlar fase excêntrica do movimento'),
+(1031, 15, 31, 4, 14.50, 10, 1, 90, 'Ativar musculatura do core'),
+(1032, 15, 32, 5, 18.50, 12, 1, 90, 'Manter quadril estável durante série'),
+(1033, 15, 33, 6,  4.50, 10, 1, 90, 'Respiração sincronizada com movimento'),
 
-(1034,16, 34, 1, 55.00, 8, 4, 90, 'Out S2: Abdominal +10%'),
-(1035,16, 35, 2, 19.80,10, 4, 60, 'Out S2: Crucifixo +10%'),
-(1036,16, 36, 3, 13.20,12, 3, 60, 'Out S2: Afundo +10%'),
-(1037,16, 37, 4, 14.50,10,1,  0, 'Out S2: Abdominal +10%'),
+(1034, 16, 34, 1, 55.00,  8, 4, 90, 'Foco na amplitude completa do movimento'),
+(1035, 16, 35, 2, 19.80, 10, 4, 60, 'Manter tensão constante no músculo'),
+(1036, 16, 36, 3, 13.20, 12, 3, 60, 'Estabilizar joelho durante execução'),
+(1037, 16, 37, 4, 14.50, 10, 1, 90, 'Contrair abdômen durante todo exercício'),
 
 -- Semana 3 (Aulas 17-19) - +20%
-(1038,17, 38, 1, 60.00, 8, 4, 90, 'Out S3: Supino Pesado +20%'),
-(1039,17, 39, 2, 21.60,10, 4, 60, 'Out S3: Crucifixo +20%'),
-(1040,17, 40, 3, 14.40,12, 3, 60, 'Out S3: Afundo +20%'),
-(1041,17, 41, 4, 10.00, 12, 3, 60, 'Manter controle na execução do movimento'),
+(1038, 17, 38, 1, 60.00,  8, 4, 90, 'Manter cotovelos alinhados ao tronco'),
+(1039, 17, 39, 2, 21.60, 10, 4, 60, 'Executar movimento sem impulso'),
+(1040, 17, 40, 3, 14.40, 12, 3, 60, 'Manter joelhos estáveis na execução'),
+(1041, 17, 41, 4, 10.00, 12, 3, 60, 'Manter controle na execução do movimento'),
 
-(1042,18, 42, 1, 60.00, 8, 4, 90, 'Out S3: Supino Pesado +20%'),
-(1043,18, 43, 2, 21.60,10, 4, 60, 'Out S3: Crucifixo +20%'),
-(1044,18, 44, 3, 14.40,12, 3, 60, 'Out S3: Afundo +20%'),
-(1045,18, 45, 4, 12.00, 12, 3, 45, 'Foco na técnica do exercício'),
+(1042, 18, 42, 1, 60.00,  8, 4, 90, 'Estabilizar ombros durante exercício'),
+(1043, 18, 43, 2, 21.60, 10, 4, 60, 'Focar na fase excêntrica do movimento'),
+(1044, 18, 44, 3, 14.40, 12, 3, 60, 'Manter alinhamento do quadril'),
+(1045, 18, 45, 4, 12.00, 12, 3, 45, 'Foco na técnica do exercício'),
 
-(1046,19, 46, 1, 60.00, 8, 4, 90, 'Out S3: Supino Pesado +20%'),
-(1047,19, 47, 2, 21.60,10, 4, 60, 'Out S3: Crucifixo +20%'),
-(1048,19, 48, 3, 14.40,12, 3, 60, 'Out S3: Afundo +20%'),
-(1049,19, 49, 4, 10.00, 12, 3, 60, 'Respiração controlada durante as séries'),
+(1046, 19, 46, 1, 60.00,  8, 4, 90, 'Contrair peitoral no ponto máximo'),
+(1047, 19, 47, 2, 21.60, 10, 4, 60, 'Manter braços alinhados ao executar'),
+(1048, 19, 48, 3, 14.40, 12, 3, 60, 'Distribuir peso igualmente nas pernas'),
+(1049, 19, 49, 4, 10.00, 12, 3, 60, 'Respiração controlada durante as séries'),
 
 -- Semana 4 AGENDADA (Aulas 20-23) - +30%
-(1050,20, 50, 1, 65.00, 8, 4, 90, 'Out S4: Supino Pesado +30%'),
-(1051,20, 51, 2, 23.40,10, 4, 60, 'Out S4: Crucifixo +30%'),
-(1052,20, 52, 3, 15.60,12, 3, 60, 'Out S4: Afundo +30%'),
-(1053,20, 53, 4,  6.50, 6,1, 90, 'Out S4: Abdominal +30%'),
+(1050, 20, 50, 1, 65.00,  8, 4, 90, 'Manter cotovelos alinhados durante o movimento'),
+(1051, 20, 51, 2, 23.40, 10, 4, 60, 'Focar na contração do peitoral'),
+(1052, 20, 52, 3, 15.60, 12, 3, 60, 'Atenção ao alinhamento do joelho'),
+(1053, 20, 53, 4,  6.50,  6, 1, 90, 'Controlar respiração na execução'),
 
-(1054,21, 1, 1, 65.00, 8, 4, 90, 'Out S4: Supino Pesado +30%'),
-(1055,21, 2, 2, 23.40,10, 4, 60, 'Out S4: Crucifixo +30%'),
-(1056,21, 3, 3, 15.60,12, 3, 60, 'Out S4: Afundo +30%'),
-(1057,21, 4, 4,  6.50, 6,1, 90, 'Out S4: Abdominal +30%'),
+(1054, 21, 1, 1, 65.00,  8, 4, 90, 'Evitar arquear as costas durante o exercício'),
+(1055, 21, 2, 2, 23.40, 10, 4, 60, 'Movimento controlado e sem momentum'),
+(1056, 21, 3, 3, 15.60, 12, 3, 60, 'Manter tronco estável durante execução'),
+(1057, 21, 4, 4,  6.50,  6, 1, 90, 'Foco na região abdominal durante contração'),
 
-(1058,22, 5, 1, 65.00, 8, 4, 90, 'Out S4: Supino Pesado +30%'),
-(1059,22, 6, 2, 23.40,10, 4, 60, 'Out S4: Crucifixo +30%'),
-(1060,22, 7, 3, 15.60,12, 3, 60, 'Out S4: Afundo +30%'),
-(1061,22, 8, 4,  6.50, 6,1, 90, 'Out S4: Abdominal +30%'),
+(1058, 22, 5, 1, 65.00,  8, 4, 90, 'Respiração sincronizada com o movimento'),
+(1059, 22, 6, 2, 23.40, 10, 4, 60, 'Amplitude completa do movimento'),
+(1060, 22, 7, 3, 15.60, 12, 3, 60, 'Manter quadril alinhado durante exercício'),
+(1061, 22, 8, 4,  6.50,  6, 1, 90, 'Contrair abdômen durante todo movimento'),
 
-(1062,23,  9, 1, 65.00, 8, 4, 90, 'Out S4: Supino Pesado +30%'),
-(1063,23, 10, 2, 23.40,10, 4, 60, 'Out S4: Crucifixo +30%'),
-(1064,23, 11, 3, 15.60,12, 3, 60, 'Out S4: Afundo +30%'),
-(1065,23, 12, 4,  6.50, 6,1, 90, 'Out S4: Abdominal +30%'),
+(1062, 23,  9, 1, 65.00,  8, 4, 90, 'Pressionar escápulas contra o banco'),
+(1063, 23, 10, 2, 23.40, 10, 4, 60, 'Manter tensão constante no peitoral'),
+(1064, 23, 11, 3, 15.60, 12, 3, 60, 'Descer até 90 graus no joelho'),
+(1065, 23, 12, 4,  6.50,  6, 1, 90, 'Evitar elevação do quadril'),
 
 -- Novembro (Aulas 24-31) - repetindo padrão: S1 (24-27 base), S2 (28-31 +10%)
-(1066,24, 13, 1, 50.00, 8, 4, 90, 'Nov S1: Supino Pesado Base'),
-(1067,24, 14, 2, 18.00,10, 4, 60, 'Nov S1: Crucifixo Base'),
-(1068,24, 15, 3, 12.00,12, 3, 60, 'Nov S1: Afundo Base'),
-(1069,24, 16, 4, 12.00, 12, 3, 45, 'Manter alinhamento postural'),
-(1070,24, 17, 5,  10.50, 12,1, 90, 'Nov S1: +0%'),
+(1066, 24, 13, 1, 50.00,  8, 4, 90, 'Melhorar a postura ao executar o exercício'),
+(1067, 24, 14, 2, 18.00, 10, 4, 60, 'Ir até o final da amplitude'),
+(1068, 24, 15, 3, 12.00, 12, 3, 60, 'Amplitude completa do movimento'),
+(1069, 24, 16, 4, 12.00, 12, 3, 45, 'Manter alinhamento postural'),
+(1070, 24, 17, 5, 10.50, 12, 1, 90, 'Controlar respiração na execução'),
 
-(1071,25, 18, 1, 50.00, 8, 4, 90, 'Nov S1: Supino Pesado Base'),
-(1072,25, 19, 2, 18.00,10, 4, 60, 'Nov S1: Crucifixo Base'),
-(1073,25, 20, 3, 12.00,12, 3, 60, 'Nov S1: Afundo Base'),
-(1074,25, 21, 4, 10.00, 12, 3, 60, 'Executar movimento controlado'),
-(1075,25, 22, 5,  10.50, 12,1, 90, 'Nov S1: +0%'),
+(1071, 25, 18, 1, 50.00,  8, 4, 90, 'Melhorar a postura ao executar o exercício'),
+(1072, 25, 19, 2, 18.00, 10, 4, 60, 'Ir até o final da amplitude'),
+(1073, 25, 20, 3, 12.00, 12, 3, 60, 'Amplitude completa do movimento'),
+(1074, 25, 21, 4, 10.00, 12, 3, 60, 'Executar movimento controlado'),
+(1075, 25, 22, 5, 10.50, 12, 1, 90, 'Controlar respiração na execução'),
 
-(1076,26, 23, 1, 50.00, 8, 4, 90, 'Nov S1: Supino Pesado Base'),
-(1077,26, 24, 2, 18.00,10, 4, 60, 'Nov S1: Crucifixo Base'),
-(1078,26, 25, 3, 12.00,12, 3, 60, 'Nov S1: Afundo Base'),
-(1079,26, 26, 4,  10.50, 12,1, 90, 'Nov S1: Abdominal Base'),
-(1080,26, 27, 5,  10.50, 12,1, 90, 'Nov S1: Abdominal Base'),
+(1076, 26, 23, 1, 50.00,  8, 4, 90, 'Melhorar a postura ao executar o exercício'),
+(1077, 26, 24, 2, 18.00, 10, 4, 60, 'Ir até o final da amplitude'),
+(1078, 26, 25, 3, 12.00, 12, 3, 60, 'Amplitude completa do movimento'),
+(1079, 26, 26, 4, 10.50, 12, 1, 90, 'Controlar respiração na execução'),
+(1080, 26, 27, 5, 10.50, 12, 1, 90, 'Controlar respiração na execução'),
 
-(1081,27, 28, 1, 50.00, 8, 4, 90, 'Nov S1: Supino Pesado Base'),
-(1082,27, 29, 2, 18.00,10, 4, 60, 'Nov S1: Crucifixo Base'),
-(1083,27, 30, 3, 12.00,12, 3, 60, 'Nov S1: Afundo Base'),
-(1084,27, 31, 4,  10.50, 12,1, 90, 'Nov S1: Abdominal Base'),
-(1085,27, 32, 4,  10.50, 12,1, 90, 'Melhorar a postura ao executar o exercício'),
-(1086,27, 33, 4,  10.50, 12,1, 90, 'Aumentar a respiração durante o exercício'),
+(1081, 27, 28, 1, 50.00,  8, 4, 90, 'Melhorar a postura ao executar o exercício'),
+(1082, 27, 29, 2, 18.00, 10, 4, 60, 'Ir até o final da amplitude'),
+(1083, 27, 30, 3, 12.00, 12, 3, 60, 'Amplitude completa do movimento'),
+(1084, 27, 31, 4, 10.50, 12, 1, 90, 'Controlar respiração na execução'),
+(1085, 27, 32, 4, 10.50, 12, 1, 90, 'Melhorar a postura ao executar o exercício'),
+(1086, 27, 33, 4, 10.50, 12, 1, 90, 'Aumentar a respiração durante o exercício'),
 
 -- Semana 2 de Novembro (+10%) (28-31)
-(1087,28, 34, 1, 55.00,  8, 4, 90, 'Nov S2: Supino Pesado +10%'),
-(1088,28, 35, 2, 19.80, 10, 4, 60, 'Nov S2: Crucifixo +10%'),
-(1089,28, 36, 3, 13.20, 12, 3, 60, 'Nov S2: Afundo +10%'),
-(1090,28, 37, 4, 14.00,  8, 1, 90, 'Nov S2: Abdominal +10%'),
+(1087, 28, 34, 1, 55.00,  8, 4, 90, 'Ir até o final da amplitude'),
+(1088, 28, 35, 2, 19.80, 10, 4, 60, 'Nov S2: Crucifixo +10%'),
+(1089, 28, 36, 3, 13.20, 12, 3, 60, 'Nov S2: Afundo +10%'),
+(1090, 28, 37, 4, 14.00,  8, 1, 90, 'Nov S2: Abdominal +10%'),
 
-(1091,29, 38, 1, 55.00,  8, 4, 90, 'Nov S2: Supino Pesado +10%'),
-(1092,29, 39, 2, 19.80, 10, 4, 60, 'Nov S2: Crucifixo +10%'),
-(1093,29, 40, 3, 13.20, 12, 3, 60, 'Nov S2: Afundo +10%'),
-(1094,29, 41, 4, 10.00,  8, 1, 90, 'Nov S2: Abdominal +10%'),
+(1091, 29, 38, 1, 55.00,  8, 4, 90, 'Ir até o final da amplitude'),
+(1092, 29, 39, 2, 19.80, 10, 4, 60, 'Nov S2: Crucifixo +10%'),
+(1093, 29, 40, 3, 13.20, 12, 3, 60, 'Nov S2: Afundo +10%'),
+(1094, 29, 41, 4, 10.00,  8, 1, 90, 'Nov S2: Abdominal +10%'),
 
-(1095,30, 42, 1, 55.00,  8, 4, 90, 'Nov S2: Supino Pesado +10%'),
-(1096,30, 43, 2, 19.80, 10, 4, 60, 'Nov S2: Crucifixo +10%'),
-(1097,30, 44, 3, 13.20, 12, 3, 60, 'Nov S2: Afundo +10%'),
-(1098,30, 45, 4, 11.00,  8, 1, 90, 'Nov S2: Abdominal +10%'),
+(1095, 30, 42, 1, 55.00,  8, 4, 90, 'Ir até o final da amplitude'),
+(1096, 30, 43, 2, 19.80, 10, 4, 60, 'Nov S2: Crucifixo +10%'),
+(1097, 30, 44, 3, 13.20, 12, 3, 60, 'Nov S2: Afundo +10%'),
+(1098, 30, 45, 4, 11.00,  8, 1, 90, 'Nov S2: Abdominal +10%'),
 
-(1099,31, 46, 1, 55.00,  8, 4, 90, 'Nov S2: Supino Pesado +10%'),
-(1100,31, 47, 2, 19.80, 10, 4, 60, 'Nov S2: Crucifixo +10%'),
-(1101,31, 48, 3, 13.20, 12, 3, 60, 'Nov S2: Afundo +10%'),
-(1102,31, 49, 4, 11.50,  8, 1, 90, 'Nov S2: Abdominal +10%');
+(1099, 31, 46, 1, 55.00,  8, 4, 90, 'Ir até o final da amplitude'),
+(1100, 31, 47, 2, 19.80, 10, 4, 60, 'Nov S2: Crucifixo +10%'),
+(1101, 31, 48, 3, 13.20, 12, 3, 60, 'Nov S2: Afundo +10%'),
+(1102, 31, 49, 4, 11.50,  8, 1, 90, 'Nov S2: Abdominal +10%');
 
 -- EXECUCOES_EXERCICIOS (CARLA)
 -- Só para as aulas realizadas até 19/10 (aulas 9..19).
 -- Cada execução referencia o id do registro inserido em aulas_treinos_exercicios (1001..1044).
--- EXECUCOES_EXERCICIOS (CARLA)
--- Só para as aulas realizadas até 19/10 (aulas 9..19).
--- Cada execução referencia o id do registro inserido em aulas_treinos_exercicios (1001..1044).
-
 
 INSERT INTO vitalis.execucoes_exercicios
 (id, aulas_treinos_exercicios_id, carga_executada, repeticoes_executadas, series_executadas, descanso_executado, finalizado) VALUES
@@ -200,155 +196,154 @@ INSERT INTO vitalis.execucoes_exercicios
 (2001, 1001, 50.00,  8, 4, 90, TRUE),
 (2002, 1002, 18.00, 10, 4, 60, TRUE),
 (2003, 1003, 12.00, 12, 3, 60, TRUE),
-(2004, 1004,  10.00, 12, 3, 45, TRUE),
+(2004, 1004, 10.00, 12, 3, 45, TRUE),
 
 -- Aula 10
 (2005, 1005, 50.00,  8, 4, 90, TRUE),
 (2006, 1006, 18.00, 10, 4, 60, TRUE),
 (2007, 1007, 12.00, 12, 3, 60, TRUE),
-(2008, 1008,  12.00, 12, 3, 60, TRUE),
+(2008, 1008, 12.00, 12, 3, 60, TRUE),
 
 -- Aula 11
 (2009, 1009, 50.00,  8, 4, 90, TRUE),
 (2010, 1010, 18.00, 10, 4, 60, TRUE),
 (2011, 1011, 12.00, 12, 3, 60, TRUE),
-(2012, 1012,  10.00, 12, 3, 45, TRUE),
+(2012, 1012, 10.00, 12, 3, 45, TRUE),
 
 -- Aula 12
 (2013, 1013, 50.00,  8, 4, 90, TRUE),
 (2014, 1014, 18.00, 10, 4, 60, TRUE),
 (2015, 1015, 12.00, 12, 3, 60, TRUE),
-(2016, 1016,  12.00, 12, 3, 60, TRUE),
+(2016, 1016, 12.00, 12, 3, 60, TRUE),
 (2017, 1017, 55.00,  8, 4, 90, TRUE),
 
 -- Aula 13 (semana2 +10%)
 (2018, 1018, 19.80, 10, 4, 60, TRUE),
 (2019, 1019, 13.20, 12, 3, 60, TRUE),
-(2020, 1020,  12.50, 10, 1,  0, TRUE),
+(2020, 1020, 12.50, 10, 3, 90, TRUE),
 (2021, 1021, 55.00,  8, 4, 90, TRUE),
 (2022, 1022, 19.80, 10, 4, 60, TRUE),
 
 -- Aula 14
 (2023, 1023, 13.20, 12, 3, 60, TRUE),
-(2024, 1024, 12.50, 10, 1,  0, TRUE),
+(2024, 1024, 12.50, 10, 3, 90, TRUE),
 (2025, 1025, 55.00,  8, 4, 90, TRUE),
 (2026, 1026, 19.80, 10, 4, 60, TRUE),
 (2027, 1027, 13.20, 12, 3, 60, TRUE),
 
 -- Aula 15
-(2028, 1028,  7.50, 10, 1,  0, TRUE),
+(2028, 1028,  7.50, 10, 3, 90, TRUE),
 (2029, 1029, 55.00,  8, 4, 90, TRUE),
 (2030, 1030, 19.80, 10, 4, 60, TRUE),
 (2031, 1031, 13.20, 12, 3, 60, TRUE),
-(2032, 1032,  7.50, 10, 1,  0, TRUE),
+(2032, 1032,  7.50, 10, 3, 90, TRUE),
 (2033, 1033, 60.00,  8, 4, 90, TRUE),
 
 -- Aula 16
 (2034, 1034, 21.60,10, 4, 60, TRUE),
 (2035, 1035, 14.40,12, 3, 60, TRUE),
-(2036, 1036, 7.50, 12,1,  0, TRUE),
+(2036, 1036, 7.50, 12, 1, 90, TRUE),
 (2037, 1037, 60.00, 8, 4, 90, TRUE),
 
 -- Aula 17 (semana3 +20%)
-(2038, 1038, 21.60,10, 4, 60, TRUE),
-(2039, 1039, 14.40,12, 3, 60, TRUE),
-(2040, 1040, 7.50, 12,1,  0, TRUE),
-(2041, 1041, 60.00, 8, 4, 90, TRUE),
+(2038, 1038, 21.60, 10, 4, 60, TRUE),
+(2039, 1039, 14.40, 12, 3, 60, TRUE),
+(2040, 1040,  7.50, 12, 1, 90, TRUE),
+(2041, 1041, 60.00,  8, 4, 90, TRUE),
 
 -- Aula 18
-(2042, 1042, 21.60,10, 4, 60, TRUE),
-(2043, 1043, 14.40,12, 3, 60, TRUE),
-(2044, 1044, 14.40,12, 3, 60, TRUE),
-(2045, 1045, 7.50, 12,1,  0, TRUE),
+(2042, 1042, 21.60, 10, 4, 60, TRUE),
+(2043, 1043, 14.40, 12, 3, 60, TRUE),
+(2044, 1044, 14.40, 12, 3, 60, TRUE),
+(2045, 1045,  7.50, 12, 1, 90, TRUE),
 
 -- Aula 19
-(2046, 1046, 21.60,10, 4, 60, TRUE),
-(2047, 1047, 14.40,12, 3, 60, TRUE),
-(2048, 1048, 14.40,12, 3, 60, TRUE),
-(2049, 1049, 60.00, 12,1, 60, TRUE),
+(2046, 1046, 21.60, 10, 4, 60, TRUE),
+(2047, 1047, 14.40, 12, 3, 60, TRUE),
+(2048, 1048, 14.40, 12, 3, 60, TRUE),
+(2049, 1049, 60.00, 12, 1, 60, TRUE),
 
 -- Aula 20
-(2050, 1050, 65.00,10, 4, 60, TRUE),
-(2051, 1051, 23.40,12, 3, 60, TRUE),
-(2052, 1052, 15.60,12, 3, 60, TRUE),
-(2053, 1053, 7.50, 12,1,  0, TRUE),
+(2050, 1050, 65.00, 10, 4, 60, TRUE),
+(2051, 1051, 23.40, 12, 3, 60, TRUE),
+(2052, 1052, 15.60, 12, 3, 60, TRUE),
+(2053, 1053,  7.50, 12, 1, 90, TRUE),
 
 -- Aula 21
-(2054, 1054, 65.00,10, 4, 60, TRUE),
-(2055, 1055, 23.40,12, 3, 60, TRUE),
-(2056, 1056, 15.60,12, 3, 60, TRUE),
-(2057, 1057, 7.50, 12,1,  0, TRUE),
+(2054, 1054, 65.00, 10, 4, 60, TRUE),
+(2055, 1055, 23.40, 12, 3, 60, TRUE),
+(2056, 1056, 15.60, 12, 3, 60, TRUE),
+(2057, 1057,  7.50, 12, 1, 90, TRUE),
 
 -- Aula 22
-(2058, 1058, 65.00,10, 4, 60, TRUE),
-(2059, 1059, 23.40,12, 3, 60, TRUE),
-(2060, 1060, 15.60,12, 3, 60, TRUE),
-(2061, 1061, 7.50, 12,1,  0, TRUE),
+(2058, 1058, 65.00, 10, 4, 60, TRUE),
+(2059, 1059, 23.40, 12, 3, 60, TRUE),
+(2060, 1060, 15.60, 12, 3, 60, TRUE),
+(2061, 1061,  7.50, 12, 1, 90, TRUE),
 
 -- Aula 23
-(2062, 1062, 70.00,10, 4, 60, TRUE),
-(2063, 1063, 25.20,12, 3, 60, TRUE),
-(2064, 1064, 16.80,12, 3, 60, TRUE),
-(2065, 1065, 7.50, 12,1,  0, TRUE),
+(2062, 1062, 70.00, 10, 4, 60, TRUE),
+(2063, 1063, 25.20, 12, 3, 60, TRUE),
+(2064, 1064, 16.80, 12, 3, 60, TRUE),
+(2065, 1065,  7.50, 12, 1, 90, TRUE),
 
 -- Aula 24
-(2066, 1066, 70.00,10, 4, 60, TRUE),
-(2067, 1067, 25.20,12, 3, 60, TRUE),
-(2068, 1068, 16.80,12, 3, 60, TRUE),
-(2069, 1069, 7.50, 30,1,  0, TRUE),
-(2070, 1070, 70.00,10, 4, 60, TRUE),
+(2066, 1066, 70.00, 10, 4, 60, TRUE),
+(2067, 1067, 25.20, 12, 3, 60, TRUE),
+(2068, 1068, 16.80, 12, 3, 60, TRUE),
+(2069, 1069,  7.50, 30, 1, 90, TRUE),
+(2070, 1070, 70.00, 10, 4, 60, TRUE),
 
 -- Aula 25
-(2071, 1071, 25.20,12, 3, 60, TRUE),
-(2072, 1072, 16.80,12, 3, 60, TRUE),
-(2073, 1073, 7.50, 30,1,  0, TRUE),
-(2074, 1074, 75.00,10, 4, 60, TRUE),
-(2075, 1075, 27.00,12, 3, 60, TRUE),
+(2071, 1071, 25.20, 12, 3, 60, TRUE),
+(2072, 1072, 16.80, 12, 3, 60, TRUE),
+(2073, 1073,  7.50, 30, 1, 90, TRUE),
+(2074, 1074, 75.00, 10, 4, 60, TRUE),
+(2075, 1075, 27.00, 12, 3, 60, TRUE),
 
 -- Aula 26
-(2076, 1076, 18.00,12, 3, 60, TRUE),
-(2077, 1077, 7.50, 30,1,  0, TRUE),
-(2078, 1078, 75.00,10, 4, 60, TRUE),
-(2079, 1079, 27.00,12, 3, 60, TRUE),
-(2080, 1080, 18.00,12, 3, 60, TRUE),
+(2076, 1076, 18.00, 12, 3, 60, TRUE),
+(2077, 1077,  7.50, 30, 1, 90, TRUE),
+(2078, 1078, 75.00, 10, 4, 60, TRUE),
+(2079, 1079, 27.00, 12, 3, 60, TRUE),
+(2080, 1080, 18.00, 12, 3, 60, TRUE),
 
 -- Aula 27
-(2081, 1081, 7.50, 30,1,  0, TRUE),
-(2082, 1082, 80.00,10, 4, 60, TRUE),
-(2083, 1083, 28.80,12, 3, 60, TRUE),
-(2084, 1084, 19.20,12, 3, 60, TRUE),
-(2085, 1085, 7.50, 30,1,  0, TRUE),
-(2086, 1086, 80.00,10, 4, 60, TRUE),
+(2081, 1081,  7.50, 30, 1, 90, TRUE),
+(2082, 1082, 80.00, 10, 4, 60, TRUE),
+(2083, 1083, 28.80, 12, 3, 60, TRUE),
+(2084, 1084, 19.20, 12, 3, 60, TRUE),
+(2085, 1085,  7.50, 30, 1, 90, TRUE),
+(2086, 1086, 80.00, 10, 4, 60, TRUE),
 
 -- Aula 28
-(2087, 1087, 28.80,12, 3, 60, TRUE),
-(2088, 1088, 19.20,12, 3, 60, TRUE),
-(2089, 1089, 7.50, 30,1,  0, TRUE),
-(2090, 1090, 85.00,10, 4, 60, TRUE),
+(2087, 1087, 28.80, 12, 3, 60, TRUE),
+(2088, 1088, 19.20, 12, 3, 60, TRUE),
+(2089, 1089,  7.50, 30, 1, 90, TRUE),
+(2090, 1090, 85.00, 10, 4, 60, TRUE),
 
 -- Aula 29
-(2091, 1091, 30.60,12, 3, 60, TRUE),
-(2092, 1092, 20.40,12, 3, 60, TRUE),
-(2093, 1093, 7.50, 30,1,  0, TRUE),
-(2094, 1094, 85.00,10, 4, 60, TRUE),
+(2091, 1091, 30.60, 12, 3, 60, TRUE),
+(2092, 1092, 20.40, 12, 3, 60, TRUE),
+(2093, 1093,  7.50, 30, 1, 90, TRUE),
+(2094, 1094, 85.00, 10, 4, 60, TRUE),
 
 -- Aula 30
-(2095, 1095, 30.60,12, 3, 60, TRUE),
-(2096, 1096, 20.40,12, 3, 60, TRUE),
-(2097, 1097, 7.50, 30,1,  0, TRUE),
-(2098, 1098, 90.00,10, 4, 60, TRUE),
+(2095, 1095, 30.60, 12, 3, 60, TRUE),
+(2096, 1096, 20.40, 12, 3, 60, TRUE),
+(2097, 1097,  7.50, 30, 1, 90, TRUE),
+(2098, 1098, 90.00, 10, 4, 60, TRUE),
 
 -- Aula 31
-(2099, 1099, 32.40,12, 3, 60, TRUE),
-(2100, 1100, 21.60,12, 3, 60, TRUE),
-(2101, 1101, 7.50, 30,1,  0, TRUE),
-(2102, 1102, 90.00,10, 4, 60, TRUE);
+(2099, 1099, 32.40, 12, 3, 60, TRUE),
+(2100, 1100, 21.60, 12, 3, 60, TRUE),
+(2101, 1101,  7.50, 30, 1, 90, TRUE),
+(2102, 1102, 90.00, 10, 4, 60, TRUE);
 
 -- FIM DOS DADOS DE OUTUBRO E NOVEMBRO PARA A CARLA
 -- ========================================
 -- ========================================
 
-/* COMENTANOO PQ TEM MASSA DE DADOS ERRADOS
 -- ========================================
 -- AULAS do Alex Nagano
 -- ========================================
@@ -410,124 +405,135 @@ INSERT INTO vitalis.aulas (planos_contratados_id, data_horario_inicio, data_hora
 INSERT INTO vitalis.aulas_treinos_exercicios
 (id, aulas_id, treinos_exercicios_id, ordem, carga, repeticoes, series, descanso, observacoes_personalizadas) VALUES
 -- Semana 1 (Aulas 32-35) - base
-(3001, 32,  9, 1, 50.00, 8, 4, 90, 'Out S1: Supino Pesado Base'),
-(3002, 32, 10, 2, 18.00,10, 4, 60, 'Out S1: Crucifixo Base'),
-(3003, 32, 30, 3, 12.00,12, 3, 60, 'Out S1: Afundo Base'),
-(3004, 32, 46, 4,  0.00,15, 1,  0, 'Out S1: Abdominal Base'), -- note: earlier for Alex you had 15 reps; keeping that
+(3001, 32, 1, 1, 50.00,  8, 4, 90, 'Manter core estável durante todo exercício'),
+(3002, 32, 2, 2, 18.00, 10, 4, 60, 'Ir até o final da amplitude'),
+(3003, 32, 3, 3, 12.00, 12, 3, 60, 'Controlar velocidade do movimento'),
+(3004, 32, 4, 4, 10.00, 12, 3, 45, 'Manter postura durante o exercício'),
 
-(3005, 33,  9, 1, 50.00, 8, 4, 90, 'Out S1: Supino Pesado Base'),
-(3006, 33, 10, 2, 18.00,10, 4, 60, 'Out S1: Crucifixo Base'),
-(3007, 33, 30, 3, 12.00,12, 3, 60, 'Out S1: Afundo Base'),
-(3008, 33, 46, 4,  0.00,15, 1,  0, 'Out S1: Abdominal Base'),
+(3005, 33, 5, 1, 50.00,  8, 4, 90, 'Manter core estável durante todo exercício'),
+(3006, 33, 6, 2, 18.00, 10, 4, 60, 'Ir até o final da amplitude'),
+(3007, 33, 7, 3, 12.00, 12, 3, 60, 'Controlar velocidade do movimento'),
+(3008, 33, 8, 4, 12.00, 12, 3, 60, 'Foco na contração muscular'),
 
-(3009, 34,  9, 1, 50.00, 8, 4, 90, 'Out S1: Supino Pesado Base'),
-(3010, 34, 10, 2, 18.00,10, 4, 60, 'Out S1: Crucifixo Base'),
-(3011, 34, 30, 3, 12.00,12, 3, 60, 'Out S1: Afundo Base'),
-(3012, 34, 46, 4,  0.00,15, 1,  0, 'Out S1: Abdominal Base'),
+(3009, 34,  9, 1, 50.00,  8, 4, 90, 'Manter core estável durante todo exercício'),
+(3010, 34, 10, 2, 18.00, 10, 4, 60, 'Ir até o final da amplitude'),
+(3011, 34, 11, 3, 12.00, 12, 3, 60, 'Controlar velocidade do movimento'),
+(3012, 34, 12, 4, 10.00, 12, 3, 45, 'Controlar respiração durante o movimento'),
 
-(3013, 35,  9, 1, 50.00, 8, 4, 90, 'Out S1: Supino Pesado Base'),
-(3014, 35, 10, 2, 18.00,10, 4, 60, 'Out S1: Crucifixo Base'),
-(3015, 35, 30, 3, 12.00,12, 3, 60, 'Out S1: Afundo Base'),
-(3016, 35, 46, 4,  0.00,15, 1,  0, 'Out S1: Abdominal Base'),
+(3013, 35, 13, 1, 50.00,  8, 4, 90, 'Manter core estável durante todo exercício'),
+(3014, 35, 14, 2, 18.00, 10, 4, 60, 'Ir até o final da amplitude'),
+(3015, 35, 15, 3, 12.00, 12, 3, 60, 'Controlar velocidade do movimento'),
+(3016, 35, 16, 4, 12.00, 12, 3, 60, 'Executar movimento com amplitude adequada'),
+(3017, 35, 17, 5, 12.00, 12, 3, 45, 'Manter ritmo constante na execução'),
 
--- Semana 2 (36-39) +10%
-(3017, 36,  9, 1, 55.00, 8, 4, 90, 'Out S2: Supino Pesado +10%'),
-(3018, 36, 10, 2, 19.80,10, 4, 60, 'Out S2: Crucifixo +10%'),
-(3019, 36, 30, 3, 13.20,12, 3, 60, 'Out S2: Afundo +10%'),
-(3020, 36, 46, 4,  0.00,15, 1,  0, 'Out S2: Abdominal +10%'),
+-- Semana 2 (Aulas 36-39) - +10%
+(3018, 36, 18, 1, 55.00,  8, 4, 90, 'Manter core estável durante todo exercício'),
+(3019, 36, 19, 2, 19.80, 10, 4, 60, 'Focar na contração durante fase concêntrica'),
+(3020, 36, 20, 3, 13.20, 12, 3, 60, 'Alinhar joelho com ponta do pé'),
+(3021, 36, 21, 4, 14.50, 10, 1, 90, 'Controlar velocidade do movimento'),
+(3022, 36, 22, 5, 12.50, 10, 1, 90, 'Manter ritmo constante nas repetições'),
 
-(3021, 37,  9, 1, 55.00, 8, 4, 90, 'Out S2: Supino Pesado +10%'),
-(3022, 37, 10, 2, 19.80,10, 4, 60, 'Out S2: Crucifixo +10%'),
-(3023, 37, 30, 3, 13.20,12, 3, 60, 'Out S2: Afundo +10%'),
-(3024, 37, 46, 4,  0.00,15, 1,  0, 'Out S2: Abdominal +10%'),
+(3023, 37, 23, 1, 55.00,  8, 4, 90, 'Pressionar escápulas contra o banco'),
+(3024, 37, 24, 2, 19.80, 10, 4, 60, 'Manter cotovelos levemente flexionados'),
+(3025, 37, 25, 3, 13.20, 12, 3, 60, 'Focar no equilíbrio durante execução'),
+(3026, 37, 26, 4, 14.75,  8, 1, 90, 'Respirar de forma controlada'),
+(3027, 37, 27, 5, 14.50, 10, 1, 90, 'Evitar compensações na lombar'),
 
-(3025, 38,  9, 1, 55.00, 8, 4, 90, 'Out S2: Supino Pesado +10%'),
-(3026, 38, 10, 2, 19.80,10, 4, 60, 'Out S2: Crucifixo +10%'),
-(3027, 38, 30, 3, 13.20,12, 3, 60, 'Out S2: Afundo +10%'),
-(3028, 38, 46, 4,  0.00,15, 1,  0, 'Out S2: Abdominal +10%'),
+(3029, 38, 29, 2, 19.80, 10, 4, 60, 'Concentrar na contração peitoral'),
+(3028, 38, 28, 1, 55.00,  8, 4, 90, 'Manter postura neutra da coluna'),
+(3030, 38, 30, 3, 13.20, 12, 3, 60, 'Controlar fase excêntrica do movimento'),
+(3031, 38, 31, 4, 14.50, 10, 1, 90, 'Ativar musculatura do core'),
+(3032, 38, 32, 5, 18.50, 12, 1, 90, 'Manter quadril estável durante série'),
+(3033, 38, 33, 6,  4.50, 10, 1, 90, 'Respiração sincronizada com movimento'),
 
-(3029, 39,  9, 1, 55.00, 8, 4, 90, 'Out S2: Supino Pesado +10%'),
-(3030, 39, 10, 2, 19.80,10, 4, 60, 'Out S2: Crucifixo +10%'),
-(3031, 39, 30, 3, 13.20,12, 3, 60, 'Out S2: Afundo +10%'),
-(3032, 39, 46, 4,  0.00,15, 1,  0, 'Out S2: Abdominal +10%'),
+(3034, 39, 34, 1, 55.00,  8, 4, 90, 'Foco na amplitude completa do movimento'),
+(3035, 39, 35, 2, 19.80, 10, 4, 60, 'Manter tensão constante no músculo'),
+(3036, 39, 36, 3, 13.20, 12, 3, 60, 'Estabilizar joelho durante execução'),
+(3037, 39, 37, 4, 14.50, 10, 1, 90, 'Contrair abdômen durante todo exercício'),
 
--- Semana 3 (40-42) +20%
-(3033, 40,  9, 1, 60.00, 8, 4, 90, 'Out S3: Supino Pesado +20%'),
-(3034, 40, 10, 2, 21.60,10, 4, 60, 'Out S3: Crucifixo +20%'),
-(3035, 40, 30, 3, 14.40,12, 3, 60, 'Out S3: Afundo +20%'),
-(3036, 40, 46, 4,  0.00,15, 1,  0, 'Out S3: Abdominal +20%'),
+-- Semana 3 (Aulas 40-42) - +20%
+(3038, 40, 38, 1, 60.00,  8, 4, 90, 'Manter cotovelos alinhados ao tronco'),
+(3039, 40, 39, 2, 21.60, 10, 4, 60, 'Executar movimento sem impulso'),
+(3040, 40, 40, 3, 14.40, 12, 3, 60, 'Manter joelhos estáveis na execução'),
+(3041, 40, 41, 4, 10.00, 12, 3, 60, 'Manter controle na execução do movimento'),
 
-(3037, 41,  9, 1, 60.00, 8, 4, 90, 'Out S3: Supino Pesado +20%'),
-(3038, 41, 10, 2, 21.60,10, 4, 60, 'Out S3: Crucifixo +20%'),
-(3039, 41, 30, 3, 14.40,12, 3, 60, 'Out S3: Afundo +20%'),
-(3040, 41, 46, 4,  0.00,15, 1,  0, 'Out S3: Abdominal +20%'),
+(3042, 41, 42, 1, 60.00,  8, 4, 90, 'Estabilizar ombros durante exercício'),
+(3043, 41, 43, 2, 21.60, 10, 4, 60, 'Focar na fase excêntrica do movimento'),
+(3044, 41, 44, 3, 14.40, 12, 3, 60, 'Manter alinhamento do quadril'),
+(3045, 41, 45, 4, 12.00, 12, 3, 45, 'Foco na técnica do exercício'),
 
-(3041, 42,  9, 1, 60.00, 8, 4, 90, 'Out S3: Supino Pesado +20%'),
-(3042, 42, 10, 2, 21.60,10, 4, 60, 'Out S3: Crucifixo +20%'),
-(3043, 42, 30, 3, 14.40,12, 3, 60, 'Out S3: Afundo +20%'),
-(3044, 42, 46, 4,  0.00,15, 1,  0, 'Out S3: Abdominal +20%'),
+(3046, 42, 46, 1, 60.00,  8, 4, 90, 'Contrair peitoral no ponto máximo'),
+(3047, 42, 47, 2, 21.60, 10, 4, 60, 'Manter braços alinhados ao executar'),
+(3048, 42, 48, 3, 14.40, 12, 3, 60, 'Distribuir peso igualmente nas pernas'),
+(3049, 42, 49, 4, 10.00, 12, 3, 60, 'Respiração controlada durante as séries'),
 
--- Semana 4 AGENDADA (43-46) +30%
-(3045, 43,  9, 1, 65.00, 8, 4, 90, 'Out S4: Supino Pesado +30%'),
-(3046, 43, 10, 2, 23.40,10, 4, 60, 'Out S4: Crucifixo +30%'),
-(3047, 43, 30, 3, 15.60,12, 3, 60, 'Out S4: Afundo +30%'),
-(3048, 43, 46, 4,  0.00,15, 1,  0, 'Out S4: Abdominal +30%'),
+-- Semana 4 AGENDADA (Aulas 43-46) - +30%
+(3050, 43, 50, 1, 65.00,  8, 4, 90, 'Manter cotovelos alinhados durante o movimento'),
+(3051, 43, 51, 2, 23.40, 10, 4, 60, 'Focar na contração do peitoral'),
+(3052, 43, 52, 3, 15.60, 12, 3, 60, 'Atenção ao alinhamento do joelho'),
+(3053, 43, 53, 4,  6.50,  6, 1, 90, 'Controlar respiração na execução'),
 
-(3049, 44,  9, 1, 65.00, 8, 4, 90, 'Out S4: Supino Pesado +30%'),
-(3050, 44, 10, 2, 23.40,10, 4, 60, 'Out S4: Crucifixo +30%'),
-(3051, 44, 30, 3, 15.60,12, 3, 60, 'Out S4: Afundo +30%'),
-(3052, 44, 46, 4,  0.00,15, 1,  0, 'Out S4: Abdominal +30%'),
+(3054, 44, 1, 1, 65.00,  8, 4, 90, 'Evitar arquear as costas durante o exercício'),
+(3055, 44, 2, 2, 23.40, 10, 4, 60, 'Movimento controlado e sem momentum'),
+(3056, 44, 3, 3, 15.60, 12, 3, 60, 'Manter tronco estável durante execução'),
+(3057, 44, 4, 4,  6.50,  6, 1, 90, 'Foco na região abdominal durante contração'),
 
-(3053, 45,  9, 1, 65.00, 8, 4, 90, 'Out S4: Supino Pesado +30%'),
-(3054, 45, 10, 2, 23.40,10, 4, 60, 'Out S4: Crucifixo +30%'),
-(3055, 45, 30, 3, 15.60,12, 3, 60, 'Out S4: Afundo +30%'),
-(3056, 45, 46, 4,  0.00,15, 1,  0, 'Out S4: Abdominal +30%'),
+(3058, 45, 5, 1, 65.00,  8, 4, 90, 'Respiração sincronizada com o movimento'),
+(3059, 45, 6, 2, 23.40, 10, 4, 60, 'Amplitude completa do movimento'),
+(3060, 45, 7, 3, 15.60, 12, 3, 60, 'Manter quadril alinhado durante exercício'),
+(3061, 45, 8, 4,  6.50,  6, 1, 90, 'Contrair abdômen durante todo movimento'),
 
-(3057, 46,  9, 1, 65.00, 8, 4, 90, 'Out S4: Supino Pesado +30%'),
-(3058, 46, 10, 2, 23.40,10, 4, 60, 'Out S4: Crucifixo +30%'),
-(3059, 46, 30, 3, 15.60,12, 3, 60, 'Out S4: Afundo +30%'),
-(3060, 46, 46, 4,  0.00,15, 1,  0, 'Out S4: Abdominal +30%'),
+(3062, 46,  9, 1, 65.00,  8, 4, 90, 'Pressionar escápulas contra o banco'),
+(3063, 46, 10, 2, 23.40, 10, 4, 60, 'Manter tensão constante no peitoral'),
+(3064, 46, 11, 3, 15.60, 12, 3, 60, 'Descer até 90 graus no joelho'),
+(3065, 46, 12, 4,  6.50,  6, 1, 90, 'Evitar elevação do quadril'),
 
--- Novembro (Aulas 47-54) - S1 base (47-50), S2 +10% (51-54)
-(3061, 47,  9, 1, 50.00, 8, 4, 90, 'Nov S1: Supino Pesado Base'),
-(3062, 47, 10, 2, 18.00,10, 4, 60, 'Nov S1: Crucifixo Base'),
-(3063, 47, 30, 3, 12.00,12, 3, 60, 'Nov S1: Afundo Base'),
-(3064, 47, 46, 4,  0.00,15, 1,  0, 'Nov S1: Abdominal Base'),
+-- Novembro (Aulas 47-50)
+(3066, 47, 13, 1, 50.00,  8, 4, 90, 'Melhorar a postura ao executar o exercício'),
+(3067, 47, 14, 2, 18.00, 10, 4, 60, 'Executar movimento controlado'),
+(3068, 47, 15, 3, 12.00, 12, 3, 60, 'Treinar com foco na técnica correta'),
+(3069, 47, 16, 4, 12.00, 12, 3, 45, 'Manter alinhamento postural'),
+(3070, 47, 17, 5, 10.50, 12, 1, 90, 'Executar movimento controlado'),
 
-(3065, 48,  9, 1, 50.00, 8, 4, 90, 'Nov S1: Supino Pesado Base'),
-(3066, 48, 10, 2, 18.00,10, 4, 60, 'Nov S1: Crucifixo Base'),
-(3067, 48, 30, 3, 12.00,12, 3, 60, 'Nov S1: Afundo Base'),
-(3068, 48, 46, 4,  0.00,15, 1,  0, 'Nov S1: Abdominal Base'),
+(3071, 48, 18, 1, 50.00,  8, 4, 90, 'Melhorar a postura ao executar o exercício'),
+(3072, 48, 19, 2, 18.00, 10, 4, 60, 'Executar movimento controlado'),
+(3073, 48, 20, 3, 12.00, 12, 3, 60, 'Treinar com foco na técnica correta'),
+(3074, 48, 21, 4, 10.00, 12, 3, 60, 'Executar movimento controlado'),
+(3075, 48, 22, 5, 10.50, 12, 1, 90, 'Manter ritmo constante na execução'),
 
-(3069, 49,  9, 1, 50.00, 8, 4, 90, 'Nov S1: Supino Pesado Base'),
-(3070, 49, 10, 2, 18.00,10, 4, 60, 'Nov S1: Crucifixo Base'),
-(3071, 49, 30, 3, 12.00,12, 3, 60, 'Nov S1: Afundo Base'),
-(3072, 49, 46, 4,  0.00,15, 1,  0, 'Nov S1: Abdominal Base'),
+(3076, 49, 23, 1, 50.00,  8, 4, 90, 'Melhorar a postura ao executar o exercício'),
+(3077, 49, 24, 2, 18.00, 10, 4, 60, 'Executar movimento controlado'),
+(3078, 49, 25, 3, 12.00, 12, 3, 60, 'Treinar com foco na técnica correta'),
+(3079, 49, 26, 4, 10.50, 12, 1, 90, 'Manter ritmo constante na execução'),
+(3080, 49, 27, 5, 10.50, 12, 1, 90, 'Manter ritmo constante na execução'),
 
-(3073, 50,  9, 1, 50.00, 8, 4, 90, 'Nov S1: Supino Pesado Base'),
-(3074, 50, 10, 2, 18.00,10, 4, 60, 'Nov S1: Crucifixo Base'),
-(3075, 50, 30, 3, 12.00,12, 3, 60, 'Nov S1: Afundo Base'),
-(3076, 50, 46, 4,  0.00,15, 1,  0, 'Nov S1: Abdominal Base'),
+(3081, 50, 28, 1, 50.00,  8, 4, 90, 'Melhorar a postura ao executar o exercício'),
+(3082, 50, 29, 2, 18.00, 10, 4, 60, 'Executar movimento controlado'),
+(3083, 50, 30, 3, 12.00, 12, 3, 60, 'Treinar com foco na técnica correta'),
+(3084, 50, 31, 4, 10.50, 12, 1, 90, 'Manter ritmo constante na execução'),
+(3085, 50, 32, 4, 10.50, 12, 1, 90, 'Melhorar a postura ao executar o exercício'),
+(3086, 50, 33, 4, 10.50, 12, 1, 90, 'Aumentar a respiração durante o exercício'),
 
-(3077, 51,  9, 1, 55.00, 8, 4, 90, 'Nov S2: Supino Pesado +10%'),
-(3078, 51, 10, 2, 19.80,10, 4, 60, 'Nov S2: Crucifixo +10%'),
-(3079, 51, 30, 3, 13.20,12, 3, 60, 'Nov S2: Afundo +10%'),
-(3080, 51, 46, 4,  0.00,15, 1,  0, 'Nov S2: Abdominal +10%'),
+-- Semana 2 de Novembro (+10%) (51-54)
+(3087, 51, 34, 1, 55.00,  8, 4, 90, 'Melhorar a postura ao executar o exercício'),
+(3088, 51, 35, 2, 19.80, 10, 4, 60, 'Manter ritmo constante na execução'),
+(3089, 51, 36, 3, 13.20, 12, 3, 60, 'Ir até a falha muscular controlada'),
+(3090, 51, 37, 4, 14.00,  8, 1, 90, 'Executar movimento controlado'),
 
-(3081, 52,  9, 1, 55.00, 8, 4, 90, 'Nov S2: Supino Pesado +10%'),
-(3082, 52, 10, 2, 19.80,10, 4, 60, 'Nov S2: Crucifixo +10%'),
-(3083, 52, 30, 3, 13.20,12, 3, 60, 'Nov S2: Afundo +10%'),
-(3084, 52, 46, 4,  0.00,15, 1,  0, 'Nov S2: Abdominal +10%'),
+(3091, 52, 38, 1, 55.00,  8, 4, 90, 'Melhorar a postura ao executar o exercício'),
+(3092, 52, 39, 2, 19.80, 10, 4, 60, 'Manter ritmo constante na execução'),
+(3093, 52, 40, 3, 13.20, 12, 3, 60, 'Ir até a falha muscular controlada'),
+(3094, 52, 41, 4, 10.00,  8, 1, 90, 'Executar movimento controlado'),
 
-(3085, 53,  9, 1, 55.00, 8, 4, 90, 'Nov S2: Supino Pesado +10%'),
-(3086, 53, 10, 2, 19.80,10, 4, 60, 'Nov S2: Crucifixo +10%'),
-(3087, 53, 30, 3, 13.20,12, 3, 60, 'Nov S2: Afundo +10%'),
-(3088, 53, 46, 4,  0.00,15, 1,  0, 'Nov S2: Abdominal +10%'),
+(3095, 53, 42, 1, 55.00,  8, 4, 90, 'Melhorar a postura ao executar o exercício'),
+(3096, 53, 43, 2, 19.80, 10, 4, 60, 'Manter ritmo constante na execução'),
+(3097, 53, 44, 3, 13.20, 12, 3, 60, 'Ir até a falha muscular controlada'),
+(3098, 53, 45, 4, 11.00,  8, 1, 90, 'Executar movimento controlado'),
 
-(3089, 54,  9, 1, 55.00, 8, 4, 90, 'Nov S2: Supino Pesado +10%'),
-(3090, 54, 10, 2, 19.80,10, 4, 60, 'Nov S2: Crucifixo +10%'),
-(3091, 54, 30, 3, 13.20,12, 3, 60, 'Nov S2: Afundo +10%'),
-(3092, 54, 46, 4,  0.00,15, 1,  0, 'Nov S2: Abdominal +10%');
+(3099, 54, 46, 1, 55.00,  8, 4, 90, 'Melhorar a postura ao executar o exercício'),
+(3100, 54, 47, 2, 19.80, 10, 4, 60, 'Manter ritmo constante na execução'),
+(3101, 54, 48, 3, 13.20, 12, 3, 60, 'Esteira final leve'),
+(3102, 54, 49, 4, 11.50,  8, 1, 90, 'Executar movimento controlado');
 
 -- EXECUCOES_EXERCICIOS (ALEX)
 -- Para aulas realizadas até 19/10 (32..42). Referenciando ids 3001..3044
@@ -539,139 +545,146 @@ INSERT INTO vitalis.execucoes_exercicios
 (4003, 3003, 12.00, 12, 3, 60, TRUE),
 (4004, 3004, 08.50, 15, 1, 0, TRUE),
 
+-- ========= até aqui ta certo =========
+
 -- Aula 33
-(4005,3005,50.00,8,4,90,TRUE),
-(4006,3006,18.00,10,4,60,TRUE),
-(4007,3007,12.00,12,3,60,TRUE),
-(4008,3008,08.50,15,1,0,TRUE),
+(4005, 3005, 50.00,  8, 4, 90, TRUE),
+(4006, 3006, 18.00, 10, 4, 60, TRUE),
+(4007, 3007, 12.00, 12, 3, 60, TRUE),
+(4008, 3008, 12.00, 12, 3, 60, TRUE),
 
 -- Aula 34
-(4009,3009,50.00,8,4,90,TRUE),
-(4010,3010,18.00,10,4,60,TRUE),
-(4011,3011,12.00,12,3,60,TRUE),
-(4012,3012,08.50,15,1,0,TRUE),
+(4009, 3009, 50.00,  8, 4, 90, TRUE),
+(4010, 3010, 18.00, 10, 4, 60, TRUE),
+(4011, 3011, 12.00, 12, 3, 60, TRUE),
+(4012, 3012, 10.00, 12, 3, 45, TRUE),
 
 -- Aula 35
-(4013,3013,50.00,8,4,90,TRUE),
-(4014,3014,18.00,10,4,60,TRUE),
-(4015,3015,12.00,12,3,60,TRUE),
-(4016,3016,08.50,15,1,0,TRUE),
+(4013, 3013, 50.00,  8, 4, 90, TRUE),
+(4014, 3014, 18.00, 10, 4, 60, TRUE),
+(4015, 3015, 12.00, 12, 3, 60, TRUE),
+(4016, 3016, 12.00, 12, 3, 60, TRUE),
+(4017, 3017, 55.00,  8, 4, 90, TRUE),
 
 -- Aula 36 (semana2 +10%)
-(4017,3017,55.00,8,4,90,TRUE),
-(4018,3018,19.80,10,4,60,TRUE),
-(4019,3019,13.20,12,3,60,TRUE),
-(4020,3020,08.50,15,1,0,TRUE),
+(4018, 3018, 19.80, 10, 4, 60, TRUE),
+(4019, 3019, 13.20, 12, 3, 60, TRUE),
+(4020, 3020, 12.50, 10, 3, 90, TRUE),
+(4021, 3021, 55.00,  8, 4, 90, TRUE),
+(4022, 3022, 19.80, 10, 4, 60, TRUE),
 
 -- Aula 37
-(4021,3021,55.00,8,4,90,TRUE),
-(4022,3022,19.80,10,4,60,TRUE),
-(4023,3023,13.20,12,3,60,TRUE),
-(4024,3024,08.50,15,1,0,TRUE),
+(4023, 3023, 13.20, 12, 3, 60, TRUE),
+(4024, 3024, 12.50, 10, 3, 90, TRUE),
+(4025, 3025, 55.00,  8, 4, 90, TRUE),
+(4026, 3026, 19.80, 10, 4, 60, TRUE),
+(4027, 3027, 13.20, 12, 3, 60, TRUE),
 
 -- Aula 38
-(4025,3025,55.00,8,4,90,TRUE),
-(4026,3026,19.80,10,4,60,TRUE),
-(4027,3027,13.20,12,3,60,TRUE),
-(4028,3028,08.50,15,1,0,TRUE),
+(4028, 3028,  7.50, 10, 3, 90, TRUE),
+(4029, 3029, 55.00,  8, 4, 90, TRUE),
+(4030, 3030, 19.80, 10, 4, 60, TRUE),
+(4031, 3031, 13.20, 12, 3, 60, TRUE),
+(4032, 3032,  7.50, 10, 3, 90, TRUE),
+(4033, 3033, 60.00,  8, 4, 90, TRUE),
 
 -- Aula 39
-(4029,3029,55.00,8,4,90,TRUE),
-(4030,3030,19.80,10,4,60,TRUE),
-(4031,3031,13.20,12,3,60,TRUE),
-(4032,3032,08.50,15,1,0,TRUE),
+(4034, 3034, 21.60,10, 4, 60, TRUE),
+(4035, 3035, 14.40,12, 3, 60, TRUE),
+(4036, 3036, 7.50, 12, 1, 90, TRUE),
+(4037, 3037, 60.00, 8, 4, 90, TRUE),
 
 -- Aula 40 (semana3 +20%)
-(4033,3033,60.00,8,4,90,TRUE),
-(4034,3034,21.60,10,4,60,TRUE),
-(4035,3035,14.40,12,3,60,TRUE),
-(4036,3036,08.50,15,1,0,TRUE),
+(4038, 3038, 21.60, 10, 4, 60, TRUE),
+(4039, 3039, 14.40, 12, 3, 60, TRUE),
+(4040, 3040,  7.50, 12, 1, 90, TRUE),
+(4041, 3041, 60.00,  8, 4, 90, TRUE),
 
 -- Aula 41
-(4037,3037,60.00,8,4,90,TRUE),
-(4038,3038,21.60,10,4,60,TRUE),
-(4039,3039,14.40,12,3,60,TRUE),
-(4040,3040,08.50,15,1,0,TRUE),
+(4042, 3042, 21.60, 10, 4, 60, TRUE),
+(4043, 3043, 14.40, 12, 3, 60, TRUE),
+(4044, 3044, 14.40, 12, 3, 60, TRUE),
+(4045, 3045,  7.50, 12, 1, 90, TRUE),
 
 -- Aula 42
-(4041,3041,60.00,8,4,90,TRUE),
-(4042,3042,21.60,10,4,60,TRUE),
-(4043,3043,14.40,12,3,60,TRUE),
-(4044,3044,08.50,15,1,0,TRUE);
+(4046, 3046, 21.60, 10, 4, 60, TRUE),
+(4047, 3047, 14.40, 12, 3, 60, TRUE),
+(4048, 3048, 14.40, 12, 3, 60, TRUE),
+(4049, 3049, 60.00, 12, 1, 60, TRUE),
 
--- Execucoes_exercicios para aulas 43..54 (ids 3045..3092)
-INSERT INTO vitalis.execucoes_exercicios
-(id, aulas_treinos_exercicios_id, carga_executada, repeticoes_executadas, series_executadas, descanso_executado, finalizado) VALUES
--- Aula 43 (3045..3048) - S4 +30%
-(4045, 3045, 65.00, 8, 4, 90, FALSE),
-(4046, 3046, 23.40, 10, 4, 60, FALSE),
-(4047, 3047, 15.60, 12, 3, 60, FALSE),
-(4048, 3048, 08.50, 15, 1, 0, FALSE),
+-- Aula 43
+(4050, 3050, 65.00, 10, 4, 60, TRUE),
+(4051, 3051, 23.40, 12, 3, 60, TRUE),
+(4052, 3052, 15.60, 12, 3, 60, TRUE),
+(4053, 3053,  7.50, 12, 1, 90, TRUE),
 
--- Aula 44 (3049..3052)
-(4049, 3049, 65.00, 8, 4, 90, FALSE),
-(4050, 3050, 23.40, 10, 4, 60, FALSE),
-(4051, 3051, 15.60, 12, 3, 60, FALSE),
-(4052, 3052, 08.50, 15, 1, 0, FALSE),
+-- Aula 44
+(3054, 3054, 65.00, 10, 4, 60, TRUE),
+(3055, 3055, 23.40, 12, 3, 60, TRUE),
+(3056, 3056, 15.60, 12, 3, 60, TRUE),
+(3057, 3057,  7.50, 12, 1, 90, TRUE),
 
--- Aula 45 (3053..3056)
-(4053, 3053, 65.00, 8, 4, 90, FALSE),
-(4054, 3054, 23.40, 10, 4, 60, FALSE),
-(4055, 3055, 15.60, 12, 3, 60, FALSE),
-(4056, 3056, 08.50, 15, 1, 0, FALSE),
+-- Aula 45
+(4058, 3058, 65.00, 10, 4, 60, TRUE),
+(4059, 3059, 23.40, 12, 3, 60, TRUE),
+(4060, 3060, 15.60, 12, 3, 60, TRUE),
+(4061, 3061,  7.50, 12, 1, 90, TRUE),
 
--- Aula 46 (3057..3060)
-(4057, 3057, 65.00, 8, 4, 90, FALSE),
-(4058, 3058, 23.40, 10, 4, 60, FALSE),
-(4059, 3059, 15.60, 12, 3, 60, FALSE),
-(4060, 3060, 08.50, 15, 1, 0, FALSE),
+-- Aula 46
+(4062, 3062, 70.00, 10, 4, 60, TRUE),
+(4063, 3063, 25.20, 12, 3, 60, TRUE),
+(4064, 3064, 16.80, 12, 3, 60, TRUE),
+(4065, 3065,  7.50, 12, 1, 90, TRUE),
 
--- Aula 47 (3061..3064) - Nov S1 base
-(4061, 3061, 50.00, 8, 4, 90, FALSE),
-(4062, 3062, 18.00, 10, 4, 60, FALSE),
-(4063, 3063, 12.00, 12, 3, 60, FALSE),
-(4064, 3064, 08.50, 15, 1, 0, FALSE),
+-- Aula 47
+(4066, 3066, 70.00, 10, 4, 60, TRUE),
+(4067, 3067, 25.20, 12, 3, 60, TRUE),
+(4068, 3068, 16.80, 12, 3, 60, TRUE),
+(4069, 3069,  7.50, 30, 1, 90, TRUE),
+(4070, 3070, 70.00, 10, 4, 60, TRUE),
 
--- Aula 48 (3065..3068)
-(4065, 3065, 50.00, 8, 4, 90, FALSE),
-(4066, 3066, 18.00, 10, 4, 60, FALSE),
-(4067, 3067, 12.00, 12, 3, 60, FALSE),
-(4068, 3068, 08.50, 15, 1, 0, FALSE),
+-- Aula 48
+(4071, 3071, 25.20, 12, 3, 60, TRUE),
+(4072, 3072, 16.80, 12, 3, 60, TRUE),
+(4073, 3073,  7.50, 30, 1, 90, TRUE),
+(4074, 3074, 75.00, 10, 4, 60, TRUE),
+(4075, 3075, 27.00, 12, 3, 60, TRUE),
 
--- Aula 49 (3069..3072)
-(4069, 3069, 50.00, 8, 4, 90, FALSE),
-(4070, 3070, 18.00, 10, 4, 60, FALSE),
-(4071, 3071, 12.00, 12, 3, 60, FALSE),
-(4072, 3072, 08.50, 15, 1, 0, FALSE),
+-- Aula 49
+(4076, 3076, 18.00, 12, 3, 60, TRUE),
+(4077, 3077,  7.50, 30, 1, 90, TRUE),
+(4078, 3078, 75.00, 10, 4, 60, TRUE),
+(4079, 3079, 27.00, 12, 3, 60, TRUE),
+(4080, 3080, 18.00, 12, 3, 60, TRUE),
 
--- Aula 50 (3073..3076)
-(4073, 3073, 50.00, 8, 4, 90, FALSE),
-(4074, 3074, 18.00, 10, 4, 60, FALSE),
-(4075, 3075, 12.00, 12, 3, 60, FALSE),
-(4076, 3076, 08.50, 15, 1, 0, FALSE),
+-- Aula 50
+(4081, 3081,  7.50, 30, 1, 90, TRUE),
+(4082, 3082, 80.00, 10, 4, 60, TRUE),
+(4083, 3083, 28.80, 12, 3, 60, TRUE),
+(4084, 3084, 19.20, 12, 3, 60, TRUE),
+(4085, 3085,  7.50, 30, 1, 90, TRUE),
+(4086, 3086, 80.00, 10, 4, 60, TRUE),
 
--- Aula 51 (3077..3080) - Nov S2 +10%
-(4077, 3077, 55.00, 8, 4, 90, FALSE),
-(4078, 3078, 19.80, 10, 4, 60, FALSE),
-(4079, 3079, 13.20, 12, 3, 60, FALSE),
-(4080, 3080, 08.50, 15, 1, 0, FALSE),
+-- Aula 51
+(4087, 3087, 28.80, 12, 3, 60, TRUE),
+(4088, 3088, 19.20, 12, 3, 60, TRUE),
+(4089, 3089,  7.50, 30, 1, 90, TRUE),
+(4090, 3090, 85.00, 10, 4, 60, TRUE),
 
--- Aula 52 (3081..3084)
-(4081, 3081, 55.00, 8, 4, 90, FALSE),
-(4082, 3082, 19.80, 10, 4, 60, FALSE),
-(4083, 3083, 13.20, 12, 3, 60, FALSE),
-(4084, 3084, 08.50, 15, 1, 0, FALSE),
+-- Aula 52
+(4091, 3091, 30.60, 12, 3, 60, TRUE),
+(4092, 3092, 20.40, 12, 3, 60, TRUE),
+(4093, 3093,  7.50, 30, 1, 90, TRUE),
+(4094, 3094, 85.00, 10, 4, 60, TRUE),
 
--- Aula 53 (3085..3088)
-(4085, 3085, 55.00, 8, 4, 90, FALSE),
-(4086, 3086, 19.80, 10, 4, 60, FALSE),
-(4087, 3087, 13.20, 12, 3, 60, FALSE),
-(4088, 3088, 08.50, 15, 1, 0, FALSE),
+-- Aula 53
+(4095, 3095, 30.60, 12, 3, 60, TRUE),
+(4096, 3096, 20.40, 12, 3, 60, TRUE),
+(4097, 3097,  7.50, 30, 1, 90, TRUE),
+(4098, 3098, 90.00, 10, 4, 60, TRUE),
 
--- Aula 54 (3089..3092)
-(4089, 3089, 55.00, 8, 4, 90, FALSE),
-(4090, 3090, 19.80, 10, 4, 60, FALSE),
-(4091, 3091, 13.20, 12, 3, 60, FALSE),
-(4092, 3092, 08.50, 15, 1, 0, FALSE);
-
-*/
+-- Aula 54
+(4099, 3099, 32.40, 12, 3, 60, TRUE),
+(4100, 3100, 21.60, 12, 3, 60, TRUE),
+(4101, 3101,  7.50, 30, 1, 90, TRUE),
+(4102, 3102, 90.00, 10, 4, 60, TRUE);
