@@ -4,11 +4,19 @@ export DEBIAN_FRONTEND=noninteractive
 
 echo "🚀 Iniciando configuração da instância privada..."
 
-# Aguarda rede (se tiver NAT Gateway, garante tempo pro roteamento subir)
-until ping -c1 github.com &>/dev/null; do
-  echo "🌐 Aguardando rede..."
-  sleep 3
+echo "🌐 Testando conectividade com a Internet..."
+for i in {1..20}; do
+  if ping -c1 github.com &>/dev/null; then
+    echo "✅ Internet disponível!"
+    break
+  fi
+  echo "⌛ Tentativa $i/20 - aguardando rede NAT..."
+  sleep 5
 done
+
+if ! ping -c1 github.com &>/dev/null; then
+  echo "⚠️  Sem resposta da Internet após 20 tentativas. Continuando mesmo assim..."
+fi
 
 # Instala git (mínimo necessário)
 apt-get update -y
