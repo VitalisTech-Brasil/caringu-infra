@@ -60,9 +60,10 @@ variable "ec2_instance_type" {
   default     = "t3.micro"
 }
 
-variable "ec2_chave_pem" {
-  description = "Nome do par de chaves (key pair) para acesso SSH"
+variable "key_pair_name" {
   type        = string
+  default     = "caringu"
+  description = "Nome do par de chaves (key pair) para acesso SSH"
 }
 
 variable "instance_type" {

@@ -63,6 +63,11 @@ resource "aws_security_group" "app_sg" {
   )
 }
 
+resource "aws_key_pair" "generated_key" {
+  key_name   = var.key_pair_name
+  public_key = file("caringu.pem.pub")
+}
+
 # ==================================
 # EC2 Publica - Node(React) / Python
 # ==================================
@@ -72,7 +77,7 @@ resource "aws_instance" "public_app" {
   subnet_id                   = aws_subnet.public.id
   vpc_security_group_ids      = [aws_security_group.app_sg.id]
   associate_public_ip_address = true
-  key_name                    = var.ec2_chave_pem
+  key_name                    = aws_key_pair.generated_key.id
 
   ebs_optimized = true
 
@@ -82,7 +87,7 @@ resource "aws_instance" "public_app" {
     volume_type = var.volume_type
   }
 
-  user_data = file("./scripts-init/setup-public.sh") # <== script que instala Docker + sobe containers
+  user_data = file("./scripts-init/setup-public.sh")
 
   tags = merge(
     local.common_tags,
@@ -98,7 +103,7 @@ resource "aws_instance" "private_app" {
   instance_type          = var.instance_type
   subnet_id              = aws_subnet.private.id
   vpc_security_group_ids = [aws_security_group.app_sg.id]
-  key_name               = var.ec2_chave_pem
+  key_name               = aws_key_pair.generated_key.id
 
   ebs_optimized = true
 
@@ -108,10 +113,15 @@ resource "aws_instance" "private_app" {
     volume_type = var.volume_type
   }
 
-  user_data = file("./scripts-init/setup-private.sh") # <== script que instala Docker + sobe containers
+  user_data = file("./scripts-init/setup-private.sh")
 
   tags = merge(
     local.common_tags,
     { Name = "${var.project_name}-ec2-private" }
   )
+
+  depends_on = [
+    aws_nat_gateway.this,
+    aws_route_table_association.private
+  ]
 }
