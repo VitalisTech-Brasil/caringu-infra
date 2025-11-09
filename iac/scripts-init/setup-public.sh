@@ -13,8 +13,8 @@ apt-get update -y
 apt-get install -y git nginx
 
 # Inicia o serviço Nginx e habilita no boot
-systemctl enable nginx
-systemctl start nginx
+sudo systemctl enable nginx
+sudo systemctl start nginx
 
 # Clona o repositório da infraestrutura
 cd /home/ubuntu
@@ -24,6 +24,14 @@ if [ ! -d "caringu-infra" ]; then
 fi
 
 chown -R ubuntu:ubuntu /home/ubuntu/caringu-infra
+
+# Espera o arquivo default.conf ser enviado pelo Terraform
+echo "⏳ Aguardando Terraform enviar o default.conf..."
+while [ ! -f /home/ubuntu/caringu-infra/cloud/public/nginx/default.conf ]; do
+  echo "⌛ default.conf ainda não existe. esperando..."
+  sleep 5
+done
+echo "✅ default.conf encontrado!"
 
 # Executa o script principal como usuário normal
 cd /home/ubuntu/caringu-infra/cloud/public

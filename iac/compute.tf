@@ -77,21 +77,15 @@ data "template_file" "nginx_conf" {
   vars = {
     backend_ip = aws_instance.private_app.private_ip
   }
+
+  depends_on = [aws_instance.private_app]
 }
 
 resource "local_file" "nginx_conf_rendered" {
   content  = data.template_file.nginx_conf.rendered
   filename = "../cloud/public/nginx/default.conf"
 
-  provisioner "local-exec" {
-    interpreter = ["/bin/bash", "-c"]
-    command     = <<EOT
-      set -e
-      mkdir -p ../cloud/public/nginx
-      echo "${data.template_file.nginx_conf.rendered}" > ../cloud/public/nginx/default.conf
-      chmod 644 ../cloud/public/nginx/default.conf
-    EOT
-  }
+  depends_on = [aws_instance.private_app, data.template_file.nginx_conf]
 }
 
 resource "null_resource" "deploy_nginx_conf" {
@@ -100,9 +94,10 @@ resource "null_resource" "deploy_nginx_conf" {
   # 1️⃣ Espera o Nginx estar disponível antes de enviar o arquivo
   provisioner "remote-exec" {
     inline = [
-      "echo '🕓 Aguardando instalação do Nginx...'",
-      "until [ -d /etc/nginx/conf.d ]; do echo '⏳ Ainda não existe /etc/nginx/conf.d'; sleep 5; done",
-      "echo '✅ Nginx detectado!'"
+      "echo '🕓 Esperando instalação completa do Nginx...'",
+      "while ! command -v nginx >/dev/null 2>&1; do echo '⏳ Nginx ainda não instalado'; sleep 5; done",
+      "until [ -d /etc/nginx/conf.d ]; do echo '⏳ Pasta conf.d ainda não existe'; sleep 5; done",
+      "echo '✅ Nginx detectado! Pronto para receber arquivo.'"
     ]
 
     connection {
@@ -129,7 +124,9 @@ resource "null_resource" "deploy_nginx_conf" {
   # 3️⃣ Move o arquivo com sudo e reinicia o Nginx
   provisioner "remote-exec" {
     inline = [
-      "sudo mv /home/ubuntu/default.conf /etc/nginx/conf.d/default.conf",
+      "ls -lh /home/ubuntu/default.conf || echo '❌ Arquivo não encontrado após upload!'",
+      "sudo mv /home/ubuntu/default.conf /home/ubuntu/caringu-infra/cloud/public/nginx/default.conf",
+      "sudo cp /home/ubuntu/caringu-infra/cloud/public/nginx/default.conf /etc/nginx/conf.d/default.conf",
       "sudo chown root:root /etc/nginx/conf.d/default.conf",
       "sudo systemctl restart nginx",
       "echo '🚀 Nginx reiniciado com nova configuração.'"
