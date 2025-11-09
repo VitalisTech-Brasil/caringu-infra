@@ -69,6 +69,51 @@ resource "aws_key_pair" "generated_key" {
 }
 
 # ==================================
+# Gera o nginx.conf dinâmico
+# ==================================
+data "template_file" "nginx_conf" {
+  template = file("${path.module}/../cloud/public/nginx.conf.tpl")
+
+  vars = {
+    backend_ip = aws_instance.private_app.private_ip
+  }
+}
+
+resource "local_file" "nginx_conf_rendered" {
+  content  = data.template_file.nginx_conf.rendered
+  filename = "${path.module}/../cloud/public/nginx.conf"
+}
+
+resource "null_resource" "deploy_nginx_conf" {
+  depends_on = [aws_instance.public_app, local_file.nginx_conf_rendered]
+
+  provisioner "file" {
+    source      = local_file.nginx_conf_rendered.filename
+    destination = "/etc/nginx/conf.d/default.conf"
+
+    connection {
+      type        = "ssh"
+      host        = aws_instance.public_app.public_ip
+      user        = "ubuntu"
+      private_key = file("./caringu.pem")
+    }
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo systemctl restart nginx"
+    ]
+
+    connection {
+      type        = "ssh"
+      host        = aws_instance.public_app.public_ip
+      user        = "ubuntu"
+      private_key = file("./caringu.pem")
+    }
+  }
+}
+
+# ==================================
 # EC2 Publica - Node(React) / Python
 # ==================================
 resource "aws_instance" "public_app" {
@@ -93,6 +138,8 @@ resource "aws_instance" "public_app" {
     local.common_tags,
     { Name = "${var.project_name}-ec2-public" }
   )
+
+  depends_on = [local_file.nginx_conf_rendered]
 }
 
 # =====================================
