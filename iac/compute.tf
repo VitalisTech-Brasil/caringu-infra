@@ -87,9 +87,13 @@ resource "local_file" "nginx_conf_rendered" {
 resource "null_resource" "deploy_nginx_conf" {
   depends_on = [aws_instance.public_app, local_file.nginx_conf_rendered]
 
-  provisioner "file" {
-    source      = local_file.nginx_conf_rendered.filename
-    destination = "/etc/nginx/conf.d/default.conf"
+  # 1️⃣ Espera o Nginx estar disponível antes de enviar o arquivo
+  provisioner "remote-exec" {
+    inline = [
+      "echo '🕓 Aguardando instalação do Nginx...'",
+      "until [ -d /etc/nginx/conf.d ]; do echo '⏳ Ainda não existe /etc/nginx/conf.d'; sleep 5; done",
+      "echo '✅ Nginx detectado!'"
+    ]
 
     connection {
       type        = "ssh"
@@ -99,9 +103,26 @@ resource "null_resource" "deploy_nginx_conf" {
     }
   }
 
+  # 2️⃣ Envia o arquivo renderizado para uma pasta temporária
+  provisioner "file" {
+    source      = local_file.nginx_conf_rendered.filename
+    destination = "/home/ubuntu/default.conf"
+
+    connection {
+      type        = "ssh"
+      host        = aws_instance.public_app.public_ip
+      user        = "ubuntu"
+      private_key = file("./caringu.pem")
+    }
+  }
+
+  # 3️⃣ Move o arquivo com sudo e reinicia o Nginx
   provisioner "remote-exec" {
     inline = [
-      "sudo systemctl restart nginx"
+      "sudo mv /home/ubuntu/default.conf /etc/nginx/conf.d/default.conf",
+      "sudo chown root:root /etc/nginx/conf.d/default.conf",
+      "sudo systemctl restart nginx",
+      "echo '🚀 Nginx reiniciado com nova configuração.'"
     ]
 
     connection {
