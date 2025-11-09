@@ -12,9 +12,9 @@ done
 apt-get update -y
 apt-get install -y git nginx
 
-# Inicia o serviço Nginx e habilita no boot
-sudo systemctl enable nginx
-sudo systemctl start nginx
+# Instala o Nginx apenas para ferramentas (não inicia)
+sudo systemctl disable nginx || true
+sudo systemctl stop nginx || true
 
 # Clona o repositório da infraestrutura
 cd /home/ubuntu
@@ -41,8 +41,7 @@ mv /home/ubuntu/default.conf /home/ubuntu/caringu-infra/cloud/public/nginx/defau
 echo "⚙️ Aplicando configuração do Nginx..."
 sudo cp /home/ubuntu/caringu-infra/cloud/public/nginx/default.conf /etc/nginx/conf.d/default.conf
 sudo chown root:root /etc/nginx/conf.d/default.conf
-sudo nginx -t && sudo systemctl restart nginx
-echo "🚀 Nginx reiniciado com nova configuração."
+echo "✅ Configuração copiada (o Nginx do host não será iniciado, container vai cuidar disso)."
 
 # Executa o script principal como usuário normal
 cd /home/ubuntu/caringu-infra/cloud/public
