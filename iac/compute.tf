@@ -72,7 +72,7 @@ resource "aws_key_pair" "generated_key" {
 # Gera o nginx.conf dinâmico
 # ==================================
 data "template_file" "nginx_conf" {
-  template = file("${path.module}/../cloud/public/nginx.conf.tpl")
+  template = file("../cloud/public/nginx.conf.tpl")
 
   vars = {
     backend_ip = aws_instance.private_app.private_ip
@@ -81,7 +81,17 @@ data "template_file" "nginx_conf" {
 
 resource "local_file" "nginx_conf_rendered" {
   content  = data.template_file.nginx_conf.rendered
-  filename = "${path.module}/../cloud/public/nginx.conf"
+  filename = "../cloud/public/nginx/default.conf"
+
+  provisioner "local-exec" {
+    interpreter = ["/bin/bash", "-c"]
+    command     = <<EOT
+      set -e
+      mkdir -p ../cloud/public/nginx
+      echo "${data.template_file.nginx_conf.rendered}" > ../cloud/public/nginx/default.conf
+      chmod 644 ../cloud/public/nginx/default.conf
+    EOT
+  }
 }
 
 resource "null_resource" "deploy_nginx_conf" {

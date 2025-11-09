@@ -18,10 +18,10 @@ output "internet_gateway_id" {
   value       = aws_internet_gateway.this.id
 }
 
-# output "nat_gateway_id" {
-#   description = "ID do NAT Gateway"
-#   value       = aws_nat_gateway.this.id
-# }
+output "nat_gateway_id" {
+  description = "ID do NAT Gateway"
+  value       = aws_nat_gateway.this.id
+}
 
 output "public_route_table_id" {
   description = "ID da tabela de rotas pública"
