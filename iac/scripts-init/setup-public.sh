@@ -8,9 +8,13 @@ until ping -c1 github.com &>/dev/null; do
   sleep 3
 done
 
-# Instala git (mínimo necessário)
+# Instala dependências básicas
 apt-get update -y
-apt-get install -y git
+apt-get install -y git nginx
+
+# Inicia o serviço Nginx e habilita no boot
+systemctl enable nginx
+systemctl start nginx
 
 # Clona o repositório da infraestrutura
 cd /home/ubuntu

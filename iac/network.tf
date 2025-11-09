@@ -79,7 +79,7 @@ resource "aws_subnet" "private" {
 # ======================
 # NAT Gateway (opcional/temporário)
 # ======================
-/* resource "aws_eip" "nat" {
+resource "aws_eip" "nat" {
   domain = "vpc"
 }
 
@@ -92,7 +92,7 @@ resource "aws_nat_gateway" "this" {
     local.common_tags,
     { Name = "${var.project_name}-nat-gateway" }
   )
-} */
+}
 
 # ======================
 # Route Table - Private
@@ -100,10 +100,10 @@ resource "aws_nat_gateway" "this" {
 resource "aws_route_table" "private" {
   vpc_id = aws_vpc.this.id
 
-  /* route {
+  route {
     cidr_block     = "0.0.0.0/0"
     nat_gateway_id = aws_nat_gateway.this.id
-  } */
+  }
 
   tags = merge(
     local.common_tags,
