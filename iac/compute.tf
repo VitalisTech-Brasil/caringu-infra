@@ -91,7 +91,7 @@ resource "local_file" "nginx_conf_rendered" {
 resource "null_resource" "deploy_nginx_conf" {
   depends_on = [aws_instance.public_app, local_file.nginx_conf_rendered]
 
-  # 1️⃣ Espera o Nginx estar disponível antes de enviar o arquivo
+  # 1️⃣ Espera o SSH/Nginx estar pronto
   provisioner "remote-exec" {
     inline = [
       "echo '🕓 Esperando instalação completa do Nginx...'",
@@ -108,29 +108,10 @@ resource "null_resource" "deploy_nginx_conf" {
     }
   }
 
-  # 2️⃣ Envia o arquivo renderizado para uma pasta temporária
+  # 2️⃣ Apenas envia o arquivo renderizado
   provisioner "file" {
     source      = local_file.nginx_conf_rendered.filename
     destination = "/home/ubuntu/default.conf"
-
-    connection {
-      type        = "ssh"
-      host        = aws_instance.public_app.public_ip
-      user        = "ubuntu"
-      private_key = file("./caringu.pem")
-    }
-  }
-
-  # 3️⃣ Move o arquivo com sudo e reinicia o Nginx
-  provisioner "remote-exec" {
-    inline = [
-      "ls -lh /home/ubuntu/default.conf || echo '❌ Arquivo não encontrado após upload!'",
-      "sudo mv /home/ubuntu/default.conf /home/ubuntu/caringu-infra/cloud/public/nginx/default.conf",
-      "sudo cp /home/ubuntu/caringu-infra/cloud/public/nginx/default.conf /etc/nginx/conf.d/default.conf",
-      "sudo chown root:root /etc/nginx/conf.d/default.conf",
-      "sudo systemctl restart nginx",
-      "echo '🚀 Nginx reiniciado com nova configuração.'"
-    ]
 
     connection {
       type        = "ssh"
