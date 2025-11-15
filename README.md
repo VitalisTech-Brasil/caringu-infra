@@ -1,71 +1,255 @@
-# 📃 Instruções para Configuração do projeto na nuvem da Azure
+# 📦 Provisionamento Automatizado da Infraestrutura (Terraform + AWS)
 
-## 🐋 Passos para rodar os containers Docker dentro da VM
+Este guia explica como preparar seu ambiente local para utilizar o **Terraform** e provisionar automaticamente toda a infraestrutura necessária na AWS, incluindo:
 
-1. 🔐 **Acesse a VM:**
-   - Use o comando SSH para acessar sua VM:
-     ```bash
-     ssh -i <chavepem>.pem <usuario_azure>@<ip>
-     ```
+* VPC, Subnets, Route Tables, NAT Gateway
+* EC2 pública e privada
+* Segurança (SGs, ACLs, KeyPair)
+* Deploy automático da aplicação (backend + frontend + proxy reverso)
+* Configuração automática dentro das EC2s via *user_data*
 
-2. 📥 **Clone o repositório Infra:**
-   - Dentro da VM, clone o repositório onde está toda a configuração de infraestrutura:
+Nenhum comando precisa ser executado dentro da EC2.
+Toda a infraestrutura e toda a aplicação sobem sozinhas.
 
-     ```bash
-     git clone https://github.com/VitalisTech-Brasil/caringu-infra.git
-     ```
+# 🧰 1. Pré-requisitos no computador local
 
-3. 📂 **Acesse o diretório do repositório:**
-   - Navegue até o diretório do repositório:
-     ```bash
-     cd caringu-infra
-     ```
+Antes de rodar o Terraform, você precisa instalar:
 
-4. 🔧 **Permissões para o script `script.sh`:**
-   - Dê permissão de execução para o script `script.sh`:
-     ```bash
-     chmod +x script.sh
-     ```
+## 📌 1.1 Instalar o **Terraform** (versão AMD64)
 
-5. ▶️ **Rodar o script `script.sh`:**
-   - Execute o script `script.sh` para realizar as configurações e rodar a aplicação:
-     ```bash
-     bash script.sh
-     ```
+Baixe a versão mais recente:
 
-6. ✅ **Pronto! A aplicação estará rodando.**
-   - Após a execução do script, o Docker estará configurado, os containers de MySQL, Python, Node.js e Java estarão sendo orquestrados pelo Docker Compose na VM.
+🔗 [https://developer.hashicorp.com/terraform/downloads](https://developer.hashicorp.com/terraform/downloads)
+
+Após instalar, confirme a versão:
+
+```bash
+terraform -version
+```
+
+Se der erro, adicione o Terraform ao PATH do seu sistema operacional.
+
+### ⚙️ Adicionar o Terraform ao PATH do Windows
+
+1. Pressione **Win + R**
+2. Digite:
+
+   ```
+   sysdm.cpl
+   ```
+
+   e pressione Enter
+3. Vá na aba **Avançado**
+4. Clique em **Variáveis de Ambiente**
+5. Em **Variáveis do sistema**, selecione a variável chamada **Path**
+6. Clique em **Editar**
+7. Clique em **Novo**
+8. Cole o caminho onde está o `terraform.exe`, por exemplo:
+
+   ```
+   C:\terraform
+   ```
+9. Clique em **OK** em todas as janelas para salvar
+
+### ✔️ Para testar:
+
+Abra o **PowerShell** e digite:
+
+```bash
+terraform -version
+```
+
+Se aparecer a versão, está tudo funcionando.
 
 ---
 
-## 🛑 Como parar os containers?
+## 📌 1.2 Instalar o **AWS CLI**
 
-Para parar os containers rodando no Docker Compose, basta usar o seguinte comando:
+Download:
+
+🔗 [https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+
+Verifique:
+
+```bash
+aws --version
+```
+
+---
+
+## 📌 1.3 Configurar credenciais da AWS
+
+Você deve criar seu `AWS Access Key` e `AWS Secret Key` no IAM (usuário com permissões: EC2, VPC, IAM, S3 opcional).
+
+Depois configure o CLI:
+
+```bash
+aws configure
+```
+
+Ele vai pedir:
+
+```
+AWS Access Key ID: **********
+AWS Secret Access Key: **********
+Default region name: us-east-1
+Default output format: json
+```
+
+# 🚀 2. Como Provisionar a Infraestrutura
+
+Agora com tudo configurado, basta rodar 3 comandos:
+
+## 2.1 Inicializar o Terraform
+
+```bash
+terraform init
+```
+
+## 2.2 Ver o plano de execução
+
+```bash
+terraform plan
+```
+
+## 2.3 Criar toda a infraestrutura
+
+```bash
+terraform apply
+```
+
+Confirme com:
+
+```
+yes
+```
+
+---
+
+# ⚙️ 3. O que o Terraform faz automaticamente?
+
+Quando você executa `terraform apply`, ele:
+
+### 🌐 **1. Cria toda a rede AWS**
+
+* VPC
+* Subnets público/privado
+* NAT Gateway
+* Internet Gateway
+* Route Tables
+
+### 📦 **2. Sobe a EC2 privada e pública**
+
+### 🔐 **3. Gera e aplica security groups**
+
+### 💾 **4. Gera o nginx.conf com o IP privado dinamicamente**
+
+### 📤 **5. Envia esse arquivo via SSH para a EC2 pública**
+
+### 🤖 **6. Executa o user_data nas EC2s**
+
+* Instala pacotes essenciais
+* Faz git clone do repositório automaticamente
+* Instala Docker e Docker Compose
+* Sobe todos os containers (backend, frontend, proxy, banco)
+* Configura o Nginx
+* Reinicia os serviços
+* Sobe a aplicação por completo
+
+📌 **Nada precisa ser feito manualmente dentro das EC2s.**
+O ambiente inteiro fica pronto sozinho.
+
+---
+
+# 🟢 4. Após o deploy — acesso e testes
+
+## 4.1 Acessar a aplicação
+
+Basta acessar via navegador o **IP público** da EC2 pública:
+
+```
+http://<IP_PUBLICO_DA_EC2_PUBLICA>
+```
+
+---
+
+# 🛑 5. Como destruir toda a infraestrutura
+
+Quando quiser remover tudo da AWS:
+
+```bash
+terraform destroy
+```
+
+Confirme com:
+
+```
+yes
+```
+
+Isso irá **apagar todas as EC2s, rede, NAT, SGs e tudo que foi criado.**
+
+---
+
+# 🐋 6. Gerenciamento manual dos containers (opcional)
+
+Se você quiser acessar a EC2 e mexer manualmente:
+
+### Acesse via SSH:
+
+```bash
+ssh -i caringu.pem ubuntu@<ip-publico>
+```
+
+### Ver todos os containers:
+
+```bash
+sudo docker ps -a
+```
+
+### Parar containers:
 
 ```bash
 sudo docker compose down
 ```
 
-Se quiser iniciar novamente, basta usar o seguinte comando:
+### Parar containers e destruir volumes:
+
+```bash
+sudo docker compose down -v
+```
+
+### Subir novamente:
 
 ```bash
 sudo docker compose up -d
 ```
 
----
-
-## 🐬 Como acessar o container do MySQL?
-
-📦 Acesse o Shell do Container:
+### Acessar MySQL:
 
 ```bash
-sudo docker exec -it <nome_do_container> bash
-```
-🧑‍💻 Conecte-se ao MySQL Dentro do Container:
-```bash
-mysql -u root -h localhost -p vitalis
+sudo docker exec -it <nome_do_container_mysql> bash
+mysql -u root -p
 ```
 
->🔑 Quando solicitado, digite a senha definida na variável `MYSQL_ROOT_PASSWORD`
 ---
 
+# 🎯 7. Conclusão
+
+Agora toda a infraestrutura e a aplicação da Caringu estão completamente automatizadas.
+
+Com **um único comando**:
+
+```bash
+terraform apply
+```
+
+Você obtém:
+
+* Rede
+* Segurança
+* EC2s
+* Deploy completo da aplicação
+* Nginx configurado dinamicamente
+* Containers rodando
+* Ambiente pronto
