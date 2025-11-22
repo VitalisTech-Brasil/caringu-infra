@@ -1,4 +1,6 @@
 upstream frontend_servers {
+    # Sticky por IP do cliente para evitar misturar versões de frontend
+    ip_hash;
     server ${frontend_1_ip}:80;
     server ${frontend_2_ip}:80;
 }
