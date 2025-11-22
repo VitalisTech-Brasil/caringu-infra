@@ -84,10 +84,16 @@ variable "volume_type" {
   default     = "gp3"
 }
 
+variable "ssh_allowed_cidr" {
+  description = "CIDR que pode acessar SSH na instância Proxy"
+  type        = string
+  default     = "0.0.0.0/0"
+}
+
 # -----------------------------------------
 # --- Variáveis associadas à storage.tf ---
 # -----------------------------------------
-variable "bucket_name" {
+/* variable "bucket_name" {
   description = "Nome do bucket S3 para armazenar arquivos ou logs"
   type        = string
-}
+} */

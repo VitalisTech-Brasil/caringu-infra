@@ -1,0 +1,12 @@
+services:
+  nginx-proxy:
+    image: nginx:latest
+    container_name: caringu-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    restart: always
+
+

@@ -1,0 +1,30 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: caringu-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      LANG: C.UTF-8
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ../../db/01-creates-tables.sql:/docker-entrypoint-initdb.d/01-creates-tables.sql
+      - ../../db/02-inserts.sql:/docker-entrypoint-initdb.d/02-inserts.sql
+      - ../../db/03-insert-Outubro.sql:/docker-entrypoint-initdb.d/03-insert-Outubro.sql
+    command: [
+      "--character-set-server=utf8mb4",
+      "--collation-server=utf8mb4_unicode_ci"
+    ]
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  mysql_data:
+
+
