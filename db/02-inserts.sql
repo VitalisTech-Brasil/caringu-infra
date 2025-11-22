@@ -504,13 +504,26 @@ INSERT INTO vitalis.personal_trainers_bairros (personal_trainers_id, bairro_id) 
 (5, 5);
 
 INSERT INTO vitalis.evolucao_corporal (
-  id, tipo, url_foto_shape, data_envio, periodo_avaliacao, alunos_id
+  tipo, url_foto_shape, data_envio, periodo_avaliacao, alunos_id
 ) VALUES
-(1, 'FRONTAL', 'https://img.com/aluno6-frontal.jpg', '2025-04-01 08:00:00', 1, 6),
-(2, 'PERFIL_DIREITO', 'https://img.com/aluno7-perfil.jpg', '2025-04-02 09:00:00', 1, 7),
-(3, 'COSTAS', 'https://img.com/aluno8-costas.jpg', '2025-04-03 07:30:00', 2, 8),
-(4, 'FRONTAL', 'https://img.com/aluno9-frontal.jpg', '2025-04-04 10:00:00', 1, 9),
-(5, 'PERFIL_ESQUERDO', 'https://img.com/aluno10-perfil.jpg', '2025-04-05 06:30:00', 3, 10);
+('FRONTAL', 'https://img.com/aluno6-frontal.jpg', '2025-04-01 08:00:00', 1, 6),
+('FRONTAL', 'https://img.com/aluno6-frontal.jpg', '2025-05-01 08:00:00', 1, 6),
+('FRONTAL', 'https://img.com/aluno6-frontal.jpg', '2025-06-01 08:00:00', 1, 6),
+('FRONTAL', 'https://img.com/aluno6-frontal.jpg', '2025-07-01 08:00:00', 1, 6),
+('FRONTAL', 'https://img.com/aluno6-frontal.jpg', '2025-08-01 08:00:00', 1, 6),
+('FRONTAL', 'https://img.com/aluno6-frontal.jpg', '2025-09-01 08:00:00', 1, 6),
+('PERFIL_DIREITO', 'https://img.com/aluno7-perfil.jpg', '2025-04-02 09:00:00', 1, 7),
+('PERFIL_DIREITO', 'https://img.com/aluno7-perfil.jpg', '2025-05-02 09:00:00', 1, 7),
+('PERFIL_DIREITO', 'https://img.com/aluno7-perfil.jpg', '2025-06-02 09:00:00', 1, 7),
+('PERFIL_DIREITO', 'https://img.com/aluno7-perfil.jpg', '2025-07-02 09:00:00', 1, 7),
+('PERFIL_DIREITO', 'https://img.com/aluno7-perfil.jpg', '2025-08-02 09:00:00', 1, 7),
+('COSTAS', 'https://img.com/aluno8-costas.jpg', '2025-04-03 07:30:00', 2, 8),
+('COSTAS', 'https://img.com/aluno8-costas.jpg', '2025-06-03 07:30:00', 2, 8),
+('COSTAS', 'https://img.com/aluno8-costas.jpg', '2025-08-03 07:30:00', 2, 8),
+('COSTAS', 'https://img.com/aluno8-costas.jpg', '2025-10-03 07:30:00', 2, 8),
+('COSTAS', 'https://img.com/aluno8-costas.jpg', '2025-12-03 07:30:00', 2, 8),
+('FRONTAL', 'https://img.com/aluno9-frontal.jpg', '2025-04-04 10:00:00', 1, 9),
+('PERFIL_ESQUERDO', 'https://img.com/aluno10-perfil.jpg', '2025-04-05 06:30:00', 3, 10);
 
 INSERT INTO vitalis.avaliacoes_personal_trainers (aluno_id, personal_trainer_id, nota, comentario, data_avaliacao) VALUES
 (6, 5, 5.0, 'Atendimento excepcional; resultados acima do esperado.', '2025-01-12 10:23:45'),
