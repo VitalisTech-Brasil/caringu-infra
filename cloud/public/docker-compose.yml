@@ -15,7 +15,6 @@ services:
     build:
       context: ./caringu-frontend
       dockerfile: Dockerfile
-    image: nginx:latest
     container_name: nginx-proxy
     ports:
       - "80:80"
