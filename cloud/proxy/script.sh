@@ -34,24 +34,17 @@ else
   exit 1
 fi
 
-# Clonando o repositório da aplicação Python, se ainda não existir
-echo "📥 Clonando o repositório da aplicação Python, se ainda não existir..."
-if [ ! -d "./caringu-python" ]; then
-  git clone https://github.com/VitalisTech-Brasil/caringu-python.git
-fi
+# Garante diretório de configuração do Nginx
+mkdir -p ./nginx
 
-# Clonando o repositório da aplicação Front-end, se ainda não existir
-echo "📥 Clonando o repositório da aplicação Front-end, se ainda não existir..."
-if [ ! -d "./caringu-frontend" ]; then
-  git clone https://github.com/VitalisTech-Brasil/caringu-frontend.git
-fi
-
-# 🔨 Buildando as imagens com Docker Compose v2
-echo "[*] Buildando as imagens de Frontend + Python com Docker Compose..."
+# 🔨 Buildando as imagens com Docker Compose
+echo "[*] Buildando a imagem do Nginx Proxy com Docker Compose..."
 sudo docker compose build
 
 # [*] Subindo os containers com Docker Compose...
-echo "[*] Subindo os containers de Frontend + Python com Docker Compose..."
+echo "[*] Subindo o Nginx Proxy com Docker Compose..."
 sudo docker compose up -d
 
-echo "✅ Ambiente de Frontend + Python criado com sucesso!"
+echo "✅ Proxy Nginx iniciado com sucesso!"
+
+

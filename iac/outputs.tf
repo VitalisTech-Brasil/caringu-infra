@@ -34,7 +34,7 @@ output "private_route_table_id" {
 }
 
 # Outputs do Storage (S3)
-output "bucket_id" {
+/* output "bucket_id" {
   description = "ID do bucket S3"
   value       = aws_s3_bucket.app_bucket.id
 }
@@ -43,41 +43,61 @@ output "bucket_arn" {
   description = "ARN do bucket S3"
   value       = aws_s3_bucket.app_bucket.arn
 }
+ */
+############################################
+# Outputs do Compute (novas instâncias)
+############################################
 
-# Outputs do Compute (EC2 Público)
-output "public_instance_id" {
-  description = "ID da instância EC2 pública"
-  value       = aws_instance.public_app.id
+output "proxy_public_ip" {
+  description = "IP público da instância de Proxy"
+  value       = module.proxy.public_ip
 }
 
-output "public_instance_ip" {
-  description = "IP público da instância EC2 pública"
-  value       = aws_instance.public_app.public_ip
+output "proxy_private_ip" {
+  description = "IP privado da instância de Proxy"
+  value       = module.proxy.private_ip
 }
 
-output "public_instance_private_ip" {
-  description = "IP privado da instância EC2 pública"
-  value       = aws_instance.public_app.private_ip
+output "frontend_private_ips" {
+  description = "IPs privados das instâncias de Frontend"
+  value       = [for f in module.frontend : f.private_ip]
 }
 
-# Outputs do Compute (EC2 Privado)
-output "private_instance_id" {
-  description = "ID da instância EC2 privada"
-  value       = aws_instance.private_app.id
+output "frontend_public_ips" {
+  description = "IPs públicos das instâncias de Frontend"
+  value       = [for f in module.frontend : f.public_ip]
 }
 
-output "private_instance_private_ip" {
-  description = "IP privado da instância EC2 privada"
-  value       = aws_instance.private_app.private_ip
+output "backend_private_ips" {
+  description = "IPs privados das instâncias de Backend"
+  value       = [for b in module.backend : b.private_ip]
 }
 
+output "mysql_private_ip" {
+  description = "IP privado da instância de MySQL"
+  value       = module.mysql.private_ip
+}
+
+############################################
 # Outputs dos Security Groups
-output "security_group_id" {
-  description = "ID do Security Group"
-  value       = aws_security_group.app_sg.id
+############################################
+
+output "proxy_security_group_id" {
+  description = "ID do Security Group da instância de Proxy"
+  value       = aws_security_group.proxy_sg.id
 }
 
-output "security_group_name" {
-  description = "Nome do Security Group"
-  value       = aws_security_group.app_sg.name
+output "frontend_security_group_id" {
+  description = "ID do Security Group das instâncias de Frontend"
+  value       = aws_security_group.frontend_sg.id
+}
+
+output "backend_security_group_id" {
+  description = "ID do Security Group das instâncias de Backend"
+  value       = aws_security_group.backend_sg.id
+}
+
+output "mysql_security_group_id" {
+  description = "ID do Security Group da instância de MySQL"
+  value       = aws_security_group.mysql_sg.id
 }
