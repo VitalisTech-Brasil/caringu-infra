@@ -229,6 +229,42 @@ resource "local_file" "proxy_nginx_conf_rendered" {
   filename = "../cloud/proxy/nginx/default.conf"
 }
 
+resource "null_resource" "deploy_proxy_nginx_conf" {
+  depends_on = [
+    module.proxy,
+    local_file.proxy_nginx_conf_rendered
+  ]
+
+  # Garante que a instância de Proxy está acessível via SSH
+  provisioner "remote-exec" {
+    inline = [
+      "echo '🕓 Aguardando instância de Proxy ficar disponível via SSH...'",
+      "until command -v cloud-init >/dev/null 2>&1; do echo '⏳ Aguardando cloud-init...'; sleep 5; done",
+      "echo '✅ Instância de Proxy acessível via SSH.'"
+    ]
+
+    connection {
+      type        = "ssh"
+      host        = module.proxy.public_ip
+      user        = "ubuntu"
+      private_key = file("./caringu.pem")
+    }
+  }
+
+  # Envia o arquivo gerado para a home do usuário ubuntu
+  provisioner "file" {
+    source      = local_file.proxy_nginx_conf_rendered.filename
+    destination = "/home/ubuntu/caringu-proxy-default.conf"
+
+    connection {
+      type        = "ssh"
+      host        = module.proxy.public_ip
+      user        = "ubuntu"
+      private_key = file("./caringu.pem")
+    }
+  }
+}
+
 # EC2s de Frontend (públicas) - React + Python
 module "frontend" {
   source = "./modules/ec2_instance"

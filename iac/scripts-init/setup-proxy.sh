@@ -15,6 +15,19 @@ fi
 
 chown -R ubuntu:ubuntu /home/ubuntu/caringu-infra
 
+# Aguardar o Terraform enviar o arquivo de configuração do Nginx
+echo "⏳ Aguardando Terraform enviar o arquivo de configuração do Nginx (caringu-proxy-default.conf)..."
+while [ ! -f /home/ubuntu/caringu-proxy-default.conf ]; do
+  echo "⌛ Arquivo /home/ubuntu/caringu-proxy-default.conf ainda não existe. Aguardando..."
+  sleep 5
+done
+echo "✅ Arquivo de configuração da Proxy recebido."
+
+# Mover o arquivo para dentro do repositório
+echo "📦 Movendo default.conf para o repositório..."
+mkdir -p /home/ubuntu/caringu-infra/cloud/proxy/nginx
+mv /home/ubuntu/caringu-proxy-default.conf /home/ubuntu/caringu-infra/cloud/proxy/nginx/default.conf
+
 cd /home/ubuntu/caringu-infra/cloud/proxy
 if [ -f "script.sh" ]; then
   chmod +x script.sh
