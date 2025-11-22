@@ -231,6 +231,11 @@ sudo docker compose up -d
 sudo docker exec -it <nome_do_container_mysql> bash
 mysql -u root -p
 ```
+### Acessar os logs do cloud-init:
+
+```bash
+cat /var/log/cloud-init-output.log
+```
 
 ---
 

@@ -67,6 +67,15 @@ resource "aws_security_group" "frontend_sg" {
     security_groups = [aws_security_group.proxy_sg.id]
   }
 
+  # React/Vite (5173) vindo apenas da Proxy
+  ingress {
+    description     = "React/Vite (porta 5173) a partir da instancia de Proxy"
+    from_port       = 5173
+    to_port         = 5173
+    protocol        = "tcp"
+    security_groups = [aws_security_group.proxy_sg.id]
+  }
+
   # FastAPI (8000) vindo apenas da Proxy
   ingress {
     description     = "FastAPI (porta 8000) a partir da instancia de Proxy"
@@ -118,6 +127,15 @@ resource "aws_security_group" "backend_sg" {
     description     = "SSH a partir da instancia de Proxy"
     from_port       = 22
     to_port         = 22
+    protocol        = "tcp"
+    security_groups = [aws_security_group.proxy_sg.id]
+  }
+
+  # Spring Boot (8081) vindo da Proxy
+  ingress {
+    description     = "Spring Boot default port"
+    from_port       = 8081
+    to_port         = 8081
     protocol        = "tcp"
     security_groups = [aws_security_group.proxy_sg.id]
   }
