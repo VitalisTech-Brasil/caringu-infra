@@ -1,22 +1,22 @@
 -- Pessoas para personal_trainers (IDs: 1 a 5)
-INSERT INTO vitalis.pessoas (nome, email, senha, celular, url_foto_perfil, data_nascimento, genero ) VALUES
-('Lucas Andrade', 'lucas.andrade@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '11998765432', '6bbe52f9-d56c-48d3-bfdc-8691ac040a9e-1761507577568.png', '1990-03-15', 'HOMEM_CISGENERO'),
-('Mariana Silva', 'mariana.silva@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '21998887766', '8d15801c-a912-45c6-b684-c3886be1e117-1761513676597.png', '1988-07-22', 'MULHER_CISGENERO'),
-('João Pereira', 'joao.pereira@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '31999990000', '7ae978a1-a3fe-4117-a759-e0dd33df5717-1761513715924.png', '1995-11-05', 'HOMEM_TRANSGENERO'),
-('Ana Costa', 'ana.costa@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '21991234567', 'da2e33a1-0a90-4b88-947b-6036666a94b6-1761513750076.png', '1992-05-18', 'MULHER_TRANSGENERO'),
+INSERT INTO vitalis.pessoas (nome, email, senha, celular, url_foto_perfil, data_nascimento, genero, perfil_completo ) VALUES
+('Lucas Andrade', 'lucas.andrade@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '11998765432', '6bbe52f9-d56c-48d3-bfdc-8691ac040a9e-1761507577568.png', '1990-03-15', 'HOMEM_CISGENERO', true),
+('Mariana Silva', 'mariana.silva@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '21998887766', '8d15801c-a912-45c6-b684-c3886be1e117-1761513676597.png', '1988-07-22', 'MULHER_CISGENERO', true),
+('João Pereira', 'joao.pereira@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '31999990000', '7ae978a1-a3fe-4117-a759-e0dd33df5717-1761513715924.png', '1995-11-05', 'HOMEM_TRANSGENERO', true),
+('Ana Costa', 'ana.costa@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '21991234567', 'da2e33a1-0a90-4b88-947b-6036666a94b6-1761513750076.png', '1992-05-18', 'MULHER_TRANSGENERO', true),
 
 -- INSERT COM JWT (ID: 5)
-('Ricardo Gomes da Silva', 'ricardo@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '11997654321', 'dc7851dd-d7cd-410f-a1ba-4440446c65c4-1761507342320.png', '1999-12-25', 'HOMEM_CISGENERO'),
+('Ricardo Gomes da Silva', 'ricardo@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '11997654321', 'dc7851dd-d7cd-410f-a1ba-4440446c65c4-1761507342320.png', '1999-12-25', 'HOMEM_CISGENERO', true),
 
 -- Pessoas para alunos (IDs: 6 a 10)
-('Carla Mendes', 'carla.mendes@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '11994455667', '441ffd16-fed6-48f8-b76e-46c282d55713-1761512959626.png', '1985-02-10', 'MULHER_TRANSGENERO'),
-('Alex Nagano', 'alex.nagano@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '11999887766', '7c474380-6068-4e13-8b93-33c8ce08bb57-1762038689694.png', '2000-12-01', 'NAO_BINARIO'),
-('Suellen Lima', 'suellen.lima@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', NULL, '3e146be8-947e-4057-827f-376d0f9cd23c-1761513023243.png', '1997-09-12', 'MULHER_TRANSGENERO'),
-('Diego Santos', 'diego.santos@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '21998877665', 'f1ea42f3-b7b4-437e-be1c-c7e76878a501-1761513091401.png', NULL, 'HOMEM_TRANSGENERO'),
-('Luna Martins', 'luna.martins@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '31997766544', '9fdb9e2d-aec8-4e7d-810c-218363edc86b-1761513334546.png', '1993-04-25', 'HOMEM_CISGENERO'),
-('Marcos Martins', 'marcos@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '31997766513', '46898760-5dc0-4e98-b64d-c3cd65267c80-1761513560594.png', '1993-04-25', 'HOMEM_CISGENERO'),
-('Flavio Martins', 'flavio@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '31997766514', 'https://flavio.jpg', '1993-04-25', 'HOMEM_CISGENERO'),
-('Otavio Martins', 'otavio@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '31997766515', 'https://otavio.jpg', '1993-04-25', 'HOMEM_CISGENERO');
+('Carla Mendes', 'carla.mendes@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '11994455667', '441ffd16-fed6-48f8-b76e-46c282d55713-1761512959626.png', '1985-02-10', 'MULHER_TRANSGENERO', true),
+('Alex Nagano', 'alex.nagano@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '11999887766', '7c474380-6068-4e13-8b93-33c8ce08bb57-1762038689694.png', '2000-12-01', 'NAO_BINARIO', true),
+('Suellen Lima', 'suellen.lima@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', NULL, '3e146be8-947e-4057-827f-376d0f9cd23c-1761513023243.png', '1997-09-12', 'MULHER_TRANSGENERO', true),
+('Diego Santos', 'diego.santos@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '21998877665', 'f1ea42f3-b7b4-437e-be1c-c7e76878a501-1761513091401.png', NULL, 'HOMEM_TRANSGENERO', true),
+('Luna Martins', 'luna.martins@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '31997766544', '9fdb9e2d-aec8-4e7d-810c-218363edc86b-1761513334546.png', '1993-04-25', 'HOMEM_CISGENERO', true),
+('Marcos Martins', 'marcos@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '31997766513', '46898760-5dc0-4e98-b64d-c3cd65267c80-1761513560594.png', '1993-04-25', 'HOMEM_CISGENERO', true),
+('Flavio Martins', 'flavio@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '31997766514', 'https://flavio.jpg', '1993-04-25', 'HOMEM_CISGENERO', true),
+('Otavio Martins', 'otavio@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '31997766515', 'https://otavio.jpg', '1993-04-25', 'HOMEM_CISGENERO', true);
 
 INSERT INTO personal_trainers (id, cref, experiencia) VALUES
 (1, 'CREF123456-SP', 15),
