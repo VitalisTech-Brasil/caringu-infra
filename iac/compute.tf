@@ -235,8 +235,8 @@ data "template_file" "proxy_nginx_conf" {
   template = file("../cloud/proxy/nginx.conf.tpl")
 
   vars = {
-    frontend_1_ip = module.frontend[0].private_ip
-    frontend_2_ip = module.frontend[1].private_ip
+    frontend_1_ip = module.frontend.private_ip
+    frontend_2_ip = module.frontend-2.private_ip
     backend_1_ip  = module.backend[0].private_ip
     backend_2_ip  = module.backend[1].private_ip
   }
@@ -286,7 +286,6 @@ resource "null_resource" "deploy_proxy_nginx_conf" {
 # EC2s de Frontend (públicas) - React + Python
 module "frontend" {
   source = "./modules/ec2_instance"
-  count  = local.frontend_count
 
   ami                         = var.ec2_ami_id
   instance_type               = var.instance_type
@@ -299,6 +298,28 @@ module "frontend" {
   root_volume_type = var.volume_type
 
   user_data = file("${path.module}/scripts-init/setup-frontend.sh")
+
+  tags = merge(
+    local.common_tags,
+    { Name = "${var.project_name}-ec2-frontend-${count.index + 1}" }
+  )
+}
+
+module "frontend-2" {
+  source = "./modules/ec2_instance"
+  count  = local.frontend_count
+
+  ami                         = var.ec2_ami_id
+  instance_type               = var.instance_type
+  subnet_id                   = aws_subnet.public.id
+  vpc_security_group_ids      = [aws_security_group.frontend_sg.id]
+  associate_public_ip_address = true
+  key_name                    = aws_key_pair.generated_key.id
+
+  root_volume_size = var.volume_size
+  root_volume_type = var.volume_type
+
+  user_data = file("${path.module}/scripts-init/setup-frontend-2.sh")
 
   tags = merge(
     local.common_tags,
