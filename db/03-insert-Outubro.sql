@@ -688,3 +688,54 @@ INSERT INTO vitalis.execucoes_exercicios
 (4100, 3100, 21.60, 12, 3, 60, TRUE),
 (4101, 3101,  7.50, 30, 1, 90, TRUE),
 (4102, 3102, 90.00, 10, 4, 60, TRUE);
+
+-- ========================================
+-- TABELA: feedbacks (Carla e Alex - Outubro)
+-- ========================================
+INSERT INTO vitalis.feedbacks 
+(aulas_id, pessoas_id, descricao, data_criacao, tipo_autor, intensidade) VALUES
+
+-- Carla (aluna id/pessoa 6) - Semana 1
+(9, 6, 'Me senti bem mais confiante nos exercícios de hoje.', '2025-11-01 09:10:00', 'ALUNO', 'MODERADO'),
+(9, 5, 'Carla executou todos os exercícios com boa técnica.', '2025-11-01 09:15:00', 'PERSONAL', 'LEVE'),
+(10, 6, 'Um pouco cansada, mas percebi melhora no condicionamento.', '2025-11-03 09:10:00', 'ALUNO', 'LEVE'),
+
+-- Carla - Semana 1 (continuação)
+(11, 6, 'Consegui completar todas as séries sem dor nas articulações.', '2025-11-05 09:05:00', 'ALUNO', 'LEVE'),
+(12, 5, 'Boa resposta ao aumento de carga; seguir progredindo gradualmente.', '2025-11-07 09:20:00', 'PERSONAL', 'MODERADO'),
+
+-- Carla - Semana 2
+(13, 6, 'Treino bem intenso, senti bastante as pernas.', '2025-11-08 09:10:00', 'ALUNO', 'INTENSA'),
+(14, 6, 'Consegui concluir o treino mesmo com cansaço acumulado.', '2025-11-10 09:05:00', 'ALUNO', 'MODERADO'),
+(15, 5, 'Boa evolução no core; estabilidade melhor que na semana passada.', '2025-11-12 09:20:00', 'PERSONAL', 'MODERADO'),
+
+-- Carla - Semana 3
+(17, 6, 'Treino pesado, mas saí muito satisfeita com o resultado.', '2025-11-15 09:10:00', 'ALUNO', 'MUITO_INTENSA'),
+(18, 6, 'Senti o cardio mais fluido, com menos pausas.', '2025-11-17 09:05:00', 'ALUNO', 'MODERADO'),
+(19, 5, 'Ótima entrega da Carla; próxima fase será focada em manutenção.', '2025-11-19 09:20:00', 'PERSONAL', 'LEVE'),
+
+-- Carla - Aula 20 (semana 4 já realizada)
+(20, 6, 'Retorno depois de alguns dias de descanso foi muito bom.', '2025-11-22 09:10:00', 'ALUNO', 'LEVE'),
+
+-- Alex Nagano (aluno id/pessoa 7) - Semana 1
+(32, 7, 'Treino longo, mas consegui acompanhar bem o ritmo.', '2025-11-01 11:40:00', 'ALUNO', 'MODERADO'),
+(32, 5, 'Boa disposição do Alex na primeira aula do ciclo.', '2025-11-01 11:45:00', 'PERSONAL', 'LEVE'),
+(33, 7, 'Senti mais fadiga nos últimos exercícios, mas completei o treino.', '2025-11-03 11:40:00', 'ALUNO', 'INTENSA'),
+(34, 7, 'Consegui manter a técnica mesmo com aumento de carga.', '2025-11-05 11:35:00', 'ALUNO', 'MODERADO'),
+
+-- Alex - Semana 1 (continuação)
+(35, 5, 'Boa adaptação ao volume de treino; seguir monitorando recuperação.', '2025-11-07 11:50:00', 'PERSONAL', 'MODERADO'),
+
+-- Alex - Semana 2
+(36, 7, 'Treino exigente, mas senti evolução na resistência.', '2025-11-08 11:40:00', 'ALUNO', 'INTENSA'),
+(37, 7, 'Os exercícios de core estavam mais desafiadores hoje.', '2025-11-10 11:35:00', 'ALUNO', 'MODERADO'),
+(38, 5, 'Alex manteve boa postura na maior parte dos exercícios.', '2025-11-12 11:50:00', 'PERSONAL', 'LEVE'),
+
+-- Alex - Semana 3
+(40, 7, 'Treino forte, saí bastante cansado, mas satisfeito.', '2025-11-15 11:45:00', 'ALUNO', 'MUITO_INTENSA'),
+(41, 7, 'Senti melhora no controle da respiração durante o cardio.', '2025-11-17 11:40:00', 'ALUNO', 'MODERADO'),
+(42, 5, 'Boa evolução técnica; próxima etapa será foco em performance.', '2025-11-19 11:55:00', 'PERSONAL', 'MODERADO'),
+
+-- Alex - Aula 43 (semana 4 já realizada)
+(43, 7, 'Primeira aula da semana 4 foi puxada, mas muito produtiva.', '2025-11-22 11:40:00', 'ALUNO', 'INTENSA'),
+(43, 5, 'Carga alta com boa execução; reforçar alongamentos pós-treino.', '2025-11-22 11:50:00', 'PERSONAL', 'MODERADO');

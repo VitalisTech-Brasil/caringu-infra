@@ -391,6 +391,31 @@ INSERT INTO vitalis.feedbacks
 -- (5, 10, 'Suei bastante, foi puxado.', '2025-04-05 07:30:00', 'ALUNO', 'MUITO_INTENSA'),
 -- (5, 10, 'Realmente cansativo, mas ótimo.', '2025-04-05 07:40:00', 'ALUNO', 'MUITO_INTENSA');
 
+INSERT INTO vitalis.feedbacks 
+(aulas_id, pessoas_id, descricao, data_criacao, tipo_autor, intensidade) VALUES
+
+-- Sessão 3
+(3, 6, 'Treino puxado, mas consegui manter o ritmo até o fim.', '2025-05-09 09:30:00', 'ALUNO', 'MODERADO'),
+(3, 5, 'Boa evolução na resistência, ajustar apenas postura em alguns exercícios.', '2025-05-09 09:40:00', 'PERSONAL', 'LEVE'),
+
+-- Sessão 4
+(4, 6, 'Voltei mais disposta depois da troca de plano.', '2025-06-10 09:15:00', 'ALUNO', 'LEVE'),
+(4, 5, 'Adaptação ao novo plano foi tranquila; próxima sessão será mais intensa.', '2025-06-10 09:25:00', 'PERSONAL', 'LEVE'),
+
+-- Sessão 5
+(5, 6, 'Percebi melhora na execução dos exercícios de perna.', '2025-07-10 09:05:00', 'ALUNO', 'LEVE'),
+
+-- Sessão 6
+(6, 6, 'Treino bem cansativo, mas saí satisfeita com o resultado.', '2025-08-10 09:10:00', 'ALUNO', 'INTENSA'),
+(6, 5, 'Carga elevada com boa técnica; importante manter alongamento depois.', '2025-08-10 09:20:00', 'PERSONAL', 'MODERADO'),
+
+-- Sessão 7
+(7, 6, 'Senti o cardio mais pesado hoje.', '2025-09-08 11:15:00', 'ALUNO', 'INTENSA'),
+
+-- Sessão 8
+(8, 6, 'Senti menos dor nas articulações em relação às últimas semanas.', '2025-09-10 09:20:00', 'ALUNO', 'LEVE'),
+(8, 5, 'Boa adaptação às cargas, vamos progredir o volume nas próximas aulas.', '2025-09-10 09:30:00', 'PERSONAL', 'MODERADO');
+
 INSERT INTO especialidades (nome)
 VALUES
 ("Musculação"),
