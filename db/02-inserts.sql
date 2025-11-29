@@ -6,7 +6,7 @@ INSERT INTO vitalis.pessoas (nome, email, senha, celular, url_foto_perfil, data_
 ('Ana Costa', 'ana.costa@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '21991234567', 'da2e33a1-0a90-4b88-947b-6036666a94b6-1761513750076.png', '1992-05-18', 'MULHER_TRANSGENERO', true),
 
 -- INSERT COM JWT (ID: 5)
-('Ricardo Gomes da Silva', 'ricardo@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '11997654321', 'dc7851dd-d7cd-410f-a1ba-4440446c65c4-1761507342320.png', '1999-12-25', 'HOMEM_CISGENERO', true),
+('Monica Luiz Borges Moreno', 'monica@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '11997654321', 'dc7851dd-d7cd-410f-a1ba-4440446c65c4-1761507342320.png', '1999-12-25', 'MULHER_CISGENERO', true),
 
 -- Pessoas para alunos (IDs: 6 a 10)
 ('Carla Mendes', 'carla.mendes@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '11994455667', '441ffd16-fed6-48f8-b76e-46c282d55713-1761512959626.png', '1985-02-10', 'MULHER_TRANSGENERO', true),
@@ -242,44 +242,12 @@ INSERT INTO vitalis.aulas
 (1, '2025-05-07 08:00:00', '2025-05-07 09:00:00', 'REALIZADO'),
 (1, '2025-05-09 08:00:00', '2025-05-09 09:00:00', 'REALIZADO'),
 
--- Segunda semana do mês de Maio
--- (1, '2025-05-12 08:00:00', '2025-05-12 09:00:00', 'REALIZADO'),
--- (1, '2025-05-14 08:00:00', '2025-05-14 09:00:00', 'REALIZADO'),
--- (1, '2025-05-16 08:00:00', '2025-05-16 09:00:00', 'REALIZADO'),
-
--- Terceira semana do mês de Maio
--- (1, '2025-05-19 08:00:00', '2025-05-19 09:00:00', 'REALIZADO'),
--- (1, '2025-05-21 08:00:00', '2025-05-21 09:00:00', 'REALIZADO'),
--- (1, '2025-05-23 08:00:00', '2025-05-23 09:00:00', 'REALIZADO'),
-
--- Última semana do mês de Maio
--- (1, '2025-05-26 08:00:00', '2025-05-26 09:00:00', 'REALIZADO'),
--- (1, '2025-05-28 08:00:00', '2025-05-28 09:00:00', 'REALIZADO'),
--- (1, '2025-05-30 08:00:00', '2025-05-30 09:00:00', 'REALIZADO'),
-
 -- Aluno 6 (plano_contratado id 2 - ativo)
 (2, '2025-06-10 08:00:00', '2025-06-10 09:00:00', 'REALIZADO'),
 (2, '2025-07-10 08:00:00', '2025-07-10 09:00:00', 'REALIZADO'),
 (2, '2025-08-10 08:00:00', '2025-08-10 09:00:00', 'REALIZADO'),
 (2, '2025-09-08 09:00:00', '2025-09-08 10:30:00', 'REALIZADO'),
 (2, '2025-09-10 08:00:00', '2025-09-10 09:00:00', 'REALIZADO');
-
--- Aluno 7 (plano_contratado id 5 - ativo)
--- (4, '2025-07-20 12:00:00', '2025-07-20 13:30:00', 'REALIZADO'),
--- (4, '2025-08-25 18:00:00', '2025-08-25 19:00:00', 'REALIZADO'),
--- (4, '2025-09-02 10:00:00', NULL, 'AGENDADO');
-
--- Aluno 8 (plano_contratado id 8 - ativo)
--- (8, '2025-08-12 08:00:00', '2025-08-12 09:00:00', 'REALIZADO'),
--- (8, '2025-08-29 09:00:00', NULL, 'AGENDADO'),
--- 
--- -- Aluno 9 (plano_contratado id 10 - ativo)
--- (10, '2025-08-15 08:00:00', '2025-08-15 09:00:00', 'REALIZADO'),
--- (10, '2025-08-27 18:00:00', NULL, 'AGENDADO'),
--- 
--- -- Aluno 10 (plano_contratado id 12 - ativo)
--- (12, '2025-08-20 07:00:00', '2025-08-20 08:00:00', 'REALIZADO'),
--- (12, '2025-08-31 08:00:00', NULL, 'AGENDADO');
 
 -- ========================================
 -- TABELA: aulas_treinos_exercicios (colocar novos inserts aqui)
@@ -380,17 +348,6 @@ INSERT INTO vitalis.feedbacks
 (2, 7, 'Achei a carga pesada no agachamento.', '2025-04-02 11:00:00', 'ALUNO', 'INTENSA'),
 (2, 2, 'Vamos ajustar a carga.', '2025-04-02 11:10:00', 'PERSONAL', 'INTENSA');
 
--- Sessão 3
--- (3, 8, 'Preciso de mais exercícios para o core.', '2025-04-03 08:30:00', 'ALUNO', 'LEVE'),
-
--- Sessão 4
--- (4, 9, 'Foi um treino bem tranquilo, gostei.', '2025-04-04 10:30:00', 'ALUNO', 'MODERADO'),
--- (4, 4, 'Bom trabalho, siga assim.', '2025-04-04 10:35:00', 'PERSONAL', 'MODERADO'),
-
--- Sessão 5
--- (5, 10, 'Suei bastante, foi puxado.', '2025-04-05 07:30:00', 'ALUNO', 'MUITO_INTENSA'),
--- (5, 10, 'Realmente cansativo, mas ótimo.', '2025-04-05 07:40:00', 'ALUNO', 'MUITO_INTENSA');
-
 INSERT INTO vitalis.feedbacks 
 (aulas_id, pessoas_id, descricao, data_criacao, tipo_autor, intensidade) VALUES
 
@@ -456,12 +413,9 @@ VALUES
 (5, 12);
 
 INSERT INTO notificacoes (pessoas_id, tipo, titulo, visualizada, data_criacao)
-VALUES 
--- (1, 'FEEDBACK_TREINO', 'Feedback de Treino', FALSE, CURRENT_TIMESTAMP),
+VALUES
 (2, 'PAGAMENTO_REALIZADO', 'Pagamento Confirmado', FALSE, CURRENT_TIMESTAMP),
 (3, 'PLANO_PROXIMO_VENCIMENTO', 'Plano Próximo Vencimento', FALSE, CURRENT_TIMESTAMP);
--- (4, 'NOVA_FOTO_PROGRESSO', 'Nova Foto de Progresso', TRUE, CURRENT_TIMESTAMP),
--- (5, 'TREINO_PROXIMO_VENCIMENTO', 'O treino Core Explosivo do aluno Alex Rocha vencerá em breve (15/06/2025)', FALSE, CURRENT_TIMESTAMP);
 
 
 -- INSERTs para personal trainer
@@ -527,6 +481,7 @@ VALUES
 
 (11, 'PAGAMENTO_CANCELADO', TRUE),
 (11, 'AULAS_PENDENTES', TRUE);
+
 INSERT INTO vitalis.anamnese (
   alunos_id, objetivo_treino, lesao, lesao_descricao, frequencia_treino,
   experiencia, experiencia_descricao, desconforto, desconforto_descricao,
