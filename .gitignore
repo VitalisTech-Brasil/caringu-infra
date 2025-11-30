@@ -42,5 +42,8 @@ crash.*.log
 # Arquivos de ambiente
 .env
 
+# Scripts gerados localmente que podem conter credenciais sensíveis
+iac/aws-creds-setup.sh
+
 # Arquivos de backup de modelos lógicos do banco
 BANCO CORE - v3.mwb.bak

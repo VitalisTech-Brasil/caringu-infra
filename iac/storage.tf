@@ -1,36 +1,34 @@
-/* ############################################
-# STORAGE - S3 / EBS / Snapshot
+############################################
+# STORAGE - S3 / Upload de mocks
 ############################################
 
-resource "aws_s3_bucket" "app_bucket" {
-  bucket = var.bucket_name
+# Criação opcional do bucket S3 via módulo.
+# O módulo já aplica:
+# - force_destroy = true
+# - bloqueio total de acesso público (aws_s3_bucket_public_access_block)
+# - criptografia padrão SSE com KMS (aws_s3_bucket_server_side_encryption_configuration)
+module "app_bucket" {
+  source = "./modules/s3_bucket"
+  count  = var.create_bucket ? 1 : 0
 
-  tags = merge(
-    local.common_tags,
-    { Name = "${var.environment}-bucket" }
-  )
+  bucket_name = var.bucket_name
+  environment = var.environment
+  tags        = local.common_tags
 }
 
-# Habilita bloqueio total de acesso público (boa prática)
-resource "aws_s3_bucket_public_access_block" "block_public_access" {
-  bucket = aws_s3_bucket.app_bucket.id
+# Upload dos arquivos de mock para o bucket (apenas quando create_bucket = true)
+resource "null_resource" "upload_mocks_to_s3" {
+  count = var.create_bucket ? 1 : 0
 
-  block_public_acls       = true
-  ignore_public_acls      = true
-  block_public_policy     = true
-  restrict_public_buckets = true
-}
-
-# Habilita criptografia padrão do lado do servidor (SSE) usando KMS
-resource "aws_s3_bucket_server_side_encryption_configuration" "s3_encryption" {
-  bucket = aws_s3_bucket.app_bucket.id
-
-  rule {
-    apply_server_side_encryption_by_default {
-      kms_master_key_id = "alias/aws/s3" # Ou o ID/ARN de uma KMS Key personalizada
-      sse_algorithm     = "aws:kms"
-    }
-
-    bucket_key_enabled = true
+  # Garante que o upload só acontece depois do bucket existir
+  triggers = {
+    bucket_name = module.app_bucket[0].bucket_name
   }
-} */
+
+  provisioner "local-exec" {
+    working_dir = path.module
+    command     = "bash ./scripts-init/upload-mocks-to-s3.sh ${var.bucket_name}"
+  }
+}
+
+

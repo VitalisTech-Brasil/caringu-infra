@@ -91,9 +91,38 @@ variable "ssh_allowed_cidr" {
 }
 
 # -----------------------------------------
+# --- Variáveis para repasse de credenciais AWS ---
+# -----------------------------------------
+
+variable "aws_access_key_id" {
+  description = "AWS Access Key ID a ser repassada para as instâncias (via user_data)"
+  type        = string
+}
+
+variable "aws_secret_access_key" {
+  description = "AWS Secret Access Key a ser repassada para as instâncias (via user_data)"
+  type        = string
+}
+
+variable "aws_session_token" {
+  description = "AWS Session Token (opcional) a ser repassado para as instâncias (via user_data)"
+  type        = string
+  default     = ""
+}
+
+# -----------------------------------------
 # --- Variáveis associadas à storage.tf ---
 # -----------------------------------------
-/* variable "bucket_name" {
-  description = "Nome do bucket S3 para armazenar arquivos ou logs"
+
+variable "bucket_name" {
+  description = "Nome do bucket S3 usado para armazenar arquivos de mock e outros assets"
   type        = string
-} */
+  default     = "caringu-imagens"
+}
+
+variable "create_bucket" {
+  description = "Define se o Terraform deve criar o bucket S3 (true) ou apenas reutilizar um existente (false)"
+  type        = bool
+  default     = true
+}
+

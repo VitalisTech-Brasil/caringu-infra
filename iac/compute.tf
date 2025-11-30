@@ -320,9 +320,13 @@ module "backend" {
   root_volume_size = var.volume_size
   root_volume_type = var.volume_type
 
-  # Template de user_data com o IP privado do MySQL injetado
+  # Template de user_data com o IP privado do MySQL, credenciais AWS e bucket S3 injetados
   user_data = templatefile("${path.module}/scripts-init/setup-backend.sh.tpl", {
-    mysql_private_ip = module.mysql.private_ip
+    mysql_private_ip      = module.mysql.private_ip
+    aws_access_key_id     = var.aws_access_key_id
+    aws_secret_access_key = var.aws_secret_access_key
+    aws_session_token     = var.aws_session_token
+    bucket_name           = var.bucket_name
   })
 
   tags = merge(
