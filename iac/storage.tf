@@ -9,7 +9,7 @@
 # - criptografia padrão SSE com KMS (aws_s3_bucket_server_side_encryption_configuration)
 module "app_bucket" {
   source = "./modules/s3_bucket"
-  count  = var.create_bucket ? 1 : 0
+  count  = var.bucket_create ? 1 : 0
 
   bucket_name = var.bucket_name
   environment = var.environment
@@ -18,7 +18,7 @@ module "app_bucket" {
 
 # Upload dos arquivos de mock para o bucket (apenas quando create_bucket = true)
 resource "null_resource" "upload_mocks_to_s3" {
-  count = var.create_bucket ? 1 : 0
+  count = var.bucket_create ? 1 : 0
 
   # Garante que o upload só acontece depois do bucket existir
   triggers = {

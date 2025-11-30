@@ -112,15 +112,20 @@ variable "aws_session_token" {
 # -----------------------------------------
 # --- Variáveis associadas à storage.tf ---
 # -----------------------------------------
-
-variable "bucket_name" {
-  description = "Nome do bucket S3 usado para armazenar arquivos de mock e outros assets"
-  type        = string
+#
+# IMPORTANTE:
+# O Terraform pergunta as variáveis em ordem alfabética.
+# Por isso, usamos "bucket_create" antes de "bucket_name"
+# para garantir que a pergunta de criar ou não o bucket
+# apareça primeiro no prompt interativo.
+variable "bucket_create" {
+  description = "Define se o Terraform deve criar o bucket S3 (digite 'true') ou reutilizar um existente (digite 'false')"
+  type        = bool
 }
 
-variable "create_bucket" {
-  description = "Define se o Terraform deve criar o bucket S3 (true) ou apenas reutilizar um existente (false)"
-  type        = bool
+variable "bucket_name" {
+  description = "Nome do bucket S3 usado para armazenar arquivos de mock e outros assets (novo OU já existente)"
+  type        = string
 }
 
 # -----------------------------------------

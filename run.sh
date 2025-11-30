@@ -76,6 +76,7 @@ load_aws_creds_from_file() {
 validate_aws_credentials() {
   echo "🔐 Validando credenciais AWS com 'aws sts get-caller-identity'..."
   if aws sts get-caller-identity >/dev/null 2>&1; then
+    echo ""
     echo "✅ Credenciais AWS válidas."
     return 0
   else
@@ -140,6 +141,7 @@ export AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN
 envsubst '$AWS_ACCESS_KEY_ID$AWS_SECRET_ACCESS_KEY$AWS_SESSION_TOKEN' < "${AWS_CREDS_TEMPLATE}" > "${AWS_CREDS_SCRIPT}"
 chmod +x "${AWS_CREDS_SCRIPT}"
 
+echo ""
 echo "▶️  Executando Terraform via script gerado..."
 
 cd "${SCRIPT_DIR}"
