@@ -126,3 +126,14 @@ variable "create_bucket" {
   default     = true
 }
 
+# -----------------------------------------
+# --- Variáveis associadas aos Frontends ---
+# -----------------------------------------
+
+variable "frontend_server_ids" {
+  description = "Lista de identificadores usados no header X-Server-Id para cada instância de frontend"
+  type        = list(string)
+  default     = ["EC2-1", "EC2-2"]
+}
+
+
