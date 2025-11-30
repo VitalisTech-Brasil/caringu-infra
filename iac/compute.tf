@@ -300,11 +300,11 @@ module "frontend" {
 
   # user_data gerado via template, com X-Server-Id único por instância
   user_data = templatefile("${path.module}/scripts-init/setup-public.sh.tpl", {
-    
+
     nginx_conf = templatefile("../cloud/public/nginx/default.conf.tpl", {
       server_id = var.frontend_server_ids[count.index]
     })
-    
+
   })
 
   tags = merge(

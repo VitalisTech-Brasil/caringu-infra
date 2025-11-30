@@ -105,9 +105,8 @@ variable "aws_secret_access_key" {
 }
 
 variable "aws_session_token" {
-  description = "AWS Session Token (opcional) a ser repassado para as instâncias (via user_data)"
+  description = "AWS Session Token a ser repassado para as instâncias (via user_data)"
   type        = string
-  default     = ""
 }
 
 # -----------------------------------------
@@ -117,13 +116,11 @@ variable "aws_session_token" {
 variable "bucket_name" {
   description = "Nome do bucket S3 usado para armazenar arquivos de mock e outros assets"
   type        = string
-  default     = "caringu-imagens"
 }
 
 variable "create_bucket" {
   description = "Define se o Terraform deve criar o bucket S3 (true) ou apenas reutilizar um existente (false)"
   type        = bool
-  default     = true
 }
 
 # -----------------------------------------

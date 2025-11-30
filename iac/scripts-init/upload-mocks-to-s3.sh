@@ -11,7 +11,7 @@ fi
 echo "📦 Iniciando upload dos mocks para o bucket S3 '${BUCKET_NAME}'..."
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
+PROJECT_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
 
 MOCKS_PT_DIR="${PROJECT_ROOT}/mocks/images/personal-trainers"
 MOCKS_ALUNOS_DIR="${PROJECT_ROOT}/mocks/images/alunos"
@@ -23,14 +23,14 @@ fi
 
 if [[ -d "${MOCKS_PT_DIR}" ]]; then
   echo "⬆️  Enviando mocks de personal trainers..."
-  aws s3 sync "${MOCKS_PT_DIR}/" "s3://${BUCKET_NAME}/personal-trainers/" --delete
+  aws s3 sync "${MOCKS_PT_DIR}/" "s3://${BUCKET_NAME}/" --delete
 else
   echo "ℹ️  Diretório de mocks de personal trainers não encontrado em '${MOCKS_PT_DIR}', pulando..."
 fi
 
 if [[ -d "${MOCKS_ALUNOS_DIR}" ]]; then
   echo "⬆️  Enviando mocks de alunos..."
-  aws s3 sync "${MOCKS_ALUNOS_DIR}/" "s3://${BUCKET_NAME}/alunos/" --delete
+  aws s3 sync "${MOCKS_ALUNOS_DIR}/" "s3://${BUCKET_NAME}/" --delete
 else
   echo "ℹ️  Diretório de mocks de alunos não encontrado em '${MOCKS_ALUNOS_DIR}', pulando..."
 fi
