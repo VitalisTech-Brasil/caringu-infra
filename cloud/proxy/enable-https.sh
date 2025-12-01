@@ -101,8 +101,33 @@ else
   echo "⏭️ Pulando etapa de emissão com Certbot (já existe certificado para ${DOMAIN})."
 fi
 
-echo "🔎 Conferindo arquivos de certificado dentro do host..."
-sudo ls -l /etc/letsencrypt/live/"${DOMAIN}" || true
+echo "🔎 Descobrindo melhor diretório de certificado válido para ${DOMAIN}..."
+BEST_DIR=""
+for d in $(sudo ls -d /etc/letsencrypt/live/"${DOMAIN}"* 2>/dev/null || true); do
+  if sudo test -f "${d}/fullchain.pem"; then
+    SUBJECT="$(sudo openssl x509 -in "${d}/fullchain.pem" -noout -subject 2>/dev/null || echo "")"
+    if echo "${SUBJECT}" | grep -q "CN=${DOMAIN}"; then
+      BEST_DIR="${d}"
+      break
+    fi
+  fi
+done
+
+if [ -z "${BEST_DIR}" ]; then
+  echo "❌ Não foi possível encontrar um certificado válido (CN=${DOMAIN}) em /etc/letsencrypt/live."
+  echo "   Verifique os logs do Certbot em /var/log/letsencrypt/letsencrypt.log."
+  exit 1
+fi
+
+SSL_CERT_PATH="${BEST_DIR}/fullchain.pem"
+SSL_KEY_PATH="${BEST_DIR}/privkey.pem"
+
+echo "🔧 Atualizando caminhos de certificado no nginx/default.conf..."
+sudo sed -i "s#^\s*ssl_certificate .*#    ssl_certificate ${SSL_CERT_PATH};#g" nginx/default.conf
+sudo sed -i "s#^\s*ssl_certificate_key .*#    ssl_certificate_key ${SSL_KEY_PATH};#g" nginx/default.conf
+
+echo "🔎 Conferindo arquivos de certificado em ${BEST_DIR}..."
+sudo ls -l "${BEST_DIR}" || true
 
 echo "🧪 Testando configuração do Nginx dentro do container..."
 sudo docker exec -it caringu-proxy nginx -t
