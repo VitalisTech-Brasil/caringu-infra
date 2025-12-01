@@ -30,7 +30,7 @@ fi
 
 if [[ -d "${MOCKS_ALUNOS_DIR}" ]]; then
   echo "⬆️  Enviando mocks de alunos..."
-  aws s3 sync "${MOCKS_ALUNOS_DIR}/" "s3://${BUCKET_NAME}/" --delete
+  aws s3 sync "${MOCKS_ALUNOS_DIR}/" "s3://${BUCKET_NAME}/"
 else
   echo "ℹ️  Diretório de mocks de alunos não encontrado em '${MOCKS_ALUNOS_DIR}', pulando..."
 fi
