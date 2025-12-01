@@ -8,12 +8,12 @@ set -euo pipefail
 # mantendo a arquitetura atual de proxy reverso e load balancer.
 #
 # USO:
-#   ./enable-https.sh exemplo.ddns.net seu.email@sptech.school
+#   ./enable-https.sh exemplo.hopto.org seu.email@sptech.school
 #
 # Se não passar parâmetros, usa defaults seguros para você editar no código.
 ###############################################################################
 
-DOMAIN="${1:-caringu.ddns.net}"
+DOMAIN="${1:-caringu.hopto.org}"
 EMAIL="${2:-vitalistech06@gmail.com}" # troque por um e-mail seu válido
 SKIP_CERTBOT="false"
 
