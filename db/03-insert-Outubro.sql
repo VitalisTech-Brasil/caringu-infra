@@ -24,9 +24,9 @@ INSERT INTO vitalis.aulas (planos_contratados_id, data_horario_inicio, data_hora
 -- ========================================
 INSERT INTO vitalis.aulas (planos_contratados_id, data_horario_inicio, data_horario_fim, status) VALUES
 (2, '2025-11-22 08:00:00', '2025-11-22 09:00:00', 'REALIZADO'),
-(2, '2025-11-24 08:00:00', '2025-11-24 09:00:00', 'AGENDADO'),
-(2, '2025-11-26 08:00:00', '2025-11-26 09:00:00', 'AGENDADO'),
-(2, '2025-11-28 08:00:00', '2025-11-28 09:00:00', 'AGENDADO');
+(2, '2025-11-24 08:00:00', '2025-11-24 09:00:00', 'REALIZADO'),
+(2, '2025-11-26 08:00:00', '2025-11-26 09:00:00', 'REALIZADO'),
+(2, '2025-11-28 08:00:00', '2025-11-28 09:00:00', 'REALIZADO');
 
 -- ========================================
 -- AULAS DE NOVEMBRO (AGENDADAS)
@@ -34,10 +34,10 @@ INSERT INTO vitalis.aulas (planos_contratados_id, data_horario_inicio, data_hora
 -- ========================================
 INSERT INTO vitalis.aulas (planos_contratados_id, data_horario_inicio, data_horario_fim, status) VALUES
 -- Semana 1 de Novembro
-(2, '2025-12-02 08:00:00', '2025-12-02 09:00:00', 'AGENDADO'),
-(2, '2025-12-04 08:00:00', '2025-12-04 09:00:00', 'AGENDADO'),
-(2, '2025-12-06 08:00:00', '2025-12-06 09:00:00', 'AGENDADO'),
-(2, '2025-12-08 08:00:00', '2025-12-08 09:00:00', 'AGENDADO'),
+(2, '2025-12-02 08:00:00', '2025-12-02 09:00:00', 'REALIZADO'),
+(2, '2025-12-04 08:00:00', '2025-12-04 09:00:00', 'REALIZADO'),
+(2, '2025-12-06 08:00:00', '2025-12-06 09:00:00', 'REALIZADO'),
+(2, '2025-12-08 08:00:00', '2025-12-08 09:00:00', 'REALIZADO'),
 -- Semana 2 de Novembro
 (2, '2025-12-09 08:00:00', '2025-12-09 09:00:00', 'AGENDADO'),
 (2, '2025-12-11 08:00:00', '2025-12-11 09:00:00', 'AGENDADO'),
@@ -374,9 +374,9 @@ INSERT INTO vitalis.aulas (planos_contratados_id, data_horario_inicio, data_hora
 -- ========================================
 INSERT INTO vitalis.aulas (planos_contratados_id, data_horario_inicio, data_horario_fim, status) VALUES
 (4, '2025-11-22 10:00:00', '2025-11-22 11:30:00', 'REALIZADO'),
-(4, '2025-11-24 10:00:00', '2025-11-24 11:30:00', 'AGENDADO'),
-(4, '2025-11-26 10:00:00', '2025-11-26 11:30:00', 'AGENDADO'),
-(4, '2025-11-28 10:00:00', '2025-11-28 11:30:00', 'AGENDADO');
+(4, '2025-11-24 10:00:00', '2025-11-24 11:30:00', 'REALIZADO'),
+(4, '2025-11-26 10:00:00', '2025-11-26 11:30:00', 'REALIZADO'),
+(4, '2025-11-28 10:00:00', '2025-11-28 11:30:00', 'REALIZADO');
 
 -- ========================================
 -- AULAS DE NOVEMBRO (AGENDADAS)
@@ -384,10 +384,10 @@ INSERT INTO vitalis.aulas (planos_contratados_id, data_horario_inicio, data_hora
 -- ========================================
 INSERT INTO vitalis.aulas (planos_contratados_id, data_horario_inicio, data_horario_fim, status) VALUES
 -- Semana 1 de Novembro
-(4, '2025-12-02 10:00:00', '2025-12-02 11:30:00', 'AGENDADO'),
-(4, '2025-12-04 10:00:00', '2025-12-04 11:30:00', 'AGENDADO'),
-(4, '2025-12-06 10:00:00', '2025-12-06 11:30:00', 'AGENDADO'),
-(4, '2025-12-08 10:00:00', '2025-12-08 11:30:00', 'AGENDADO'),
+(4, '2025-12-02 10:00:00', '2025-12-02 11:30:00', 'REALIZADO'),
+(4, '2025-12-04 10:00:00', '2025-12-04 11:30:00', 'REALIZADO'),
+(4, '2025-12-06 10:00:00', '2025-12-06 11:30:00', 'REALIZADO'),
+(4, '2025-12-08 10:00:00', '2025-12-08 11:30:00', 'REALIZADO'),
 -- Semana 2 de Novembro
 (4, '2025-12-09 10:00:00', '2025-12-09 11:30:00', 'AGENDADO'),
 (4, '2025-12-11 10:00:00', '2025-12-11 11:30:00', 'AGENDADO'),
