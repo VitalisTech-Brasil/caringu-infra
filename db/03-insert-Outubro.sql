@@ -61,21 +61,21 @@ INSERT INTO vitalis.aulas_treinos_exercicios
 (1003, 9, 3, 3, 12.00, 12, 3, 60, 'Controlar velocidade do movimento'),
 (1004, 9, 4, 4, 10.00, 12, 3, 45, 'Manter postura durante o exercício'),
 
-(1005,10, 5, 1, 50.00,  8, 4, 90, 'Controlar respiração na execução'),
-(1006,10, 6, 2, 18.00, 10, 4, 60, 'Manter core estável durante todo exercício'),
-(1007,10, 7, 3, 12.00, 12, 3, 60, 'Controlar velocidade do movimento'),
-(1008,10, 8, 4, 12.00, 12, 3, 60, 'Foco na contração muscular'),
+(1005, 10, 5, 1, 50.00,  8, 4, 90, 'Controlar respiração na execução'),
+(1006, 10, 6, 2, 18.00, 10, 4, 60, 'Manter core estável durante todo exercício'),
+(1007, 10, 7, 3, 12.00, 12, 3, 60, 'Controlar velocidade do movimento'),
+(1008, 10, 8, 4, 12.00, 12, 3, 60, 'Foco na contração muscular'),
 
-(1009,11,  9, 1, 50.00,  8, 4, 90, 'Controlar respiração na execução'),
-(1010,11, 10, 2, 18.00, 10, 4, 60, 'Manter core estável durante todo exercício'),
-(1011,11, 11, 3, 12.00, 12, 3, 60, 'Controlar velocidade do movimento'),
-(1012,11, 12, 4, 10.00, 12, 3, 45, 'Controlar respiração durante o movimento'),
+(1009, 11,  9, 1, 50.00,  8, 4, 90, 'Controlar respiração na execução'),
+(1010, 11, 10, 2, 18.00, 10, 4, 60, 'Manter core estável durante todo exercício'),
+(1011, 11, 11, 3, 12.00, 12, 3, 60, 'Controlar velocidade do movimento'),
+(1012, 11, 12, 4, 10.00, 12, 3, 45, 'Controlar respiração durante o movimento'),
 
-(1013,12, 13, 1, 50.00,  8, 4, 90, 'Controlar respiração na execução'),
-(1014,12, 14, 2, 18.00, 10, 4, 60, 'Manter core estável durante todo exercício'),
-(1015,12, 15, 3, 12.00, 12, 3, 60, 'Controlar velocidade do movimento'),
-(1016,12, 16, 4, 12.00, 12, 3, 60, 'Executar movimento com amplitude adequada'),
-(1017,12, 17, 5, 12.00, 12, 3, 45, 'Manter ritmo constante na execução'),
+(1013, 12, 13, 1, 50.00,  8, 4, 90, 'Controlar respiração na execução'),
+(1014, 12, 14, 2, 18.00, 10, 4, 60, 'Manter core estável durante todo exercício'),
+(1015, 12, 15, 3, 12.00, 12, 3, 60, 'Controlar velocidade do movimento'),
+(1016, 12, 16, 4, 12.00, 12, 3, 60, 'Executar movimento com amplitude adequada'),
+(1017, 12, 17, 5, 12.00, 12, 3, 45, 'Manter ritmo constante na execução'),
 
 -- Semana 2 (Aulas 13-16) - +10%
 (1018, 13, 18, 1, 55.00,  8, 4, 90, 'Manter core estável durante todo exercício'),
@@ -232,7 +232,7 @@ INSERT INTO vitalis.execucoes_exercicios
 (2027, 1027, 13.20, 12, 3, 60, TRUE),
 
 -- Aula 15
-(2028, 1028,  7.50, 10, 3, 90, TRUE),
+(2028, 1028, 20.50, 10, 3, 90, TRUE),
 (2029, 1029, 55.00,  8, 4, 90, TRUE),
 (2030, 1030, 19.80, 10, 4, 60, TRUE),
 (2031, 1031, 13.20, 12, 3, 60, TRUE),
@@ -264,35 +264,35 @@ INSERT INTO vitalis.execucoes_exercicios
 (2049, 1049, 60.00, 12, 1, 60, TRUE),
 
 -- Aula 20
-(2050, 1050, 65.00, 10, 4, 60, TRUE),
+(2050, 1050, 25.00, 10, 4, 60, TRUE),
 (2051, 1051, 23.40, 12, 3, 60, TRUE),
 (2052, 1052, 15.60, 12, 3, 60, TRUE),
 (2053, 1053,  7.50, 12, 1, 90, TRUE),
 
 -- Aula 21
-(2054, 1054, 65.00, 10, 4, 60, TRUE),
+(2054, 1054, 25.00, 10, 4, 60, TRUE),
 (2055, 1055, 23.40, 12, 3, 60, TRUE),
 (2056, 1056, 15.60, 12, 3, 60, TRUE),
 (2057, 1057,  7.50, 12, 1, 90, TRUE),
 
 -- Aula 22
-(2058, 1058, 65.00, 10, 4, 60, TRUE),
+(2058, 1058, 25.00, 10, 4, 60, TRUE),
 (2059, 1059, 23.40, 12, 3, 60, TRUE),
 (2060, 1060, 15.60, 12, 3, 60, TRUE),
 (2061, 1061,  7.50, 12, 1, 90, TRUE),
 
 -- Aula 23
-(2062, 1062, 70.00, 10, 4, 60, TRUE),
+(2062, 1062, 26.00, 10, 4, 60, TRUE),
 (2063, 1063, 25.20, 12, 3, 60, TRUE),
 (2064, 1064, 16.80, 12, 3, 60, TRUE),
 (2065, 1065,  7.50, 12, 1, 90, TRUE),
 
 -- Aula 24
-(2066, 1066, 70.00, 10, 4, 60, TRUE),
+(2066, 1066, 26.00, 10, 4, 60, TRUE),
 (2067, 1067, 25.20, 12, 3, 60, TRUE),
 (2068, 1068, 16.80, 12, 3, 60, TRUE),
 (2069, 1069,  7.50, 30, 1, 90, TRUE),
-(2070, 1070, 70.00, 10, 4, 60, TRUE),
+(2070, 1070, 26.00, 10, 4, 60, TRUE),
 
 -- Aula 25
 (2071, 1071, 25.20, 12, 3, 60, TRUE),
