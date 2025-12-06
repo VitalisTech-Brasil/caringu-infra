@@ -2,7 +2,7 @@
 set -euo pipefail
 
 DOMAIN="caringu.hopto.org"
-EMAIL="gustavokohatsu@hotmail.com"
+EMAIL="vitalistech06@gmail.com"
 COMPOSE_CMD="docker compose"
 
 echo "[enable-https] Iniciando processo de habilitação de HTTPS para ${DOMAIN}..."
