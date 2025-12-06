@@ -21,7 +21,7 @@ sudo mkdir -p /etc/letsencrypt
 sudo mkdir -p /var/www/certbot
 
 echo "[enable-https] Rodando Certbot (webroot) para emitir certificado inicial..."
-docker run --rm \
+sudo docker run --rm \
   -v /etc/letsencrypt:/etc/letsencrypt \
   -v /var/www/certbot:/var/www/certbot \
   certbot/certbot certonly --webroot \
@@ -54,14 +54,14 @@ if [[ ! -f "${NGINX_DIR}/default-https.conf.tpl" ]]; then
   exit 1
 fi
 
-cp "${NGINX_DIR}/default-https.conf.tpl" "${NGINX_DIR}/default.conf"
+sudo cp "${NGINX_DIR}/default-https.conf.tpl" "${NGINX_DIR}/default.conf"
 echo "[enable-https] Arquivo nginx/default.conf atualizado para versão HTTPS."
 
 # 5. Reiniciar o container nginx-proxy de forma limpa
 echo "[enable-https] Reiniciando serviço nginx-proxy via docker compose..."
-${COMPOSE_CMD} restart nginx-proxy
+sudo ${COMPOSE_CMD} restart nginx-proxy
 
 echo "[enable-https] HTTPS habilitado com sucesso para ${DOMAIN}."
 echo "[enable-https] Opcional: subir o contêiner de renovação automática com:"
-echo "  ${COMPOSE_CMD} up -d certbot"
+echo "sudo ${COMPOSE_CMD} up -d certbot"
 
