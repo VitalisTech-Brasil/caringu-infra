@@ -13,15 +13,34 @@ upstream python_servers {
     server ${frontend_2_ip}:8000;
 }
 
+# Bloco HTTP apenas para redirecionar para HTTPS
 server {
     listen 80;
     server_name caringu.hopto.org;
 
-    # ACME challenge - necessário para emissão inicial do Let's Encrypt
+    # ACME challenge - continua disponível também em produção para renovação
     location ^~ /.well-known/acme-challenge/ {
         alias /var/www/certbot/.well-known/acme-challenge/;
         try_files $uri =404;
     }
+
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+
+# Bloco principal HTTPS
+server {
+    listen 443 ssl http2;
+    server_name caringu.hopto.org;
+
+    # Caminhos fixos dos certificados (sem sufixos -0001)
+    ssl_certificate /etc/letsencrypt/live/caringu.hopto.org/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/caringu.hopto.org/privkey.pem;
+
+    # Parâmetros de segurança opcionais (podem ser habilitados depois)
+    # include /etc/letsencrypt/options-ssl-nginx.conf;
+    # ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
 
     # Frontend React (SPA)
     location / {

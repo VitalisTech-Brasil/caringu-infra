@@ -6,13 +6,18 @@ services:
       - "80:80"
       - "443:443"
     volumes:
+      # Config principal do NGINX (gerada a partir dos templates)
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
-      # Certificados Let’s Encrypt (lidos pelo Nginx)
+      # Certificados Let's Encrypt (lidos pelo NGINX)
       - /etc/letsencrypt:/etc/letsencrypt:ro
       # Webroot usado pelo desafio ACME do Certbot
       - /var/www/certbot:/var/www/certbot:ro
     restart: always
 
+  # Contêiner de renovação automática do Certbot.
+  # IMPORTANTE: não deve ser iniciado antes da etapa HTTPS existir.
+  # Por padrão, ele fica definido mas você só sobe com:
+  #   docker compose up -d certbot
   certbot:
     image: certbot/certbot
     container_name: certbot-manager
@@ -21,9 +26,18 @@ services:
       - /etc/letsencrypt:/etc/letsencrypt
       # Volume para o desafio ACME (escrito pelo Certbot)
       - /var/www/certbot:/var/www/certbot
+    # Só faz renovação, assumindo que os certificados já existem.
+    # Você pode habilitar esse serviço APÓS rodar enable-https.sh.
     depends_on:
       - nginx-proxy
-    # Renova o certificado a cada 12 horas (não faz nada na primeira execução)
-    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+    entrypoint: >
+      /bin/sh -c '
+      echo "[certbot-manager] Iniciado. Aguardando 12h para primeira checagem de renew...";
+      trap exit TERM;
+      while :; do
+        certbot renew --quiet || echo "[certbot-manager] Falha ao renovar certificados (pode ser antes da emissão inicial)";
+        sleep 12h & wait $${!};
+      done;
+      '
 
 
