@@ -9,9 +9,9 @@ INSERT INTO vitalis.pessoas (nome, email, senha, celular, url_foto_perfil, data_
 ('Monica Luiz Borges Moreno', 'monica@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '11997654321', 'dc7851dd-d7cd-410f-a1ba-4440446c65c4-1761507342320.png', '1999-12-25', 'MULHER_CISGENERO', true),
 
 -- Pessoas para alunos (IDs: 6 a 10)
-('Carla Mendes', 'carla.mendes@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '11994455667', '441ffd16-fed6-48f8-b76e-46c282d55713-1761512959626.png', '1985-02-10', 'MULHER_TRANSGENERO', true),
+('Suellen Lima', 'suellen@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', NULL, '3e146be8-947e-4057-827f-376d0f9cd23c-1761513023243.png', '1997-09-12', 'MULHER_TRANSGENERO', true),
 ('Alex Nagano', 'alex.nagano@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '11999887766', '7c474380-6068-4e13-8b93-33c8ce08bb57-1762038689694.png', '2000-12-01', 'NAO_BINARIO', true),
-('Suellen Lima', 'suellen.lima@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', NULL, '3e146be8-947e-4057-827f-376d0f9cd23c-1761513023243.png', '1997-09-12', 'MULHER_TRANSGENERO', true),
+('Carla Mendes', 'carla.mendes@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '11994455667', '441ffd16-fed6-48f8-b76e-46c282d55713-1761512959626.png', '1985-02-10', 'MULHER_TRANSGENERO', true),
 ('Diego Santos', 'diego.santos@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '21998877665', 'f1ea42f3-b7b4-437e-be1c-c7e76878a501-1761513091401.png', NULL, 'HOMEM_TRANSGENERO', true),
 ('Luna Martins', 'luna.martins@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '31997766544', '9fdb9e2d-aec8-4e7d-810c-218363edc86b-1761513334546.png', '1993-04-25', 'HOMEM_CISGENERO', true),
 ('Marcos Martins', 'marcos@gmail.com', '$2a$10$pn9w6oGeHHfo8WBghLvKvuw.ed5GMYuLw0Tpy0XKPHI5lQTv2HdP.', '31997766513', '46898760-5dc0-4e98-b64d-c3cd65267c80-1761513560594.png', '1993-04-25', 'HOMEM_CISGENERO', true),
@@ -518,23 +518,43 @@ INSERT INTO vitalis.personal_trainers_bairros (personal_trainers_id, bairro_id) 
 INSERT INTO vitalis.evolucao_corporal (
   tipo, url_foto_shape, data_envio, periodo_avaliacao, alunos_id
 ) VALUES
-('FRONTAL', 'https://img.com/aluno6-frontal.jpg', '2025-04-01 08:00:00', 1, 6),
-('FRONTAL', 'https://img.com/aluno6-frontal.jpg', '2025-05-01 08:00:00', 1, 6),
-('FRONTAL', 'https://img.com/aluno6-frontal.jpg', '2025-06-01 08:00:00', 1, 6),
-('FRONTAL', 'https://img.com/aluno6-frontal.jpg', '2025-07-01 08:00:00', 1, 6),
-('FRONTAL', 'https://img.com/aluno6-frontal.jpg', '2025-08-01 08:00:00', 1, 6),
-('FRONTAL', 'https://img.com/aluno6-frontal.jpg', '2025-09-01 08:00:00', 1, 6),
-('PERFIL_DIREITO', 'https://img.com/aluno7-perfil.jpg', '2025-04-02 09:00:00', 1, 7),
-('PERFIL_DIREITO', 'https://img.com/aluno7-perfil.jpg', '2025-05-02 09:00:00', 1, 7),
-('PERFIL_DIREITO', 'https://img.com/aluno7-perfil.jpg', '2025-06-02 09:00:00', 1, 7),
-('PERFIL_DIREITO', 'https://img.com/aluno7-perfil.jpg', '2025-07-02 09:00:00', 1, 7),
-('PERFIL_DIREITO', 'https://img.com/aluno7-perfil.jpg', '2025-08-02 09:00:00', 1, 7),
-('COSTAS', 'https://img.com/aluno8-costas.jpg', '2025-04-03 07:30:00', 2, 8),
+
+-- Aluno 6 (Suellen)
+('FRONTAL', '4bbd6390-b3c3-4838-9dd2-993e00afec1f-1765042313430.jpg', '2025-04-02 09:00:00', 1, 6),
+('FRONTAL', '4292e78b-6868-41d4-aa4f-14dbb99ee136-1765042400207.jpeg', '2025-06-02 09:00:00', 1, 6),
+
+('PERFIL_ESQUERDO', '94aec084-2ea7-492b-8297-2bf078396f9f-1765042348101.jpg', '2025-04-02 09:10:00', 1, 6),
+('PERFIL_ESQUERDO', 'c80c2ae0-ee80-4173-960a-2fd54b995f57-1765042424093.jpg', '2025-06-02 09:10:00', 1, 6),
+
+('PERFIL_DIREITO', 'cf1729a7-0b7f-426f-a1a8-8418cc7125d1-1765042485502.jpg', '2025-04-02 09:15:00', 1, 6),
+('PERFIL_DIREITO', '7a89df17-d0c5-449f-9c5e-216645c7771d-1765042532074.jpg', '2025-06-02 09:10:00', 1, 6),
+
+('COSTAS', '2f427642-0a74-4b07-b35a-df167229c052-1765042608135.jpg', '2025-04-02 09:25:00', 1, 6),
+('COSTAS', '9d3d784b-e718-460c-807f-9a7e5ea87a99-1765042643042.jpg', '2025-06-02 09:15:00', 1, 6),
+
+-- Aluno 7 (Alex)
+('FRONTAL', 'dc36c033-edc8-473c-a7e4-81775333bc28-1765037703632.jpg', '2025-04-02 09:00:00', 1, 7),
+('FRONTAL', 'd3a9ea48-970a-4dfb-9b14-de192b635787-1765037883352.jpg', '2025-06-02 09:00:00', 1, 7),
+
+('PERFIL_ESQUERDO', '859e09e7-e2e3-441f-a320-6c7c55054a86-1765038088644.jpg', '2025-04-02 09:10:00', 1, 7),
+
+('PERFIL_DIREITO', 'c978ca1d-65cc-4fdc-9f49-d846d405b779-1765038152794.jpg', '2025-04-02 09:15:00', 1, 7),
+('PERFIL_DIREITO', 'f39bf4c8-d41b-4a4c-ac5a-200a0b0146ea-1765038261000.jpg', '2025-06-02 09:10:00', 1, 7),
+
+('COSTAS', '4287b947-a441-4443-926d-8766a31d818e-1765038208315.jpg', '2025-04-02 09:25:00', 1, 7),
+('COSTAS', 'a684ed82-1ff3-43ac-a8a8-69ffacf7d09e-1765038309884.jpg', '2025-06-02 09:15:00', 1, 7),
+
+-- Aluno 8
+('FRONTAL', 'https://img.com/aluno8-frontal.jpg', '2025-04-03 07:30:00', 2, 8),
 ('COSTAS', 'https://img.com/aluno8-costas.jpg', '2025-06-03 07:30:00', 2, 8),
-('COSTAS', 'https://img.com/aluno8-costas.jpg', '2025-08-03 07:30:00', 2, 8),
-('COSTAS', 'https://img.com/aluno8-costas.jpg', '2025-10-03 07:30:00', 2, 8),
-('COSTAS', 'https://img.com/aluno8-costas.jpg', '2025-12-03 07:30:00', 2, 8),
+('PERFIL_ESQUERDO', 'https://img.com/aluno8-esquerdo.jpg', '2025-08-03 07:30:00', 2, 8),
+('PERFIL_DIREITO', 'https://img.com/aluno8-direito.jpg', '2025-10-03 07:30:00', 2, 8),
+('PERFIL_DIREITO', 'https://img.com/aluno8-direito.jpg', '2025-12-03 07:30:00', 2, 8),
+
+-- Aluno 9
 ('FRONTAL', 'https://img.com/aluno9-frontal.jpg', '2025-04-04 10:00:00', 1, 9),
+
+-- Aluno 10
 ('PERFIL_ESQUERDO', 'https://img.com/aluno10-perfil.jpg', '2025-04-05 06:30:00', 3, 10);
 
 INSERT INTO vitalis.avaliacoes_personal_trainers (aluno_id, personal_trainer_id, nota, comentario, data_avaliacao) VALUES
