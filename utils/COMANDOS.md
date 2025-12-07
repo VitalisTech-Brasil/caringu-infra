@@ -107,7 +107,10 @@ docker-compose up -d
 
 ---
 
-## Export
+# Logs Cloud-Init (Logs do User Data):
+- sudo cat /var/log/cloud-init-output.log
+
+## Export:
 
 - export AWS_ACCESS_KEY_ID=aws_key_id_value
 - export AWS_SECRET_ACCESS_KEY=aws_secret_key_value
