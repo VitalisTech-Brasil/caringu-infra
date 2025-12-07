@@ -1,0 +1,28 @@
+services:
+  python:
+    build:
+      context: ./caringu-python
+      dockerfile: Dockerfile
+    container_name: caringu-python
+    ports:
+      - "8000:8000"
+    networks:
+      - caringu-network
+    restart: always
+
+  # NGINX PROXY REVERSO
+  nginx:
+    image: vitalistech/caringu-frontend:latest
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    restart: always
+    networks:
+      - caringu-network
+
+networks:
+  caringu-network:
+    name: caringu-network
+    driver: bridge
