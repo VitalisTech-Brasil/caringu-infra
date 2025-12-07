@@ -1,67 +1,102 @@
-#!/usr/bin/env bash
-set -euo pipefail
+#!/bin/bash
+set -e
 
-DOMAIN="caringu.hopto.org"
+# =========================
+# CONFIGURAÇÕES DO DOMÍNIO
+# =========================
+DOMAIN="caringu.ddns.net"
 EMAIL="vitalistech06@gmail.com"
-COMPOSE_CMD="docker compose"
 
-echo "[enable-https] Iniciando processo de habilitação de HTTPS para ${DOMAIN}..."
+echo "🔧 [1/15] Atualizando pacotes do sistema e instalando OpenSSL..."
+sudo apt update && sudo apt install openssl -y
 
-cd "$(dirname "$0")"
 
-# 1. Verificar se está rodando em uma EC2 (heurística simples pelo /sys/hypervisor ou /sys/devices/virtual/dmi)
-if [[ -f /sys/hypervisor/uuid ]] || grep -qi "amazon" /sys/devices/virtual/dmi/id/* 2>/dev/null; then
-  echo "[enable-https] Ambiente aparenta ser uma instância EC2 (OK)."
-else
-  echo "[enable-https] AVISO: não foi possível confirmar que é uma EC2. Continuando mesmo assim..."
-fi
+echo "🛑 [2/15] Parando containers existentes (docker compose down)..."
+sudo docker compose down
 
-# 2. Garantir que diretórios de volumes existem no host
-sudo mkdir -p /etc/letsencrypt
-sudo mkdir -p /var/www/certbot
 
-echo "[enable-https] Rodando Certbot (webroot) para emitir certificado inicial..."
+echo "📜 [3/15] Gerando certificado SELF-SIGNED temporário (1 dia)..."
+sudo docker compose run --rm --entrypoint sh certbot -c "
+mkdir -p /etc/letsencrypt/live/$DOMAIN &&
+openssl req -x509 -nodes -newkey rsa:2048 -days 1 \
+  -keyout /etc/letsencrypt/live/$DOMAIN/privkey.pem \
+  -out /etc/letsencrypt/live/$DOMAIN/fullchain.pem \
+  -subj '/CN=$DOMAIN'
+"
+
+
+echo "📦 [4/15] Verificando containers após certificado temporário..."
+sudo docker ps -a
+
+
+echo "🧹 [5/15] Limpando certificados antigos ($DOMAIN)..."
+sudo rm -rf /etc/letsencrypt/live/$DOMAIN
+sudo rm -rf /etc/letsencrypt/archive/$DOMAIN
+sudo rm -rf /etc/letsencrypt/renewal/$DOMAIN.conf
+
+
+echo "🔐 [6/15] Solicitando certificado REAL do Let's Encrypt..."
 sudo docker run --rm \
   -v /etc/letsencrypt:/etc/letsencrypt \
   -v /var/www/certbot:/var/www/certbot \
-  certbot/certbot certonly --webroot \
-  -w /var/www/certbot \
-  -d "${DOMAIN}" \
-  --email "${EMAIL}" \
-  --agree-tos \
-  --no-eff-email
+  certbot/certbot certonly \
+    --webroot \
+    --webroot-path /var/www/certbot \
+    -d $DOMAIN \
+    --email $EMAIL \
+    --agree-tos \
+    --no-eff-email
 
-# 3. Validar existência dos arquivos de certificado
-FULLCHAIN="/etc/letsencrypt/live/${DOMAIN}/fullchain.pem"
-PRIVKEY="/etc/letsencrypt/live/${DOMAIN}/privkey.pem"
 
-if [[ ! -f "${FULLCHAIN}" || ! -f "${PRIVKEY}" ]]; then
-  echo "[enable-https] ERRO: Certificados não encontrados em:"
-  echo "  ${FULLCHAIN}"
-  echo "  ${PRIVKEY}"
-  echo "Verifique a saída do Certbot acima."
-  exit 1
-fi
+echo "📁 [7/15] Listando conteúdo atualizado do /etc/letsencrypt..."
+sudo ls -l /etc/letsencrypt/
 
-echo "[enable-https] Certificados encontrados com sucesso."
 
-# 4. Copiar template HTTPS para default.conf
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-NGINX_DIR="${SCRIPT_DIR}/nginx"
+echo "🐳 [8/15] Subindo containers novamente (docker compose up -d)..."
+sudo docker compose up -d
 
-if [[ ! -f "${NGINX_DIR}/default-https.conf.tpl" ]]; then
-  echo "[enable-https] ERRO: Template ${NGINX_DIR}/default-https.conf.tpl não encontrado."
-  exit 1
-fi
 
-sudo cp "${NGINX_DIR}/default-https.conf.tpl" "${NGINX_DIR}/default.conf"
-echo "[enable-https] Arquivo nginx/default.conf atualizado para versão HTTPS."
+echo "🔍 [9/15] Conferindo containers ativos..."
+sudo docker ps -a
 
-# 5. Reiniciar o container nginx-proxy de forma limpa
-echo "[enable-https] Reiniciando serviço nginx-proxy via docker compose..."
-sudo ${COMPOSE_CMD} restart nginx-proxy
 
-echo "[enable-https] HTTPS habilitado com sucesso para ${DOMAIN}."
-echo "[enable-https] Opcional: subir o contêiner de renovação automática com:"
-echo "sudo ${COMPOSE_CMD} up -d certbot"
+echo "📝 [10/15] Conferindo arquivos dentro do container NGINX..."
+echo "(É esperado ver: options-ssl-nginx.conf, ssl-dhparams.pem, live/, archive/)"
+sudo docker exec -it caringu-proxy ls -l /etc/letsencrypt
 
+
+echo "🧪 [11/15] Validando sintaxe do NGINX dentro do container..."
+sudo docker exec -it caringu-proxy nginx -t
+# Resultado esperado:
+# nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+# nginx: configuration file /etc/nginx/nginx.conf test is successful
+
+
+echo "📂 [12/15] Garantindo que pastas necessárias existem localmente..."
+sudo mkdir -p /etc/letsencrypt
+sudo mkdir -p /var/www/certbot
+
+
+echo "⬇️ [13/15] Baixando ssl-dhparams.pem para o sistema..."
+sudo wget -q https://raw.githubusercontent.com/certbot/certbot/master/certbot/certbot/ssl-dhparams.pem \
+  -O /etc/letsencrypt/ssl-dhparams.pem
+
+
+echo "⬇️ [14/15] Baixando options-ssl-nginx.conf..."
+sudo wget -q https://raw.githubusercontent.com/certbot/certbot/master/certbot-nginx/certbot_nginx/_internal/tls_configs/options-ssl-nginx.conf \
+  -O /etc/letsencrypt/options-ssl-nginx.conf
+
+
+echo "⚙️ [15/15] Gerando dhparam (2048 bits)..."
+sudo openssl dhparam -out /etc/letsencrypt/ssl-dhparams.pem 2048
+
+
+echo ""
+echo "📌 Agora você deve descomentar no arquivo: ./nginx/default.conf"
+echo "    include /etc/letsencrypt/options-ssl-nginx.conf;"
+echo "    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;"
+echo ""
+echo "Depois execute:"
+echo "    sudo docker compose exec caringu-proxy nginx -s reload"
+echo ""
+echo "✅ HTTPS configurado com sucesso!"
