@@ -69,7 +69,7 @@ variable "key_pair_name" {
 variable "instance_type" {
   description = "Tipo da instância EC2 para a aplicação"
   type        = string
-  default     = "t3.medium"
+  default     = "t3.large"
 }
 
 variable "volume_size" {
